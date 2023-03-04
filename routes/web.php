@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +17,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+/*************CLIENT******** */
+Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 
 
 
-Route::get('admin/dashboard', 'App\Http\Controllers\Controller@dashboard');
+
+
+/*************ADMIN******** */
+Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard');
 Route::get('admin/clients', 'App\Http\Controllers\Controller@clients');
-Route::get('admin/categories', 'App\Http\Controllers\Controller@categories');
+
+
+
+/***********admin CATEGORY***** */
+Route::get('admin/categories', 'App\Http\Controllers\CategoryController@index');
+    /**caetgory Product*** */
+Route::post('/admin/category/store', 'App\Http\Controllers\CategoryController@ajouterCategroieProduit');
+
+
 Route::get('admin/commandes', 'App\Http\Controllers\Controller@commandes');
 Route::get('admin/paiement', 'App\Http\Controllers\Controller@paiement');
 Route::get('admin/produits', 'App\Http\Controllers\Controller@produits');
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

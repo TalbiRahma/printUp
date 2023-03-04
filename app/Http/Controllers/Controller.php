@@ -13,9 +13,7 @@ class Controller extends BaseController
 
 
 
-    public function dashboard(){
-        return view('admin.dashboard');
-    }
+    
 
     public function clients(){
         return view('admin.clients');
