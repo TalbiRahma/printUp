@@ -33,7 +33,8 @@ Route::get('admin/clients', 'App\Http\Controllers\Controller@clients');
 /***********admin CATEGORY***** */
 Route::get('admin/categories', 'App\Http\Controllers\CategoryProductController@index');
     /**caetgory Product*** */
-Route::post('/admin/category/store', 'App\Http\Controllers\CategoryProductController@ajouterCategroieProduit');
+Route::post('/admin/category_product/store', 'App\Http\Controllers\CategoryProductController@ajouterCategroieProduit');
+Route::get('/admin/category_product/{id}/delete', 'App\Http\Controllers\CategoryProductController@supprimerCategroieProduit');
 
 
 Route::get('admin/commandes', 'App\Http\Controllers\Controller@commandes');

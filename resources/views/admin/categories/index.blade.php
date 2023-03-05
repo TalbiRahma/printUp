@@ -170,7 +170,7 @@
                         aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                             <div class="modal-content">
-                                <form action="/admin/category/store" method="POST">   
+                                <form action="/admin/category/store" method="POST" enctype="multipart/form-data">   
                                     @csrf
                                 <div class="modal-body p-0">
                                     <div class="card card-plain">
@@ -184,17 +184,33 @@
                                                 <label>Categorie</label>
                                                 <div class="input-group mb-3">
                                                     <input name="name" type="text" class="form-control"
-                                                        placeholder="Nom de Categorie" aria-label="Name"
-                                                        aria-describedby="name-addon">
+                                                        placeholder="Nom de Categorie" >
+                                                    @error('name')
+                                                        <div class="class alert alert-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <label>Description</label>
                                                 <div class="input-group mb-3">
-                                                    <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                    <textarea name="description"class="form-control" type="text" placeholder="Description"></textarea>
+                                                    @error('description')
+                                                        <div class="class alert alert-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
                                                 </div>
+                                                
                                                 <label>Photo</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" accept="image/*">
+                                                    <input name="photo" type="file" class="form-control" accept="image/*">
+                                                    @error('photo')
+                                                        <div class="class alert alert-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
                                                 </div>
+
                                                 <div class="text-center">
                                                     <button type="submit"
                                                         class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
@@ -234,25 +250,24 @@
                                             Action</th>
                                 </thead>
                                 <tbody>
+                                    @foreach ($category_product as $index => $cp )
                                     <tr>
                                         <td class="align-middle text-sm">
-                                            #001
+                                            {{$index+1}}
                                         </td>
                                         <td class="align-middle text-sm">
                                             <div class="d-flex px-2">
                                                 <div>
-                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
+                                                    <img src="{{asset('uploads')}}/{{$cp->photo}}"
                                                         class="avatar avatar-sm rounded-circle me-2">
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">NomCategorie</h5>
+                                                    <h5 class="mb-0 text-sm">{{$cp->name}}</h5>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">
-                                            <p class="text-xs text-secondary mb-0 force-line-break">paragraph
-                                                descriptif de
-                                                categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
+                                            <p class="text-xs text-secondary mb-0 force-line-break">{{$cp->description}}</p>
                                         </td>
                                         </td>
                                         <td>
@@ -267,6 +282,7 @@
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#categorieModif">Modifier</button>
                                             <!--Modal Modifier produit-->
+                                            @foreach ($category_product as $index => $cp )
                                             <div class="modal fade" id="categorieModif" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalSignTitle"
                                                 aria-hidden="true">
@@ -283,8 +299,10 @@
                                                                         produits:
                                                                     </p>
                                                                 </div>
+                                                                <form id="" role="form text-left">
+                                                                    @csrf
                                                                 <div class="card-body pb-3">
-                                                                    <form id="" role="form text-left">
+                                                                    
                                                                         <label>Categorie</label>
                                                                         <div class="input-group mb-3">
                                                                             <input type="text" class="form-control"
@@ -302,24 +320,26 @@
                                                                                 accept="image/*">
                                                                         </div>
                                                                         <div class="text-center">
-                                                                            <button type="button"
+                                                                            <button type="submit"
                                                                                 class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
                                                                                 Modifier</button>
-                                                                        </div>
-                                                                    </form>
+                                                                        </div>                                                                    
                                                                 </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
                                             <!--End modal modifier produit-->
-                                            <button type="button"
-                                                class="btn bg-gradient-danger btn-sm">Supprimer</button>
+                                            <a  onclick="return confirm('Voulez-vous vraiment supprimer cette categorie de produits?')" href="/admin/category_product/{{$cp->id}}/delete"
+                                                class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
