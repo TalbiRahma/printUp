@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 class CategoryProductController extends Controller
 {
     //
-    /*******PRODUCT********** */
+
+    public function index(){
+        return view('admin.categories.index');
+    }
+
     public function ajouterCategroieProduit(Request $request){
  
         $request->validate([

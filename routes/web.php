@@ -31,7 +31,7 @@ Route::get('admin/clients', 'App\Http\Controllers\Controller@clients');
 
 
 /***********admin CATEGORY***** */
-Route::get('admin/categories', 'App\Http\Controllers\CategoryController@index');
+Route::get('admin/categories', 'App\Http\Controllers\CategoryProductController@index');
     /**caetgory Product*** */
 Route::post('/admin/category/store', 'App\Http\Controllers\CategoryProductController@ajouterCategroieProduit');
 

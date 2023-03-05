@@ -166,65 +166,30 @@
                     </button>
 
                     <!--Modal Ajout produit-->
-                    <div class="modal fade" id="categorieAjout" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                                
-                                <div class="modal-body p-0">
-                                    <div class="card card-plain">
-                                        <div class="card-header pb-0 text-left">
-                                            <h3 class="font-weight-bolder text-primary text-gradient">
-                                                Ajouter Categorie Produits</h3>
-                                            <p class="mb-0">Ajouter une nouvelle categorie de produits</p>
-                                        </div>
-                                        <div class="card-body pb-3">
-                                            <form action="/admin/category/store" method="POST" role="form text-left">
-                                                @csrf
-                                                <label>Categorie</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Nom de Categorie" aria-label="Name"
-                                                        aria-describedby="name-addon">
-                                                </div>
-                                                @error('name')
-                                                <div class="alert alert-danger">
-                                                  {{$message}}
-                                                </div>
-                                                @enderror
-
-                                                <label>Description</label>
-                                                <div class="input-group mb-3">
-                                                    <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
-                                                </div>
-                                                @error('description')
-                                                <div class="alert alert-danger">
-                                                  {{$message}}
-                                                </div>
-                                                @enderror
-
-                                                <label>Image</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="image" type="file" class="form-control" accept="image/*">
-                                                </div>
-                                                @error('image')
-                                                <div class="alert alert-danger">
-                                                  {{$message}}
-                                                </div>
-                                                @enderror
-
-                                                <div class="text-center">
-                                                    <button type="submit"
-                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
-                                                        Ajouter</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <button type="button" class="btn btn-block bg-gradient-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-default">Default</button>
+                          <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+                            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                  </button>
                                 </div>
+                                <div class="modal-body">
+                                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn bg-gradient-primary">Save changes</button>
+                                  <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                              </div>
                             </div>
+                          </div>
                         </div>
-                    </div>
                     <!--End modal ajout produit-->
                 </div>
                 <hr class="horizontal dark mt-0">
