@@ -166,171 +166,24 @@
                     </button>
 
                     <!--Modal Ajout produit-->
-                    <div class="row">
-                        <div class="col-md-4">
-                          <button type="button" class="btn btn-block bg-gradient-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-default">Default</button>
-                          <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-                            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn bg-gradient-primary">Save changes</button>
-                                  <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    <!--End modal ajout produit-->
-                </div>
-                <hr class="horizontal dark mt-0">
-                <div class="table-responsive">
-
-
-                    <div class="table-responsive">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        ID</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Categorie</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Description</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Contenus</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">
-                                        Action</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="align-middle text-sm">
-                                        #001
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">NomCategorie</h5>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <p class="text-xs text-secondary mb-0 force-line-break">paragraph descriptif de
-                                            categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                            data-toggle="tooltip" data-original-title="afficher liste de prod">
-                                            Produits
-                                        </a>
-                                    </td>
-
-                                    <td class="align-middle ">
-                                        <button type="button" class="btn bg-gradient-primary btn-sm"
-                                            data-bs-toggle="modal" data-bs-target="#categorieModif">Modifier</button>
-                                        <!--Modal Modifier produit-->
-                                        <div class="modal fade" id="categorieModif" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body p-0">
-                                                        <div class="card card-plain">
-                                                            <div class="card-header pb-0 text-left">
-                                                                <h3
-                                                                    class="font-weight-bolder text-primary text-gradient">
-                                                                    Modifier Categorie Produits</h3>
-                                                                <p class="mb-0">Modifier cette catégorie de produits:
-                                                                </p>
-                                                            </div>
-                                                            <div class="card-body pb-3">
-                                                                <form id="" role="form text-left">
-                                                                    <label>Categorie</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Nom de Categorie"
-                                                                            aria-label="Name"
-                                                                            aria-describedby="name-addon">
-                                                                    </div>
-                                                                    <label>Description</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <textarea class="form-control" type="text" placeholder="Description"></textarea>
-                                                                    </div>
-                                                                    <label>Photo</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="file" class="form-control"
-                                                                            accept="image/*">
-                                                                    </div>
-                                                                    <div class="text-center">
-                                                                        <button type="button"
-                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
-                                                                            Modifier</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--End modal modifier produit-->
-                                        <button type="button"
-                                            class="btn bg-gradient-danger btn-sm">Supprimer</button>
-
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid py-4">
-            <div class="card">
-                <div class="container-fluid py-4">
-                    <h6>Table de Categories Designs:</h6>
-                    <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#categorieAjoutDesign">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text">Ajouter</span>
-                    </button>
-                    <!--Modal Ajout design-->
-                    <div class="modal fade" id="categorieAjoutDesign" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="categorieAjout" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                             <div class="modal-content">
+                                <form action="/admin/category/store" method="POST">   
+                                    @csrf
                                 <div class="modal-body p-0">
                                     <div class="card card-plain">
                                         <div class="card-header pb-0 text-left">
                                             <h3 class="font-weight-bolder text-primary text-gradient">
-                                                Ajouter Categorie Designs</h3>
-                                            <p class="mb-0">Ajouter une nouvelle categorie de designs</p>
+                                                Ajouter Categorie Produits</h3>
+                                            <p class="mb-0">Ajouter une nouvelle categorie de produits</p>
                                         </div>
                                         <div class="card-body pb-3">
-                                            <form id="" role="form text-left">
+                                            
                                                 <label>Categorie</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control"
+                                                    <input name="name" type="text" class="form-control"
                                                         placeholder="Nom de Categorie" aria-label="Name"
                                                         aria-describedby="name-addon">
                                                 </div>
@@ -343,136 +196,308 @@
                                                     <input type="file" class="form-control" accept="image/*">
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="button"
+                                                    <button type="submit"
                                                         class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
                                                         Ajouter</button>
                                                 </div>
-                                            </form>
+                                </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--End modal ajout design-->
-                </div>
-                <hr class="horizontal dark mt-0">
-                <div class="table-responsive">
-
-
+                        <!--End modal ajout produit-->
+                    </div>
+                    <hr class="horizontal dark mt-0">
                     <div class="table-responsive">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        ID</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Categorie</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Description</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Contenus</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">
-                                        Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="align-middle text-sm">
-                                        #001
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div>
-                                                <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
-                                                    class="avatar avatar-sm rounded-circle me-2">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">NomCategorie</h5>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <p class="text-xs text-secondary mb-0 force-line-break">paragraph descriptif de
-                                            categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                            data-toggle="tooltip" data-original-title="afficher liste de prod">
-                                            Designs
-                                        </a>
-                                    </td>
 
-                                    <td class="align-middle ">
-                                        <button href="" type="button" class="btn bg-gradient-primary btn-sm"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#categorieModifDesign">Modifier</button>
-                                        <!--Modal Modifier produit-->
-                                        <div class="modal fade" id="categorieModifDesign" tabindex="-1"
-                                            role="dialog" aria-labelledby="exampleModalSignTitle"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body p-0">
-                                                        <div class="card card-plain">
-                                                            <div class="card-header pb-0 text-left">
-                                                                <h3
-                                                                    class="font-weight-bolder text-primary text-gradient">
-                                                                    Modifier Categorie Designs</h3>
-                                                                <p class="mb-0">Modifier cette catégorie de designs:
-                                                                </p>
-                                                            </div>
-                                                            <div class="card-body pb-3">
-                                                                <form id="" role="form text-left">
-                                                                    <label>Categorie</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Nom de Categorie"
-                                                                            aria-label="Name"
-                                                                            aria-describedby="name-addon">
-                                                                    </div>
-                                                                    <label>Description</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <textarea class="form-control" type="text" placeholder="Description"></textarea>
-                                                                    </div>
-                                                                    <label>Photo</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="file" class="form-control"
-                                                                            accept="image/*">
-                                                                    </div>
-                                                                    <div class="text-center">
-                                                                        <button type="button"
-                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
-                                                                            Modifier</button>
-                                                                    </div>
-                                                                </form>
+
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            ID</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                            Categorie</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                            Description</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
+                                            Contenus</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">
+                                            Action</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle text-sm">
+                                            #001
+                                        </td>
+                                        <td class="align-middle text-sm">
+                                            <div class="d-flex px-2">
+                                                <div>
+                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
+                                                        class="avatar avatar-sm rounded-circle me-2">
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h5 class="mb-0 text-sm">NomCategorie</h5>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-sm">
+                                            <p class="text-xs text-secondary mb-0 force-line-break">paragraph
+                                                descriptif de
+                                                categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
+                                        </td>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                                data-toggle="tooltip" data-original-title="afficher liste de prod">
+                                                Produits
+                                            </a>
+                                        </td>
+
+                                        <td class="align-middle ">
+                                            <button type="button" class="btn bg-gradient-primary btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#categorieModif">Modifier</button>
+                                            <!--Modal Modifier produit-->
+                                            <div class="modal fade" id="categorieModif" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalSignTitle"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-md"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body p-0">
+                                                            <div class="card card-plain">
+                                                                <div class="card-header pb-0 text-left">
+                                                                    <h3
+                                                                        class="font-weight-bolder text-primary text-gradient">
+                                                                        Modifier Categorie Produits</h3>
+                                                                    <p class="mb-0">Modifier cette catégorie de
+                                                                        produits:
+                                                                    </p>
+                                                                </div>
+                                                                <div class="card-body pb-3">
+                                                                    <form id="" role="form text-left">
+                                                                        <label>Categorie</label>
+                                                                        <div class="input-group mb-3">
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="Nom de Categorie"
+                                                                                aria-label="Name"
+                                                                                aria-describedby="name-addon">
+                                                                        </div>
+                                                                        <label>Description</label>
+                                                                        <div class="input-group mb-3">
+                                                                            <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                                        </div>
+                                                                        <label>Photo</label>
+                                                                        <div class="input-group mb-3">
+                                                                            <input type="file" class="form-control"
+                                                                                accept="image/*">
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                                                Modifier</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!--End modal modifier produit-->
-                                        <button href="" type="button"
-                                            class="btn bg-gradient-danger btn-sm">Supprimer</button>
+                                            <!--End modal modifier produit-->
+                                            <button type="button"
+                                                class="btn bg-gradient-danger btn-sm">Supprimer</button>
 
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
-        @include('inc.admin.footer')
+            <div class="container-fluid py-4">
+                <div class="card">
+                    <div class="container-fluid py-4">
+                        <h6>Table de Categories Designs:</h6>
+                        <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
+                            data-bs-target="#categorieAjoutDesign">
+                            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                            <span class="btn-inner--text">Ajouter</span>
+                        </button>
+                        <!--Modal Ajout design-->
+                        <div class="modal fade" id="categorieAjoutDesign" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body p-0">
+                                        <div class="card card-plain">
+                                            <div class="card-header pb-0 text-left">
+                                                <h3 class="font-weight-bolder text-primary text-gradient">
+                                                    Ajouter Categorie Designs</h3>
+                                                <p class="mb-0">Ajouter une nouvelle categorie de designs</p>
+                                            </div>
+                                            <div class="card-body pb-3">
+                                                <form id="" role="form text-left">
+                                                    <label>Categorie</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Nom de Categorie" aria-label="Name"
+                                                            aria-describedby="name-addon">
+                                                    </div>
+                                                    <label>Description</label>
+                                                    <div class="input-group mb-3">
+                                                        <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                    </div>
+                                                    <label>Photo</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" accept="image/*">
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <button type="button"
+                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                            Ajouter</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End modal ajout design-->
+                    </div>
+                    <hr class="horizontal dark mt-0">
+                    <div class="table-responsive">
+
+
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            ID</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                            Categorie</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                            Description</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
+                                            Contenus</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">
+                                            Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle text-sm">
+                                            #001
+                                        </td>
+                                        <td class="align-middle text-sm">
+                                            <div class="d-flex px-2">
+                                                <div>
+                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
+                                                        class="avatar avatar-sm rounded-circle me-2">
+                                                </div>
+                                                <div class="my-auto">
+                                                    <h5 class="mb-0 text-sm">NomCategorie</h5>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-sm">
+                                            <p class="text-xs text-secondary mb-0 force-line-break">paragraph
+                                                descriptif de
+                                                categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
+                                        </td>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                                data-toggle="tooltip" data-original-title="afficher liste de prod">
+                                                Designs
+                                            </a>
+                                        </td>
+
+                                        <td class="align-middle ">
+                                            <button href="" type="button"
+                                                class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#categorieModifDesign">Modifier</button>
+                                            <!--Modal Modifier produit-->
+                                            <div class="modal fade" id="categorieModifDesign" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalSignTitle"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-md"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body p-0">
+                                                            <div class="card card-plain">
+                                                                <div class="card-header pb-0 text-left">
+                                                                    <h3
+                                                                        class="font-weight-bolder text-primary text-gradient">
+                                                                        Modifier Categorie Designs</h3>
+                                                                    <p class="mb-0">Modifier cette catégorie de
+                                                                        designs:
+                                                                    </p>
+                                                                </div>
+                                                                <div class="card-body pb-3">
+                                                                    <form id="" role="form text-left">
+                                                                        <label>Categorie</label>
+                                                                        <div class="input-group mb-3">
+                                                                            <input type="text" class="form-control"
+                                                                                placeholder="Nom de Categorie"
+                                                                                aria-label="Name"
+                                                                                aria-describedby="name-addon">
+                                                                        </div>
+                                                                        <label>Description</label>
+                                                                        <div class="input-group mb-3">
+                                                                            <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                                        </div>
+                                                                        <label>Photo</label>
+                                                                        <div class="input-group mb-3">
+                                                                            <input type="file" class="form-control"
+                                                                                accept="image/*">
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                                                Modifier</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--End modal modifier produit-->
+                                            <button href="" type="button"
+                                                class="btn bg-gradient-danger btn-sm">Supprimer</button>
+
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @include('inc.admin.footer')
         </div>
     </main>
 

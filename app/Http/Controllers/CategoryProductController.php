@@ -26,6 +26,7 @@ class CategoryProductController extends Controller
         $category->description = $request->description;
         $category->photo = $request->photo;
 
+        
         $category->save();
         return redirect()->back();
     }
