@@ -58,12 +58,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  active" href="/admin/categories">
+                    <a class="nav-link  active" href="/admin/categories/produits">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories</span>
+                        <span class="nav-link-text ms-1">Categories Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active" href="/admin/categories">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Designs</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -108,7 +117,7 @@
                                 href="javascript:;">Pages</a></li>
                         <li class="breadcrumb-item text-sm text-white active" aria-current="page">categories</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Categories</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Categories Designs</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -151,182 +160,12 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Liste de categories</h4>
+                    <h4>Liste de categories designs</h4>
                 </div>
             </div>
         </div>
         <div class="container-fluid py-4">
-            <div class="card">
-                <div class="container-fluid py-4">
-                    <h6>Table de Categories Produits Initiale:</h6>
-                    <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#categorieAjout">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text">Ajouter</span>
-                    </button>
-
-                    <!--Modal Ajout produit-->
-                    <div class="modal fade" id="categorieAjout" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                                <form action="/admin/category/store" method="POST">   
-                                    @csrf
-                                <div class="modal-body p-0">
-                                    <div class="card card-plain">
-                                        <div class="card-header pb-0 text-left">
-                                            <h3 class="font-weight-bolder text-primary text-gradient">
-                                                Ajouter Categorie Produits</h3>
-                                            <p class="mb-0">Ajouter une nouvelle categorie de produits</p>
-                                        </div>
-                                        <div class="card-body pb-3">
-                                            
-                                                <label>Categorie</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Nom de Categorie" aria-label="Name"
-                                                        aria-describedby="name-addon">
-                                                </div>
-                                                <label>Description</label>
-                                                <div class="input-group mb-3">
-                                                    <textarea class="form-control" type="text" placeholder="Description"></textarea>
-                                                </div>
-                                                <label>Photo</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" accept="image/*">
-                                                </div>
-                                                <div class="text-center">
-                                                    <button type="submit"
-                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
-                                                        Ajouter</button>
-                                                </div>
-                                </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <!--End modal ajout produit-->
-                    </div>
-                    <hr class="horizontal dark mt-0">
-                    <div class="table-responsive">
-
-
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            ID</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                            Categorie</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                            Description</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                            Contenus</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">
-                                            Action</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle text-sm">
-                                            #001
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2">
-                                                </div>
-                                                <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">NomCategorie</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <p class="text-xs text-secondary mb-0 force-line-break">paragraph
-                                                descriptif de
-                                                categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                                data-toggle="tooltip" data-original-title="afficher liste de prod">
-                                                Produits
-                                            </a>
-                                        </td>
-
-                                        <td class="align-middle ">
-                                            <button type="button" class="btn bg-gradient-primary btn-sm"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#categorieModif">Modifier</button>
-                                            <!--Modal Modifier produit-->
-                                            <div class="modal fade" id="categorieModif" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalSignTitle"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-md"
-                                                    role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body p-0">
-                                                            <div class="card card-plain">
-                                                                <div class="card-header pb-0 text-left">
-                                                                    <h3
-                                                                        class="font-weight-bolder text-primary text-gradient">
-                                                                        Modifier Categorie Produits</h3>
-                                                                    <p class="mb-0">Modifier cette catégorie de
-                                                                        produits:
-                                                                    </p>
-                                                                </div>
-                                                                <div class="card-body pb-3">
-                                                                    <form id="" role="form text-left">
-                                                                        <label>Categorie</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input type="text" class="form-control"
-                                                                                placeholder="Nom de Categorie"
-                                                                                aria-label="Name"
-                                                                                aria-describedby="name-addon">
-                                                                        </div>
-                                                                        <label>Description</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <textarea class="form-control" type="text" placeholder="Description"></textarea>
-                                                                        </div>
-                                                                        <label>Photo</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input type="file" class="form-control"
-                                                                                accept="image/*">
-                                                                        </div>
-                                                                        <div class="text-center">
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
-                                                                                Modifier</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--End modal modifier produit-->
-                                            <button type="button"
-                                                class="btn bg-gradient-danger btn-sm">Supprimer</button>
-
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            
             <div class="container-fluid py-4">
                 <div class="card">
                     <div class="container-fluid py-4">
@@ -341,6 +180,8 @@
                             aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                 <div class="modal-content">
+                                    <form action="/admin/category_design/store" method="POST" enctype="multipart/form-data">
+                                        @csrf
                                     <div class="modal-body p-0">
                                         <div class="card card-plain">
                                             <div class="card-header pb-0 text-left">
@@ -349,30 +190,47 @@
                                                 <p class="mb-0">Ajouter une nouvelle categorie de designs</p>
                                             </div>
                                             <div class="card-body pb-3">
-                                                <form id="" role="form text-left">
+                                                
                                                     <label>Categorie</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control"
+                                                        <input name="name" type="text" class="form-control"
                                                             placeholder="Nom de Categorie" aria-label="Name"
                                                             aria-describedby="name-addon">
+                                                            @error('name')
+                                                                <div class="class alert alert-danger">
+                                                                    {{$message}}
+                                                                </div>
+                                                            @enderror
                                                     </div>
                                                     <label>Description</label>
                                                     <div class="input-group mb-3">
-                                                        <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                        <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
+                                                        @error('description')
+                                                                <div class="class alert alert-danger">
+                                                                    {{$message}}
+                                                                </div>
+                                                            @enderror
                                                     </div>
                                                     <label>Photo</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="file" class="form-control" accept="image/*">
+                                                        <input name="photo" type="file" class="form-control" accept="image/*">
+                                                        @error('photo')
+                                                                <div class="class alert alert-danger">
+                                                                    {{$message}}
+                                                                </div>
+                                                            @enderror
                                                     </div>
-                                                    <div class="text-center">
-                                                        <button type="button"
-                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                    <div class="text-center" style="display:flex; flex-direction: row;">
+                                                        <button type="submit"
+                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
                                                             Ajouter</button>
+                                                            <button type="button" class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0" data-bs-dismiss="modal">Annuler</button>
                                                     </div>
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +294,7 @@
                                             <button href="" type="button"
                                                 class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#categorieModifDesign">Modifier</button>
-                                            <!--Modal Modifier produit-->
+                                            <!--Modal Modifier design-->
                                             <div class="modal fade" id="categorieModifDesign" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalSignTitle"
                                                 aria-hidden="true">
@@ -471,10 +329,11 @@
                                                                             <input type="file" class="form-control"
                                                                                 accept="image/*">
                                                                         </div>
-                                                                        <div class="text-center">
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                                        <div class="text-center" style="display:flex; flex-direction: row;">
+                                                                            <button type="submit"
+                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
                                                                                 Modifier</button>
+                                                                            <button type="button" class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0" data-bs-dismiss="modal">Annuler</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -483,7 +342,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--End modal modifier produit-->
+                                            <!--End modal modifier design-->
                                             <button href="" type="button"
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</button>
 
