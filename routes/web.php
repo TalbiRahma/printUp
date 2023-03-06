@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
 /*************CLIENT******** */
 Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 
@@ -31,16 +38,23 @@ Route::get('admin/clients', 'App\Http\Controllers\Controller@clients');
 
 
 /***********admin CATEGORY***** */
-Route::get('admin/categories', 'App\Http\Controllers\CategoryProductController@index');
-    /**caetgory Product*** */
+Route::get('admin/categories/produits', 'App\Http\Controllers\CategoryProductController@index');
+Route::get('admin/categories/designs', 'App\Http\Controllers\CategoryDesignController@index');
+    /**category Product*** */
 Route::post('/admin/category_product/store', 'App\Http\Controllers\CategoryProductController@ajouterCategroieProduit');
 Route::get('/admin/category_product/{id}/delete', 'App\Http\Controllers\CategoryProductController@supprimerCategroieProduit');
+Route::post('/admin/category_product/update', 'App\Http\Controllers\CategoryProductController@modifierCategroieProduit');
+    /**category Design*** */
+Route::post('/admin/category_design/store', 'App\Http\Controllers\CategoryDesignController@ajouterCategroieDesign');
+Route::get('/admin/category_design/{id}/delete', 'App\Http\Controllers\CategoryDesignController@supprimerCategroieDesign');
+Route::post('/admin/category_design/update', 'App\Http\Controllers\CategoryDesignController@modifierCategroieDesign');
+
+
+
 
 
 Route::get('admin/commandes', 'App\Http\Controllers\Controller@commandes');
 Route::get('admin/paiement', 'App\Http\Controllers\Controller@paiement');
 Route::get('admin/produits', 'App\Http\Controllers\Controller@produits');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
