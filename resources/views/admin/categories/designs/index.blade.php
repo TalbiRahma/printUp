@@ -262,25 +262,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($category_design as $index => $cd )
                                     <tr>
                                         <td class="align-middle text-sm">
-                                            #001
+                                            {{$index+1}}
                                         </td>
                                         <td class="align-middle text-sm">
                                             <div class="d-flex px-2">
                                                 <div>
-                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/logos/small-logos/logo-spotify.svg"
+                                                    <img src="{{asset('uploads')}}/{{$cd->photo}}"
                                                         class="avatar avatar-sm rounded-circle me-2">
                                                 </div>
                                                 <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">NomCategorie</h5>
+                                                    <h5 class="mb-0 text-sm">{{$cd->name}}</h5>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">
-                                            <p class="text-xs text-secondary mb-0 force-line-break">paragraph
-                                                descriptif de
-                                                categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
+                                            <p class="text-xs text-secondary mb-0 force-line-break">{{$cd->description}}</p>
                                         </td>
                                         </td>
                                         <td>
@@ -293,9 +292,9 @@
                                         <td class="align-middle ">
                                             <button href="" type="button"
                                                 class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#categorieModifDesign">Modifier</button>
+                                                data-bs-target="#categorieModifDesign{{$cd->id}}">Modifier</button>
                                             <!--Modal Modifier design-->
-                                            <div class="modal fade" id="categorieModifDesign" tabindex="-1"
+                                            <div class="modal fade" id="categorieModifDesign{{$cd->id}}" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalSignTitle"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-md"
@@ -306,27 +305,33 @@
                                                                 <div class="card-header pb-0 text-left">
                                                                     <h3
                                                                         class="font-weight-bolder text-primary text-gradient">
-                                                                        Modifier Categorie Designs</h3>
+                                                                        Modifier Categorie <span>{{$cd->name}}</span></h3>
                                                                     <p class="mb-0">Modifier cette catégorie de
                                                                         designs:
                                                                     </p>
                                                                 </div>
+                                                                <form action="/admin/category_design/update" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
                                                                 <div class="card-body pb-3">
-                                                                    <form id="" role="form text-left">
+                                                                        <input type="hidden" name="id_category_design" value="{{$cd->id}}">
+                                                                        <div>
+                                                                            <img src="{{asset('uploads')}}/{{$cd->photo}}"
+                                                                        class="avatar avatar-sm rounded-circle me-2">
+                                                                        </div>
                                                                         <label>Categorie</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input type="text" class="form-control"
+                                                                            <input name="name" type="text" class="form-control"
                                                                                 placeholder="Nom de Categorie"
                                                                                 aria-label="Name"
-                                                                                aria-describedby="name-addon">
+                                                                                aria-describedby="name-addon" value="{{$cd->name}}">
                                                                         </div>
                                                                         <label>Description</label>
                                                                         <div class="input-group mb-3">
-                                                                            <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                                            <textarea name="description"class="form-control" type="text" placeholder="Description">{{$cd->description}}</textarea>
                                                                         </div>
                                                                         <label>Photo</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input type="file" class="form-control"
+                                                                            <input name="photo" type="file" class="form-control"
                                                                                 accept="image/*">
                                                                         </div>
                                                                         <div class="text-center" style="display:flex; flex-direction: row;">
@@ -335,20 +340,21 @@
                                                                                 Modifier</button>
                                                                             <button type="button" class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0" data-bs-dismiss="modal">Annuler</button>
                                                                         </div>
-                                                                    </form>
                                                                 </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--End modal modifier design-->
-                                            <button href="" type="button"
-                                                class="btn bg-gradient-danger btn-sm">Supprimer</button>
+                                            <a  onclick="return confirm('Voulez-vous vraiment supprimer cette categorie de designs?')" href="/admin/category_design/{{$cd->id}}/delete"
+                                                class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

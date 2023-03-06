@@ -50,6 +50,11 @@ Route::get('/admin/category_design/{id}/delete', 'App\Http\Controllers\CategoryD
 Route::post('/admin/category_design/update', 'App\Http\Controllers\CategoryDesignController@modifierCategroieDesign');
 
 
+/***********admin PRODUCT***** */
+Route::get('admin/produits', 'App\Http\Controllers\InitialProductController@index');
+Route::post('/admin/product/store', 'App\Http\Controllers\InitialProductController@ajouterProduit');
+Route::get('/admin/product/{id}/delete', 'App\Http\Controllers\InitialProductController@supprimerProduit');
+Route::post('/admin/product/update', 'App\Http\Controllers\InitialProductController@modifierProduit');
 
 
 
