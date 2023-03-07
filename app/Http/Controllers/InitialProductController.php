@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryDesign;
 use Illuminate\Http\Request;
+use App\Models\InitialProduct;
 
-class CategoryDesignController extends Controller
+class InitialProductController extends Controller
 {
     //
 
     public function index(){
-        $category_design = CategoryDesign::all();
-        return view('admin.categories.designs.index')->with('category_design' , $category_design);
+        $product = InitialProduct::all();
+        return view('admin.produits.index')->with('product' , $product);
     }
 
-    public function ajouterCategroieDesign(Request $request){
+    public function ajouterProduit(Request $request){
  
        
         $request->validate([
@@ -23,9 +23,9 @@ class CategoryDesignController extends Controller
             'photo' => 'required',
         ]);
 
-        $category_design = new CategoryDesign();
-        $category_design->name = $request->name;
-        $category_design->description = $request->description;
+        $product = new InitialProduct();
+        $product->name = $request->name;
+        $product->description = $request->description;
 
         //upload image
         $newname = uniqid();
@@ -34,8 +34,8 @@ class CategoryDesignController extends Controller
         $destinationPath = 'uploads';
         $image->move($destinationPath , $newname);
 
-        $category_design->photo = $newname;
-        if ($category_design->save()){
+        $product->photo = $newname;
+        if ($product->save()){
             return redirect()->back();
         }else{
             echo"error";
@@ -43,31 +43,31 @@ class CategoryDesignController extends Controller
         
     }
 
-    public function supprimerCategroieDesign($id){
+    public function supprimerProduit($id){
 
-        $category_design = CategoryDesign::find($id);
+        $product = InitialProduct::find($id);
 
-       $file_path = public_path().'/uploads/'.$category_design->photo;
+       $file_path = public_path().'/uploads/'.$product->photo;
 
         unlink($file_path);
-        if ($category_design->delete()){
+        if ($product->delete()){
             return redirect()->back();
         }else{
             echo "error";
         }
     }
 
-    public function modifierCategroieDesign(Request $request){
+    public function modifierProduit(Request $request){
 
-        $category_design =CategoryDesign::find($request->id_category_design);
-        //dd($category_design);
-        $category_design->name = $request->name;
-        $category_design->description = $request->description;
+        $product = InitialProduct::find($request->id_product);
+        //dd($product);
+        $product->name = $request->name;
+        $product->description = $request->description;
 
         //upload image
         if($request->file('photo')){
             //supprimer ancienne photo
-            $file_path = public_path().'/uploads/'.$category_design->photo;
+            $file_path = public_path().'/uploads/'.$product->photo;
             unlink($file_path);
 
             //upload nv photo
@@ -76,11 +76,11 @@ class CategoryDesignController extends Controller
             $newname.= "." . $image->getClientOriginalExtension();
             $destinationPath = 'uploads';
             $image->move($destinationPath , $newname);
-            $category_design->photo = $newname;
+            $product->photo = $newname;
 
         }
         
-        if ($category_design->update()){
+        if ($product->update()){
             return redirect()->back();
         }else{
             echo"error";
