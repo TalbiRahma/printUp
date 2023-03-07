@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard">
+                    <a class="nav-link" href="/admin/dashboard">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="clients">
+                    <a class="nav-link " href="/admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -58,16 +58,23 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="categories">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <a class="nav-link " href="/admin/categories/produits">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Categories Produits</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin/categories/designs">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories</span>
+                        <span class="nav-link-text ms-1">Categories Designs</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="produits">
+                    <a class="nav-link " href="/admin/produits">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -76,7 +83,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="commandes">
+                    <a class="nav-link active" href="/admin/commandes">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
@@ -85,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="paiement">
+                    <a class="nav-link " href="/admin/paiement">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
@@ -121,10 +128,7 @@
                     <ul class="navbar-nav  justify-content-end">
                         <!--profile-->
                         <li class="nav-item d-flex align-items-center">
-                            <a href="lien de profil" class="nav-link text-white font-weight-bold px-0">
-                                <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Profile</span>
-                            </a>
+                            @include('inc.admin.profile')
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">

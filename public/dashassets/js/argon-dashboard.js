@@ -26,6 +26,25 @@
   };
 })();
 
+// Sélectionne tous les liens de menu
+var menuLinks = document.querySelectorAll('nav ul li a');
+
+// Ajoute un gestionnaire d'événement pour le clic sur un lien de menu
+menuLinks.forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    // Annule le comportement de lien par défaut
+    e.preventDefault();
+    // Sélectionne le sous-menu correspondant à ce lien
+    var subMenu = link.nextElementSibling;
+    // Si le sous-menu est actuellement masqué, l'affiche, sinon le masque
+    if (subMenu.style.display === 'none') {
+      subMenu.style.display = 'block';
+    } else {
+      subMenu.style.display = 'none';
+    }
+  });
+});
+
 // Verify navbar blur on scroll
 if (document.getElementById('navbarBlur')) {
   navbarBlurOnScroll('navbarBlur');

@@ -21454,6 +21454,10 @@ fieldset:disabled .btn {
   color: #5e72e4;
 }
 
+nav ul li .sub-menu {
+  display: none;
+}
+
 .fixed-plugin.show .card {
   right: 0;
 }
