@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard">
+                    <a class="nav-link" href="/admin/dashboard">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="clients">
+                    <a class="nav-link " href="/admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -58,25 +58,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="categories">
+                    <a class="nav-link " href="/admin/categories/produits">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Categories Produits</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin/categories/designs">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link  active" href="/admin/categories">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-info text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Categories Designs</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="produits">
+                    <a class="nav-link active" href="/admin/produits">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -85,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="commandes">
+                    <a class="nav-link " href="/admin/commandes">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
@@ -94,7 +93,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="paiement">
+                    <a class="nav-link " href="/admin/paiement">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
@@ -130,10 +129,7 @@
                     <ul class="navbar-nav  justify-content-end">
                         <!--profile-->
                         <li class="nav-item d-flex align-items-center">
-                            <a href="lien de profil" class="nav-link text-white font-weight-bold px-0">
-                                <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Profile</span>
-                            </a>
+                            @include('inc.admin.profile')
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
@@ -164,6 +160,7 @@
                 </div>
             </div>
         </div>
+        <!--Tableau produit-->
         <div class="container-fluid py-4">
             <div class="card">
                 <div class="container-fluid py-4">
@@ -200,6 +197,31 @@
                                                 <div class="input-group mb-3">
                                                     <textarea class="form-control" type="text" placeholder="Description"></textarea>
                                                 </div>
+                                                <label>Prix</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Prix de produit" aria-label="Name"
+                                                        aria-describedby="name-addon">
+                                                </div>
+                                                <label>Taille</label>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure">
+                                                        <option value="Choice 1" selected="">Non classé</option>
+                                                        <option value="Choice 2">XS</option>
+                                                        <option value="Choice 3">s</option>
+                                                        <option value="Choice 4">M</option>
+                                                        <option value="Choice 4">L</option>
+                                                      </select>
+                                                </div>
+                                                <label>Categorie</label>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure">
+                                                        <option value="Choice 1" selected="">Non classé</option>
+                                                        <option value="Choice 2">Categorie 1</option>
+                                                        <option value="Choice 3">Categorie 2</option>
+                                                        <option value="Choice 4">Categorie 3</option>
+                                                      </select>
+                                                </div>
                                                 <label>Photo</label>
                                                 <div class="input-group mb-3">
                                                     <input type="file" class="form-control" accept="image/*">
@@ -227,11 +249,11 @@
                             <thead>
                               <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Image</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Produit</th>
-                                <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Description</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Produit</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Prix</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Taille</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Categorie</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                               </tr>
@@ -256,8 +278,22 @@
                                     </td>
                                     <td class="align-middle text-sm">
                                         <p class="text-xs text-secondary mb-0 force-line-break">paragraph descriptif de
-                                            categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
+                                            categories de produit</p>
                                     </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                              <h5 class="mb-0 text-sm">Prix</h5>
+                                            </div>
+                                          </div>
+                                        </td>
+                                        <td class="align-middle text-sm">
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                  <h5 class="mb-0 text-sm">Taille</h5>
+                                                </div>
+                                              </div>
+                                            </td>
                                 <td>
                                     <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
                                         data-toggle="tooltip" data-original-title="afficher liste de categories">
@@ -292,6 +328,31 @@
                                                 <label>Description</label>
                                                 <div class="input-group mb-3">
                                                     <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                </div>
+                                                <label>Prix</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Prix de produit" aria-label="Name"
+                                                        aria-describedby="name-addon">
+                                                </div>
+                                                <label>Taille</label>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure">
+                                                        <option value="Choice 1" selected="">Non classé</option>
+                                                        <option value="Choice 2">XS</option>
+                                                        <option value="Choice 3">s</option>
+                                                        <option value="Choice 4">M</option>
+                                                        <option value="Choice 4">L</option>
+                                                      </select>
+                                                </div>
+                                                <label>Categorie</label>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure">
+                                                        <option value="Choice 1" selected="">Non classé</option>
+                                                        <option value="Choice 2">Categorie 1</option>
+                                                        <option value="Choice 3">Categorie 2</option>
+                                                        <option value="Choice 4">Categorie 3</option>
+                                                      </select>
                                                 </div>
                                                 <label>Photo</label>
                                                 <div class="input-group mb-3">
