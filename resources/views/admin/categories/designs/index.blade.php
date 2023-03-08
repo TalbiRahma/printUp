@@ -160,11 +160,10 @@
                 </div>
             </div>
         </div>
+
         <div class="container-fluid py-4">
-            
+            <div class="card">
             <div class="container-fluid py-4">
-                <div class="card">
-                    <div class="container-fluid py-4">
                         <h6>Table de Categories Designs:</h6>
                         <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
                             data-bs-target="#categorieAjoutDesign">
@@ -244,10 +243,10 @@
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             ID</th>
                                         <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
                                             Categorie</th>
                                         <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Description</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
@@ -360,6 +359,7 @@
             </div>
             @include('inc.admin.footer')
         </div>
+    </div>
     </main>
 
     <!--   Core JS Files   -->
