@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('ligne_paniers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ligne_panier_id');
+            $table->foreign('ligne_panier_id')->references('id')->on('ligne_paniers')->onDelete('cascade');
+            $table->unsignedBigInteger('panier_id');
+            $table->foreign('panier_id')->references('id')->on('paniers')->onDelete('cascade');
             $table->timestamps();
         });
     }

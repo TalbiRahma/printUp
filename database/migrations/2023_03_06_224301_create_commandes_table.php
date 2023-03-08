@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('panier_id');
+            $table->foreign('panier_id')->references('id')->on('paniers')->onDelete('cascade');
             $table->timestamps();
         });
     }

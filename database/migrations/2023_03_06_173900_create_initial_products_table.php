@@ -21,6 +21,8 @@ return new class extends Migration
             $table->float('price');
             $table->string('photo');
             $table->integer('qte');
+            $table->unsignedBigInteger('category_product_id');
+            $table->foreign('category_product_id')->references('id')->on('category_products')->onDelete('cascade');
             $table->timestamps();
         });
     }

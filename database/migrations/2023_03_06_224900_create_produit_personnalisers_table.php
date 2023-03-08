@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('produit_personnalisers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('initial_product_id');
+            $table->foreign('initial_product_id')->references('id')->on('intial_products')->onDelete('cascade');
+            $table->unsignedBigInteger('design_id');
+            $table->foreign('design_id')->references('id')->on('designs')->onDelete('cascade');
+            $table->unsignedBigInteger('ligne_panier_id');
+            $table->foreign('ligne_panier_id')->references('id')->on('ligne_paniers')->onDelete('cascade');
             $table->timestamps();
         });
     }

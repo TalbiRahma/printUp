@@ -50,4 +50,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Boutique::class , 'boutique_id' , 'id');
     }
+
+
+    public function portmonnaie()
+    {
+        return $this->hasOne(Portmonnaie::class , 'portmonnaie_id' , 'id');
+    }
+
+    public function paniers()
+    {
+        return $this->hasMany(Panier::class , 'user_id' , 'id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class , 'user_id' , 'id');
+    }
 }

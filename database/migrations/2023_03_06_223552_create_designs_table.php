@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('category_design_id');
+            $table->foreign('category_design_id')->references('id')->on('designs')->onDelete('cascade');
+            $table->unsignedBigInteger('boutique_id');
+            $table->foreign('boutique_id')->references('id')->on('boutiques')->onDelete('cascade');
             $table->timestamps();
         });
     }
