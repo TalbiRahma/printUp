@@ -38,4 +38,8 @@ class AdminController extends Controller
         return redirect()->back()->with('success' , 'Client activee');
 
     }
+
+    public function editProfile(){
+        return view('admin.editprofil');
+    }
 }

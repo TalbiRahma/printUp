@@ -33,6 +33,8 @@ Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard'
 
 /*************ADMIN******** */
 Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard');
+Route::get('admin/edit', 'App\Http\Controllers\AdminController@editProfile');
+
 
 /************admin CLIENT****** */
 Route::get('admin/clients', 'App\Http\Controllers\AdminController@clients');

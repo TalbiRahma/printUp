@@ -34,6 +34,11 @@ class Controller extends BaseController
     public function produits(){
         return view('admin.produits');
     }
+
+    public function edit(){
+        return view('admin.editprofil');
+    }
+    
     
 
 
