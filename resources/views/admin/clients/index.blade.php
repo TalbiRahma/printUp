@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="clients">
+                    <a class="nav-link active" href="admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -175,6 +175,7 @@
                                 </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Boutique
                                 </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                             </tr>
                         </thead>
@@ -201,9 +202,21 @@
                                     <p class="text-xs font-weight-bold mb-0">name Boutique</p>
                                     <p class="text-xs text-secondary mb-0">nbr design</p>
                                 </td>
+                                <td>
+                                    @if ($client->is_active)
+                                        <span class="badge bg-gradient-info">Client Active</span>
+                                    @else
+                                        <span class="badge bg-gradient-danger">Client Bloquee</span>
+                                    @endif
+                                </td>
                                 <td class="align-middle text-sm ">
-                                    <a type="button" class="btn bg-gradient-success btn-sm">Activer</a>
-                                    <a type="button" class="btn bg-gradient-warning btn-sm">Bloquer</a>
+                                    @if ($client->is_active)
+                                        <a href="{{ route('user.bloquer', ['id' => $client->id]) }}" class="btn bg-gradient-warning btn-sm">Bloquer</a>
+                                    @else
+                                        <a href="{{ route('user.activer', ['id' => $client->id]) }}" class="btn bg-gradient-success btn-sm">Activer</a>
+                                    @endif
+                                    
+                                    
                                 </td>
                             </tr>
                             @endforeach

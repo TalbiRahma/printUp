@@ -18,4 +18,24 @@ class AdminController extends Controller
         $clients = User::where('role', 'user')->get();
         return view('admin.clients.index')->with('clients' , $clients);
     }
+
+    public function bloquerUser( $iduser ){
+
+        $client = User::find($iduser);
+        $client->is_active = false;
+        $client->update();
+
+        return redirect()->back()->with('success' , 'Client bloquee');
+
+    }
+
+    public function activerUser( $iduser ){
+
+        $client = User::find($iduser);
+        $client->is_active = true;
+        $client->update();
+
+        return redirect()->back()->with('success' , 'Client activee');
+
+    }
 }

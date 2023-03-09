@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('photo');
             $table->float('price');
             $table->string('photo');
-            $table->integer('qte');
+            //$table->integer('qte');
+            $table->string('size');
             $table->unsignedBigInteger('category_product_id');
             $table->foreign('category_product_id')->references('id')->on('category_products')->onDelete('cascade');
             $table->timestamps();

@@ -177,6 +177,7 @@
                     </button>
 
                     <!--Modal Ajout produit-->
+                    
                     <div class="modal fade" id="produitAjout" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -207,19 +208,55 @@
                                                 <div class="input-group mb-3">
                                                     <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
                                                     @error('description')
-                                                                <div class="class alert alert-danger">
-                                                                    {{$message}}
-                                                                </div>
-                                                            @enderror
+                                                         <div class="class alert alert-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <label>Prix</label>
+                                                <div class="input-group mb-3">
+                                                    <input name="price" type="text" class="form-control"
+                                                        placeholder="Prix de produit" aria-label="Name"
+                                                        aria-describedby="name-addon">
+                                                    @error('price')
+                                                        <div class="class alert alert-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <label>Taille</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="checkbox" id="size1" name="size" value="XS">
+                                                        <label for="size"> XS</label><br>
+                                                        <input type="checkbox" id="size2" name="size" value="S">
+                                                        <label for="size"> S</label><br>
+                                                        <input type="checkbox" id="size" name="size" value="M">
+                                                        <label for="size"> M</label>
+                                                        <input type="checkbox" id="size4" name="size" value="L">
+                                                        <label for="size"> L</label>
+                                                    
+                                                    @error('size')
+                                                      <div class="class alert alert-danger">
+                                                          {{$message}}
+                                                      </div>
+                                                    @enderror
+                                                </div>
+                                                <label>Categorie</label>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control" name="category_product" id="choices-button" placeholder="Departure">
+                                                        @foreach ($category_product as $cp)
+                                                        <option value="{{$cp->id}}" >{{$cp->name}}</option>
+                                                        @endforeach 
+                                                      </select>
                                                 </div>
                                                 <label>Photo</label>
                                                 <div class="input-group mb-3">
                                                     <input name="photo" type="file" class="form-control" accept="image/*">
                                                     @error('photo')
-                                                                <div class="class alert alert-danger">
-                                                                    {{$message}}
-                                                                </div>
-                                                            @enderror
+                                                        <div class="class alert alert-danger">
+                                                            {{$message}}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="text-center" style="display:flex; flex-direction: row;">
                                                     <button type="submit"
@@ -234,124 +271,154 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!--End modal ajout produit-->
                 </div>
                 <hr class="horizontal dark mt-0">
                 <div class="table-responsive">
-
-
+                        
+                        
                     <div class="table-responsive">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        ID</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Image</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Produit</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                        Description</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Categorie</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="align-middle text-sm">
-                                        #001
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                class="avatar me-3">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Produit</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Prix</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Taille</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">Categorie</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($product as $index => $p )                 
+                          <tr>
+                            <td class="align-middle text-sm">
+                                {{$index+1}}
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{{asset('uploads')}}/{{$p->photo}}"
+                                        class="avatar me-3">
+                                </div>
+                            </td>
+                            <td class="align-middle text-sm">
+                                <div class="d-flex px-2">
+                                    <div class="my-auto">
+                                      <h5 class="mb-0 text-sm">{{$p->name}}</h5>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td class="align-middle text-sm">
+                                    <p class="text-xs text-secondary mb-0 force-line-break">paragraph descriptif de
+                                        {{$p->name}}</p>
+                                </td>
+                                <td class="align-middle text-sm">
+                                    <div class="d-flex px-2">
+                                        <div class="my-auto">
+                                          <h5 class="mb-0 text-sm">{{$p->price}}</h5>
                                         </div>
+                                      </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">Nomproduit</h5>
+                                              <h5 class="mb-0 text-sm">
+                                                    {{implode(',' , $p->size)}}
+                                              </h5>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <p class="text-xs text-secondary mb-0 force-line-break">paragraph descriptif de
-                                            categories de produitjjnciuznczdneczjnvizjbvdrhvbncziebzeibz</p>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                            data-toggle="tooltip" data-original-title="afficher liste de categories">
-                                            Nom categories
-                                        </a>
-                                    </td>
-
-                                    <td class="align-middle ">
-                                        <button type="button" class="btn bg-gradient-primary btn-sm"
-                                            data-bs-toggle="modal" data-bs-target="#produitModif">Modifier</button>
-
-                                        <!--Modal Modifier produit-->
-                                        <div class="modal fade" id="produitModif" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body p-0">
-                                                        <div class="card card-plain">
-                                                            <div class="card-header pb-0 text-left">
-                                                                <h3
-                                                                    class="font-weight-bolder text-primary text-gradient">
-                                                                    Modifier Produit</h3>
-                                                                <p class="mb-0">Modifier ce produit</p>
-                                                            </div>
-                                                            <div class="card-body pb-3">
-                                                                <form id="" role="form text-left">
-                                                                    <label>Nom Produit</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Nom de Produit"
-                                                                            aria-label="Name"
-                                                                            aria-describedby="name-addon">
-                                                                    </div>
-                                                                    <label>Description</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <textarea class="form-control" type="text" placeholder="Description"></textarea>
-                                                                    </div>
-                                                                    <label>Photo</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="file" class="form-control"
-                                                                            accept="image/*">
-                                                                    </div>
-                                                                    <div class="text-center">
-                                                                        <button type="button"
-                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
-                                                                            Modifier</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                          </div>
+                                        </td>
+                            <td>
+                                <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                    data-toggle="tooltip" data-original-title="afficher liste de categories">
+                                    Nom categories
+                                </a>                            
+                            </td>
+                  
+                            <td class="align-middle ">
+                                    <button type="button" class="btn bg-gradient-primary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#produitModif">Modifier</button>
+                
+                <!--Modal modif produit-->
+                <div class="modal fade" id="produitModif" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body p-0">
+                                <div class="card card-plain">
+                                    <div class="card-header pb-0 text-left">
+                                        <h3 class="font-weight-bolder text-primary text-gradient">
+                                            Modifier Produit</h3>
+                                        <p class="mb-0">Modifier ce produit</p>
+                                    </div>
+                                    <div class="card-body pb-3">
+                                        <form id="" role="form text-left">
+                                            <label>Nom Produit</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Nom de Produit" aria-label="Name"
+                                                    aria-describedby="name-addon">
                                             </div>
-                                        </div>
-                                        <!--End modal Modifier produit-->
-                                        <button href="" type="button"
-                                            class="btn bg-gradient-danger btn-sm">Supprimer</button>
-
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            <label>Description</label>
+                                            <div class="input-group mb-3">
+                                                <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                            </div>
+                                            <label>Prix</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Prix de produit" aria-label="Name"
+                                                    aria-describedby="name-addon">
+                                            </div>
+                                            <label>Taille</label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure">
+                                                    <option value="Choice 1" selected="">Non classé</option>
+                                                    <option value="Choice 2">XS</option>
+                                                    <option value="Choice 3">s</option>
+                                                    <option value="Choice 4">M</option>
+                                                    <option value="Choice 4">L</option>
+                                                  </select>
+                                            </div>
+                                            <label>Categorie</label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-control" name="choices-button" id="choices-button" placeholder="Departure">
+                                                    <option value="Choice 1" selected="">Non classé</option>
+                                                    <option value="Choice 2">Categorie 1</option>
+                                                    <option value="Choice 3">Categorie 2</option>
+                                                    <option value="Choice 4">Categorie 3</option>
+                                                  </select>
+                                            </div>
+                                            <label>Photo</label>
+                                            <div class="input-group mb-3">
+                                                <input type="file" class="form-control" accept="image/*">
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="button"
+                                                    class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                    Modifier</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
+                <!--End modal ajout produit-->
+                                <button href="" type="button" class="btn bg-gradient-danger btn-sm">Supprimer</button>
+                                
+                                
+                            </td>
+                          </tr>
+                          @endforeach                        
+                        </tbody>
+                      </table>
+                    </div>
+                
+            </div>
             </div>
         </div>
         @include('inc.admin.footer')

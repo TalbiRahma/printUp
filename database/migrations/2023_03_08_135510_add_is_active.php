@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('designs', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->boolean('is_active')->default(true);
         });
     }
 
@@ -27,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designs');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->dropColumn('is_active');
+        });
     }
 };

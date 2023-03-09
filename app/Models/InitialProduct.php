@@ -18,4 +18,14 @@ class InitialProduct extends Model
     {
         return $this->belongsToMany(Design::class, 'produit_personnaliser', 'initial_product_id', 'design_id');
     }
+
+    public function setSizeAttribute($value)
+    {
+        $this->attributes['size'] = implode(',', $value);
+    }
+
+    public function getSizesAttribute()
+    {
+        return explode(',', $this->attributes['size']);
+    }
 }
