@@ -13,14 +13,14 @@
                         class="avatar avatar-md rounded-circle me-2">
                 </div>
                 <div class="my-auto">
-                    <a class="dropdown-item btn-inner--text" type="button">
+                    <a  href="{{ route('admin.profile') }}" class="dropdown-item btn-inner--text" type="button">
                         <h5 class="mb-0 text-center">Nom d'admin</h5>
                     </a>
                 </div>
             </div>
         </li>
         <hr class="horizontal dark mt-0">
-        <li><a href="admin/edit" class="dropdown-item" type="button">
+        <li><a href="{{ route('admin.edit') }}" class="dropdown-item" type="button">
           <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i></span>
                 <span class="btn-inner--text text-center ps-2">Modifier profil</span></a></li>
                 <li><button class="dropdown-item" type="button">
