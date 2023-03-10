@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model
 {
     use HasFactory;
+
+    public function panier()
+    {
+        return $this->belongsTo(Panier::class , 'panier_id' , 'id');
+    }
 }

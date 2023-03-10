@@ -33,9 +33,14 @@ Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard'
 
 /*************ADMIN******** */
 Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard');
-Route::get('admin/clients', 'App\Http\Controllers\Controller@clients');
-Route::get('admin/edit', 'App\Http\Controllers\Controller@edit');
+Route::get('admin/edit', 'App\Http\Controllers\AdminController@editProfile')->name('admin.edit');
+Route::get('admin/profile', 'App\Http\Controllers\AdminController@Profile')->name('admin.profile');
 
+
+/************admin CLIENT****** */
+Route::get('admin/clients', 'App\Http\Controllers\AdminController@clients');
+Route::get('user/{id}/bloquer', 'App\Http\Controllers\AdminController@bloquerUser')->name('user.bloquer');
+Route::get('user/{id}/activer', 'App\Http\Controllers\AdminController@activerUser')->name('user.activer');
 
 
 /***********admin CATEGORY***** */
@@ -61,6 +66,6 @@ Route::post('/admin/product/update', 'App\Http\Controllers\InitialProductControl
 
 Route::get('admin/commandes', 'App\Http\Controllers\Controller@commandes');
 Route::get('admin/paiement', 'App\Http\Controllers\Controller@paiement');
-Route::get('admin/produits', 'App\Http\Controllers\Controller@produits');
+
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryProduct;
 use Illuminate\Http\Request;
 use App\Models\InitialProduct;
 
@@ -10,22 +11,49 @@ class InitialProductController extends Controller
     //
 
     public function index(){
+        
         $product = InitialProduct::all();
-        return view('admin.produits.index')->with('product' , $product);
+        $category_product = CategoryProduct::all();
+        return view('admin.produits.index')->with('product' , $product)->with('category_product' , $category_product);
     }
 
     public function ajouterProduit(Request $request){
  
-       
+       //dd($request);
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'price' => 'required',
             'photo' => 'required',
+            //'qte' => 'required',
+            //'sizes' => 'required', // Ajoutez cette règle de validation si vous souhaitez autoriser les tailles vides
+            'XS' => 'required_without_all:S,M,L',
+            'S' => 'required_without_all:XS,M,L',
+            'M' => 'required_without_all:XS,S,L',
+            'L' => 'required_without_all:XS,S,M',
+
         ]);
 
         $product = new InitialProduct();
         $product->name = $request->name;
+        $product->category_product_id = $request->category_product;
         $product->description = $request->description;
+        $product->price = $request->price;
+        //$product->qte = $request->qte;
+        //$product->size = $request->size;
+        //$product->size = implode(',', $request->size);
+        //$product->size = $product->getSizesAttribute($request->size);
+        //$product->size = implode(',', $request->size);
+        $sizes = array(
+            'XS' => $request->input('XS'),
+            'S' => $request->input('S'),
+            'M' => $request->input('M'),
+            'L' => $request->input('L'),
+
+        );
+
+        $product->sizes = json_encode(array_keys($request->only(['XS', 'S', 'M', 'L'])));
+        //$product->sizes = json_encode($sizes);
 
         //upload image
         $newname = uniqid();
@@ -63,6 +91,9 @@ class InitialProductController extends Controller
         //dd($product);
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->price = $request->price;
+        $product->qte = $request->qte;
+        $product->size = $request->size;
 
         //upload image
         if($request->file('photo')){
