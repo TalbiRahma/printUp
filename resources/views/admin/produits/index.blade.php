@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin/clients">
+                    <a class="nav-link " href="/admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/paiement">
+                    <a class="nav-link active " href="/admin/paiement">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -221,7 +221,7 @@
                                                     @enderror
                                                 </div>
                                                 <label>Taille</label>
-                                                <div class="input-group mb-3">
+                                                <div >
                                                 
                                                     <input type="checkbox" id="size1" name="XS"
                                                         value="XS">
