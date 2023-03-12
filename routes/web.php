@@ -37,6 +37,8 @@ Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard');
 Route::get('admin/modif/profil', 'App\Http\Controllers\AdminController@modifProfil')->name('admin.modif.profil');
 Route::post('admin/update', 'App\Http\Controllers\AdminController@updatetProfil')->name('admin.update');
 
+Route::get('admin/donnes/profil', 'App\Http\Controllers\AdminController@donnesProfil')->name('admin.donnes.profil');
+
 
 /************admin CLIENT****** */
 Route::get('admin/clients', 'App\Http\Controllers\AdminController@clients');

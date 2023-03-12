@@ -40,13 +40,17 @@ class AdminController extends Controller
     }
 
     public function modifProfil(){
-        return view('admin.editprofil');
+        return view('admin.compte.editprofil');
     }
 
     public function updatetProfil(Request $request){
 
         dd($request);
 
-        return view('admin.editprofil');
+        return view('admin.compte.editprofil');
+    }
+
+    public function donnesProfil(){
+        return view('admin.compte.donnesprofil');
     }
 }
