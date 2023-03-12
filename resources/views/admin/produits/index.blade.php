@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard">
+                    <a class="nav-link" href="/admin/dashboard">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="clients">
+                    <a class="nav-link" href="/admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -58,25 +58,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="categories">
+                    <a class="nav-link " href="/admin/categories/produits">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Categories Produits</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  active" href="/admin/categories">
+                    <a class="nav-link" href="/admin/categories/designs">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-info text-sm opacity-10"></i>
+                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Categories Designs</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="produits">
+                    <a class="nav-link active" href="/admin/paiement">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="commandes">
+                    <a class="nav-link " href="/admin/commandes">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="paiement">
+                    <a class="nav-link " href="/admin/paiement">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
@@ -130,10 +130,7 @@
                     <ul class="navbar-nav  justify-content-end">
                         <!--profile-->
                         <li class="nav-item d-flex align-items-center">
-                            <a href="lien de profil" class="nav-link text-white font-weight-bold px-0">
-                                <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Profile</span>
-                            </a>
+                            @include('inc.admin.profile')
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
@@ -226,18 +223,22 @@
                                                 </div>
                                                 <label>Taille</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="checkbox" id="size1" name="XS"
+                                                    
+                                                    <input class="col-1" type="checkbox" id="size1" name="XS"
                                                         value="XS">
-                                                    <label for="size1"> XS</label><br>
-                                                    <input type="checkbox" id="size2" name="S"
+                                                    <label class="col-sm-1 p-2" for="size1">XS</label>
+
+                                                    <input class="col-1 p-4" type="checkbox" id="size2" name="S"
                                                         value="S">
-                                                    <label for="size2"> S</label><br>
-                                                    <input type="checkbox" id="size3" name="M"
+                                                    <label class="col-sm-1 p-2" for="size2">S</label>
+
+                                                    <input class="col-1 p-4" type="checkbox" id="size3" name="M"
                                                         value="M">
-                                                    <label for="size3"> M</label>
-                                                    <input type="checkbox" id="size4" name="L"
+                                                    <label class="col-sm-1 p-2" for="size3">M</label>
+
+                                                    <input class="col-1 p-4" type="checkbox" id="size4" name="L"
                                                         value="L">
-                                                    <label for="size4"> L</label>
+                                                    <label class="col-sm-1 p-2" for="size4"> L</label>
 
                                                     @error('sizes')
                                                         <div class="class alert alert-danger">
@@ -291,30 +292,14 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        ID</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Image</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Produit</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Description</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Prix</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Taille</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Categorie</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 5%;">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 25%;">Image</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 15%;">Produit</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 20%;">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 10%;">Prix</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 10%;">Taille</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 10%;">Categorie</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -324,9 +309,9 @@
                                             {{ $index + 1 }}
                                         </td>
                                         <td>
-                                            <div>
+                                            <div style="max-width: 200px; min-width: 100px;">
                                                 <img src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                    class="avatar me-3">
+                                                    class="avatar me-3" style="width: 100%; height: auto;">
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">

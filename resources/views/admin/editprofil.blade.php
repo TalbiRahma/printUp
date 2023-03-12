@@ -22,9 +22,9 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    <div class="position-absolute w-100 min-height-300 top-0"
-        style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-        <span class="mask bg-primary opacity-6"></span>
+    <div class="position-absolute w-100 min-height-300 top-0" 
+    style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
+        <span class="mask bg-primary opacity-2"></span>
     </div>
     <!-- Side bar -->
     <aside
@@ -167,7 +167,7 @@
             <div class="row gx-4">
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                  <img src="../assets/img/team-1.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <img src="{{ asset('/dashassets/img/profiladmin.jpg') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                 </div>
               </div>
               <div class="col-auto my-auto">
@@ -179,7 +179,7 @@
               </div>
             </div>
             <div class="col-auto my-auto">
-              <button class="btn btn-primary btn-sm">Voire profile</button>
+              <a href="{{ route('admin.profile') }}" class="btn btn-primary btn-sm">Voire profile</a>
             </div>
           </div>
         </div>
