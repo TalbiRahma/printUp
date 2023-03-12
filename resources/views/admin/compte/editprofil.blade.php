@@ -185,62 +185,78 @@
         </div>
       </div>
       
-      
+     
         <div class="mx-8 card-profile-bottom py-4">
             <div class="row">
                     <div class="card">
+                        <form action="{{ route('admin.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
                                 <h6 class="mb-0">Modifier le profile:</h6>
-                                <button class="btn btn-primary btn-sm ms-auto">Enregistrer</button>
+                                <button type="submit" class="btn btn-primary btn-sm ms-auto">Enregistrer</button>
                             </div>
                         </div>
                         <div class="card-body">
                             <hr class="horizontal dark">
                             <p class="text-uppercase text-sm">Informations de l'utilisateur</p>
                             <div class="row">
-                                <form>
+                                
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Nom</label>
-                                        <input class="form-control" type="text" value="John Snow"
+                                        <input name="first_name"class="form-control" type="text" value="{{ auth()->user()->first_name }}"
                                             id="example-text-input">
                                     </div>
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Prénom</label>
-                                        <input class="form-control" type="text" value="John Snow"
+                                        <input name="last_name" class="form-control" type="text" value="{{ auth()->user()->last_name }}"
                                             id="example-text-input">
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email-input" class="form-control-label">E-mail</label>
-                                        <input class="form-control" type="email" value="@example.com"
+                                        <input name="email" class="form-control" type="email" value="{{ auth()->user()->email }}"
                                             id="example-email-input">
                                     </div>
                                     <div class="form-group">
                                         <label for="example-password-input" class="form-control-label">Mot de
                                             passe</label>
-                                        <input class="form-control" type="password" value="password"
+                                        <input name="password" class="form-control" type="password" placeholder="Entrez un nouveau mot de passe..."
                                             id="example-password-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-password-input" class="form-control-label">Confirmer Mot de
+                                            passe</label>
+                                        <input name="password" class="form-control" type="password" placeholder="Confirmer votre mot de passe..."
+                                            id="example-password-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Photo de profile</label>
+                                        <input name="photo" type="file" class="form-control"
+                                            accept="image/*">
+                                        
                                     </div>
                                     <hr class="horizontal dark">
                                     <p class="text-uppercase text-sm">Coordonnées</p>
                                     <div class="form-group">
-                                        <label for="example-tel-input" class="form-control-label">Phone</label>
+                                        <label for="example-tel-input" class="form-control-label">Téléphone</label>
                                         <input class="form-control" type="tel" value="+216-00-000-000"
                                             id="example-tel-input">
                                     </div>
                                     <div class="form-group">
                                         <label for="example-number-input" class="form-control-label">CIN</label>
-                                        <input class="form-control" type="number" value="00000000"
+                                        <input name="cin" class="form-control" type="number" value="{{ auth()->user()->cin }}"
                                             id="example-number-input">
                                     </div>
-                                </form>
+                                
                            
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
             @include('inc.admin.footer')
         </div>
+        
     </div>
 
     <!--   Core JS Files   -->

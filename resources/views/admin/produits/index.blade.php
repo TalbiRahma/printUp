@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/clients">
+                    <a class="nav-link " href="/admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin/paiement">
+                    <a class="nav-link active" href="/admin/produits">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -115,9 +115,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Produits</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Clients</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Produits</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Clients</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -223,8 +223,7 @@
                                                 </div>
                                                 <label>Taille</label>
                                                 <div class="input-group mb-3">
-                                                    
-                                                    <input class="col-1" type="checkbox" id="size1" name="XS"
+                                                    <input type="checkbox" id="size1" name="XS"
                                                         value="XS">
                                                     <label class="col-sm-1 p-2" for="size1">XS</label>
 
@@ -322,14 +321,13 @@
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">
-                                            <p class="text-xs text-secondary mb-0 force-line-break">paragraph
-                                                descriptif de
-                                                {{ $p->name }}</p>
+                                            <p class="text-xs text-secondary mb-0 force-line-break">
+                                                {{ $p->description }}</p>
                                         </td>
                                         <td class="align-middle text-sm">
                                             <div class="d-flex px-2">
                                                 <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">{{ $p->price }}</h5>
+                                                    <h5 class="mb-0 text-sm">{{ $p->price }} TND</h5>
                                                 </div>
                                             </div>
                                         </td>
@@ -353,17 +351,17 @@
                                             <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
                                                 data-toggle="tooltip"
                                                 data-original-title="afficher liste de categories">
-                                                Nom categories
+                                                {{ $p->categorie_products->name }}
                                             </a>
                                         </td>
 
                                         <td class="align-middle ">
                                             <button type="button" class="btn bg-gradient-primary btn-sm"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#produitModif">Modifier</button>
+                                                data-bs-target="#produitModif{{$p->id}}">Modifier</button>
 
                                             <!--Modal modif produit-->
-                                            <div class="modal fade" id="produitModif" tabindex="-1" role="dialog"
+                                            <div class="modal fade" id="produitModif{{$p->id}}" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-md"
                                                     role="document">
@@ -373,79 +371,89 @@
                                                                 <div class="card-header pb-0 text-left">
                                                                     <h3
                                                                         class="font-weight-bolder text-primary text-gradient">
-                                                                        Modifier Produit</h3>
-                                                                    <p class="mb-0">Modifier ce produit</p>
+                                                                        Modifier Produit : </h3>
+                                                                    <p class="mb-0">{{$p->name}}</p>
                                                                 </div>
+                                                                <form action="/admin/product/update"
+                                                                    method="POST" enctype="multipart/form-data">
+                                                                    @csrf
                                                                 <div class="card-body pb-3">
-                                                                    <form id="" role="form text-left">
+                                                                    <input type="hidden"
+                                                                    name="id_product"
+                                                                    value="{{ $p->id }}">
+                                                                    <div>
+                                                                        <img src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                                            class="avatar avatar-sm rounded-circle me-2">
+                                                                    </div>
                                                                         <label>Nom Produit</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input type="text" class="form-control"
+                                                                            <input name="name" type="text" class="form-control"
                                                                                 placeholder="Nom de Produit"
                                                                                 aria-label="Name"
-                                                                                aria-describedby="name-addon">
+                                                                                aria-describedby="name-addon" value="{{ $p->name }}">
                                                                         </div>
                                                                         <label>Description</label>
                                                                         <div class="input-group mb-3">
-                                                                            <textarea class="form-control" type="text" placeholder="Description"></textarea>
+                                                                            <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $p->description }}</textarea>
                                                                         </div>
                                                                         <label>Prix</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input type="text" class="form-control"
+                                                                            <input name="price" type="text" class="form-control"
                                                                                 placeholder="Prix de produit"
                                                                                 aria-label="Name"
-                                                                                aria-describedby="name-addon">
+                                                                                aria-describedby="name-addon"value="{{ $p->price }}">
                                                                         </div>
                                                                         <label>Taille</label>
                                                                         <div class="input-group mb-3">
-                                                                            <select class="form-control"
-                                                                                name="choices-button"
-                                                                                id="choices-button"
-                                                                                placeholder="Departure">
-                                                                                <option value="Choice 1"
-                                                                                    selected="">Non classé</option>
-                                                                                <option value="Choice 2">XS</option>
-                                                                                <option value="Choice 3">s</option>
-                                                                                <option value="Choice 4">M</option>
-                                                                                <option value="Choice 4">L</option>
-                                                                            </select>
+                                                                        
+                                                                            <input type="checkbox" id="size1" name="XS"
+                                                                                value="XS">
+                                                                            <label for="size1"> XS</label><br>
+                                                                            <input type="checkbox" id="size2" name="S"
+                                                                                value="S">
+                                                                            <label for="size2"> S</label><br>
+                                                                            <input type="checkbox" id="size3" name="M"
+                                                                                value="M">
+                                                                            <label for="size3"> M</label>
+                                                                            <input type="checkbox" id="size4" name="L"
+                                                                                value="L">
+                                                                            <label for="size4"> L</label>
                                                                         </div>
                                                                         <label>Categorie</label>
                                                                         <div class="input-group mb-3">
-                                                                            <select class="form-control"
-                                                                                name="choices-button"
-                                                                                id="choices-button"
-                                                                                placeholder="Departure">
-                                                                                <option value="Choice 1"
-                                                                                    selected="">Non classé</option>
-                                                                                <option value="Choice 2">Categorie 1
-                                                                                </option>
-                                                                                <option value="Choice 3">Categorie 2
-                                                                                </option>
-                                                                                <option value="Choice 4">Categorie 3
-                                                                                </option>
+                                                                            <select name="category_product" class="form-select">
+                                                                                @foreach($category_product as $category)
+                                                                                    <option value="{{ $category->id }}" {{ $category->id == $p->category_product_id ? 'selected' : '' }}>
+                                                                                        {{ $category->name }}
+                                                                                    </option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </div>
                                                                         <label>Photo</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input type="file" class="form-control"
+                                                                            <input name="photo" type="file" class="form-control"
                                                                                 accept="image/*">
                                                                         </div>
-                                                                        <div class="text-center">
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">
+                                                                        <div class="text-center"
+                                                                            style="display:flex; flex-direction: row;">
+                                                                            <button type="submit"
+                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
                                                                                 Modifier</button>
+                                                                            <button type="button"
+                                                                                class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
+                                                                                data-bs-dismiss="modal">Annuler</button>
                                                                         </div>
-                                                                    </form>
                                                                 </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--End modal ajout produit-->
-                                            <button href="" type="button"
-                                                class="btn bg-gradient-danger btn-sm">Supprimer</button>
+                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                                href="/admin/product/{{$p->id}}/delete"
+                                                class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
                                         </td>

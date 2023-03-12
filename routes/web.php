@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 /*************CLIENT******** */
-Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
+Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 
 
 
@@ -33,8 +33,9 @@ Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard'
 
 /*************ADMIN******** */
 Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard');
-Route::get('admin/edit', 'App\Http\Controllers\AdminController@editProfile')->name('admin.edit');
-Route::get('admin/profile', 'App\Http\Controllers\AdminController@Profile')->name('admin.profile');
+
+Route::get('admin/modif/profil', 'App\Http\Controllers\AdminController@modifProfil')->name('admin.modif.profil');
+Route::post('admin/update', 'App\Http\Controllers\AdminController@updatetProfil')->name('admin.update');
 
 
 /************admin CLIENT****** */

@@ -15,29 +15,7 @@ class Controller extends BaseController
 
     
 
-    public function clients(){
-        return view('admin.clients');
-    }
-
-    public function categories(){
-        return view('admin.categories');
-    }
-
-    public function commandes(){
-        return view('admin.commandes');
-    }
-
-    public function paiement(){
-        return view('admin.paiement');
-    }
-
-    public function produits(){
-        return view('admin.produits');
-    }
-
-    public function edit(){
-        return view('admin.editprofil');
-    }
+   
     
     
 

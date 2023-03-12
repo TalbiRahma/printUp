@@ -27,10 +27,10 @@ class InitialProductController extends Controller
             'photo' => 'required',
             //'qte' => 'required',
             //'sizes' => 'required', // Ajoutez cette règle de validation si vous souhaitez autoriser les tailles vides
-            'XS' => 'required_without_all:S,M,L',
+            /*'XS' => 'required_without_all:S,M,L',
             'S' => 'required_without_all:XS,M,L',
             'M' => 'required_without_all:XS,S,L',
-            'L' => 'required_without_all:XS,S,M',
+            'L' => 'required_without_all:XS,S,M',*/
 
         ]);
 
@@ -39,12 +39,8 @@ class InitialProductController extends Controller
         $product->category_product_id = $request->category_product;
         $product->description = $request->description;
         $product->price = $request->price;
-        //$product->qte = $request->qte;
-        //$product->size = $request->size;
-        //$product->size = implode(',', $request->size);
-        //$product->size = $product->getSizesAttribute($request->size);
-        //$product->size = implode(',', $request->size);
         $sizes = array(
+            
             'XS' => $request->input('XS'),
             'S' => $request->input('S'),
             'M' => $request->input('M'),
@@ -88,12 +84,22 @@ class InitialProductController extends Controller
     public function modifierProduit(Request $request){
 
         $product = InitialProduct::find($request->id_product);
+        $category_product = CategoryProduct::all();
         //dd($product);
         $product->name = $request->name;
+        $product->category_product_id = $request->category_product;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->qte = $request->qte;
-        $product->size = $request->size;
+        $sizes = array(
+            
+            'XS' => $request->input('XS'),
+            'S' => $request->input('S'),
+            'M' => $request->input('M'),
+            'L' => $request->input('L'),
+
+        );
+
+        $product->sizes = json_encode(array_keys($request->only(['XS', 'S', 'M', 'L'])));
 
         //upload image
         if($request->file('photo')){
