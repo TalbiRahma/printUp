@@ -170,13 +170,13 @@
                             <div class="row gx-4">
                               <div class="col-auto">
                                 <div class="avatar avatar-xl position-relative">
-                                  <img src="{{ asset('/dashassets/img/profiladmin.jpg') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                  <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                                 </div>
                               </div>
                               <div class="col-auto my-auto">
                                 <div class="h-100">
                                   <h5 class="mb-1">
-                                    si Admin l administrateur
+                                    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
                                   </h5>
                                 </div>
                               </div>
@@ -189,11 +189,11 @@
                     <div class="card-body">
                         <hr class="horizontal dark">
                         <h5 class="text-secondary text-uppercase py-4">Email:</h5>
-                        <a href="" class="h6 text-default text-md">admin@admin.com</a>
+                        <a href="" class="h6 text-default text-md">{{ auth()->user()->email }}</a>
                         <h5 class="text-secondary text-uppercase py-4">Numéro téléphone:</h5>
-                        <h6 class="text-default text-md">+216 00 000 000</h6>
+                        <h6 class="text-default text-md">{{ auth()->user()->phone }}</h6>
                         <h5 class="text-secondary text-uppercase py-4">cin:</h5>
-                        <h6 class="text-default text-md">00 000 000</h6>
+                        <h6 class="text-default text-md">{{ auth()->user()->cin }}</h6>
                         <h5 class="text-secondary text-uppercase py-4">Réseaux sociaux:</h5>
                         <button type="button" class="btn btn-facebook btn-icon">
                             <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>

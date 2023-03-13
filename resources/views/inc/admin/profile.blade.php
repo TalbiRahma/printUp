@@ -13,7 +13,7 @@
                 </div>
                 <div class="my-auto">
                     <a href="{{ route('admin.donnes.profil') }}" class="dropdown-item btn-inner--text" type="button">
-                        <h5 class="mb-0 text-center">Nom d'admin</h5>
+                        <h5 class="mb-0 text-center">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</h5>
                     </a>
                 </div>
             </div>

@@ -167,13 +167,13 @@
             <div class="row gx-4">
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{ asset('/dashassets/img/profiladmin.jpg') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                 </div>
               </div>
               <div class="col-auto my-auto">
                 <div class="h-100">
                   <h5 class="mb-1">
-                    si Admin l administrateur
+                    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
                   </h5>
                 </div>
               </div>
@@ -239,7 +239,7 @@
                                     <p class="text-uppercase text-sm">Coordonnées</p>
                                     <div class="form-group">
                                         <label for="example-tel-input" class="form-control-label">Téléphone</label>
-                                        <input class="form-control" type="tel" value="+216-00-000-000"
+                                        <input name="phone" class="form-control" type="tel" value="{{ auth()->user()->phone}}"
                                             id="example-tel-input">
                                     </div>
                                     <div class="form-group">
