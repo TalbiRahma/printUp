@@ -182,7 +182,7 @@
                               </div>
                             </div>
                             <div class="col-auto my-auto">
-                              <a href="{{ route('admin.edit') }}" class="btn btn-primary btn-sm">Modifier profile</a>
+                              <a href="{{ route('admin.modif.profil') }}" class="btn btn-primary btn-sm">Modifier profile</a>
                             </div>
                           </div>
                     </div>

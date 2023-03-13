@@ -179,7 +179,7 @@
               </div>
             </div>
             <div class="col-auto my-auto">
-              <a href="{{ route('admin.profile') }}" class="btn btn-primary btn-sm">Voire profile</a>
+              <a href="{{ route('admin.donnes.profil') }}" class="btn btn-primary btn-sm">Voire profile</a>
             </div>
           </div>
         </div>
