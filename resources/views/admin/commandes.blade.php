@@ -59,15 +59,17 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/admin/categories/produits">
-                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                      </div>
-                      <span class="nav-link-text ms-1">Categories Produits</span>
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Produits</span>
                     </a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/admin/categories/designs">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Categories Designs</span>
@@ -141,12 +143,8 @@
                         </li>
 
                         <!--notificaton-->
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bell cursor-pointer"></i>
-                            </a>
-                        </li>
+                        @include('inc.admin.notification')
+                        <!--end notificaton-->
                     </ul>
                 </div>
             </div>
@@ -155,7 +153,7 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                   <h4>Liste de commandes</h4> 
+                    <h4>Liste de commandes</h4>
                 </div>
             </div>
         </div>
@@ -165,12 +163,15 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id</th>
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id
+                                </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clients
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Boutique
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    Boutique
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -210,7 +211,7 @@
                 </div>
             </div>
         </div>
-       @include('inc.admin.footer')
+        @include('inc.admin.footer')
         </div>
     </main>
 

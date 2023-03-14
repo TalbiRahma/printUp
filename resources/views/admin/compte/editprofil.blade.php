@@ -22,8 +22,8 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    <div class="position-absolute w-100 min-height-300 top-0" 
-    style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
+    <div class="position-absolute w-100 min-height-300 top-0"
+        style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
         <span class="mask bg-primary opacity-2"></span>
     </div>
     <!-- Side bar -->
@@ -149,48 +149,45 @@
                         <!--parametre-->
 
                         <!--notificaton-->
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bell cursor-pointer"></i>
-                            </a>
-                        </li>
+                        @include('inc.admin.notification')
+                        <!--end notificaton-->
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- End Navbar -->
-       <!---->
-       <div class="card shadow-lg mx-8 card-profile-bottom">
-        <div class="card-body p-3">
-          <div class="d-flex justify-content-between">
-            <div class="row gx-4">
-              <div class="col-auto">
-                <div class="avatar avatar-xl position-relative">
-                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+        <!---->
+        <div class="card shadow-lg mx-8 card-profile-bottom">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between">
+                    <div class="row gx-4">
+                        <div class="col-auto">
+                            <div class="avatar avatar-xl position-relative">
+                                <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image"
+                                    class="w-100 border-radius-lg shadow-sm">
+                            </div>
+                        </div>
+                        <div class="col-auto my-auto">
+                            <div class="h-100">
+                                <h5 class="mb-1">
+                                    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <a href="{{ route('admin.donnes.profil') }}" class="btn btn-primary btn-sm">Voire profile</a>
+                    </div>
                 </div>
-              </div>
-              <div class="col-auto my-auto">
-                <div class="h-100">
-                  <h5 class="mb-1">
-                    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                  </h5>
-                </div>
-              </div>
             </div>
-            <div class="col-auto my-auto">
-              <a href="{{ route('admin.donnes.profil') }}" class="btn btn-primary btn-sm">Voire profile</a>
-            </div>
-          </div>
         </div>
-      </div>
-      
-     
+
+
         <div class="mx-8 card-profile-bottom py-4">
             <div class="row">
-                    <div class="card">
-                        <form action="{{ route('admin.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                <div class="card">
+                    <form action="{{ route('admin.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
                                 <h6 class="mb-0">Modifier le profile:</h6>
@@ -201,62 +198,62 @@
                             <hr class="horizontal dark">
                             <p class="text-uppercase text-sm">Informations de l'utilisateur</p>
                             <div class="row">
-                                
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Nom</label>
-                                        <input name="first_name"class="form-control" type="text" value="{{ auth()->user()->first_name }}"
-                                            id="example-text-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Prénom</label>
-                                        <input name="last_name" class="form-control" type="text" value="{{ auth()->user()->last_name }}"
-                                            id="example-text-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email-input" class="form-control-label">E-mail</label>
-                                        <input name="email" class="form-control" type="email" value="{{ auth()->user()->email }}"
-                                            id="example-email-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-password-input" class="form-control-label">Mot de
-                                            passe</label>
-                                        <input name="password" class="form-control" type="password" placeholder="Entrez un nouveau mot de passe..."
-                                            id="example-password-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-password-input" class="form-control-label">Confirmer Mot de
-                                            passe</label>
-                                        <input name="password" class="form-control" type="password" placeholder="Confirmer votre mot de passe..."
-                                            id="example-password-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Photo de profile</label>
-                                        <input name="photo" type="file" class="form-control"
-                                            accept="image/*">
-                                        
-                                    </div>
-                                    <hr class="horizontal dark">
-                                    <p class="text-uppercase text-sm">Coordonnées</p>
-                                    <div class="form-group">
-                                        <label for="example-tel-input" class="form-control-label">Téléphone</label>
-                                        <input name="phone" class="form-control" type="tel" value="{{ auth()->user()->phone}}"
-                                            id="example-tel-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-number-input" class="form-control-label">CIN</label>
-                                        <input name="cin" class="form-control" type="number" value="{{ auth()->user()->cin }}"
-                                            id="example-number-input">
-                                    </div>
-                                
-                           
-                        </div>
-                        </form>
-                    </div>
+
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Nom</label>
+                                    <input name="first_name"class="form-control" type="text"
+                                        value="{{ auth()->user()->first_name }}" id="example-text-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Prénom</label>
+                                    <input name="last_name" class="form-control" type="text"
+                                        value="{{ auth()->user()->last_name }}" id="example-text-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email-input" class="form-control-label">E-mail</label>
+                                    <input name="email" class="form-control" type="email"
+                                        value="{{ auth()->user()->email }}" id="example-email-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-password-input" class="form-control-label">Mot de
+                                        passe</label>
+                                    <input name="password" class="form-control" type="password"
+                                        placeholder="Entrez un nouveau mot de passe..." id="example-password-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-password-input" class="form-control-label">Confirmer Mot de
+                                        passe</label>
+                                    <input name="password" class="form-control" type="password"
+                                        placeholder="Confirmer votre mot de passe..." id="example-password-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Photo de
+                                        profile</label>
+                                    <input name="photo" type="file" class="form-control" accept="image/*">
+
+                                </div>
+                                <hr class="horizontal dark">
+                                <p class="text-uppercase text-sm">Coordonnées</p>
+                                <div class="form-group">
+                                    <label for="example-tel-input" class="form-control-label">Téléphone</label>
+                                    <input name="phone" class="form-control" type="tel"
+                                        value="{{ auth()->user()->phone }}" id="example-tel-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-number-input" class="form-control-label">CIN</label>
+                                    <input name="cin" class="form-control" type="number"
+                                        value="{{ auth()->user()->cin }}" id="example-number-input">
+                                </div>
+
+
+                            </div>
+                    </form>
                 </div>
             </div>
-            @include('inc.admin.footer')
         </div>
-        
+        @include('inc.admin.footer')
+    </div>
+
     </div>
 
     <!--   Core JS Files   -->

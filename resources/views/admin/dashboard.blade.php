@@ -133,11 +133,8 @@
             <!--parametre-->
   
             <!--notificaton-->
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-            </li>
+            @include('inc.admin.notification')
+            <!--end notificaton-->
           </ul>
         </div>
       </div>

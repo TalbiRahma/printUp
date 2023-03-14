@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/clients">
+                    <a class="nav-link" href="/admin/clients">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/categories/designs">
+                    <a class="nav-link active" href="/admin/categories/designs">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin/paiement">
+                    <a class="nav-link " href="/admin/paiement">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
@@ -115,9 +115,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Paiement</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">categories</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Paiement</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Categories Designs</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -150,68 +150,84 @@
             </div>
         </nav>
         <!-- End Navbar -->
-        <div class="container-fluid py-4">
-            <div class="card card-frame">
-                <div class="card-body">
-                    <h4>Liste de Paiement</h4>
-                </div>
-            </div>
-        </div>
+
         <div class="container-fluid py-4">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table align-items-center mb-0">
-                        <thead>
-                            <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clients
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Boutique
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    #001
-                                </td>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                class="avatar avatar-sm me-3">
+                <div class="container-fluid py-4">
+                    <h6>Designs de Categories ...:</h6>
+                    <button class="btn btn-icon btn-3 bg-gradient-primary" type="button" data-bs-toggle=""
+                        data-bs-target="#">
+                        <span class="btn-inner--text">Categories designs</span>
+                    </button>
+
+                    <hr class="horizontal dark mt-0">
+
+
+                    <div class="table-responsive">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 5%;">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 25%;">Image</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 20%;">Produit</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 25%;">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 15%;">Prix</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 10%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="align-middle text-sm">
+                                        01
+                                    </td>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 100px;">
+                                            <img src="" class="avatar me-3"
+                                                style="width: 100%; height: auto;">
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-xs">name client</h6>
-                                            <p class="text-xs text-secondary mb-0">email@mail.com</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">anime</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">name Boutique</p>
-                                    <p class="text-xs text-secondary mb-0">nbr design</p>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <a href="javascript:;" class="text-success font-weight-bold text-xs p-2"
-                                        data-toggle="tooltip" data-original-title="activer client">
-                                        Activer
-                                    </a>
-                                    <a href="javascript:;" class="text-warning font-weight-bold text-xs p-2"
-                                        data-toggle="tooltip" data-original-title="bloquer client">
-                                        Bloquer
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <p class="text-xs text-secondary mb-0 force-line-break">
+                                            hbsbckjqnzanoi</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">5 TND</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle ">
+                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                            href="" class="btn bg-gradient-danger btn-sm">Supprimer</a>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
+
+
+
+
+
             </div>
         </div>
         @include('inc.admin.footer')
+        </div>
         </div>
     </main>
 

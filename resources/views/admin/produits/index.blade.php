@@ -143,12 +143,8 @@
                         </li>
 
                         <!--notificaton-->
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bell cursor-pointer"></i>
-                            </a>
-                        </li>
+                        @include('inc.admin.notification')
+            <!--end notificaton-->
                     </ul>
                 </div>
             </div>
@@ -227,16 +223,16 @@
                                                         value="XS">
                                                     <label class="col-sm-1 p-2" for="size1">XS</label>
 
-                                                    <input class="col-1 p-4" type="checkbox" id="size2" name="S"
-                                                        value="S">
+                                                    <input class="col-1 p-4" type="checkbox" id="size2"
+                                                        name="S" value="S">
                                                     <label class="col-sm-1 p-2" for="size2">S</label>
 
-                                                    <input class="col-1 p-4" type="checkbox" id="size3" name="M"
-                                                        value="M">
+                                                    <input class="col-1 p-4" type="checkbox" id="size3"
+                                                        name="M" value="M">
                                                     <label class="col-sm-1 p-2" for="size3">M</label>
 
-                                                    <input class="col-1 p-4" type="checkbox" id="size4" name="L"
-                                                        value="L">
+                                                    <input class="col-1 p-4" type="checkbox" id="size4"
+                                                        name="L" value="L">
                                                     <label class="col-sm-1 p-2" for="size4"> L</label>
 
                                                     @error('sizes')
@@ -291,14 +287,22 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 5%;">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 25%;">Image</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 15%;">Produit</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 20%;">Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 10%;">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 10%;">Taille</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3" style="width: 10%;">Categorie</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 15%;">Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 5%;">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 25%;">Image</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 15%;">Produit</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 20%;">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 10%;">Prix</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 10%;">Taille</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 10%;">Categorie</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 15%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -358,11 +362,12 @@
                                         <td class="align-middle ">
                                             <button type="button" class="btn bg-gradient-primary btn-sm"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#produitModif{{$p->id}}">Modifier</button>
+                                                data-bs-target="#produitModif{{ $p->id }}">Modifier</button>
 
                                             <!--Modal modif produit-->
-                                            <div class="modal fade" id="produitModif{{$p->id}}" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+                                            <div class="modal fade" id="produitModif{{ $p->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-md"
                                                     role="document">
                                                     <div class="modal-content">
@@ -372,25 +377,30 @@
                                                                     <h3
                                                                         class="font-weight-bolder text-primary text-gradient">
                                                                         Modifier Produit : </h3>
-                                                                    <p class="mb-0">{{$p->name}}</p>
+                                                                    <h4 class="mb-0">{{ $p->name }}</h4>
                                                                 </div>
-                                                                <form action="/admin/product/update"
-                                                                    method="POST" enctype="multipart/form-data">
+                                                                <form action="/admin/product/update" method="POST"
+                                                                    enctype="multipart/form-data">
                                                                     @csrf
-                                                                <div class="card-body pb-3">
-                                                                    <input type="hidden"
-                                                                    name="id_product"
-                                                                    value="{{ $p->id }}">
-                                                                    <div>
-                                                                        <img src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                                    </div>
+                                                                    <div class="card-body pb-3">
+                                                                        <input type="hidden" name="id_product"
+                                                                            value="{{ $p->id }}">
+
+                                                                        <div
+                                                                            style="max-width: 200px; min-width: 100px;">
+                                                                            <img src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                                                class="avatar me-3"
+                                                                                style="width: 100%; height: auto;">
+                                                                        </div>
+
                                                                         <label>Nom Produit</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input name="name" type="text" class="form-control"
+                                                                            <input name="name" type="text"
+                                                                                class="form-control"
                                                                                 placeholder="Nom de Produit"
                                                                                 aria-label="Name"
-                                                                                aria-describedby="name-addon" value="{{ $p->name }}">
+                                                                                aria-describedby="name-addon"
+                                                                                value="{{ $p->name }}">
                                                                         </div>
                                                                         <label>Description</label>
                                                                         <div class="input-group mb-3">
@@ -398,32 +408,36 @@
                                                                         </div>
                                                                         <label>Prix</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input name="price" type="text" class="form-control"
+                                                                            <input name="price" type="text"
+                                                                                class="form-control"
                                                                                 placeholder="Prix de produit"
                                                                                 aria-label="Name"
                                                                                 aria-describedby="name-addon"value="{{ $p->price }}">
                                                                         </div>
                                                                         <label>Taille</label>
                                                                         <div class="input-group mb-3">
-                                                                        
-                                                                            <input type="checkbox" id="size1" name="XS"
-                                                                                value="XS">
+
+                                                                            <input type="checkbox" id="size1"
+                                                                                name="XS" value="XS">
                                                                             <label for="size1"> XS</label><br>
-                                                                            <input type="checkbox" id="size2" name="S"
-                                                                                value="S">
+                                                                            <input type="checkbox" id="size2"
+                                                                                name="S" value="S">
                                                                             <label for="size2"> S</label><br>
-                                                                            <input type="checkbox" id="size3" name="M"
-                                                                                value="M">
+                                                                            <input type="checkbox" id="size3"
+                                                                                name="M" value="M">
                                                                             <label for="size3"> M</label>
-                                                                            <input type="checkbox" id="size4" name="L"
-                                                                                value="L">
+                                                                            <input type="checkbox" id="size4"
+                                                                                name="L" value="L">
                                                                             <label for="size4"> L</label>
                                                                         </div>
                                                                         <label>Categorie</label>
                                                                         <div class="input-group mb-3">
-                                                                            <select name="category_product" class="form-select">
-                                                                                @foreach($category_product as $category)
-                                                                                    <option value="{{ $category->id }}" {{ $category->id == $p->category_product_id ? 'selected' : '' }}>
+                                                                            <select name="category_product"
+                                                                                class="form-select">
+                                                                                @foreach ($category_product as $category)
+                                                                                    <option
+                                                                                        value="{{ $category->id }}"
+                                                                                        {{ $category->id == $p->category_product_id ? 'selected' : '' }}>
                                                                                         {{ $category->name }}
                                                                                     </option>
                                                                                 @endforeach
@@ -431,8 +445,8 @@
                                                                         </div>
                                                                         <label>Photo</label>
                                                                         <div class="input-group mb-3">
-                                                                            <input name="photo" type="file" class="form-control"
-                                                                                accept="image/*">
+                                                                            <input name="photo" type="file"
+                                                                                class="form-control" accept="image/*">
                                                                         </div>
                                                                         <div class="text-center"
                                                                             style="display:flex; flex-direction: row;">
@@ -443,7 +457,7 @@
                                                                                 class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
                                                                                 data-bs-dismiss="modal">Annuler</button>
                                                                         </div>
-                                                                </div>
+                                                                    </div>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -452,7 +466,7 @@
                                             </div>
                                             <!--End modal ajout produit-->
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                                href="/admin/product/{{$p->id}}/delete"
+                                                href="/admin/product/{{ $p->id }}/delete"
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 

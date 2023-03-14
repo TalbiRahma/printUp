@@ -143,12 +143,8 @@
                         </li>
 
                         <!--notificaton-->
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bell cursor-pointer"></i>
-                            </a>
-                        </li>
+                        @include('inc.admin.notification')
+                        <!--end notificaton-->
                     </ul>
                 </div>
             </div>
@@ -244,21 +240,16 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        ID</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Categorie</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Description</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3">
-                                        Contenus</th>
-                                    <th
-                                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">
-                                        Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 5%;">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 25%;">Categorie</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 40%;">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 20%;">Contenus</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5"
+                                        style="width: 30%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -284,7 +275,7 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                            <a href="designs/all" class="text-default font-weight-bold text-sm p-2"
                                                 data-toggle="tooltip" data-original-title="afficher liste de prod">
                                                 Designs
                                             </a>
@@ -307,7 +298,8 @@
                                                                     <h3
                                                                         class="font-weight-bolder text-primary text-gradient">
                                                                         Modifier Categorie
-                                                                        <span>{{ $cd->name }}</span></h3>
+                                                                        <span>{{ $cd->name }}</span>
+                                                                    </h3>
                                                                     <p class="mb-0">Modifier cette catégorie de
                                                                         designs:
                                                                     </p>

@@ -153,142 +153,84 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Liste de categories produits</h4>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid py-4">
-            <div class="card">
-                <div class="container-fluid py-4">
-                    <h6>Table de Categories Produits Initiale:</h6>
-                    <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#categorieAjout">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text">Ajouter</span>
+                    <h6>Produits de Categories ...:</h6>
+                    <button class="btn btn-icon btn-3 bg-gradient-primary" type="button" data-bs-toggle=""
+                        data-bs-target="#">
+                        <span class="btn-inner--text">Categories produits</span>
                     </button>
-
-                    <!--Modal Ajout produit-->
-                    <div class="modal fade" id="categorieAjout" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                                <form action="/admin/category_product/store" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-body p-0">
-                                        <div class="card card-plain">
-                                            <div class="card-header pb-0 text-left">
-                                                <h3 class="font-weight-bolder text-primary text-gradient">
-                                                    Ajouter Categorie Produits</h3>
-                                                <p class="mb-0">Ajouter une nouvelle categorie de produits</p>
-                                            </div>
-                                            <div class="card-body pb-3">
-
-                                                <label>Categorie</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Nom de Categorie">
-                                                    @error('name')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Description</label>
-                                                <div class="input-group mb-3">
-                                                    <textarea name="description"class="form-control" type="text" placeholder="Description"></textarea>
-                                                    @error('description')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-
-                                                <label>Photo</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="photo" type="file" class="form-control"
-                                                        accept="image/*">
-                                                    @error('photo')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="text-center" style="display:flex; flex-direction: row;">
-                                                    <button type="submit"
-                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
-                                                        Ajouter</button>
-                                                    <button type="button"
-                                                        class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                        data-bs-dismiss="modal">Annuler</button>
-                                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <!--End modal ajout produit-->
                 </div>
-            </div>
-        </div>
-        <!--End modal ajout produit-->
-        </div>
-        <hr class="horizontal dark mt-0">
-        <div class="table-responsive">
+                <hr class="horizontal dark mt-0">
+                <div class="table-responsive">
 
 
-            <div class="table-responsive">
-                <table class="table align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                style="width: 5%;">ID</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                style="width: 25%;">Categorie</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                style="width: 40%;">Description</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                style="width: 20%;">Contenus</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5"
-                                style="width: 30%;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($category_product as $index => $cp)
-                            <tr>
-                                <td class="align-middle text-sm">
-                                    {{ $index + 1 }}
-                                </td>
-                                <td class="align-middle text-sm">
-                                    <div class="d-flex px-2">
-                                        <div>
-                                            <img src="{{ asset('uploads') }}/{{ $cp->photo }}"
-                                                class="avatar avatar-sm rounded-circle me-2">
+                    <div class="table-responsive">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 5%;">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 25%;">Image</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 20%;">Produit</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 25%;">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 10%;">Prix</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                        style="width: 10%;">Taille</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                        style="width: 15%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="align-middle text-sm">
+                                        01
+                                    </td>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 100px;">
+                                            <img src="" class="avatar me-3"
+                                                style="width: 100%; height: auto;">
                                         </div>
-                                        <div class="my-auto">
-                                            <h5 class="mb-0 text-sm">{{ $cp->name }}</h5>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">T-shirt</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-sm">
-                                    <p class="text-xs text-secondary mb-0 force-line-break">{{ $cp->description }}</p>
-                                </td>
-                                </td>
-                                <td>
-                                    <a href="admin/categories/produits/all"
-                                        class="text-default font-weight-bold text-sm p-2" data-toggle="tooltip"
-                                        data-original-title="afficher liste de prod">
-                                        Produits
-                                    </a>
-                                </td>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <p class="text-xs text-secondary mb-0 force-line-break">
+                                            gvzrl,j,v</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">30 TND</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">
 
-                                <td class="align-middle ">
-                                    <a class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#categorieModif{{ $cp->id }}">Modifier</a>
-                                    <!--Modal Modifier produit-->
-                                    @foreach ($category_product as $index => $cp)
-                                        <div class="modal fade" id="categorieModif{{ $cp->id }}"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-                                            aria-hidden="true">
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="align-middle ">
+                                        <button type="button" class="btn bg-gradient-primary btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#produitModif">Modifier</button>
+
+                                        <!--Modal modif produit-->
+                                        <div class="modal fade" id="produitModif" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-body p-0">
@@ -296,35 +238,62 @@
                                                             <div class="card-header pb-0 text-left">
                                                                 <h3
                                                                     class="font-weight-bolder text-primary text-gradient">
-                                                                    Modifier Categorie <span>{{ $cp->name }}</span>
-                                                                </h3>
-                                                                <p class="mb-0">Modifier cette catégorie de
-                                                                    produits:
-                                                                </p>
+                                                                    Modifier Produit : </h3>
+                                                                <p class="mb-0"></p>
                                                             </div>
-                                                            <form action="/admin/category_product/update"
-                                                                method="POST" enctype="multipart/form-data">
+                                                            <form action="/admin/product/update" method="POST"
+                                                                enctype="multipart/form-data">
                                                                 @csrf
                                                                 <div class="card-body pb-3">
-                                                                    <input type="hidden" name="id_category_product"
-                                                                        value="{{ $cp->id }}">
+                                                                    <input type="hidden" name="id_product"
+                                                                        value="">
                                                                     <div>
-                                                                        <img src="{{ asset('uploads') }}/{{ $cp->photo }}"
+                                                                        <img src=""
                                                                             class="avatar avatar-sm rounded-circle me-2">
                                                                     </div>
-
-                                                                    <label>Categorie</label>
+                                                                    <label>Nom Produit</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Nom de Categorie"
+                                                                        <input name="name" type="text"
+                                                                            class="form-control"
+                                                                            placeholder="Nom de Produit"
                                                                             aria-label="Name"
                                                                             aria-describedby="name-addon"
-                                                                            name="name"
-                                                                            value="{{ $cp->name }}">
+                                                                            value="">
                                                                     </div>
                                                                     <label>Description</label>
                                                                     <div class="input-group mb-3">
-                                                                        <textarea class="form-control" type="text" name="description" placeholder="Description">{{ $cp->description }}</textarea>
+                                                                        <textarea name="description" class="form-control" type="text" placeholder="Description">efcaq</textarea>
+                                                                    </div>
+                                                                    <label>Prix</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input name="price" type="text"
+                                                                            class="form-control"
+                                                                            placeholder="Prix de produit"
+                                                                            aria-label="Name"
+                                                                            aria-describedby="name-addon"value="">
+                                                                    </div>
+                                                                    <label>Taille</label>
+                                                                    <div class="input-group mb-3">
+
+                                                                        <input type="checkbox" id="size1"
+                                                                            name="XS" value="XS">
+                                                                        <label for="size1"> XS</label><br>
+                                                                        <input type="checkbox" id="size2"
+                                                                            name="S" value="S">
+                                                                        <label for="size2"> S</label><br>
+                                                                        <input type="checkbox" id="size3"
+                                                                            name="M" value="M">
+                                                                        <label for="size3"> M</label>
+                                                                        <input type="checkbox" id="size4"
+                                                                            name="L" value="L">
+                                                                        <label for="size4"> L</label>
+                                                                    </div>
+                                                                    <label>Categorie</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <select name="category_product"
+                                                                            class="form-select">
+
+                                                                        </select>
                                                                     </div>
                                                                     <label>Photo</label>
                                                                     <div class="input-group mb-3">
@@ -334,7 +303,7 @@
                                                                     <div class="text-center"
                                                                         style="display:flex; flex-direction: row;">
                                                                         <button type="submit"
-                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4  mb-0">
+                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
                                                                             Modifier</button>
                                                                         <button type="button"
                                                                             class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
@@ -347,22 +316,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                    <!--End modal modifier produit-->
-                                    <a onclick="return confirm('Voulez-vous vraiment supprimer cette categorie de produits?')"
-                                        href="/admin/category_product/{{ $cp->id }}/delete"
-                                        class="btn bg-gradient-danger btn-sm">Supprimer</a>
+                                        <!--End modal ajout produit-->
+                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                            href="/admin/product//delete"
+                                            class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
-
-        </div>
-        </div>
         </div>
 
         @include('inc.admin.footer')

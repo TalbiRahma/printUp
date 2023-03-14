@@ -22,169 +22,167 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    <div class="position-absolute w-100 min-height-300 top-0" 
-    style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
+    <div class="position-absolute w-100 min-height-300 top-0"
+        style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
 
-    <span class="mask bg-primary opacity-2"></span>
-</div>
-<!-- Side bar -->
-<aside
-    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
-    <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-            target="_blank">
-            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
-                alt="main_logo">
-        </a>
+        <span class="mask bg-primary opacity-2"></span>
     </div>
-    <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/dashboard">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Tableau de bord</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/admin/clients">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Clients</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/admin/categories/produits">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Categories Produits</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/categories/designs">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Categories Designs</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/admin/produits">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Produits</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/admin/commandes">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Commandes</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/admin/paiement">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Paiement</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</aside>
-<!-- End Side bar -->
-<div class="main-content position-relative max-height-vh-100 h-100">
-    <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-        data-scroll="false">
-        <div class="container-fluid py-1 px-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                            href="javascript:;">Pages</a></li>
-                    <li class="breadcrumb-item text-sm text-white active" aria-current="page">Profil</li>
-                </ol>
-                <h6 class="font-weight-bolder text-white mb-0">Profil</h6>
-            </nav>
-            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                    <div class="input-group">
-                        <span class="input-group-text text-body"><i class="fas fa-search"
-                                aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Tapez ici...">
-                    </div>
-                </div>
-                <ul class="navbar-nav  justify-content-end">
-                    <!--profile-->
-                    <li class="nav-item d-flex align-items-center">
-                        @include('inc.admin.profile')
-                    </li>
-
-                    <!--afficher le sidebar-->
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
-                            <div class="sidenav-toggler-inner">
-                                <i class="sidenav-toggler-line bg-white"></i>
-                                <i class="sidenav-toggler-line bg-white"></i>
-                                <i class="sidenav-toggler-line bg-white"></i>
-                            </div>
-                        </a>
-                    </li>
-                    <!--parametre-->
-
-                    <!--notificaton-->
-                    <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-bell cursor-pointer"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Side bar -->
+    <aside
+        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
+                target="_blank">
+                <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
+                    alt="main_logo">
+            </a>
         </div>
-    </nav>
-    <!-- End Navbar -->
-   <!---->
-    <div class="mx-6 card card-profile-bottom">
-        <div class="row">
+        <hr class="horizontal dark mt-0">
+        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Tableau de bord</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/clients">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/categories/produits">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/categories/designs">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/produits">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/commandes">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Commandes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin/paiement">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Paiement</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- End Side bar -->
+    <div class="main-content position-relative max-height-vh-100 h-100">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+            data-scroll="false">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
+                                href="javascript:;">Pages</a></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Profil</li>
+                    </ol>
+                    <h6 class="font-weight-bolder text-white mb-0">Profil</h6>
+                </nav>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search"
+                                    aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Tapez ici...">
+                        </div>
+                    </div>
+                    <ul class="navbar-nav  justify-content-end">
+                        <!--profile-->
+                        <li class="nav-item d-flex align-items-center">
+                            @include('inc.admin.profile')
+                        </li>
+
+                        <!--afficher le sidebar-->
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <!--parametre-->
+
+                        <!--notificaton-->
+                        @include('inc.admin.notification')
+                        <!--end notificaton-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <!---->
+        <div class="mx-6 card card-profile-bottom">
+            <div class="row">
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <div class="row gx-4">
-                              <div class="col-auto">
-                                <div class="avatar avatar-xl position-relative">
-                                  <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-xl position-relative">
+                                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                            alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="col-auto my-auto">
-                                <div class="h-100">
-                                  <h5 class="mb-1">
-                                    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                                  </h5>
+                                <div class="col-auto my-auto">
+                                    <div class="h-100">
+                                        <h5 class="mb-1">
+                                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                        </h5>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
                             <div class="col-auto my-auto">
-                              <a href="{{ route('admin.modif.profil') }}" class="btn btn-primary btn-sm">Modifier profile</a>
+                                <a href="{{ route('admin.modif.profil') }}" class="btn btn-primary btn-sm">Modifier
+                                    profile</a>
                             </div>
-                          </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <hr class="horizontal dark">
@@ -217,7 +215,7 @@
         </div>
         @include('inc.admin.footer')
     </div>
-</div>
+    </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

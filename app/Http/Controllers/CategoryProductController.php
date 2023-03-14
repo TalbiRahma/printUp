@@ -86,4 +86,9 @@ class CategoryProductController extends Controller
             echo"error";
         }
     }
+
+
+    public function produits(){
+        return view('admin.categories.produits.produitcatg');
+    }
 }

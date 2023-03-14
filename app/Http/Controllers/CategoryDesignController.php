@@ -86,4 +86,12 @@ class CategoryDesignController extends Controller
             echo"error";
         }
     }
+
+
+
+
+
+    public function designs(){
+        return view('admin.categories.designs.designcatg');
+    }
 }

@@ -59,13 +59,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/admin/categories/produits">
-                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                      </div>
-                      <span class="nav-link-text ms-1">Categories Produits</span>
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Produits</span>
                     </a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/admin/categories/designs">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -142,12 +143,8 @@
                         </li>
 
                         <!--notificaton-->
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bell cursor-pointer"></i>
-                            </a>
-                        </li>
+                        @include('inc.admin.notification')
+                        <!--end notificaton-->
                     </ul>
                 </div>
             </div>
@@ -156,7 +153,7 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                   <h4>Liste de clients</h4> 
+                    <h4>Liste de clients</h4>
                 </div>
             </div>
         </div>
@@ -166,62 +163,68 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id</th>
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id
+                                </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clients
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Boutique
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    Boutique
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            @foreach ($clients as $index => $client )
-                            <tr>
-                                <td class="align-middle">
-                                    {{ $index+1 }}
-                                </td>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="{{asset('uploads')}}/{{$client->photo}}"
-                                                class="avatar avatar-sm me-3">
+
+                            @foreach ($clients as $index => $client)
+                                <tr>
+                                    <td class="align-middle">
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                <img src="{{ asset('uploads') }}/{{ $client->photo }}"
+                                                    class="avatar avatar-sm me-3">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-xs">{{ $client->name }}</h6>
+                                                <p class="text-xs text-secondary mb-0">{{ $client->email }}</p>
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-xs">{{ $client->name }}</h6>
-                                            <p class="text-xs text-secondary mb-0">{{ $client->email }}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">name Boutique</p>
-                                    <p class="text-xs text-secondary mb-0">nbr design</p>
-                                </td>
-                                <td>
-                                    @if ($client->is_active)
-                                        <span class="badge bg-gradient-info">Client Active</span>
-                                    @else
-                                        <span class="badge bg-gradient-danger">Client Bloquee</span>
-                                    @endif
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    @if ($client->is_active)
-                                        <a href="{{ route('user.bloquer', ['id' => $client->id]) }}" class="btn bg-gradient-warning btn-sm">Bloquer</a>
-                                    @else
-                                        <a href="{{ route('user.activer', ['id' => $client->id]) }}" class="btn bg-gradient-success btn-sm">Activer</a>
-                                    @endif
-                                    
-                                    
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">name Boutique</p>
+                                        <p class="text-xs text-secondary mb-0">nbr design</p>
+                                    </td>
+                                    <td>
+                                        @if ($client->is_active)
+                                            <span class="badge bg-gradient-info">Client Active</span>
+                                        @else
+                                            <span class="badge bg-gradient-danger">Client Bloquee</span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        @if ($client->is_active)
+                                            <a href="{{ route('user.bloquer', ['id' => $client->id]) }}"
+                                                class="btn bg-gradient-warning btn-sm">Bloquer</a>
+                                        @else
+                                            <a href="{{ route('user.activer', ['id' => $client->id]) }}"
+                                                class="btn bg-gradient-success btn-sm">Activer</a>
+                                        @endif
+
+
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-       @include('inc.admin.footer')
+        @include('inc.admin.footer')
         </div>
     </main>
 
