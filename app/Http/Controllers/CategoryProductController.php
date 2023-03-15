@@ -88,7 +88,15 @@ class CategoryProductController extends Controller
     }
 
 
-    public function produits(){
-        return view('admin.categories.produits.produitcatg');
+    public function showProduitsByCategory($category_id)
+    {
+        $category_product = CategoryProduct::findOrFail($category_id);
+        $initial_products = $category_product->initial_products;
+        /*dd($category_product->initial_products);
+        $productsArray = $initial_products->toArray()*/; // Convertir les produits en tableau
+        return view('admin.categories.produits.produitcatg')->with('category' , $category_product)->with('initial_products' , $initial_products);//->with('products' , $productsArray);// Afficher les produits triés par catégorie
     }
+
+
+    
 }

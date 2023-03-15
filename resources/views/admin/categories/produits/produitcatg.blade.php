@@ -150,6 +150,8 @@
             </div>
         </nav>
         <!-- End Navbar -->
+
+        
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
@@ -165,6 +167,7 @@
 
 
                     <div class="table-responsive">
+                        @if ($initial_products)
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
@@ -180,37 +183,36 @@
                                         style="width: 10%;">Prix</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
                                         style="width: 10%;">Taille</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 15%;">Action</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach($initial_products as $index => $product)
                                 <tr>
                                     <td class="align-middle text-sm">
-                                        01
+                                       {{ $index+1 }}
                                     </td>
                                     <td>
                                         <div style="max-width: 200px; min-width: 100px;">
-                                            <img src="" class="avatar me-3"
+                                            <img src="{{ asset('uploads') }}/{{ $product->photo }}" class="avatar me-3"
                                                 style="width: 100%; height: auto;">
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">T-shirt</h5>
+                                                <h5 class="mb-0 text-sm">{{$product->name}}</h5>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <p class="text-xs text-secondary mb-0 force-line-break">
-                                            gvzrl,j,v</p>
+                                            {{$product->description}}</p>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">30 TND</h5>
+                                                <h5 class="mb-0 text-sm">{{$product->price}} TND</h5>
                                             </div>
                                         </div>
                                     </td>
@@ -218,120 +220,32 @@
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
                                                 <h5 class="mb-0 text-sm">
-
+                                                    @if ($product->sizes)
+                                                            @php $sizes = json_decode($product->sizes, true); @endphp
+                                                            @foreach ($sizes as $size)
+                                                                <span
+                                                                    class="badge badge-secondary">{{ $size }}</span>
+                                                            @endforeach
+                                                            {{ implode(',', $sizes) }}
+                                                        @endif
                                                 </h5>
                                             </div>
                                         </div>
                                     </td>
 
-                                    <td class="align-middle ">
-                                        <button type="button" class="btn bg-gradient-primary btn-sm"
-                                            data-bs-toggle="modal" data-bs-target="#produitModif">Modifier</button>
-
-                                        <!--Modal modif produit-->
-                                        <div class="modal fade" id="produitModif" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body p-0">
-                                                        <div class="card card-plain">
-                                                            <div class="card-header pb-0 text-left">
-                                                                <h3
-                                                                    class="font-weight-bolder text-primary text-gradient">
-                                                                    Modifier Produit : </h3>
-                                                                <p class="mb-0"></p>
-                                                            </div>
-                                                            <form action="/admin/product/update" method="POST"
-                                                                enctype="multipart/form-data">
-                                                                @csrf
-                                                                <div class="card-body pb-3">
-                                                                    <input type="hidden" name="id_product"
-                                                                        value="">
-                                                                    <div>
-                                                                        <img src=""
-                                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                                    </div>
-                                                                    <label>Nom Produit</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input name="name" type="text"
-                                                                            class="form-control"
-                                                                            placeholder="Nom de Produit"
-                                                                            aria-label="Name"
-                                                                            aria-describedby="name-addon"
-                                                                            value="">
-                                                                    </div>
-                                                                    <label>Description</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <textarea name="description" class="form-control" type="text" placeholder="Description">efcaq</textarea>
-                                                                    </div>
-                                                                    <label>Prix</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input name="price" type="text"
-                                                                            class="form-control"
-                                                                            placeholder="Prix de produit"
-                                                                            aria-label="Name"
-                                                                            aria-describedby="name-addon"value="">
-                                                                    </div>
-                                                                    <label>Taille</label>
-                                                                    <div class="input-group mb-3">
-
-                                                                        <input type="checkbox" id="size1"
-                                                                            name="XS" value="XS">
-                                                                        <label for="size1"> XS</label><br>
-                                                                        <input type="checkbox" id="size2"
-                                                                            name="S" value="S">
-                                                                        <label for="size2"> S</label><br>
-                                                                        <input type="checkbox" id="size3"
-                                                                            name="M" value="M">
-                                                                        <label for="size3"> M</label>
-                                                                        <input type="checkbox" id="size4"
-                                                                            name="L" value="L">
-                                                                        <label for="size4"> L</label>
-                                                                    </div>
-                                                                    <label>Categorie</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <select name="category_product"
-                                                                            class="form-select">
-
-                                                                        </select>
-                                                                    </div>
-                                                                    <label>Photo</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input name="photo" type="file"
-                                                                            class="form-control" accept="image/*">
-                                                                    </div>
-                                                                    <div class="text-center"
-                                                                        style="display:flex; flex-direction: row;">
-                                                                        <button type="submit"
-                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
-                                                                            Modifier</button>
-                                                                        <button type="button"
-                                                                            class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                                            data-bs-dismiss="modal">Annuler</button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--End modal ajout produit-->
-                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                            href="/admin/product//delete"
-                                            class="btn bg-gradient-danger btn-sm">Supprimer</a>
-
-
-                                    </td>
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
+                        @else
+                        <p>Aucun produit disponible pour cette catégorie</p>
+                        @endif
                     </div>
 
                 </div>
             </div>
         </div>
+        
 
         @include('inc.admin.footer')
         </div>

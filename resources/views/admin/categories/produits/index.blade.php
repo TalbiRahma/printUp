@@ -274,7 +274,7 @@
                                 </td>
                                 </td>
                                 <td>
-                                    <a href="admin/categories/produits/all"
+                                    <a href="{{ route('admin.categories.produits.all', ['category_id' => $cp->id]) }}"
                                         class="text-default font-weight-bold text-sm p-2" data-toggle="tooltip"
                                         data-original-title="afficher liste de prod">
                                         Produits

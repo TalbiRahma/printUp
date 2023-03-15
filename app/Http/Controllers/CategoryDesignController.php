@@ -88,6 +88,15 @@ class CategoryDesignController extends Controller
     }
 
 
+    public function showDesignsByCategory($category_design_id)
+    {
+        $category_design = CategoryDesign::findOrFail($category_design_id);
+        $designs = $category_design->designs;
+        /*dd($category_product->designs);
+        $productsArray = $designs->toArray()*/; // Convertir les produits en tableau
+        return view('admin.categories.produits.produitcatg')->with('category_design' , $category_design)->with('designs' , $designs);//->with('products' , $productsArray);// Afficher les produits triés par catégorie
+    }
+
 
 
 

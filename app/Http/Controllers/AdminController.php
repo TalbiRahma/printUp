@@ -48,6 +48,11 @@ class AdminController extends Controller
 
     public function updatetProfil(Request $request){
 
+        $request->validate([
+            'password' =>'confirmed', 
+        ], [
+            'password.confirmed' => 'Le mot de passe et sa confirmation doivent être identiques.',
+        ]);
        // dd($request);
         $user = Auth::user();
         $user->first_name =$request->first_name;
@@ -55,21 +60,40 @@ class AdminController extends Controller
         $user->email =$request->email;
         $user->cin =$request->cin;
         $user->phone =$request->phone;
+
         if ($request->password){
             $user->password = Hash::make($request->password);
         }
 
-        /*if($request->hasFile('photo')){
-            // Supprimez l'ancienne photo s'il en existe une
-            if($user->photo){
-                Storage::delete('uploads/'.$user->photo);
-            }
-            // Enregistrez la nouvelle photo
-            $user->photo = $request->file('photo')->store('uploads');
-        }*/
+       //upload image
+       if($request->file('photo')){
+        if($user->photo){
+            //supprimer ancienne photo
+            $file_path = public_path().'/uploads/'.$user->photo;
+            unlink($file_path);
+
+            //upload nv photo
+            $newname = uniqid();
+            $image = $request->file('photo');
+            $newname.= "." . $image->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $image->move($destinationPath , $newname);
+            $user->photo = $newname;
+        }else{
+            //upload nv photo
+            $newname = uniqid();
+            $image = $request->file('photo');
+            $newname.= "." . $image->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $image->move($destinationPath , $newname);
+            $user->photo = $newname;
+        }
+        
+        }
+
         $user->update();
         return view('admin.compte.editprofil');
-        }
+    }
 
     public function donnesProfil(){
         return view('admin.compte.donnesprofil');

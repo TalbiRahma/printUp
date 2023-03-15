@@ -48,7 +48,7 @@ Route::get('user/{id}/activer', 'App\Http\Controllers\AdminController@activerUse
 
 /***********admin CATEGORY***** */
 Route::get('admin/categories/produits', 'App\Http\Controllers\CategoryProductController@index');
-Route::get('admin/categories/produits/all', 'App\Http\Controllers\CategoryProductController@produits');
+Route::get('admin/categories/{category_id}/produits/all', 'App\Http\Controllers\CategoryProductController@showProduitsByCategory')->name('admin.categories.produits.all');
 
 
 Route::get('admin/categories/designs', 'App\Http\Controllers\CategoryDesignController@index');

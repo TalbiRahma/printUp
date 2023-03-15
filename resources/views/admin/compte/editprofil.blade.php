@@ -217,14 +217,19 @@
                                 <div class="form-group">
                                     <label for="example-password-input" class="form-control-label">Mot de
                                         passe</label>
-                                    <input name="password" class="form-control" type="password"
-                                        placeholder="Entrez un nouveau mot de passe..." id="example-password-input">
+                                    <input name="password" id=" password" class="form-control" type="password"
+                                        placeholder="Entrez un nouveau mot de passe...">
                                 </div>
                                 <div class="form-group">
                                     <label for="example-password-input" class="form-control-label">Confirmer Mot de
                                         passe</label>
-                                    <input name="password" class="form-control" type="password"
-                                        placeholder="Confirmer votre mot de passe..." id="example-password-input">
+                                    <input name="confpassword" id="confpassword" class="form-control" type="password"
+                                        placeholder="Confirmer votre mot de passe..." >
+                                        @error('confpassword')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Photo de
@@ -354,6 +359,7 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

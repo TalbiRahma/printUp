@@ -123,4 +123,6 @@ class InitialProductController extends Controller
             echo"error";
         }
     }
+
+    
 }

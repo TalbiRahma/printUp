@@ -8,7 +8,7 @@
 
             <div class="d-flex px-2">
                 <div>
-                    <img src="{{ asset('/dashassets/img/profiladmin.jpg') }}"
+                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
                         class="avatar avatar-md rounded-circle me-2">
                 </div>
                 <div class="my-auto">

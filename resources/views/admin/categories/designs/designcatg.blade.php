@@ -177,8 +177,7 @@
                                         style="width: 25%;">Description</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
                                         style="width: 15%;">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 10%;">Action</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,9 +209,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="align-middle ">
-                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                            href="" class="btn bg-gradient-danger btn-sm">Supprimer</a>
+                                    
                                 </tr>
                             </tbody>
                         </table>
