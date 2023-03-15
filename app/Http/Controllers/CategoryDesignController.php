@@ -92,15 +92,13 @@ class CategoryDesignController extends Controller
     {
         $category_design = CategoryDesign::findOrFail($category_design_id);
         $designs = $category_design->designs;
-        /*dd($category_product->designs);
-        $productsArray = $designs->toArray()*/; // Convertir les produits en tableau
-        return view('admin.categories.produits.produitcatg')->with('category_design' , $category_design)->with('designs' , $designs);//->with('products' , $productsArray);// Afficher les produits triés par catégorie
+        //dd($category_design->designs);
+       /* $productsArray = $designs->toArray()*/; // Convertir les produits en tableau
+        return view('admin.categories.designs.designcatg')->with('category_design' , $category_design)->with('designs' , $designs);//->with('products' , $productsArray);// Afficher les produits triés par catégorie
     }
 
 
 
 
-    public function designs(){
-        return view('admin.categories.designs.designcatg');
-    }
+
 }

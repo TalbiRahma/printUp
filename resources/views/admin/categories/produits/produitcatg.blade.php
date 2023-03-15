@@ -155,11 +155,10 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h6>Produits de Categories ...:</h6>
-                    <button class="btn btn-icon btn-3 bg-gradient-primary" type="button" data-bs-toggle=""
-                        data-bs-target="#">
+                    <h6>Produits de Categories {{ $category_product->name }}:</h6>
+                    <a href="{{ route('admin.categories.produits') }}" class="btn btn-icon btn-3 bg-gradient-primary"  >
                         <span class="btn-inner--text">Categories produits</span>
-                    </button>
+                    </a>
                     <!--End modal ajout produit-->
                 </div>
                 <hr class="horizontal dark mt-0">
@@ -167,7 +166,7 @@
 
 
                     <div class="table-responsive">
-                        @if ($initial_products)
+                        
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
@@ -237,9 +236,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        @else
-                        <p>Aucun produit disponible pour cette catégorie</p>
-                        @endif
+                        
                     </div>
 
                 </div>

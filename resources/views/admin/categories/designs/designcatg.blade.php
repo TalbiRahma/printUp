@@ -154,11 +154,10 @@
         <div class="container-fluid py-4">
             <div class="card">
                 <div class="container-fluid py-4">
-                    <h6>Designs de Categories ...:</h6>
-                    <button class="btn btn-icon btn-3 bg-gradient-primary" type="button" data-bs-toggle=""
-                        data-bs-target="#">
+                    <h6>Designs de Categories {{ $category_design->name }}:</h6>
+                    <a href="{{ route('admin.categories.designs') }}" class="btn btn-icon btn-3 bg-gradient-primary" >
                         <span class="btn-inner--text">Categories designs</span>
-                    </button>
+                    </a>
 
                     <hr class="horizontal dark mt-0">
 
@@ -181,36 +180,38 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($designs as $index => $design)
                                 <tr>
                                     <td class="align-middle text-sm">
-                                        01
+                                        {{ $index +1}}
                                     </td>
                                     <td>
                                         <div style="max-width: 200px; min-width: 100px;">
-                                            <img src="" class="avatar me-3"
+                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}" class="avatar me-3"
                                                 style="width: 100%; height: auto;">
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">anime</h5>
+                                                <h5 class="mb-0 text-sm">{{$design->name}}</h5>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <p class="text-xs text-secondary mb-0 force-line-break">
-                                            hbsbckjqnzanoi</p>
+                                            {{$design->description}}</p>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">5 TND</h5>
+                                                <h5 class="mb-0 text-sm">{{$design->price}} TND</h5>
                                             </div>
                                         </div>
                                     </td>
                                     
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

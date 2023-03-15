@@ -47,12 +47,12 @@ Route::get('user/{id}/activer', 'App\Http\Controllers\AdminController@activerUse
 
 
 /***********admin CATEGORY***** */
-Route::get('admin/categories/produits', 'App\Http\Controllers\CategoryProductController@index');
+Route::get('admin/categories/produits', 'App\Http\Controllers\CategoryProductController@index')->name('admin.categories.produits');
 Route::get('admin/categories/{category_id}/produits/all', 'App\Http\Controllers\CategoryProductController@showProduitsByCategory')->name('admin.categories.produits.all');
 
 
-Route::get('admin/categories/designs', 'App\Http\Controllers\CategoryDesignController@index');
-Route::get('admin/categories/designs/all', 'App\Http\Controllers\CategoryDesignController@designs');
+Route::get('admin/categories/designs', 'App\Http\Controllers\CategoryDesignController@index')->name('admin.categories.designs');
+Route::get('admin/categories/{category_design_id}/designs/all', 'App\Http\Controllers\CategoryDesignController@showDesignsByCategory')->name('admin.categories.designs.all');
 
 
     /**category Product*** */

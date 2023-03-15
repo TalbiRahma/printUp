@@ -275,7 +275,7 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <a href="designs/all" class="text-default font-weight-bold text-sm p-2"
+                                            <a href="{{ route('admin.categories.designs.all', ['category_design_id' => $cd->id]) }}" class="text-default font-weight-bold text-sm p-2"
                                                 data-toggle="tooltip" data-original-title="afficher liste de prod">
                                                 Designs
                                             </a>
