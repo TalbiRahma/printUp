@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/clients">
+                    <a class="nav-link " href="{{ route('users') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/categories/produits">
+                    <a class="nav-link "  href="{{ route('category_product') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/categories/designs">
+                    <a class="nav-link" href="{{ route('category_design') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin/produits">
+                    <a class="nav-link active" href="{{ route('products') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -175,7 +175,7 @@
                         aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                             <div class="modal-content">
-                                <form action="/admin/product/store" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body p-0">
                                         <div class="card card-plain">
@@ -379,7 +379,7 @@
                                                                         Modifier Produit : </h3>
                                                                     <h4 class="mb-0">{{ $p->name }}</h4>
                                                                 </div>
-                                                                <form action="/admin/product/update" method="POST"
+                                                                <form action="{{ route('edit.product') }}" method="POST"
                                                                     enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div class="card-body pb-3">
@@ -466,7 +466,7 @@
                                             </div>
                                             <!--End modal ajout produit-->
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                                href="/admin/product/{{ $p->id }}/delete"
+                                                href="{{ route('delete.product', ['id' => $p->id ]) }}"
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 

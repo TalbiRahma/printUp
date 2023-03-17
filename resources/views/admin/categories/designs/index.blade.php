@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/clients">
+                    <a class="nav-link" href="{{ route('users') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/categories/produits">
+                    <a class="nav-link "  href="{{ route('category_product') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin/categories/designs">
+                    <a class="nav-link active" href="{{ route('category_design') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/produits">
+                    <a class="nav-link " href="{{ route('products') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -172,7 +172,7 @@
                         aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                             <div class="modal-content">
-                                <form action="/admin/category_design/store" method="POST"
+                                <form action="{{ route('add.category_design') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body p-0">
@@ -275,7 +275,7 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.categories.designs.all', ['category_design_id' => $cd->id]) }}" class="text-default font-weight-bold text-sm p-2"
+                                            <a href="{{ route('design.all', ['category_design_id' => $cd->id]) }}" class="text-default font-weight-bold text-sm p-2"
                                                 data-toggle="tooltip" data-original-title="afficher liste de prod">
                                                 Designs
                                             </a>
@@ -304,7 +304,7 @@
                                                                         designs:
                                                                     </p>
                                                                 </div>
-                                                                <form action="/admin/category_design/update"
+                                                                <form action="{{ route('edit.category_design') }}"
                                                                     method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div class="card-body pb-3">
@@ -351,7 +351,7 @@
                                             </div>
                                             <!--End modal modifier design-->
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer cette categorie de designs?')"
-                                                href="/admin/category_design/{{ $cd->id }}/delete"
+                                                href="{{ route('delete.category_design', ['id' => $cd->id ]) }}"
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
