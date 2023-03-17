@@ -25,7 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 /*************CLIENT******** */
-Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
+Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
+Route::get('client/magasin', 'App\Http\Controllers\ClientController@shop');
+Route::get('client/index', 'App\Http\Controllers\ClientController@index');
 
 
 
