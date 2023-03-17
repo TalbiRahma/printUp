@@ -1,7 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryDesignController;
+use App\Http\Controllers\InitialProductController;
+use App\Http\Controllers\CategoryProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,56 +24,93 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 
 /*************CLIENT******** */
 Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
+Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 
 
 
 
 
 /*************ADMIN******** */
-Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard');
-
-Route::get('admin/modif/profil', 'App\Http\Controllers\AdminController@modifProfil')->name('admin.modif.profil');
-Route::post('admin/update', 'App\Http\Controllers\AdminController@updatetProfil')->name('admin.update');
-
-Route::get('admin/donnes/profil', 'App\Http\Controllers\AdminController@donnesProfil')->name('admin.donnes.profil');
-
-
-/************admin CLIENT****** */
-Route::get('admin/clients', 'App\Http\Controllers\AdminController@clients');
-Route::get('user/{id}/bloquer', 'App\Http\Controllers\AdminController@bloquerUser')->name('user.bloquer');
-Route::get('user/{id}/activer', 'App\Http\Controllers\AdminController@activerUser')->name('user.activer');
+Route::prefix('admin')->group(function (){
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profil/modifier', [AdminController::class, 'modifProfil'])->name('modifier.profil');
+    Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
+    Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'] )->name('donnes.profil');
 
 
-/***********admin CATEGORY***** */
-Route::get('admin/categories/produits', 'App\Http\Controllers\CategoryProductController@index')->name('admin.categories.produits');
-Route::get('admin/categories/{category_id}/produits/all', 'App\Http\Controllers\CategoryProductController@showProduitsByCategory')->name('admin.categories.produits.all');
+        /************admin CLIENT****** */
+    Route::prefix('user')->group(function (){
+        Route::get('', [AdminController::class, 'clients'])->name('users');
+        Route::get('/user/{id}/bloquer', [AdminController::class, 'bloquerUser'])->name('user.bloquer');
+        Route::get('/user/{id}/activer', [AdminController::class, 'activerUser'])->name('user.activer');
+    });
+
+    
+        /***********admin CATEGORY***** */
+    Route::prefix('categories')->group(function(){
+        /***********PRODUCT*********** */
+        Route::get('/produits', [CategoryProductController::class, 'index'])->name('category_product');
+        Route::get('/{category_id}/produits/all', [CategoryProductController::class, 'showProduitsByCategory'])->name('product.all');
+
+        /***********DESIGN*********** */
+        Route::get('/designs', [CategoryDesignController::class, 'index'])->name('category_design');
+        Route::get('/{category_design_id}/designs/all', [CategoryDesignController::class, 'showDesignsByCategory'])->name('design.all');
+
+    });
 
 
-Route::get('admin/categories/designs', 'App\Http\Controllers\CategoryDesignController@index')->name('admin.categories.designs');
-Route::get('admin/categories/{category_design_id}/designs/all', 'App\Http\Controllers\CategoryDesignController@showDesignsByCategory')->name('admin.categories.designs.all');
+         /********category Product****** */
+    Route::prefix('category_product')->group(function (){
+        Route::post('/store', [CategoryProductController::class, 'ajouterCategroieProduit'] )->name('add.category_product');
+        Route::get('/{id}/delete', [CategoryProductController::class, 'supprimerCategroieProduit'] )->name('delete.category_product');
+        Route::post('/update', [CategoryProductController::class, 'modifierCategroieProduit'] )->name('edit.category_product');
+    });
 
 
-    /**category Product*** */
-Route::post('/admin/category_product/store', 'App\Http\Controllers\CategoryProductController@ajouterCategroieProduit');
-Route::get('/admin/category_product/{id}/delete', 'App\Http\Controllers\CategoryProductController@supprimerCategroieProduit');
-Route::post('/admin/category_product/update', 'App\Http\Controllers\CategoryProductController@modifierCategroieProduit');
-    /**category Design*** */
-Route::post('/admin/category_design/store', 'App\Http\Controllers\CategoryDesignController@ajouterCategroieDesign');
-Route::get('/admin/category_design/{id}/delete', 'App\Http\Controllers\CategoryDesignController@supprimerCategroieDesign');
-Route::post('/admin/category_design/update', 'App\Http\Controllers\CategoryDesignController@modifierCategroieDesign');
+        /**********category Design********* */
+    Route::prefix('category_design')->group(function (){
+        Route::post('/store', [CategoryDesignController::class, 'ajouterCategroieDesign'] )->name('add.category_design');
+        Route::get('/{id}/delete', [CategoryDesignController::class, 'supprimerCategroieDesign'] )->name('delete.category_design');
+        Route::post('/update', [CategoryDesignController::class, 'modifierCategroieDesign'] )->name('edit.category_design');
+    });
 
 
-/***********admin PRODUCT***** */
-Route::get('admin/produits', 'App\Http\Controllers\InitialProductController@index');
-Route::post('/admin/product/store', 'App\Http\Controllers\InitialProductController@ajouterProduit');
-Route::get('/admin/product/{id}/delete', 'App\Http\Controllers\InitialProductController@supprimerProduit');
-Route::post('/admin/product/update', 'App\Http\Controllers\InitialProductController@modifierProduit');
+        /***********admin PRODUCT***** */
+    Route::prefix('products')->group(function (){
+        Route::get('', [InitialProductController::class, 'index'])->name('products');
+        Route::post('/store', [InitialProductController::class, 'ajouterProduit'])->name('add.product');
+        Route::get('/{id}/delete', [InitialProductController::class, 'supprimerProduit'])->name('delete.product');
+        Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+
 
 
 

@@ -8,7 +8,8 @@ class ClientController extends Controller
 {
     //
     public function dashboard(){
-        return view('client.dashboard');
+        //return view('client.dashboard');
+        return view('home');
     }
 }
 
