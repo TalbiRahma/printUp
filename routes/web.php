@@ -29,14 +29,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 /*************CLIENT******** */
-<<<<<<< HEAD
+
 Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
-Route::get('client/magasin', 'App\Http\Controllers\ClientController@shop');
+Route::get('client/magasin', 'App\Http\Controllers\ClientController@shopproduit');
 Route::get('client/index', 'App\Http\Controllers\ClientController@index');
-=======
+
 Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
->>>>>>> af85e14752483763fd48f2d8968486590ffa7d10
 
 
 

@@ -12,8 +12,8 @@ class ClientController extends Controller
         return view('home');
     }
 
-    public function shop(){
-        return view('client.shop');
+    public function shopproduit(){
+        return view('client.shopproduit');
     }
     
     public function index(){
