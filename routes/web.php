@@ -28,9 +28,19 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 /*************CLIENT******** */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f0c596dce687d3bad5642dd0008f7f95a63a0f1
 Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
-Route::get('client/magasin', 'App\Http\Controllers\ClientController@shop');
+Route::get('client/magasin', 'App\Http\Controllers\ClientController@shopproduit');
 Route::get('client/index', 'App\Http\Controllers\ClientController@index');
+<<<<<<< HEAD
+=======
+
+Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
+Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
+>>>>>>> 7f0c596dce687d3bad5642dd0008f7f95a63a0f1
 
 
 
