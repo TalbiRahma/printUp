@@ -156,7 +156,7 @@
             <div class="card card-frame">
                 <div class="card-body">
                     <h6>Produits de Categories {{ $category_product->name }}:</h6>
-                    <a href="{{ route('produits') }}" class="btn btn-icon btn-3 bg-gradient-primary"  >
+                    <a href="{{ route('products') }}" class="btn btn-icon btn-3 bg-gradient-primary"  >
                         <span class="btn-inner--text">Categories produits</span>
                     </a>
                     <!--End modal ajout produit-->

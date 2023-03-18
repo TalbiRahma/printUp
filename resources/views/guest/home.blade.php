@@ -36,30 +36,7 @@
         <div class="axil-header-top">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="header-top-dropdown">
-                            <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    English
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">English</a></li>
-                                    <li><a class="dropdown-item" href="#">Arabic</a></li>
-                                    <li><a class="dropdown-item" href="#">Spanish</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown">
-                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    USD
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">USD</a></li>
-                                    <li><a class="dropdown-item" href="#">AUD</a></li>
-                                    <li><a class="dropdown-item" href="#">EUR</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-sm-6">
                         <div class="header-top-link">
                             <ul class="quick-link">
@@ -103,17 +80,20 @@
                                     <ul class="axil-submenu">
                                         <h4>Produits</h4>
                                         <ul>
-                                        <li><a href="shop-sidebar.html">T-Shirt</a></li>
-                                        <li><a href="shop.html">Capuche</a></li>
-                                        <li><a href="single-product.html">Cups</a></li>
-                                    </ul>
+                                            @foreach ($category_product as $cp)
+                                            <li><a href="shop-sidebar.html">{{$cp->name}}</a></li>
+                                            @endforeach
+                                            
+                                            
+                                        </ul>
                                         <h4>Designs</h4>
                                         <ul>
-                                        <li><a href="single-product-2.html">Product Variation 2</a></li>
-                                        <li><a href="single-product-3.html">Product Variation 3</a></li>
-                                        <li><a href="single-product-4.html">Product Variation 4</a></li>
-                                        <li><a href="single-product-5.html">Product Variation 5</a></li>
-                                    </ul>
+                                            @foreach ($category_design as $cd )
+                                            <li><a href="single-product-2.html">{{$cd->name}}</a></li>
+                                            @endforeach
+                                            
+                                            
+                                        </ul>
                                     </ul>
                                 </li>
                                 <li><a href="#">Boutiques</a></li>
@@ -366,12 +346,13 @@
                     <div class="slick-single-layout">
                         <div class="row row--15">
                             <!--Single Product  -->
+                            @foreach ($initial_products as $p)
                             <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
                                 <div class="axil-product product-style-one">
                                     <div class="thumbnail">
                                         <a href="single-product.html">
-                                            <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="800" loading="lazy" class="main-img" src="{{asset('/mainassets/images/product/electric/product-01.png')}}" alt="Product Images">
-                                            <img class="hover-img" src="{{asset('/mainassets/images/product/electric/product-08.png')}}" alt="Product Images">
+                                            <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="800" loading="lazy" class="main-img" src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
+                                            <img class="hover-img" src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
@@ -397,14 +378,15 @@
                                         </span>
                                                 <span class="rating-number">(64)</span>
                                             </div>
-                                            <h5 class="title"><a href="single-product.html">Name product</a></h5>
+                                            <h5 class="title"><a href="single-product.html">{{$p->name}}</a></h5>
                                             <div class="product-price-variant">
-                                                <span class="price current-price">40TND</span>
+                                                <span class="price current-price">{{$p->price}} TND</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                             <!-- End Single Product  -->
                         </div>
                     </div>
