@@ -43,6 +43,7 @@ Route::prefix('geust')->group(function () {
 Route::prefix('client')->group(function () {
     Route::get('/cart', [ClientController::class,'cart'])->name('cart');
     Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
+    Route::get('/whishlist', [ClientController::class,'whishlist'])->name('whishlist');
 });
 
 

@@ -66,7 +66,7 @@
                             <span>Save $3 With App & New User only</span>
                             <div class="download-btn-group">
                                 <div class="qr-code">
-                                    <img src="a{{asset('/mainssets/images/others/qr.png')}}" alt="Axilthemes">
+                                    <img src="{{asset('/mainssets/images/others/qr.png')}}" alt="Axilthemes">
                                 </div>
                                 <div class="app-link">
                                     <a href="#">

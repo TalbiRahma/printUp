@@ -2,39 +2,33 @@
     <div class="axil-header-top">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-sm-6 col-12">
-                    <div class="header-top-dropdown">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                English
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">Arabic</a></li>
-                                <li><a class="dropdown-item" href="#">Spanish</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                USD
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">USD</a></li>
-                                <li><a class="dropdown-item" href="#">AUD</a></li>
-                                <li><a class="dropdown-item" href="#">EUR</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6 col-12">
+                <div class="col-sm">
                     <div class="header-top-link">
-                        <ul class="quick-link">
-                            <li><a href="#">Help</a></li>
-                            <li><a href="sign-up.html">Join Us</a></li>
-                            <li><a href="sign-in.html">Sign In</a></li>
-                        </ul>
+
+                        @if (Route::has('login'))
+                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                <ul class="quick-link">
+                                    @auth
+                                        <li><a href="{{ url('/home') }}"
+                                                class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>
+                                    @else
+                                        <li><a href="{{ route('login') }}"
+                                                class="text-sm text-gray-700 dark:text-gray-500 underline">Connexion</a>
+                                        </li>
+
+                                        @if (Route::has('register'))
+                                            <li><a href="{{ route('register') }}"
+                                                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Inscrire</a>
+                                            </li>
+                                        @endif
+                                    @endauth
+                                </ul>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -111,7 +105,7 @@
                             </a>
                         </li>
                         <li class="wishlist">
-                            <a href="wishlist.html">
+                            <a href="{{ route('whishlist') }}">
                                 <i class="flaticon-heart"></i>
                             </a>
                         </li>
@@ -126,10 +120,10 @@
                                 <i class="flaticon-person"></i>
                             </a>
                             <div class="my-account-dropdown">
-                                <span class="title">QUICKLINKS</span>
+                                <span class="title">MON COMPTE</span>
                                 <ul>
                                     <li>
-                                        <a href="my-account.html">My Account</a>
+                                        <a href="my-account.html">Profile</a>
                                     </li>
                                     <li>
                                         <a href="#">Initiate return</a>
@@ -141,8 +135,8 @@
                                         <a href="#">Language</a>
                                     </li>
                                 </ul>
-                                <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
-                                <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Connexion</a>
+                                <div class="reg-footer text-center">Pas encore de compte? <a href="{{ route('register') }}" class="btn-link">Inscrire.</a></div>
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">
@@ -179,93 +173,11 @@
 </header>
 
 
-
-
-
-
 <!--cart dropdown-->
 @include('inc.client.dropcart')
 <!--end cart dropdown-->
 
 
-
-
 <!-- Header Search Modal End -->
-<div class="header-search-modal" id="header-search-modal">
-    <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
-    <div class="header-search-wrap">
-        <div class="card-header">
-            <form action="#">
-                <div class="input-group">
-                    <input type="search" class="form-control" name="prod-search" id="prod-search" placeholder="Write Something....">
-                    <button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
-                </div>
-            </form>
-        </div>
-        <div class="card-body">
-            <div class="search-result-header">
-                <h6 class="title">24 Result Found</h6>
-                <a href="shop.html" class="view-all">View All</a>
-            </div>
-            <div class="psearch-results">
-                <div class="axil-product-list">
-                    <div class="thumbnail">
-                        <a href="single-product.html">
-                            <img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <span class="rating-icon">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fal fa-star"></i>
-                        </span>
-                            <span class="rating-number"><span>100+</span> Reviews</span>
-                        </div>
-                        <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
-                        <div class="product-price-variant">
-                            <span class="price current-price">$29.99</span>
-                            <span class="price old-price">$49.99</span>
-                        </div>
-                        <div class="product-cart">
-                            <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                            <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="axil-product-list">
-                    <div class="thumbnail">
-                        <a href="single-product.html">
-                            <img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <span class="rating-icon">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fal fa-star"></i>
-                        </span>
-                            <span class="rating-number"><span>100+</span> Reviews</span>
-                        </div>
-                        <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
-                        <div class="product-price-variant">
-                            <span class="price current-price">$29.99</span>
-                            <span class="price old-price">$49.99</span>
-                        </div>
-                        <div class="product-cart">
-                            <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                            <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@include('inc.client.search')
 <!-- Header Search Modal End -->
