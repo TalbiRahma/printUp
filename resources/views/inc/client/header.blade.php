@@ -61,38 +61,30 @@
                             </a>
                         </div>
                         <ul class="mainmenu">
-                            <li class="menu-item-has-children">
+                            <li class="">
                                 <a href="#">Magasin</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="#">Categories</a>
                                 <ul class="axil-submenu">
                                     <h4>Produits</h4>
                                     <ul>
-                                    <li><a href="shop-sidebar.html">T-Shirt</a></li>
-                                    <li><a href="shop.html">Capuche</a></li>
-                                    <li><a href="single-product.html">Cups</a></li>
-                                </ul>
+                                        @foreach ($category_product as $cp)
+                                        <li><a href="shop-sidebar.html">{{$cp->name}}</a></li>
+                                        @endforeach
+                                        
+                                        
+                                    </ul>
                                     <h4>Designs</h4>
                                     <ul>
-                                    <li><a href="single-product-2.html">Product Variation 2</a></li>
-                                    <li><a href="single-product-3.html">Product Variation 3</a></li>
-                                    <li><a href="single-product-4.html">Product Variation 4</a></li>
-                                    <li><a href="single-product-5.html">Product Variation 5</a></li>
+                                        @foreach ($category_design as $cd )
+                                        <li><a href="single-product-2.html">{{$cd->name}}</a></li>
+                                        @endforeach
+                                        
+                                        
+                                    </ul>
                                 </ul>
-                            </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul class="axil-submenu">
-                                    <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-                                    <li><a href="shop.html">Shop no Sidebar</a></li>
-                                    <li><a href="single-product.html">Product Variation 1</a></li>
-                                    <li><a href="single-product-2.html">Product Variation 2</a></li>
-                                    <li><a href="single-product-3.html">Product Variation 3</a></li>
-                                    <li><a href="single-product-4.html">Product Variation 4</a></li>
-                                    <li><a href="single-product-5.html">Product Variation 5</a></li>
-                                    <li><a href="single-product-6.html">Product Variation 6</a></li>
-                                    <li><a href="single-product-7.html">Product Variation 7</a></li>
-                                </ul>
-                            </li>
+                            </li> 
                             <li><a href="#">Boutiques</a></li>
                                 <li><a href="#">A propos</a></li>
                                 <li><a href="#">Contact</a></li>
@@ -103,7 +95,7 @@
                 <div class="header-action">
                     <ul class="action-list">
                         <li class="axil-search d-xl-block d-none">
-                            <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
+                            <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="Qu'est-ce que tu cherches?" autocomplete="off">
                             <button type="submit" class="icon wooc-btn-search">
                                 <i class="flaticon-magnifying-glass"></i>
                             </button>

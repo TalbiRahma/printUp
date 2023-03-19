@@ -21,4 +21,17 @@ class GuestController extends Controller
         
         return view('guest.home')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);
     }
+
+   
+
+    public function shopproduit(){
+
+        $initial_products = InitialProduct::all();
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+
+        return view('guest.shopproduit')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);;
+    }
+
 }
