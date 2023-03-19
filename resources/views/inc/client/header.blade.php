@@ -44,10 +44,10 @@
         <div class="container">
             <div class="header-navbar">
                 <div class="header-brand">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="{{ route('home') }}" class="logo logo-dark">
                         <img src="{{asset('/mainassets/images/logo/logo.png')}}" alt="Site Logo">
                     </a>
-                    <a href="index.html" class="logo logo-light">
+                    <a href="{{ route('home') }}" class="logo logo-light">
                         <img src="{{asset('/mainassets/images/logo/logo-light.png')}}" alt="Site Logo">
                     </a>
                 </div>
@@ -61,8 +61,13 @@
                             </a>
                         </div>
                         <ul class="mainmenu">
-                            <li class="">
+                            <li class="menu-item-has-children">
                                 <a href="#">Magasin</a>
+                                <ul class="axil-submenu">
+                                    <li><a href="{{ route('magasin.produit') }}">Produits</a></li>
+                                    <li><a href="{{ route('magasin.design') }}">Designs</a></li>
+                                    <li><a href="{{ route('magasin.personnaliser') }}">Personnaliser</a></li>
+                                </ul>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Categories</a>
@@ -172,3 +177,95 @@
         </div>
     </div>
 </header>
+
+
+
+
+
+
+<!--cart dropdown-->
+@include('inc.client.dropcart')
+<!--end cart dropdown-->
+
+
+
+
+<!-- Header Search Modal End -->
+<div class="header-search-modal" id="header-search-modal">
+    <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
+    <div class="header-search-wrap">
+        <div class="card-header">
+            <form action="#">
+                <div class="input-group">
+                    <input type="search" class="form-control" name="prod-search" id="prod-search" placeholder="Write Something....">
+                    <button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="card-body">
+            <div class="search-result-header">
+                <h6 class="title">24 Result Found</h6>
+                <a href="shop.html" class="view-all">View All</a>
+            </div>
+            <div class="psearch-results">
+                <div class="axil-product-list">
+                    <div class="thumbnail">
+                        <a href="single-product.html">
+                            <img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <span class="rating-icon">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fal fa-star"></i>
+                        </span>
+                            <span class="rating-number"><span>100+</span> Reviews</span>
+                        </div>
+                        <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
+                        <div class="product-price-variant">
+                            <span class="price current-price">$29.99</span>
+                            <span class="price old-price">$49.99</span>
+                        </div>
+                        <div class="product-cart">
+                            <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
+                            <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="axil-product-list">
+                    <div class="thumbnail">
+                        <a href="single-product.html">
+                            <img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-rating">
+                            <span class="rating-icon">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fal fa-star"></i>
+                        </span>
+                            <span class="rating-number"><span>100+</span> Reviews</span>
+                        </div>
+                        <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
+                        <div class="product-price-variant">
+                            <span class="price current-price">$29.99</span>
+                            <span class="price old-price">$49.99</span>
+                        </div>
+                        <div class="product-cart">
+                            <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
+                            <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header Search Modal End -->

@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller;
 class ClientController extends Controller
 {
     //
-    public function cart (){
+    public function cart(){
 
         $initial_products = InitialProduct::all();
         $designs = Design::all();
@@ -20,6 +20,18 @@ class ClientController extends Controller
         $category_design = CategoryDesign::all();
         
         return view('client.cart')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);
+
+    }
+
+
+    public function checkout(){
+
+        $initial_products = InitialProduct::all();
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        
+        return view('client.checkout')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);
 
     }
 

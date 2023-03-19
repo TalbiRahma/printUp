@@ -34,18 +34,20 @@ Auth::routes();
 Route::prefix('geust')->group(function () {
     Route::get('/home', [GuestController::class,'home'])->name('home');
     Route::get('/magasin/produit', [GuestController::class,'shopproduit'])->name('magasin.produit');
-    
-
+    Route::get('/magasin/designt', [GuestController::class,'shopdesign'])->name('magasin.design');
+    Route::get('/magasin/personnaliser', [GuestController::class,'shoppersonaliser'])->name('magasin.personnaliser');
 });
-
-Route::prefix('client')->group(function () {
-    Route::get('/cart', [ClientController::class,'cart'])->name('cart');
-
-});
-
 
 
 /*************CLIENT******** */
+Route::prefix('client')->group(function () {
+    Route::get('/cart', [ClientController::class,'cart'])->name('cart');
+    Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
+});
+
+
+
+
 
 Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 
