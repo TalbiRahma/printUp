@@ -362,7 +362,7 @@
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="quickview"><a  data-bs-toggle="modal" data-bs-target="#quick-view-modal{{$p->id}}"><i class="far fa-eye"></i></a></li>
+                                                <li class="quickview"><a href="#"><i class="far fa-eye"></i></a></li>
                                                 <li class="select-option">
                                                     <a href="single-product.html">
                                                         Personnalisé
@@ -392,6 +392,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             @endforeach
                             <!-- End Single Product  -->
                         </div>
@@ -716,100 +717,7 @@
     @include('inc.client.footer')
     <!-- End Footer Area  -->
 
-    <!-- Product Quick View Modal Start -->
-    @foreach ($initial_products as $p)
-    <div class="modal fade quick-view-product" id="quick-view-modal{{$p->id}}" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
-                </div>
-                <div class="modal-body">
-                    <div class="single-product-thumb">
-                        <div class="row">
-                            <div class="col-lg-7 mb--40">
-                                <div class="row">
-                                    <div class="col-lg-10 order-lg-2">
-                                        <div class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
-                                            <div class="thumbnail">
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mb--40">
-                                <div class="single-product-content">
-                                    <div class="inner">
-                                        <div class="product-rating">
-                                            <div class="star-rating">
-                                                <img src="" alt="Rate Images">
-                                            </div>
-                                            <div class="review-link">
-                                                <a href="#">(<span>1</span> customer reviews)</a>
-                                            </div>
-                                        </div>
-                                        <h3 class="product-title">{{$p->name}}</h3>
-                                        <span class="price-amount">{{$p->price}}</span>
-                                        <ul class="product-meta">
-                                            <li><i class="fal fa-check"></i>In stock</li>
-                                        </ul>
-                                        <p class="description">{{{$p->description}}}</p>
-
-                                        <div class="product-variations-wrapper">
-
-                                            <!-- Start Product Variation  -->
-                                            
-                                            <!-- End Product Variation  -->
-
-                                            <!-- Start Product Variation  -->
-                                            @if ($p->sizes)
-                                                @php $sizes = json_decode($p->sizes, true); @endphp
-                                            <div class="product-variation">
-                                                @if (count($sizes) > 0)
-                                                <h6 class="title">Size:</h6>
-                                                @endif
-                                                <ul class="range-variant">
-                                                    
-                                                    @foreach ($sizes as $size)
-                                    
-                                                        <li >{{ $size }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                            
-                                            @endif
-                                            <!-- End Product Variation  -->
-
-                                        </div>
-
-                                        <!-- Start Product Action Wrapper  -->
-                                        <div class="product-action-wrapper d-flex-center">
-                                            <!-- Start Quentity Action  -->
-                                            <div class="pro-qty"><input type="text" value="1"></div>
-                                            <!-- End Quentity Action  -->
-
-                                            <!-- Start Product Action  -->
-                                            <ul class="product-action d-flex-center mb--0">
-                                                <li class="add-to-cart"><a href="cart.html" class="axil-btn btn-bg-primary">Add to Cart</a></li>
-                                                <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
-                                            </ul>
-                                            <!-- End Product Action  -->
-
-                                        </div>
-                                        <!-- End Product Action Wrapper  -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
-    <!-- Product Quick View Modal End -->
+ 
 
     <!-- Header Search Modal End -->
     <div class="header-search-modal" id="header-search-modal">
