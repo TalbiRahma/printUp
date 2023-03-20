@@ -2,39 +2,33 @@
     <div class="axil-header-top">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 col-sm-6 col-12">
-                    <div class="header-top-dropdown">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                English
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">Arabic</a></li>
-                                <li><a class="dropdown-item" href="#">Spanish</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                USD
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">USD</a></li>
-                                <li><a class="dropdown-item" href="#">AUD</a></li>
-                                <li><a class="dropdown-item" href="#">EUR</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6 col-12">
+                <div class="col-sm">
                     <div class="header-top-link">
-                        <ul class="quick-link">
-                            <li><a href="#">Help</a></li>
-                            <li><a href="sign-up.html">Join Us</a></li>
-                            <li><a href="sign-in.html">Sign In</a></li>
-                        </ul>
+
+                        @if (Route::has('login'))
+                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                <ul class="quick-link">
+                                    @auth
+                                        <li><a href="{{ url('/home') }}"
+                                                class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>
+                                    @else
+                                        <li><a href="{{ route('login') }}"
+                                                class="text-sm text-gray-700 dark:text-gray-500 underline">Connexion</a>
+                                        </li>
+
+                                        @if (Route::has('register'))
+                                            <li><a href="{{ route('register') }}"
+                                                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Inscrire</a>
+                                            </li>
+                                        @endif
+                                    @endauth
+                                </ul>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -44,10 +38,10 @@
         <div class="container">
             <div class="header-navbar">
                 <div class="header-brand">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="{{ route('home') }}" class="logo logo-dark">
                         <img src="{{asset('/mainassets/images/logo/logo.png')}}" alt="Site Logo">
                     </a>
-                    <a href="index.html" class="logo logo-light">
+                    <a href="{{ route('home') }}" class="logo logo-light">
                         <img src="{{asset('/mainassets/images/logo/logo-light.png')}}" alt="Site Logo">
                     </a>
                 </div>
@@ -64,35 +58,32 @@
                             <li class="menu-item-has-children">
                                 <a href="#">Magasin</a>
                                 <ul class="axil-submenu">
-                                    <h4>Produits</h4>
-                                    <ul>
-                                    <li><a href="shop-sidebar.html">T-Shirt</a></li>
-                                    <li><a href="shop.html">Capuche</a></li>
-                                    <li><a href="single-product.html">Cups</a></li>
+                                    <li><a href="{{ route('magasin.produit') }}">Produits</a></li>
+                                    <li><a href="{{ route('magasin.design') }}">Designs</a></li>
+                                    <li><a href="{{ route('magasin.personnaliser') }}">Personnaliser</a></li>
                                 </ul>
-                                    <h4>Designs</h4>
-                                    <ul>
-                                    <li><a href="single-product-2.html">Product Variation 2</a></li>
-                                    <li><a href="single-product-3.html">Product Variation 3</a></li>
-                                    <li><a href="single-product-4.html">Product Variation 4</a></li>
-                                    <li><a href="single-product-5.html">Product Variation 5</a></li>
-                                </ul>
-                            </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
+                                <a href="#">Categories</a>
                                 <ul class="axil-submenu">
-                                    <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-                                    <li><a href="shop.html">Shop no Sidebar</a></li>
-                                    <li><a href="single-product.html">Product Variation 1</a></li>
-                                    <li><a href="single-product-2.html">Product Variation 2</a></li>
-                                    <li><a href="single-product-3.html">Product Variation 3</a></li>
-                                    <li><a href="single-product-4.html">Product Variation 4</a></li>
-                                    <li><a href="single-product-5.html">Product Variation 5</a></li>
-                                    <li><a href="single-product-6.html">Product Variation 6</a></li>
-                                    <li><a href="single-product-7.html">Product Variation 7</a></li>
+                                    <h4>Produits</h4>
+                                    <ul>
+                                        @foreach ($category_product as $cp)
+                                        <li><a href="shop-sidebar.html">{{$cp->name}}</a></li>
+                                        @endforeach
+                                        
+                                        
+                                    </ul>
+                                    <h4>Designs</h4>
+                                    <ul>
+                                        @foreach ($category_design as $cd )
+                                        <li><a href="single-product-2.html">{{$cd->name}}</a></li>
+                                        @endforeach
+                                        
+                                        
+                                    </ul>
                                 </ul>
-                            </li>
+                            </li> 
                             <li><a href="#">Boutiques</a></li>
                                 <li><a href="#">A propos</a></li>
                                 <li><a href="#">Contact</a></li>
@@ -103,7 +94,7 @@
                 <div class="header-action">
                     <ul class="action-list">
                         <li class="axil-search d-xl-block d-none">
-                            <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
+                            <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="Qu'est-ce que tu cherches?" autocomplete="off">
                             <button type="submit" class="icon wooc-btn-search">
                                 <i class="flaticon-magnifying-glass"></i>
                             </button>
@@ -114,7 +105,7 @@
                             </a>
                         </li>
                         <li class="wishlist">
-                            <a href="wishlist.html">
+                            <a href="{{ route('whishlist') }}">
                                 <i class="flaticon-heart"></i>
                             </a>
                         </li>
@@ -129,10 +120,10 @@
                                 <i class="flaticon-person"></i>
                             </a>
                             <div class="my-account-dropdown">
-                                <span class="title">QUICKLINKS</span>
+                                <span class="title">MON COMPTE</span>
                                 <ul>
                                     <li>
-                                        <a href="my-account.html">My Account</a>
+                                        <a href="my-account.html">Profile</a>
                                     </li>
                                     <li>
                                         <a href="#">Initiate return</a>
@@ -144,8 +135,8 @@
                                         <a href="#">Language</a>
                                     </li>
                                 </ul>
-                                <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
-                                <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Connexion</a>
+                                <div class="reg-footer text-center">Pas encore de compte? <a href="{{ route('register') }}" class="btn-link">Inscrire.</a></div>
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">
@@ -180,3 +171,13 @@
         </div>
     </div>
 </header>
+
+
+<!--cart dropdown-->
+@include('inc.client.dropcart')
+<!--end cart dropdown-->
+
+
+<!-- Header Search Modal End -->
+@include('inc.client.search')
+<!-- Header Search Modal End -->

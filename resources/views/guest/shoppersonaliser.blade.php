@@ -75,14 +75,32 @@
                                 <h6 class="title">CATEGORIES</h6>
                                 <div class="shop-submenu">
                                     <ul>
-                                        @foreach ($category_product as $cp)
-                                        <li ><a href="#">{{$cp->name}}</a></li>
-                                        @endforeach
-                                        
+                                        <li class="current-cat"><a href="#">T-Shirt</a></li>
+                                        <li><a href="#">Capuche</a></li>
+                                        <li><a href="#">cups</a></li>
+                                        <li><a href="#">Chairs</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            
+                            <div class="toggle-list product-color active">
+                                <h6 class="title">COULEUR</h6>
+                                <div class="shop-submenu">
+                                    <ul>
+                                        <li class="chosen"><a href="#" class="color-extra-01"></a></li>
+                                        <li><a href="#" class="color-extra-02"></a></li>
+                                        <li><a href="#" class="color-extra-03"></a></li>
+                                        <li><a href="#" class="color-extra-04"></a></li>
+                                        <li><a href="#" class="color-extra-05"></a></li>
+                                        <li><a href="#" class="color-extra-06"></a></li>
+                                        <li><a href="#" class="color-extra-07"></a></li>
+                                        <li><a href="#" class="color-extra-08"></a></li>
+                                        <li><a href="#" class="color-extra-09"></a></li>
+                                        <li><a href="#" class="color-extra-10"></a></li>
+                                        <li><a href="#" class="color-extra-11"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                             <div class="toggle-list product-size active">
                                 <h6 class="title">TAILLE</h6>
                                 <div class="shop-submenu">
@@ -140,45 +158,35 @@
                             </div>
                         </div>
                         <!-- End .row -->
-                        @foreach ($initial_products as $p )
                         <div class="row row--15">
                             <div class="col-xl-4 col-sm-6">
                                 <div class="axil-product product-style-one mb--30">
                                     <div class="thumbnail">
                                         <a href="single-product.html">
-<<<<<<< HEAD
-                                            <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
-=======
                                             <img src="{{ asset('/mainassets/images/product/electric/product-01.png') }}"
                                                 alt="Product Images">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
                                                 <li class="wishlist"><a href="wishlist.html"><i
                                                             class="far fa-heart"></i></a></li>
                                                 <li class="select-option"><a href="cart.html">Personnalisé</a></li>
-<<<<<<< HEAD
-                                                <li class="quickview"><a  data-bs-toggle="modal" data-bs-target="#initial-product{{$p->id}}"><i class="far fa-eye"></i></a></li>
-=======
                                                 <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                         data-bs-target="#quick-view-modal"><i
                                                             class="far fa-eye"></i></a></li>
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product-content">
                                         <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">{{$p->name}}</a></h5>
+                                            <h5 class="title"><a href="single-product.html">name produit</a></h5>
                                             <div class="product-price-variant">
-                                                <span class="price current-price">{{$p->price}} TND</span>
+                                                <span class="price current-price">30TND</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
                             <!-- End Single Product  -->
                             <div class="text-center pt--20">
                                 <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Voire plus</a>
@@ -205,8 +213,7 @@
     <!-- End Footer Area  -->
 
     <!-- Product Quick View Modal Start -->
-    @foreach ($initial_products as $p )
-    <div class="modal fade quick-view-product" id="initial-product{{$p->id}}" tabindex="-1" aria-hidden="true">
+    <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -222,12 +229,6 @@
                                         <div
                                             class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
                                             <div class="thumbnail">
-<<<<<<< HEAD
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
-                                                
-                                                <div class="product-quick-view position-view">
-                                                    <a href="{{asset('uploads')}}/{{$p->photo}}" class="popup-zoom">
-=======
                                                 <img src="assets/images/product/product-big-01.png"
                                                     alt="Product Images">
                                                 <div class="label-block label-right">
@@ -236,18 +237,11 @@
                                                 <div class="product-quick-view position-view">
                                                     <a href="assets/images/product/product-big-01.png"
                                                         class="popup-zoom">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="thumbnail">
-<<<<<<< HEAD
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
-                                                
-                                                <div class="product-quick-view position-view">
-                                                    <a href="{{asset('uploads')}}/{{$p->photo}}" class="popup-zoom">
-=======
                                                 <img src="assets/images/product/product-big-02.png"
                                                     alt="Product Images">
                                                 <div class="label-block label-right">
@@ -256,18 +250,11 @@
                                                 <div class="product-quick-view position-view">
                                                     <a href="assets/images/product/product-big-02.png"
                                                         class="popup-zoom">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="thumbnail">
-<<<<<<< HEAD
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
-                                                
-                                                <div class="product-quick-view position-view">
-                                                    <a href="{{asset('uploads')}}/{{$p->photo}}" class="popup-zoom">
-=======
                                                 <img src="assets/images/product/product-big-03.png"
                                                     alt="Product Images">
                                                 <div class="label-block label-right">
@@ -276,7 +263,6 @@
                                                 <div class="product-quick-view position-view">
                                                     <a href="assets/images/product/product-big-03.png"
                                                         class="popup-zoom">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
@@ -286,15 +272,6 @@
                                     <div class="col-lg-2 order-lg-1">
                                         <div class="product-small-thumb small-thumb-wrapper">
                                             <div class="small-thumb-img">
-<<<<<<< HEAD
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="thumb image">
-=======
                                                 <img src="assets/images/product/product-thumb/thumb-08.png"
                                                     alt="thumb image">
                                             </div>
@@ -305,7 +282,6 @@
                                             <div class="small-thumb-img">
                                                 <img src="assets/images/product/product-thumb/thumb-09.png"
                                                     alt="thumb image">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                             </div>
                                         </div>
                                     </div>
@@ -322,27 +298,20 @@
                                                 <a href="#">(<span>1</span> customer reviews)</a>
                                             </div>
                                         </div>
-                                        <h3 class="product-title">{{$p->name}}</h3>
-                                        <span class="price-amount">{{$p->price}} TND</span>
+                                        <h3 class="product-title">Serif Coffee Table</h3>
+                                        <span class="price-amount">$155.00 - $255.00</span>
                                         <ul class="product-meta">
                                             <li><i class="fal fa-check"></i>In stock</li>
                                             <li><i class="fal fa-check"></i>Free delivery available</li>
                                             <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                         </ul>
-<<<<<<< HEAD
-                                        <p class="description">{{$p->description}}</p>
-=======
                                         <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi
                                             pretium. Integer ante est, elementum eget magna. Pellentesque sagittis
                                             dictum libero, eu dignissim tellus.</p>
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
 
                                         <div class="product-variations-wrapper">
 
                                             <!-- Start Product Variation  -->
-<<<<<<< HEAD
-                                            
-=======
                                             <div class="product-variation">
                                                 <h6 class="title">Colors:</h6>
                                                 <div class="color-variant-wrapper">
@@ -359,17 +328,17 @@
                                                     </ul>
                                                 </div>
                                             </div>
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                             <!-- End Product Variation  -->
 
                                             <!-- Start Product Variation  -->
                                             <div class="product-variation">
                                                 <h6 class="title">Size:</h6>
                                                 <ul class="range-variant">
-                                                    @php $sizes = json_decode($p->sizes, true); @endphp
-                                                        @foreach ($sizes as $size)
-                                                            <span class="badge badge-secondary">{{ $size }}</span>
-                                                        @endforeach
+                                                    <li>xs</li>
+                                                    <li>s</li>
+                                                    <li>m</li>
+                                                    <li>l</li>
+                                                    <li>xl</li>
                                                 </ul>
                                             </div>
                                             <!-- End Product Variation  -->
@@ -403,11 +372,9 @@
             </div>
         </div>
     </div>
-    @endforeach
-    
     <!-- Product Quick View Modal End -->
 
-
+    
 
 
 

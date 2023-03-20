@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="./assets/images/icons/service1.png" alt="Service">
+                        <img src="{{asset('/mainssets/images/icons/service1.png')}}" alt="Service">
                     </div>
                     <div class="content">
                         <h6 class="title">Fast &amp; Secure Delivery</h6>
@@ -15,7 +15,7 @@
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="./assets/images/icons/service2.png" alt="Service">
+                        <img src="{{asset('/mainssets/images/icons/service2.png')}}" alt="Service">
                     </div>
                     <div class="content">
                         <h6 class="title">Money Back Guarantee</h6>
@@ -26,7 +26,7 @@
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="./assets/images/icons/service3.png" alt="Service">
+                        <img src="{{asset('/mainssets/images/icons/service3.png')}}" alt="Service">
                     </div>
                     <div class="content">
                         <h6 class="title">24 Hour Return Policy</h6>
@@ -37,7 +37,7 @@
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="./assets/images/icons/service4.png" alt="Service">
+                        <img src="{{asset('/mainssets/images/icons/service4.png')}}" alt="Service">
                     </div>
                     <div class="content">
                         <h6 class="title">Pro Quality Support</h6>
