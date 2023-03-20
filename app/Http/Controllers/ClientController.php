@@ -23,13 +23,11 @@ class ClientController extends Controller
 
     }
 
-<<<<<<< HEAD
     
     
     public function index(){
         return view('client.index');
-=======
-
+    }
     public function checkout(){
 
         $initial_products = InitialProduct::all();
@@ -50,7 +48,6 @@ class ClientController extends Controller
         
         return view('client.whishlist')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);
 
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
     }
 
 }

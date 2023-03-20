@@ -146,25 +146,14 @@
                                 <div class="axil-product product-style-one mb--30">
                                     <div class="thumbnail">
                                         <a href="single-product.html">
-<<<<<<< HEAD
                                             <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
-=======
-                                            <img src="{{ asset('/mainassets/images/product/electric/product-01.png') }}"
-                                                alt="Product Images">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
                                                 <li class="wishlist"><a href="wishlist.html"><i
                                                             class="far fa-heart"></i></a></li>
                                                 <li class="select-option"><a href="cart.html">Personnalisé</a></li>
-<<<<<<< HEAD
                                                 <li class="quickview"><a  data-bs-toggle="modal" data-bs-target="#initial-product{{$p->id}}"><i class="far fa-eye"></i></a></li>
-=======
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#quick-view-modal"><i
-                                                            class="far fa-eye"></i></a></li>
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                             </ul>
                                         </div>
                                     </div>
@@ -222,61 +211,28 @@
                                         <div
                                             class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
                                             <div class="thumbnail">
-<<<<<<< HEAD
                                                 <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
                                                 
                                                 <div class="product-quick-view position-view">
                                                     <a href="{{asset('uploads')}}/{{$p->photo}}" class="popup-zoom">
-=======
-                                                <img src="assets/images/product/product-big-01.png"
-                                                    alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-01.png"
-                                                        class="popup-zoom">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="thumbnail">
-<<<<<<< HEAD
                                                 <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
                                                 
                                                 <div class="product-quick-view position-view">
                                                     <a href="{{asset('uploads')}}/{{$p->photo}}" class="popup-zoom">
-=======
-                                                <img src="assets/images/product/product-big-02.png"
-                                                    alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-02.png"
-                                                        class="popup-zoom">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="thumbnail">
-<<<<<<< HEAD
                                                 <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
                                                 
                                                 <div class="product-quick-view position-view">
                                                     <a href="{{asset('uploads')}}/{{$p->photo}}" class="popup-zoom">
-=======
-                                                <img src="assets/images/product/product-big-03.png"
-                                                    alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-03.png"
-                                                        class="popup-zoom">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                                         <i class="far fa-search-plus"></i>
                                                     </a>
                                                 </div>
@@ -286,7 +242,6 @@
                                     <div class="col-lg-2 order-lg-1">
                                         <div class="product-small-thumb small-thumb-wrapper">
                                             <div class="small-thumb-img">
-<<<<<<< HEAD
                                                 <img src="{{asset('uploads')}}/{{$p->photo}}" alt="thumb image">
                                             </div>
                                             <div class="small-thumb-img">
@@ -294,18 +249,6 @@
                                             </div>
                                             <div class="small-thumb-img">
                                                 <img src="{{asset('uploads')}}/{{$p->photo}}" alt="thumb image">
-=======
-                                                <img src="assets/images/product/product-thumb/thumb-08.png"
-                                                    alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-07.png"
-                                                    alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-09.png"
-                                                    alt="thumb image">
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                             </div>
                                         </div>
                                     </div>
@@ -329,37 +272,12 @@
                                             <li><i class="fal fa-check"></i>Free delivery available</li>
                                             <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                         </ul>
-<<<<<<< HEAD
                                         <p class="description">{{$p->description}}</p>
-=======
-                                        <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi
-                                            pretium. Integer ante est, elementum eget magna. Pellentesque sagittis
-                                            dictum libero, eu dignissim tellus.</p>
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
 
                                         <div class="product-variations-wrapper">
 
                                             <!-- Start Product Variation  -->
-<<<<<<< HEAD
                                             
-=======
-                                            <div class="product-variation">
-                                                <h6 class="title">Colors:</h6>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant mt--0">
-                                                        <li class="color-extra-01 active"><span><span
-                                                                    class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span
-                                                                    class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span
-                                                                    class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
                                             <!-- End Product Variation  -->
 
                                             <!-- Start Product Variation  -->

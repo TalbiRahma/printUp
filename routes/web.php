@@ -25,12 +25,11 @@ use App\Http\Controllers\CategoryProductController;
 
 Auth::routes();
 
-<<<<<<< HEAD
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 /*********GUEST********** */
 Route::get('/', [GuestController::class, 'home']);
-=======
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
+
 
 Route::prefix('shop')->group(function (){
 Route::get('/products', [GuestController::class, 'shopProduit'])->name('guest.products');
@@ -51,11 +50,11 @@ Route::prefix('geust')->group(function () {
 
 
 /*************CLIENT******** */
-<<<<<<< HEAD
+
 Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 Route::get('client/magasin', 'App\Http\Controllers\ClientController@shopproduit');
 Route::get('client/index', 'App\Http\Controllers\ClientController@index');
-=======
+
 Route::prefix('client')->group(function () {
     Route::get('/cart', [ClientController::class,'cart'])->name('cart');
     Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
@@ -67,7 +66,7 @@ Route::prefix('client')->group(function () {
 
 
 Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
->>>>>>> ac84db501083d998fa71950da502439faf86ae93
+
 
 
 
