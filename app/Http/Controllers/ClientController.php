@@ -12,9 +12,7 @@ class ClientController extends Controller
         return view('home');
     }
 
-    public function shopproduit(){
-        return view('client.shopproduit');
-    }
+    
     
     public function index(){
         return view('client.index');

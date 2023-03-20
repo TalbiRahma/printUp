@@ -148,7 +148,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>  
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="card card-frame">

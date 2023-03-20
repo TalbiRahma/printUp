@@ -19,28 +19,25 @@ use App\Http\Controllers\GuestController;
 |
 */
 
-Route::get('/', [GuestController::class, 'home']);
+
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+/*********GUEST********** */
+Route::get('/', [GuestController::class, 'home']);
 
+Route::prefix('shop')->group(function (){
+Route::get('/products', [GuestController::class, 'shopProduit'])->name('guest.products');
+Route::get('/designs', [GuestController::class, 'shopDesign'])->name('guest.designs');
+Route::get('/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products');
+});
 
 
 /*************CLIENT******** */
-<<<<<<< HEAD
-=======
-
->>>>>>> 7f0c596dce687d3bad5642dd0008f7f95a63a0f1
 Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 Route::get('client/magasin', 'App\Http\Controllers\ClientController@shopproduit');
 Route::get('client/index', 'App\Http\Controllers\ClientController@index');
-<<<<<<< HEAD
-=======
-
-Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
-Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
->>>>>>> 7f0c596dce687d3bad5642dd0008f7f95a63a0f1
 
 
 
@@ -49,7 +46,7 @@ Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard'
 /*************ADMIN******** */
 Route::prefix('admin')->group(function (){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/profil/modifier', [AdminController::class, 'modifProfil'])->name('modifier.profil');
+    Route::get('/profil/edit', [AdminController::class, 'modifProfil'])->name('modifier.profil');
     Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
     Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'] )->name('donnes.profil');
 

@@ -56,10 +56,10 @@
                 <div class="header-navbar">
                     <div class="header-brand">
                         <a href="index.html" class="logo logo-dark">
-                            <img src="{{asset('/mainassets/images/logo/logo.png')}}" alt="Site Logo">
+                            <img src="" alt="Site Logo">
                         </a>
                         <a href="index.html" class="logo logo-light">
-                            <img src="{{asset('/mainassets/images/logo/logo-light.png')}}" alt="Site Logo">
+                            <img src="" alt="Site Logo">
                         </a>
                     </div>
                     <div class="header-main-nav">
@@ -68,7 +68,7 @@
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
                                 <a href="index.html" class="logo">
-                                    <img src="{{asset('/mainassets/images/logo/logo.png')}}" alt="Site Logo">
+                                    <img src="" alt="Site Logo">
                                 </a>
                             </div>
                             <ul class="mainmenu">
@@ -129,7 +129,13 @@
                                     <span class="title">QUICKLINKS</span>
                                     <ul>
                                         <li>
-                                            <a href="my-account.html">My Account</a>
+                                            @if(auth()->user())
+                                            @if(Auth::user()->role == 'admin')
+                                                <a href="{{ route('donnes.profil')}}">My Account</a>
+                                            @else
+                                                <a href="#">My Account</a>
+                                            @endif
+                                            @endif
                                         </li>
                                         <li>
                                             <a href="#">Initiate return</a>
@@ -142,9 +148,9 @@
                                         </li>
                                     </ul>
                                     <div class="login-btn">
-                                        <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
+                                        <a href="/login" class="axil-btn btn-bg-primary">Login</a>
                                     </div>
-                                    <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                    <div class="reg-footer text-center">No account yet? <a href="/register" class="btn-link">REGISTER HERE.</a></div>
                                 </div>
                             </li>
                             <li class="axil-mobile-toggle">
@@ -178,7 +184,7 @@
                         <div class="main-slider-large-thumb">
                             <div class="slider-thumb-activation-one axil-slick-dots">
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
-                                    <img src="{{asset('/mainassets/images/product/product-38.png')}}" alt="Product">
+                                    <img src="" alt="Product">
                                     <div class="product-price">
                                         <span class="text">From</span>
                                         <span class="price-amount">$49.00</span>
@@ -186,7 +192,7 @@
                                 </div>
                                 
                                 <div class="single-slide slick-slide">
-                                    <img src="{{asset('/mainassets/images/product/product-39.png')}}" alt="Product">
+                                    <img src="" alt="Product">
                                     <div class="product-price">
                                         <span class="text">From</span>
                                         <span class="price-amount">$49.00</span>
@@ -198,8 +204,8 @@
                 </div>
             </div>
             <ul class="shape-group">
-                <li class="shape-1"><img src="{{asset('/mainassets/images/others/shape-1.png')}}" alt="Shape"></li>
-                <li class="shape-2"><img src="{{asset('/mainassets/images/others/shape-2.png')}}" alt="Shape"></li>
+                <li class="shape-1"><img src="" alt="Shape"></li>
+                <li class="shape-2"><img src="" alt="Shape"></li>
             </ul>
         </div>
 
@@ -214,7 +220,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-4.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Phones</h6>
                             </a>
                         </div>
@@ -224,7 +230,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-5.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Computers</h6>
                             </a>
                         </div>
@@ -234,7 +240,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="400" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-11.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Accessories</h6>
                             </a>
                         </div>
@@ -244,7 +250,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-6.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Laptops</h6>
                             </a>
                         </div>
@@ -254,7 +260,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="600" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-2.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Monitors</h6>
                             </a>
                         </div>
@@ -264,7 +270,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="700" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-7.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Networking</h6>
                             </a>
                         </div>
@@ -274,7 +280,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="800" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-8.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">PC Gaming</h6>
                             </a>
                         </div>
@@ -284,7 +290,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-1.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Smartwatches</h6>
                             </a>
                         </div>
@@ -294,7 +300,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-9.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Headphones</h6>
                             </a>
                         </div>
@@ -304,7 +310,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-10.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Camera & Photo</h6>
                             </a>
                         </div>
@@ -314,7 +320,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-8.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Video Games</h6>
                             </a>
                         </div>
@@ -324,7 +330,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-1.png')}}" alt="product categorie">
+                                <img class="img-fluid" src="" alt="product categorie">
                                 <h6 class="cat-title">Sports</h6>
                             </a>
                         </div>
@@ -356,7 +362,7 @@
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                                <li class="quickview"><a  data-bs-toggle="modal" data-bs-target="#quick-view-modal{{$p->id}}"><i class="far fa-eye"></i></a></li>
                                                 <li class="select-option">
                                                     <a href="single-product.html">
                                                         Personnalisé
@@ -397,7 +403,7 @@
                                 <div class="axil-product product-style-one">
                                     <div class="thumbnail">
                                         <a href="single-product.html">
-                                            <img src="{{asset('/mainassets/images/product/electric/product-01.png')}}" alt="Product Images">
+                                            <img src="" alt="Product Images">
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
@@ -424,7 +430,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                        <a href="shop.html" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les Produits</a>
+                        <a href="{{Route('guest.products')}}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les Produits</a>
                     </div>
                 </div>
 
@@ -447,7 +453,7 @@
                             <div class="axil-product product-style-two">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500" src="{{asset('/mainassets/images/product/electric/product-06.png')}}" alt="Product Images">
+                                        <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500" src="" alt="Product Images">
                                     </a>
                                 </div>
                                 <div class="product-content">
@@ -492,7 +498,7 @@
                             <div class="axil-product-list">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="{{asset('/mainassets/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
+                                        <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="" alt="Yantiti Leather Bags">
                                     </a>
                                 </div>
                                 <div class="product-content">
@@ -545,7 +551,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="{{asset('/mainassets/images/testimonial/image-1.png')}}" alt="testimonial image">
+                                <img src="" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -565,7 +571,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="{{asset('/mainassets/images/testimonial/image-2.png')}}" alt="testimonial image">
+                                <img src="" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -585,7 +591,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="{{asset('/mainassets/images/testimonial/image-3.png')}}" alt="testimonial image">
+                                <img src="" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -605,7 +611,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="{{asset('/mainassets/images/testimonial/image-2.png')}}" alt="testimonial image">
+                                <img src="" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -637,7 +643,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="{{asset('/mainassets/images/icons/service6.png')}}" alt="Service">
+                                <img src="" alt="Service">
                             </div>
                             <h6 class="title">Livraison Rapide &amp; Sécurisée</h6>
                         </div>
@@ -645,7 +651,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="{{asset('/mainassets/images/icons/service7.png')}}" alt="Service">
+                                <img src="" alt="Service">
                             </div>
                             <h6 class="title">100% Garantie Sur Le Produit</h6>
                         </div>
@@ -653,7 +659,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="{{asset('/mainassets/images/icons/service8.png')}}" alt="Service">
+                                <img src="" alt="Service">
                             </div>
                             <h6 class="title">Politique De Retour De 24H</h6>
                         </div>
@@ -661,7 +667,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="{{asset('/mainassets/images/icons/service9.png')}}" alt="Service">
+                                <img src="" alt="Service">
                             </div>
                             <h6 class="title">Politique De Retour De 24H</h6>
                         </div>
@@ -669,7 +675,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="{{asset('/mainassets/images/icons/service10.png')}}" alt="Service">
+                                <img src="" alt="Service">
                             </div>
                             <h6 class="title">Qualité Professionnelle</h6>
                         </div>
@@ -711,7 +717,8 @@
     <!-- End Footer Area  -->
 
     <!-- Product Quick View Modal Start -->
-    <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">
+    @foreach ($initial_products as $p)
+    <div class="modal fade quick-view-product" id="quick-view-modal{{$p->id}}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -725,50 +732,8 @@
                                     <div class="col-lg-10 order-lg-2">
                                         <div class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
                                             <div class="thumbnail">
-                                                <img src="{{asset('/mainassets/images/product/product-big-01.png')}}" alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="{{asset('/mainassets/images/product/product-big-01.png')}}" class="popup-zoom">
-                                                        <i class="far fa-search-plus"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="thumbnail">
-                                                <img src="{{asset('/mainassets/images/product/product-big-02.png')}}" alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="{{asset('/mainassets/images/product/product-big-02.png')}}" class="popup-zoom">
-                                                        <i class="far fa-search-plus"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="thumbnail">
-                                                <img src="{{asset('/mainassets/images/product/product-big-03.png')}}" alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="{{asset('/mainassets/images/product/product-big-03.png')}}" class="popup-zoom">
-                                                        <i class="far fa-search-plus"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 order-lg-1">
-                                        <div class="product-small-thumb small-thumb-wrapper">
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/mainassets/images/product/product-thumb/thumb-08.png')}}" alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/mainassets/images/product/product-thumb/thumb-07.png')}}" alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/mainassets/images/product/product-thumb/thumb-09.png')}}" alt="thumb image">
+                                                <img src="{{asset('uploads')}}/{{$p->photo}}" alt="Product Images">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -779,50 +744,42 @@
                                     <div class="inner">
                                         <div class="product-rating">
                                             <div class="star-rating">
-                                                <img src="{{asset('/mainassets/images/icons/rate.png')}}" alt="Rate Images">
+                                                <img src="" alt="Rate Images">
                                             </div>
                                             <div class="review-link">
                                                 <a href="#">(<span>1</span> customer reviews)</a>
                                             </div>
                                         </div>
-                                        <h3 class="product-title">Serif Coffee Table</h3>
-                                        <span class="price-amount">$155.00 - $255.00</span>
+                                        <h3 class="product-title">{{$p->name}}</h3>
+                                        <span class="price-amount">{{$p->price}}</span>
                                         <ul class="product-meta">
                                             <li><i class="fal fa-check"></i>In stock</li>
-                                            <li><i class="fal fa-check"></i>Free delivery available</li>
-                                            <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                         </ul>
-                                        <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.</p>
+                                        <p class="description">{{{$p->description}}}</p>
 
                                         <div class="product-variations-wrapper">
 
                                             <!-- Start Product Variation  -->
-                                            <div class="product-variation">
-                                                <h6 class="title">Colors:</h6>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant mt--0">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            
                                             <!-- End Product Variation  -->
 
                                             <!-- Start Product Variation  -->
+                                            @if ($p->sizes)
+                                                @php $sizes = json_decode($p->sizes, true); @endphp
                                             <div class="product-variation">
+                                                @if (count($sizes) > 0)
                                                 <h6 class="title">Size:</h6>
+                                                @endif
                                                 <ul class="range-variant">
-                                                    <li>xs</li>
-                                                    <li>s</li>
-                                                    <li>m</li>
-                                                    <li>l</li>
-                                                    <li>xl</li>
+                                                    
+                                                    @foreach ($sizes as $size)
+                                    
+                                                        <li >{{ $size }}</li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
+                                            
+                                            @endif
                                             <!-- End Product Variation  -->
 
                                         </div>
@@ -851,6 +808,7 @@
             </div>
         </div>
     </div>
+    @endforeach
     <!-- Product Quick View Modal End -->
 
     <!-- Header Search Modal End -->
@@ -874,7 +832,7 @@
                     <div class="axil-product-list">
                         <div class="thumbnail">
                             <a href="single-product.html">
-                                <img src="{{asset('/mainassets/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
+                                <img src="" alt="Yantiti Leather Bags">
                             </a>
                         </div>
                         <div class="product-content">
@@ -902,7 +860,7 @@
                     <div class="axil-product-list">
                         <div class="thumbnail">
                             <a href="single-product.html">
-                                <img src="{{asset('/mainassets/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
+                                <img src="" alt="Yantiti Leather Bags">
                             </a>
                         </div>
                         <div class="product-content">
@@ -944,7 +902,7 @@
                 <ul class="cart-item-list">
                     <li class="cart-item">
                         <div class="item-img">
-                            <a href="single-product.html"><img src="{{asset('/mainassets/images/product/electric/product-01.png')}}" alt="Commodo Blown Lamp"></a>
+                            <a href="single-product.html"><img src="" alt="Commodo Blown Lamp"></a>
                             <button class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
@@ -967,7 +925,7 @@
                     </li>
                     <li class="cart-item">
                         <div class="item-img">
-                            <a href="single-product-2.html"><img src="{{asset('/mainassets/images/product/electric/product-02.png')}}" alt="Commodo Blown Lamp"></a>
+                            <a href="single-product-2.html"><img src="" alt="Commodo Blown Lamp"></a>
                             <button class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
@@ -990,7 +948,7 @@
                     </li>
                     <li class="cart-item">
                         <div class="item-img">
-                            <a href="single-product-3.html"><img src="{{asset('/mainassets/images/product/electric/product-03.png')}}" alt="Commodo Blown Lamp"></a>
+                            <a href="single-product-3.html"><img src="" alt="Commodo Blown Lamp"></a>
                             <button class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
@@ -1066,6 +1024,9 @@
 
     <!-- Main JS -->
     <script src="{{asset('/mainassets/js/main.js')}}"></script>
+
+    <!--size selected-->
+    
 
 </body>
 
