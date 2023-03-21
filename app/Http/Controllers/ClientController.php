@@ -23,7 +23,11 @@ class ClientController extends Controller
 
     }
 
-
+    
+    
+    public function index(){
+        return view('client.index');
+    }
     public function checkout(){
 
         $initial_products = InitialProduct::all();

@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('category_product') }}">
+                    <a class="nav-link " href="{{ route('category_product') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
@@ -166,8 +166,12 @@
                             <div class="row gx-4">
                                 <div class="col-auto">
                                     <div class="avatar avatar-xl position-relative">
-                                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                                            alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                        @if (auth()->user()->photo == null)
+                                            <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
+                                        @else
+                                            <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                                alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-auto my-auto">

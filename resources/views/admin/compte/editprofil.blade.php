@@ -163,8 +163,12 @@
                     <div class="row gx-4">
                         <div class="col-auto">
                             <div class="avatar avatar-xl position-relative">
+                                @if(auth()->user()->photo == null)
+                                    <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
+                                @else
                                 <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image"
                                     class="w-100 border-radius-lg shadow-sm">
+                                @endif
                             </div>
                         </div>
                         <div class="col-auto my-auto">

@@ -8,8 +8,11 @@
 
             <div class="d-flex px-2">
                 <div>
-                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                        class="avatar avatar-md rounded-circle me-2">
+                    @if(auth()->user()->photo == null)
+                        <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
+                    @else
+                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"class="avatar avatar-md rounded-circle me-2">
+                    @endif
                 </div>
                 <div class="my-auto">
                     <a href="{{ route('donnes.profil') }}" class="dropdown-item btn-inner--text" type="button">
@@ -41,10 +44,10 @@
         </li>
         <hr class="horizontal dark mt-0">
         <li class="text-center">
-            <button class="btn btn-icon btn-3 btn-primary" type="button">
+            <a href="/" class="btn btn-icon btn-3 btn-primary" >
                 <span class="btn-inner--icon"><i class="ni ni-shop"></i></span>
                 <span class="btn-inner--text">Magasin</span>
-            </button>
+            </a>
         </li>
     </ul>
 </div>
