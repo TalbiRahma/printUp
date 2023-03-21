@@ -66,7 +66,7 @@ Variables
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap");
 :root {
   --color-argon: #5e72e4;
-  --color-primary: #3577f0;
+  --color-primary: #5e72e4 ;
   --light-primary: #8c71db;
   --color-secondary: #ff497c;
   --color-tertiary: #FAB8C4;
