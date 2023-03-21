@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-sm">
                     <div class="header-top-link">
-
+ 
                         @if (Route::has('login'))
                             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                                 <ul class="quick-link">

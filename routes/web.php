@@ -32,7 +32,9 @@ Route::get('/', [GuestController::class, 'home']);
 
 
 Route::prefix('shop')->group(function (){
+
 Route::get('/products', [GuestController::class, 'shopProduit'])->name('guest.products');
+Route::get('/products/{id}/details', [GuestController::class, 'productDetails'])->name('guest.products.details');
 Route::get('/designs', [GuestController::class, 'shopDesign'])->name('guest.designs');
 Route::get('/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products');
 });

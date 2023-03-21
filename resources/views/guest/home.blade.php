@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Home-01</title>
+    <title>produit initial détailles</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -362,7 +362,7 @@
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="quickview"><a href="#"><i class="far fa-eye"></i></a></li>
+                                                <li class="quickview"><a href="{{ route('guest.products.details', ['id' => $p->id ]) }}"><i class="far fa-eye"></i></a></li>
                                                 <li class="select-option">
                                                     <a href="single-product.html">
                                                         Personnalisé
