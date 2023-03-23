@@ -27,36 +27,24 @@ Auth::routes();
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
 /*********GUEST********** */
-Route::get('/', [GuestController::class, 'home']);
 
+Route::get('/', [GuestController::class, 'home'])->name('home');
 
-Route::prefix('shop')->group(function (){
-
-Route::get('/products', [GuestController::class, 'shopProduit'])->name('guest.products');
-Route::get('/products/{id}/details', [GuestController::class, 'productDetails'])->name('guest.products.details');
-Route::get('/designs', [GuestController::class, 'shopDesign'])->name('guest.designs');
-Route::get('/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products');
+Route::prefix('geust')->group(function (){
+    Route::get('/shop/products', [GuestController::class, 'indexProduits'])->name('products.index');
+    Route::get('/shop/products/filter', [GuestController::class, 'filter'])->name('products.filter');
+    Route::get('/shop/products/{id}/details', [GuestController::class, 'productDetails'])->name('products.details');
+    Route::get('/shop/designs', [GuestController::class, 'shopDesign'])->name('designs.index');
+    Route::get('/shop/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products.index');
 });
 
 
-
-
-
-Route::prefix('geust')->group(function () {
-    Route::get('/home', [GuestController::class,'home'])->name('home');
-    Route::get('/magasin/produit', [GuestController::class,'shopproduit'])->name('magasin.produit');
-    Route::get('/magasin/designt', [GuestController::class,'shopdesign'])->name('magasin.design');
-    Route::get('/magasin/personnaliser', [GuestController::class,'shoppersonaliser'])->name('magasin.personnaliser');
-});
 
 
 /*************CLIENT******** */
-
-Route::get('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
-Route::get('client/magasin', 'App\Http\Controllers\ClientController@shopproduit');
-Route::get('client/index', 'App\Http\Controllers\ClientController@index');
-
 Route::prefix('client')->group(function () {
     Route::get('/cart', [ClientController::class,'cart'])->name('cart');
     Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
@@ -65,10 +53,6 @@ Route::prefix('client')->group(function () {
 });
 
 
-
-
-
-Route::post('client/dashboard', 'App\Http\Controllers\ClientController@dashboard');
 
 
 

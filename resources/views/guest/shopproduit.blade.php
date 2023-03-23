@@ -66,44 +66,57 @@
         <div class="axil-shop-area axil-section-gap bg-color-white">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="axil-shop-sidebar">
-                            <div class="d-lg-none">
-                                <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
-                            </div>
-                            <div class="toggle-list product-categories active">
-                                <h6 class="title">CATEGORIES</h6>
-                                <div class="shop-submenu">
-                                    <ul>
-                                        @foreach ($category_product as $cp)
-                                        <li ><a href="#">{{$cp->name}}</a></li>
+                    <div class="col-lg-3"> 
+                        <form action="" method="GET">
+                            <div class="axil-shop-sidebar">
+                                <div class="d-lg-none">
+                                    <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="toggle-list product-categories active">
+                                    <h6 class="title">CATEGORIES</h6>
+                                    <div class="shop-submenu">
+                                        <ul>
+                                            @foreach ($category_product as $cp)
+                                            <li>
+                                                <input type="radio" id="category_{{ $cp->id }}" name="category" value="{{ $cp->id }}"
+                                                    {{ request()->input('category') == $cp->id ? 'checked' : '' }}>
+                                                <label for="category_{{ $cp->id }}">{{ $cp->name }}</label>
+                                            </li>
                                         @endforeach
-                                        
-                                    </ul>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="toggle-list product-size active">
-                                <h6 class="title">TAILLE</h6>
-                                <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#">Standar</a></li>
-                                        <li><a href="#">XS</a></li>
-                                        <li><a href="#">S</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">XL</a></li>
-                                        <li><a href="#">XXL</a></li>
-                                    </ul>
+                                                    
+                                <div class="toggle-list product-size active">
+                                    <h6 class="title">TAILLE</h6>
+                                    <div class="shop-submenu">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="size_standard" name="size" value="standard">
+                                                <label for="size_standard">Standard</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="size_xs" name="size" value="xs">
+                                                <label for="size_xs">XS</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="size_s" name="size" value="s">
+                                                <label for="size_s">S</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="size_m" name="size" value="m">
+                                                <label for="size_m">M</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="size_l" name="size" value="l">
+                                                <label for="size_l">L</label>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
                             <div class="toggle-list product-price-range active">
                                 <h6 class="title">PRIX</h6>
                                 <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#">30</a></li>
-                                        <li><a href="#">5000</a></li>
-                                    </ul>
+                                    
                                     <form action="#" class="mt--25">
                                         <div id="slider-range"></div>
                                         <div class="flex-center mt--20">
@@ -113,8 +126,10 @@
                                     </form>
                                 </div>
                             </div>
-                            <button class="axil-btn btn-bg-primary">All Reset</button>
+                            <a href="{{ route('products.index') }}" class="axil-btn btn-bg-primary">Réinitialiser</a>
                         </div>
+
+                        </form>
                         <!-- End .axil-shop-sidebar -->
                     </div>
                     <div class="col-lg-9">

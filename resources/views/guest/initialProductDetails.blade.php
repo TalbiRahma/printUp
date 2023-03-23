@@ -443,7 +443,7 @@
                                     <ul class="cart-action">
                                         <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
                                         <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                        <li class="quickview"><a href="{{ route('guest.products.details', ['id' => $pr->id ]) }}"><i class="far fa-eye"></i></a></li>
+                                        <li class="quickview"><a href="{{ route('products.details', ['id' => $pr->id ]) }}"><i class="far fa-eye"></i></a></li>
                                     </ul>
                                 </div>
                             </div>

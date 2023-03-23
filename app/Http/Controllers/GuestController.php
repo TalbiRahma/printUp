@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryDesign;
-use App\Models\CategoryProduct;
 use App\Models\Design;
 use Illuminate\Http\Request;
+use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
+use App\Models\CategoryProduct;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
@@ -19,20 +20,32 @@ class GuestController extends Controller
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         
-        return view('guest.home')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);
+        return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design'));
     }
 
    
 
-    public function shopproduit(){
-
+    public function indexProduits()
+    {
         $initial_products = InitialProduct::all();
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
-
-        return view('guest.shopproduit')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);
+        $sizes = ['S', 'M', 'L', 'XL'];
+    
+        return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design'));
     }
+    
+    public function filter(Request $request)
+    {
+        
+       
+
+        
+    }
+
+
+
 
     public function productDetails($id){
         $product = InitialProduct::find($id);
@@ -48,6 +61,11 @@ class GuestController extends Controller
         ->with('products', $products);
     }
 
+
+
+
+
+
     public function shopdesign(){
 
         $initial_products = InitialProduct::all();
@@ -57,6 +75,10 @@ class GuestController extends Controller
 
         return view('guest.shopdesign')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);;
     }
+
+
+
+
 
     public function shoppersonaliser(){
 

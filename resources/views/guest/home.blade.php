@@ -362,7 +362,7 @@
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="quickview"><a href="{{ route('guest.products.details', ['id' => $p->id ]) }}"><i class="far fa-eye"></i></a></li>
+                                                <li class="quickview"><a href="{{ route('products.details', ['id' => $p->id ]) }}"><i class="far fa-eye"></i></a></li>
                                                 <li class="select-option">
                                                     <a href="single-product.html">
                                                         Personnalisé
@@ -431,7 +431,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                        <a href="{{Route('guest.products')}}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les Produits</a>
+                        <a href="{{Route('products.index')}}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les Produits</a>
                     </div>
                 </div>
 

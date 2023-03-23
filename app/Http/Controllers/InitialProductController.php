@@ -25,12 +25,7 @@ class InitialProductController extends Controller
             'description' => 'required',
             'price' => 'required',
             'photo' => 'required',
-            //'qte' => 'required',
-            //'sizes' => 'required', // Ajoutez cette règle de validation si vous souhaitez autoriser les tailles vides
-            /*'XS' => 'required_without_all:S,M,L',
-            'S' => 'required_without_all:XS,M,L',
-            'M' => 'required_without_all:XS,S,L',
-            'L' => 'required_without_all:XS,S,M',*/
+            
 
         ]);
 
