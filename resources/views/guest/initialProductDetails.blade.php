@@ -79,7 +79,7 @@
                                             <i class="far fa-star"></i>
                                         </div>
                                         <div class="review-link">
-                                            <a href="#">(<span>2</span> customer reviews)</a>
+                                            <a href="#">(<span>{{count($product->Reviews)}}</span> customer reviews)</a>
                                         </div>
                                     </div>
                                     <ul class="product-meta">
@@ -205,33 +205,39 @@
                                 <div class="row">
                                     <div class="col-lg-6 mb--40">
                                         <div class="axil-comment-area pro-desc-commnet-area">
-                                            <h5 class="title">01 Review for this product</h5>
-                                            
+                                            <h5 class="title">{{count($product->Reviews)}} Review for this product</h5>
+                                            @foreach ($product->reviews as $review)
                                             <ul class="comment-list">
                                                 <!-- Start Single Comment  -->
                                                 <li class="comment">
                                                     <div class="comment-body">
                                                         <div class="single-comment">
                                                             <div class="comment-img">
-                                                                <img src="./assets/images/blog/author-image-4.png" alt="Author Images">
+                                                                @if (auth()->user()->photo == null)
+                                                                    <img src="/uploads/userphoto.jpg" alt="bienvenue client">
+                                                                @else
+                                                                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                                                        alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                                                @endif
                                                             </div>
                                                             <div class="comment-inner">
                                                                 <h6 class="commenter">
                                                                     <a class="hover-flip-item-wrapper" href="#">
                                                                         <span class="hover-flip-item">
-                                                                            <span data-text="Cameron Williamson">Eleanor Pena</span>
+                                                                            <span data-text="Cameron Williamson">{{$review->user->first_name}} {{$review->user->first_name}}</span>
                                                                         </span>
                                                                     </a>
+                                                                    
                                                                     <span class="commenter-rating ratiing-four-star">
+                                                                        @for ($i =0 ; $i < $review->rate ; $i++)
                                                                         <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star empty-rating"></i></a>
+                                                                        @endfor
                                                                     </span>
+                                                                    <br>
+                                                                    <p><small>-<i>{{$review->created_at}}</i></small></p>
                                                                 </h6>
                                                                 <div class="comment-text">
-                                                                    <p>“We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. ” </p>
+                                                                    <p>{{$review->content}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -239,6 +245,7 @@
                                                 </li>
                                                 <!-- End Single Comment  -->
                                             </ul>
+                                            @endforeach
                                         </div>
                                         <!-- End .axil-commnet-area -->
                                     </div>
@@ -248,38 +255,26 @@
                                     <div class="col-lg-6 mb--40">
                                         <!-- Start Comment Respond  -->
                                         <div class="comment-respond pro-des-commend-respond mt--0">
-                                            <h5 class="title mb--30">Add a Review</h5>
-                                            <p>Your email address will not be published. Required fields are marked *</p>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                <label>Rating <span class="require">*</span></label>
-                                                <input type="number" max="5" min="1"  />
-                                                </div>
-                                            </div>
-
-                                            <form action="#">
+                                            <h5 class="title mb--30">Ajouter un commentaire</h5>
+                                            <form action="{{route('add.review')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{$product->id}}" name="initial_product_id">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label>Other Notes (optional)</label>
-                                                            <textarea name="message" placeholder="Your Comment"></textarea>
+                                                        <label>Notation <span class="require">*</span></label>
+                                                        <input type="number" max="5" min="1"  name="rate"/>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                    <div class="col-12">
                                                         <div class="form-group">
-                                                            <label>Name <span class="require">*</span></label>
-                                                            <input id="name" type="text">
+                                                            <label>Commentaire (optionnel)</label>
+                                                            <textarea name="content" placeholder="Votre Commentaire"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 col-md-6 col-12">
-                                                        <div class="form-group">
-                                                            <label>Email <span class="require">*</span> </label>
-                                                            <input id="email" type="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
+                                                    
                                                         <div class="form-submit">
-                                                            <button type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Submit Comment</button>
+                                                            <button type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Envoyer un commentaire</button>
                                                         </div>
                                                     </div>
                                                 </div>

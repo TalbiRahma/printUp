@@ -51,6 +51,7 @@ Route::prefix('client')->group(function () {
     Route::get('/whishlist', [ClientController::class,'whishlist'])->name('whishlist');
     Route::get('/account', [ClientController::class,'account'])->name('account');
     Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
+    Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
     
 });
 

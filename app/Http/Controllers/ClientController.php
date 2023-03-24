@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
@@ -119,7 +120,17 @@ class ClientController extends Controller
 
     }
 
-    
+    public function addReview(Request $request){
+        $review = new Review();
+        $review->rate = $request->rate;
+        $review->initial_product_id = $request->initial_product_id;
+        $review->content = $request->content;
+        $review->user_id = Auth::user()->id;
+
+        $review->save();
+        return redirect()->back();
+
+    }
 
 }
 

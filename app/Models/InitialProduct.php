@@ -19,5 +19,14 @@ class InitialProduct extends Model
         return $this->belongsToMany(Design::class, 'produit_personnaliser', 'initial_product_id', 'design_id');
     }
 
+/**
+ * Get all of the comments for the InitialProduct
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function reviews()
+{
+    return $this->hasMany(Review::class, 'initial_product_id', 'id');
+}
     
 }

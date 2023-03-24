@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-
+            $table->float('rate');
+            $table->text('content');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('initial_product_id');
+            $table->foreign('initial_product_id')->references('id')->on('initial_products')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -13,4 +13,8 @@ class Review extends Model
     {
         return $this->belongsTo(User::class , 'user_id' , 'id'  );
     }
+
+    public function initialProduct(){
+        return $this->belongsTo(InitialProduct::class , 'initial_product_id', 'id');
+    }
 }
