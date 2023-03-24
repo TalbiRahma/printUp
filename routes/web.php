@@ -50,6 +50,8 @@ Route::prefix('client')->group(function () {
     Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
     Route::get('/whishlist', [ClientController::class,'whishlist'])->name('whishlist');
     Route::get('/account', [ClientController::class,'account'])->name('account');
+    Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
+    
 });
 
 

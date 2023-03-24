@@ -145,9 +145,6 @@
                         <li class="nav-item" role="presentation">
                             <a class="active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
                         </li>
-                        <li class="nav-item " role="presentation">
-                            <a id="additional-info-tab" data-bs-toggle="tab" href="#additional-info" role="tab" aria-controls="additional-info" aria-selected="false">Additional Information</a>
-                        </li>
                         <li class="nav-item" role="presentation">
                             <a id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
                         </li>
@@ -202,66 +199,14 @@
                             </div>
                             <!-- End .product-desc-wrapper -->
                         </div>
-                        <div class="tab-pane fade" id="additional-info" role="tabpanel" aria-labelledby="additional-info-tab">
-                            <div class="product-additional-info">
-                                <div class="table-responsive">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Stand Up</th>
-                                                <td>35″L x 24″W x 37-45″H(front to back wheel)</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Folded (w/o wheels) </th>
-                                                <td>32.5″L x 18.5″W x 16.5″H</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Folded (w/ wheels) </th>
-                                                <td>32.5″L x 24″W x 18.5″H</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Door Pass Through </th>
-                                                <td>24</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Frame </th>
-                                                <td>Aluminum</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Weight (w/o wheels) </th>
-                                                <td>20 LBS</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Weight Capacity </th>
-                                                <td>60 LBS</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Width</th>
-                                                <td>24″</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Handle height (ground to handle) </th>
-                                                <td>37-45″</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Wheels</th>
-                                                <td>Aluminum</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Size</th>
-                                                <td>S, M, X, XL</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                             <div class="reviews-wrapper">
                                 <div class="row">
                                     <div class="col-lg-6 mb--40">
                                         <div class="axil-comment-area pro-desc-commnet-area">
                                             <h5 class="title">01 Review for this product</h5>
+                                            
                                             <ul class="comment-list">
                                                 <!-- Start Single Comment  -->
                                                 <li class="comment">
@@ -293,86 +238,22 @@
                                                     </div>
                                                 </li>
                                                 <!-- End Single Comment  -->
-
-                                                <!-- Start Single Comment  -->
-                                                <li class="comment">
-                                                    <div class="comment-body">
-                                                        <div class="single-comment">
-                                                            <div class="comment-img">
-                                                                <img src="./assets/images/blog/author-image-4.png" alt="Author Images">
-                                                            </div>
-                                                            <div class="comment-inner">
-                                                                <h6 class="commenter">
-                                                                    <a class="hover-flip-item-wrapper" href="#">
-                                                                        <span class="hover-flip-item">
-                                                                            <span data-text="Rahabi Khan">Courtney Henry</span>
-                                                                        </span>
-                                                                    </a>
-                                                                    <span class="commenter-rating ratiing-four-star">
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                    </span>
-                                                                </h6>
-                                                                <div class="comment-text">
-                                                                    <p>“We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. ”</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <!-- End Single Comment  -->
-
-                                                <!-- Start Single Comment  -->
-                                                <li class="comment">
-                                                    <div class="comment-body">
-                                                        <div class="single-comment">
-                                                            <div class="comment-img">
-                                                                <img src="./assets/images/blog/author-image-5.png" alt="Author Images">
-                                                            </div>
-                                                            <div class="comment-inner">
-                                                                <h6 class="commenter">
-                                                                    <a class="hover-flip-item-wrapper" href="#">
-                                                                        <span class="hover-flip-item">
-                                                                            <span data-text="Rahabi Khan">Devon Lane</span>
-                                                                        </span>
-                                                                    </a>
-                                                                    <span class="commenter-rating ratiing-four-star">
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                    </span>
-                                                                </h6>
-                                                                <div class="comment-text">
-                                                                    <p>“We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. ” </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <!-- End Single Comment  -->
                                             </ul>
                                         </div>
                                         <!-- End .axil-commnet-area -->
                                     </div>
                                     <!-- End .col -->
+
+
                                     <div class="col-lg-6 mb--40">
                                         <!-- Start Comment Respond  -->
                                         <div class="comment-respond pro-des-commend-respond mt--0">
                                             <h5 class="title mb--30">Add a Review</h5>
                                             <p>Your email address will not be published. Required fields are marked *</p>
-                                            <div class="rating-wrapper d-flex-center mb--40">
-                                                Your Rating <span class="require">*</span>
-                                                <div class="reating-inner ml--20">
-                                                    <a href="#"><i class="fal fa-star"></i></a>
-                                                    <a href="#"><i class="fal fa-star"></i></a>
-                                                    <a href="#"><i class="fal fa-star"></i></a>
-                                                    <a href="#"><i class="fal fa-star"></i></a>
-                                                    <a href="#"><i class="fal fa-star"></i></a>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                <label>Rating <span class="require">*</span></label>
+                                                <input type="number" max="5" min="1"  />
                                                 </div>
                                             </div>
 

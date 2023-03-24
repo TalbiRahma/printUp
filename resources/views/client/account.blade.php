@@ -45,10 +45,16 @@
                     <div class="axil-dashboard-author">
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="./assets/images/product/author1.png" alt="Hello Annie">
+                                @if (auth()->user()->photo == null)
+                                    <img src="/uploads/userphoto.jpg"class="w-100 border-radius-lg shadow-sm" alt="bienvenue client">
+                                @else
+                                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                        alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                @endif
+                                
                             </div>
                             <div class="media-body">
-                                <h4 class="title mb-0">Hello Annie</h4>
+                                <h4 class="title mb-0">Bienvenue {{auth()->user()->first_name}} {{auth()->user()->last_name}}</h4>
                             </div>
                         </div>
                     </div>
@@ -65,34 +71,47 @@
                                             </i>Ordres</a>
                                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user">
                                             </i>Modifier Compte</a>
-                                        <a class="nav-item nav-link" href="{{ route('login') }}"><i class="fal fa-sign-out">
+                                        <a class="nav-item nav-link" href="{{ route('login') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><i class="fal fa-sign-out">
                                             </i>Se déconnecter</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
                                     </div>
                                 </nav>
                             </aside>
                         </div>
+
+                        
                         <div class="col-xl-9 col-md-8">
                             <div class="tab-content">
+                                <!--Compte-->
                                 <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
                                     <div class="axil-dashboard-overview">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-secondary py-2">Email:
-                                                        <p>sirine@gmail.com</p>
+                                                        <p>{{auth()->user()->email}}</p>
                                                     </h6>
                                                     <h6 class="text-secondary py-2">Numéro téléphone:
-                                                        <p>52883642</p></h6>
+                                                        <p>{{auth()->user()->phone}}</p></h6>
                                                     <h6 class="text-secondary py-2">cin: 
-                                                        <p>14023569</p></h6>
+                                                        <p>{{auth()->user()->cin}}</p></h6>
                                                 </div>
                                             </div>
                                     </div>
                                 </div>
+                                <!--End compte-->
+
+                                <!--Boutique-->
                                 <div class="tab-pane fade" id="nav-downloads" role="tabpanel">
                                     <div class="axil-dashboard-order">
                                         Boutique
                                     </div>
                                 </div>
+                                <!--End Boutique-->
+
+                                <!--Commande-->
                                 <div class="tab-pane fade" id="nav-orders" role="tabpanel">
                                     <div class="axil-dashboard-order">
                                         <div class="table-responsive">
@@ -147,21 +166,49 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--End Commande-->
+
+                                <!--Modifier Compte-->
                                 <div class="tab-pane fade" id="nav-account" role="tabpanel">
                                     <div class="col-lg-9">
                                         <div class="axil-dashboard-account">
-                                            <form class="account-details-form">
+                                            <form action="{{ route('account.update') }}" method="POST" enctype="multipart/form-data" class="account-details-form">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Prénom</label>
-                                                            <input type="text" class="form-control" value="Annie">
+                                                            <input name="last_name" type="text" class="form-control" value="{{auth()->user()->last_name}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Nom</label>
-                                                            <input type="text" class="form-control" value="Mario">
+                                                            <input name="first_name" type="text" class="form-control" value="{{auth()->user()->first_name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>CIN</label>
+                                                            <input name="cin" type="text" class="form-control" value="{{auth()->user()->cin}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <input name="email" type="email" class="form-control" value="{{auth()->user()->email}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Téléphone</label>
+                                                            <input name="phone" type="text" class="form-control" value="{{auth()->user()->phone}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Photo de profile</label>
+                                                            <input name="photo" type="file" class="form-control" accept="image/*">
                                                         </div>
                                                     </div>
                                                     <p class="b3 mt--10">Ce sera ainsi que votre nom sera affiché dans la section compte et dans les avis</p>
@@ -169,15 +216,15 @@
                                                         <h5 class="title">Changement de mot de passe</h5>
                                                         <div class="form-group">
                                                             <label>Mot de passe</label>
-                                                            <input type="password" class="form-control" value="123456789101112131415">
+                                                            <input name="password" type="password" class="form-control" value="123456789101112131415">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Nouveau mot de passe</label>
-                                                            <input type="password" class="form-control">
+                                                            <input name="password" type="password" class="form-control" placeholder="Entrez un nouveau mot de passe...">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Confirmer le nouveau mot de passe</label>
-                                                            <input type="password" class="form-control">
+                                                            <input name="confpassword" type="password" class="form-control" placeholder="Confirmer votre mot de passe...">
                                                         </div>
                                                         <div class="form-group mb--0">
                                                             <input type="submit" class="axil-btn" value="Sauvegarder">
@@ -189,6 +236,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--End Modifier Compte-->
                         </div>
                     </div>
                 </div>

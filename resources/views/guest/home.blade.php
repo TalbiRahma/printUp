@@ -111,7 +111,7 @@
                                 </a>
                             </li>
                             <li class="wishlist">
-                                <a href="wishlist.html">
+                                <a href="{{route('whishlist')}}">
                                     <i class="flaticon-heart"></i>
                                 </a>
                             </li>
@@ -133,7 +133,7 @@
                                             @if(Auth::user()->role == 'admin')
                                                 <a href="{{ route('dashboard')}}">My Account</a>
                                             @else
-                                                <a href="#">My Account</a>
+                                                <a href="{{route('account')}}">My Account</a>
                                             @endif
                                             @endif
                                         </li>
