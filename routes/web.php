@@ -6,9 +6,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
 use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,7 @@ use App\Http\Controllers\CategoryProductController;
 
 /*********Auth******** */
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
 
 Auth::routes();
 
