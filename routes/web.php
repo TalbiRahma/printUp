@@ -21,7 +21,9 @@ use App\Http\Controllers\CategoryProductController;
 |
 */
 
+/*********Auth******** */
 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Auth::routes();
 

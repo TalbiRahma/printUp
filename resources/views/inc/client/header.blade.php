@@ -123,7 +123,7 @@
                                 <span class="title">MON COMPTE</span>
                                 <ul>
                                     <li>
-                                        <a href="my-account.html">Profile</a>
+                                        <a href="{{route('account')}}">Profile</a>
                                     </li>
                                     <li>
                                         <a href="#">Initiate return</a>

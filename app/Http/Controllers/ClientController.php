@@ -120,17 +120,29 @@ class ClientController extends Controller
 
     }
 
-    public function addReview(Request $request){
-        $review = new Review();
-        $review->rate = $request->rate;
-        $review->initial_product_id = $request->initial_product_id;
-        $review->content = $request->content;
-        $review->user_id = Auth::user()->id;
+    public function addReview(Request $request)
+{
+    // Créez un nouveau commentaire
+    $review = new Review();
+    $review->rate = $request->rate;
+    $review->initial_product_id = $request->initial_product_id;
+    $review->content = $request->content;
+    $review->user_id = Auth::user()->id;
 
-        $review->save();
-        return redirect()->back();
+    // Enregistrez le commentaire dans la base de données
+    $review->save();
+    
+    $reviews = Review::all();
+    // Récupérez tous les commentaires pour le produit en question
+    $reviews = Review::where('initial_product_id', $request->initial_product_id)->get();
 
-    }
+    // Retournez la vue avec les commentaires récupérés et un message de succès
+    return  redirect()->back()->with([
+        'reviews' => $reviews,
+        
+    ]);
+}
+
 
 }
 
