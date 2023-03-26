@@ -98,7 +98,12 @@ class CategoryDesignController extends Controller
     }
 
 
+    public function searchCategory(Request $request){
+        
+        $category_design = CategoryDesign::where('name', 'LIKE' , '%'. $request->category_name .'%')->get();
 
+        return view('admin.categories.designs.index' , compact('category_design'));
+    }
 
 
 }

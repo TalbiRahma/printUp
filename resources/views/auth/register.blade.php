@@ -65,33 +65,58 @@
                             <div class="col-6">
                             <div class="form-group">
                                 <label>Prénom</label>
-                                <input id="first_name" type="text" class="form-control " name="first_name" value="" required autocomplete="name" autofocus>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
 
+                                @error('first_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             </div>
                             <div class="col-6">
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input id="last_name" type="text" class="form-control " name="last_name" value="" required autocomplete="name" autofocus>
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
 
-                                                            </div>
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             </div>
                             </div>
                             <div class="form-group mb-5">
                                 <label>CIN</label>
-                                <input id="cin" type="text" class="form-control " name="cin" value="" required autocomplete="cin" autofocus>
+                                <input id="cin" type="text" class="form-control @error('cin') is-invalid @enderror" name="cin" value="{{ old('cin') }}" required autocomplete="cin" autofocus>
 
-                                                            </div>
+                                @error('cin')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
                             <div class="form-group mb-5">
                                 <label>Email</label>
-                                <input id="email" type="email" class="form-control " name="email" value="" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                                            </div>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <div class="form-group mb-5">
                                 <label>Mot de passe</label>
-                                <input id="password" type="password" class="form-control " name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                                            </div>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <div class="form-group mb-5">
                                 <label>Confirmer le mot de passe</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">

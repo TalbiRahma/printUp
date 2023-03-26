@@ -119,5 +119,11 @@ class InitialProductController extends Controller
         }
     }
 
-    
+    public function searchProduct(Request $request){
+        //dd($request);
+        $category_product = CategoryProduct::all();
+        $product = InitialProduct::where('name', 'LIKE' , '%'. $request->product_name .'%')->get();
+
+        return view('admin.produits.index' , compact('product','category_product'));
+    }
 }

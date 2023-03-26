@@ -121,11 +121,7 @@
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search"
-                                    aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" placeholder="Tapez ici...">
-                        </div>
+                        @include('inc.admin.globalsearch')
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <!--profile-->
@@ -160,15 +156,27 @@
         <div class="container-fluid py-4">
             <div class="card">
                 <div class="container-fluid py-4">
-                    <h5>Ajouter un Produit:
-
-                    </h5>
+                    <div class="row">
+                    <div class="col-9">
+                    <h5>Ajouter un Produit:</h5>
                     <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
                         data-bs-target="#produitAjout">
                         <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
                         <span class="btn-inner--text">Ajouter</span>
                     </button>
-
+                    </div>
+                    <div class="col-3">
+                        <form action="{{route('search.product')}}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                             
+                              <button type="submit" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
+                              <input name="product_name" type="text" class="form-control" placeholder="Tapez ici...">
+                              
+                            </div>
+                        </form>
+                    </div>
+                    </div>
                     <!--Modal Ajout produit-->
 
                     <div class="modal fade" id="produitAjout" tabindex="-1" role="dialog"
