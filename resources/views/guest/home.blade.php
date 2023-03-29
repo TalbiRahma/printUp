@@ -56,10 +56,10 @@
                 <div class="header-navbar">
                     <div class="header-brand">
                         <a href="index.html" class="logo logo-dark">
-                            <img src="" alt="Site Logo">
+                            <img src="{{asset('/mainassets/images/logo/logo.png')}}" alt="Site Logo">
                         </a>
                         <a href="index.html" class="logo logo-light">
-                            <img src="" alt="Site Logo">
+                            <img src="{{asset('/mainassets/images/logo/logo-light.png')}}" alt="Site Logo">
                         </a>
                     </div>
                     <div class="header-main-nav">
@@ -68,7 +68,7 @@
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
                                 <a href="index.html" class="logo">
-                                    <img src="" alt="Site Logo">
+                                    <img src="{{asset('/mainassets/images/logo/logo.png')}}888888" alt="Site Logo">
                                 </a>
                             </div>
                             <ul class="mainmenu">
@@ -126,31 +126,46 @@
                                     <i class="flaticon-person"></i>
                                 </a>
                                 <div class="my-account-dropdown">
-                                    <span class="title">QUICKLINKS</span>
+                                    <span class="title">MON COMPTE</span>
                                     <ul>
                                         <li>
                                             @if(auth()->user())
                                             @if(Auth::user()->role == 'admin')
-                                                <a href="{{ route('dashboard')}}">My Account</a>
+                                            <a href="{{ route('donnes.profil')}}">Profile</a>
                                             @else
-                                                <a href="{{route('account')}}">My Account</a>
+                                            <a href="{{route('account')}}">Profile</a>
                                             @endif
+                                            @else
+                                            <a href="{{route('register')}}">Profile</a>
                                             @endif
                                         </li>
                                         <li>
-                                            <a href="#">Initiate return</a>
+                                            @if(auth()->user())
+                                            <a href="#">Mon Boutique</a>
+                                            @else
+                                            <a href="{{route('register')}}">Mon Boutique</a>
+                                            @endif
                                         </li>
                                         <li>
-                                            <a href="#">Support</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Language</a>
+                                            @if(auth()->user())
+                                                @if(Auth::user()->role == 'admin')
+                                                <a href="{{route('dashboard')}}">Dashboard</a>
+                                                @else
+                                                <a href="">Modifier Profile</a>
+                                                @endif
+                                            @endif
                                         </li>
                                     </ul>
-                                    <div class="login-btn">
-                                        <a href="/login" class="axil-btn btn-bg-primary">Login</a>
-                                    </div>
-                                    <div class="reg-footer text-center">No account yet? <a href="/register" class="btn-link">REGISTER HERE.</a></div>
+                                    @if(auth()->user())
+                                    <a href="{{ route('login') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();" class="axil-btn btn-bg-primary">Déconnexion</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    @else
+                                    <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Connexion</a>
+                                    <div class="reg-footer text-center">Pas encore de compte? <a href="{{ route('register') }}" class="btn-link">Inscrire.</a></div>
+                                    @endif
                                 </div>
                             </li>
                             <li class="axil-mobile-toggle">
@@ -184,7 +199,7 @@
                         <div class="main-slider-large-thumb">
                             <div class="slider-thumb-activation-one axil-slick-dots">
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
-                                    <img src="" alt="Product">
+                                    <img src="{{asset('/mainassets/images/product/product-38.png')}}" alt="Product">
                                     <div class="product-price">
                                         <span class="text">From</span>
                                         <span class="price-amount">$49.00</span>
@@ -192,7 +207,7 @@
                                 </div>
                                 
                                 <div class="single-slide slick-slide">
-                                    <img src="" alt="Product">
+                                    <img src="{{asset('/mainassets/images/product/product-39.png')}}" alt="Product">
                                     <div class="product-price">
                                         <span class="text">From</span>
                                         <span class="price-amount">$49.00</span>
@@ -204,8 +219,8 @@
                 </div>
             </div>
             <ul class="shape-group">
-                <li class="shape-1"><img src="" alt="Shape"></li>
-                <li class="shape-2"><img src="" alt="Shape"></li>
+                <li class="shape-1"><img src="{{asset('/mainassets/images/others/shape-1.png')}}" alt="Shape"></li>
+                <li class="shape-2"><img src="{{asset('/mainassets/images/others/shape-2.png')}}" alt="Shape"></li>
             </ul>
         </div>
 
@@ -220,7 +235,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-4.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Phones</h6>
                             </a>
                         </div>
@@ -230,7 +245,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-5.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Computers</h6>
                             </a>
                         </div>
@@ -240,7 +255,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="400" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-11.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Accessories</h6>
                             </a>
                         </div>
@@ -250,7 +265,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-6.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Laptops</h6>
                             </a>
                         </div>
@@ -260,7 +275,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="600" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-2.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Monitors</h6>
                             </a>
                         </div>
@@ -270,7 +285,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="700" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-7.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Networking</h6>
                             </a>
                         </div>
@@ -280,7 +295,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="800" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-8.png')}}" alt="product categorie">
                                 <h6 class="cat-title">PC Gaming</h6>
                             </a>
                         </div>
@@ -290,7 +305,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-1.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Smartwatches</h6>
                             </a>
                         </div>
@@ -300,7 +315,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-9.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Headphones</h6>
                             </a>
                         </div>
@@ -310,7 +325,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-10.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Camera & Photo</h6>
                             </a>
                         </div>
@@ -320,7 +335,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-8.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Video Games</h6>
                             </a>
                         </div>
@@ -330,7 +345,7 @@
                     <div class="slick-single-layout">
                         <div class="categrie-product">
                             <a href="#">
-                                <img class="img-fluid" src="" alt="product categorie">
+                                <img class="img-fluid" src="{{asset('/mainassets/images/product/categories/elec-1.png')}}" alt="product categorie">
                                 <h6 class="cat-title">Sports</h6>
                             </a>
                         </div>
@@ -404,7 +419,7 @@
                                 <div class="axil-product product-style-one">
                                     <div class="thumbnail">
                                         <a href="single-product.html">
-                                            <img src="" alt="Product Images">
+                                            <img src="{{asset('/mainassets/images/product/electric/product-01.png')}}" alt="Product Images">
                                         </a>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
@@ -454,7 +469,7 @@
                             <div class="axil-product product-style-two">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500" src="" alt="Product Images">
+                                        <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500" src="{{asset('/mainassets/images/product/electric/product-06.png')}}" alt="Product Images">
                                     </a>
                                 </div>
                                 <div class="product-content">
@@ -499,7 +514,7 @@
                             <div class="axil-product-list">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="" alt="Yantiti Leather Bags">
+                                        <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="{{asset('/mainassets/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
                                     </a>
                                 </div>
                                 <div class="product-content">
@@ -552,7 +567,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="" alt="testimonial image">
+                                <img src="{{asset('/mainassets/images/testimonial/image-1.png')}}" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -572,7 +587,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="" alt="testimonial image">
+                                <img src="{{asset('/mainassets/images/testimonial/image-2.png')}}" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -592,7 +607,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="" alt="testimonial image">
+                                <img src="{{asset('/mainassets/images/testimonial/image-3.png')}}" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -612,7 +627,7 @@
                         </div>
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="" alt="testimonial image">
+                                <img src="{{asset('/mainassets/images/testimonial/image-2.png')}}" alt="testimonial image">
                             </div>
                             <div class="media-body">
                                 <span class="designation">Head Of Idea</span>
@@ -644,7 +659,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="" alt="Service">
+                                <img src="{{asset('/mainassets/images/icons/service6.png')}}" alt="Service">
                             </div>
                             <h6 class="title">Livraison Rapide &amp; Sécurisée</h6>
                         </div>
@@ -652,7 +667,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="" alt="Service">
+                                <img src="{{asset('/mainassets/images/icons/service7.png')}}" alt="Service">
                             </div>
                             <h6 class="title">100% Garantie Sur Le Produit</h6>
                         </div>
@@ -660,7 +675,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="" alt="Service">
+                                <img src="{{asset('/mainassets/images/icons/service8.png')}}" alt="Service">
                             </div>
                             <h6 class="title">Politique De Retour De 24H</h6>
                         </div>
@@ -668,7 +683,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="" alt="Service">
+                                <img src="{{asset('/mainassets/images/icons/service9.png')}}" alt="Service">
                             </div>
                             <h6 class="title">Politique De Retour De 24H</h6>
                         </div>
@@ -676,7 +691,7 @@
                     <div class="col">
                         <div class="service-box">
                             <div class="icon">
-                                <img src="" alt="Service">
+                                <img src="{{asset('/mainassets/images/icons/service10.png')}}" alt="Service">
                             </div>
                             <h6 class="title">Qualité Professionnelle</h6>
                         </div>
@@ -740,7 +755,7 @@
                     <div class="axil-product-list">
                         <div class="thumbnail">
                             <a href="single-product.html">
-                                <img src="" alt="Yantiti Leather Bags">
+                                <img src="{{asset('/mainassets/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
                             </a>
                         </div>
                         <div class="product-content">
@@ -768,7 +783,7 @@
                     <div class="axil-product-list">
                         <div class="thumbnail">
                             <a href="single-product.html">
-                                <img src="" alt="Yantiti Leather Bags">
+                                <img src="{{asset('/mainassets/images/product/electric/product-09.png')}}" alt="Yantiti Leather Bags">
                             </a>
                         </div>
                         <div class="product-content">

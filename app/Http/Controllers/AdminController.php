@@ -49,9 +49,7 @@ class AdminController extends Controller
     public function updatetProfil(Request $request){
 
         $request->validate([
-            'password' =>'confirmed', 
-        ], [
-            'password.confirmed' => 'Le mot de passe et sa confirmation doivent être identiques.',
+            'password' =>'confirmed' 
         ]);
        // dd($request);
         $user = Auth::user();

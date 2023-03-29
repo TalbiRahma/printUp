@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->enum('role' , ['admin' , 'user'])->default('user');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
+            $table->boolean('email_verified_at')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,7 +12,9 @@ use App\Http\Controllers\CategoryDesignController;
 use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Mail\MailVerification;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +31,13 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
+
+Route::get('/send', function(){
+    Mail::to('talbirahma73@gmail.com')->send(new MailVerification());
+    return response('sending');
+});
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

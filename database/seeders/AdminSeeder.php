@@ -23,7 +23,7 @@ class AdminSeeder extends Seeder
                 'cin' => '11970216',
                 'first_name' => 'Admin',
                 'last_name' => 'Admin',
-                'email' => 'admin@admin.com',
+                'email' => 'talbirahma73@gmail.com',
                 'role' => 'admin',
                 'password' => Hash::make('123456789'),
                 'phone' => '+216 22776933',
