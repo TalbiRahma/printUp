@@ -98,5 +98,11 @@ class CategoryProductController extends Controller
     }
 
 
-    
+    public function searchCategory(Request $request){
+        //dd($request);
+        //$category_products = CategoryProduct::all();
+        $category_product = CategoryProduct::where('name', 'LIKE' , '%'. $request->category_name .'%')->get();
+
+        return view('admin.categories.produits.index' , compact('category_product'));
+    }
 }

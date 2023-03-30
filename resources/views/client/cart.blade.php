@@ -148,7 +148,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="checkout.html" class="axil-btn btn-bg-primary checkout-btn">Processus de paiement</a>
+                                    <a href="{{route('checkout')}}" class="axil-btn btn-bg-primary checkout-btn">Processus de paiement</a>
                                 </div>
                             </div>
                         </div>

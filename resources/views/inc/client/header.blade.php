@@ -123,20 +123,43 @@
                                 <span class="title">MON COMPTE</span>
                                 <ul>
                                     <li>
-                                        <a href="my-account.html">Profile</a>
+                                        @if(auth()->user())
+                                        @if(Auth::user()->role == 'admin')
+                                        <a href="{{ route('donnes.profil')}}">Profile</a>
+                                        @else
+                                        <a href="{{route('account')}}">Profile</a>
+                                        @endif
+                                        @else
+                                        <a href="{{route('register')}}">Profile</a>
+                                        @endif
                                     </li>
                                     <li>
-                                        <a href="#">Initiate return</a>
+                                        @if(auth()->user())
+                                        <a href="#">Mon Boutique</a>
+                                        @else
+                                        <a href="{{route('register')}}">Mon Boutique</a>
+                                        @endif
                                     </li>
                                     <li>
-                                        <a href="#">Support</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Language</a>
+                                        @if(auth()->user())
+                                            @if(Auth::user()->role == 'admin')
+                                            <a href="{{route('dashboard')}}">Dashboard</a>
+                                            @else
+                                            <a href="">Modifier Profile</a>
+                                            @endif
+                                        @endif
                                     </li>
                                 </ul>
+                                @if(auth()->user())
+                                <a href="{{ route('login') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();" class="axil-btn btn-bg-primary">Déconnexion</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                @else
                                 <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Connexion</a>
                                 <div class="reg-footer text-center">Pas encore de compte? <a href="{{ route('register') }}" class="btn-link">Inscrire.</a></div>
+                                @endif
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">

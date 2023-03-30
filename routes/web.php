@@ -6,9 +6,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
 use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Mail\MailVerification;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +27,17 @@ use App\Http\Controllers\CategoryProductController;
 |
 */
 
+/*********Auth******** */
 
 
-Auth::routes();
+
+Auth::routes(['verify' => true]);
+
+
+Route::get('/send', function(){
+    Mail::to('talbirahma73@gmail.com')->send(new MailVerification());
+    return response('sending');
+});
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -95,6 +109,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/store', [CategoryProductController::class, 'ajouterCategroieProduit'])->name('add.category_product');
         Route::get('/{id}/delete', [CategoryProductController::class, 'supprimerCategroieProduit'])->name('delete.category_product');
         Route::post('/update', [CategoryProductController::class, 'modifierCategroieProduit'])->name('edit.category_product');
+        Route::post('/search', [CategoryProductController::class, 'searchCategory'])->name('search.category.product');
     });
 
 
@@ -103,6 +118,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/store', [CategoryDesignController::class, 'ajouterCategroieDesign'])->name('add.category_design');
         Route::get('/{id}/delete', [CategoryDesignController::class, 'supprimerCategroieDesign'])->name('delete.category_design');
         Route::post('/update', [CategoryDesignController::class, 'modifierCategroieDesign'])->name('edit.category_design');
+        Route::post('/search', [CategoryDesignController::class, 'searchCategory'])->name('search.category.design');
     });
 
 
@@ -112,6 +128,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/store', [InitialProductController::class, 'ajouterProduit'])->name('add.product');
         Route::get('/{id}/delete', [InitialProductController::class, 'supprimerProduit'])->name('delete.product');
         Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
+        Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
     });
 });
 

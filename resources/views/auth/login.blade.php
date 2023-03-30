@@ -1,20 +1,69 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<!doctype html>
+<html class="no-js" lang="en">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eTrade || Sign In</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    <!-- CSS
+    ============================================ -->
 
-                            <div class="col-md-6">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/flaticon/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/sal.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/vendor/base.css')}}">
+    <link rel="stylesheet" href="{{asset('/mainassets/css/style.min.css')}}">
+
+</head>
+
+
+<body>
+    <div class="axil-signin-area">
+
+        <!-- Start Header -->
+        <div class="signin-header">
+            <div class="row align-items-center">
+                <div class="col-sm-4">
+                    <a href="index.html" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                </div>
+                <div class="col-sm-8">
+                    <div class="singin-header-btn">
+                        <p>Not a member?</p>
+                        <a href="{{route('register')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-6">
+                <div class="axil-signin-banner bg_image bg_image--9">
+                    <h3 class="title">We Offer the Best Products</h3>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-xl-2">
+                <div class="axil-signin-form-wrap">
+                    <div class="axil-signin-form" >
+                        <h3 class="title">Connectez-vous à printUp</h3>
+                        <p class="b2 mb--55">Entrez vos coordonnées ci-dessous</p>
+                        <form class="singin-form" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label>Email</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -23,12 +72,8 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -37,37 +82,49 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
-                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <button type="submit" class="axil-btn btn-bg-primary submit-btn">{{ __('Login') }}</button>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
+                                <a href="{{ route('password.request') }}" class="forgot-btn">{{ __('Forgot Your Password?') }}</a>
                                 @endif
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+    <!-- JS
+============================================ -->
+    <!-- Modernizer JS -->
+    <script src="{{asset('/mainassets/js/vendor/modernizr.min.js')}}"></script>
+    <!-- jQuery JS -->
+    <script src="{{asset('/mainassets/js/vendor/jquery.js')}}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{asset('/mainassets/js/vendor/popper.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/bootstrap.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/slick.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/js.cookie.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/jquery.countdown.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/sal.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/imagesloaded.pkgd.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/counterup.js')}}"></script>
+    <script src="{{asset('/mainassets/js/vendor/waypoints.min.js')}}"></script>
+
+    <!-- Main JS -->
+    <script src="{{asset('/mainassets/js/main.js')}}"></script>
+
+</body>
+
+</html>
