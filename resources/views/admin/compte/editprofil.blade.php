@@ -235,7 +235,6 @@
                                     <label for="example-text-input" class="form-control-label">Photo de
                                         profile</label>
                                     <input name="photo" type="file" class="form-control" accept="image/*">
-
                                 </div>
                                 <hr class="horizontal dark">
                                 <p class="text-uppercase text-sm">Coordonnées</p>

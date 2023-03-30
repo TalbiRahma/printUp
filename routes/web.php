@@ -66,7 +66,7 @@ Route::prefix('client')->group(function () {
     Route::get('/account', [ClientController::class,'account'])->name('account');
     Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
     Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
-    
+    Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
 });
 
 

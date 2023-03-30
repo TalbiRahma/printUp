@@ -4,12 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+<<<<<<< HEAD
+    <title>Produits Initial</title> 
+=======
     <title>IProduct Details</title>
+>>>>>>> cf245c30007af167a2ec4f3664cf4b1219d5c954
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
+<<<<<<< HEAD
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/mainassets/images/logo.png')}}">
+=======
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/favicon.png') }}">
+>>>>>>> cf245c30007af167a2ec4f3664cf4b1219d5c954
 
     <!-- CSS
     ============================================ -->
