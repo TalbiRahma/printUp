@@ -44,12 +44,12 @@
                 <div class="axil-dashboard-warp">
                     <div class="axil-dashboard-author">
                         <div class="media">
-                            <div class="thumbnail">
+                            <div class="thumbnail ">
                                 @if (auth()->user()->photo == null)
-                                    <img src="/uploads/userphoto.jpg"class="w-100 border-radius-lg shadow-sm" alt="bienvenue client">
+                                    <img  src="/uploads/userphoto.jpg"class="w-25 border-radius-lg shadow-sm" alt="bienvenue client">
                                 @else
                                     <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                                        alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                        alt="profile_image" class="w-25 border-radius-lg shadow-sm">
                                 @endif
                                 
                             </div>

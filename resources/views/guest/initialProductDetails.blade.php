@@ -4,35 +4,32 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-<<<<<<< HEAD
-    <title>Produits Initial</title> 
-=======
-    <title>IProduct Details</title>
->>>>>>> cf245c30007af167a2ec4f3664cf4b1219d5c954
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-<<<<<<< HEAD
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/mainassets/images/logo.png')}}">
-=======
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/favicon.png') }}">
->>>>>>> cf245c30007af167a2ec4f3664cf4b1219d5c954
+    
+        <title>IProduct Details</title>
+        
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon -->
+         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/logo.png') }}">
+    
+            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/favicon.png') }}">
+            
 
-    <!-- CSS
+            <!-- CSS
     ============================================ -->
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/flaticon/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/sal.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('/mainassets/css/style.min.css') }}">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/font-awesome.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/flaticon/flaticon.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick-theme.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/jquery-ui.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/sal.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/magnific-popup.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/base.css') }}">
+            <link rel="stylesheet" href="{{ asset('/mainassets/css/style.min.css') }}">
 
 </head>
 
@@ -131,8 +128,8 @@
 
                                         <!-- Start Product Action  -->
                                         <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a href="cart.html"
-                                                    class="axil-btn btn-bg-primary">Add to Cart</a></li>
+                                            <li class="add-to-cart"><a href="{{route('personaliser')}}"
+                                                    class="axil-btn btn-bg-primary">Personnaliser</a></li>
                                             <li class="wishlist"><a href="wishlist.html"
                                                     class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
@@ -233,40 +230,49 @@
                                                     <li class="comment">
                                                         <div class="comment-body">
                                                             <div class="single-comment">
-                                                                <div class="comment-img">
-                                                                    @if ($review->user->photo == null)
-                                                                        <img src="/uploads/userphoto.jpg"
-                                                                            alt="bienvenue client">
-                                                                    @else
-                                                                        <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
-                                                                            alt="profile_image"
-                                                                            class="w-100 border-radius-lg shadow-sm">
-                                                                    @endif
-                                                                </div>
-                                                                <div class="comment-inner">
-                                                                    <h6 class="commenter">
-                                                                        <a class="hover-flip-item-wrapper"
-                                                                            href="#">
-                                                                            <span class="hover-flip-item">
-                                                                                <span
-                                                                                    data-text="Cameron Williamson">{{ $review->user->first_name }}
-                                                                                    {{ $review->user->last_name }}</span>
-                                                                            </span>
-                                                                        </a>
-                                                                        <span
-                                                                            class="commenter-rating ratiing-four-star">
-                                                                            @for ($i = 0; $i < $review->rate; $i++)
-                                                                                <a href="#"><i
-                                                                                        class="fas fa-star"></i></a>
-                                                                            @endfor
-                                                                        </span>
-                                                                        <br>
-                                                                        <p><small>-<i>{{ $review->created_at }}</i></small>
-                                                                        </p>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <div class="comment-img">
+                                                                            @if ($review->user->photo == null)
+                                                                                <img src="/uploads/userphoto.jpg"
+                                                                                    alt="bienvenue client">
+                                                                            @else
+                                                                                <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
+                                                                                    alt="profile_image"
+                                                                                    class="w-75 border-radius-lg shadow-sm">
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
 
-                                                                    </h6>
-                                                                    <div class="comment-text">
-                                                                        <p>{{ $review->content }}</p>
+                                                                    <div class="col-9">
+
+
+                                                                        <div class="comment-inner ">
+                                                                            <h6 class="commenter">
+                                                                                <a class="hover-flip-item-wrapper"
+                                                                                    href="#">
+                                                                                    <span class="hover-flip-item">
+                                                                                        <span
+                                                                                            data-text="Cameron Williamson">{{ $review->user->first_name }}
+                                                                                            {{ $review->user->last_name }}</span>
+                                                                                    </span>
+                                                                                </a>
+                                                                                <span
+                                                                                    class="commenter-rating ratiing-four-star">
+                                                                                    @for ($i = 0; $i < $review->rate; $i++)
+                                                                                        <a href="#"><i
+                                                                                                class="fas fa-star"></i></a>
+                                                                                    @endfor
+                                                                                </span>
+                                                                                <br>
+                                                                                <p><small>-<i>{{ $review->created_at }}</i></small>
+                                                                                </p>
+
+                                                                            </h6>
+                                                                            <div class="comment-text">
+                                                                                <p>{{ $review->content }}</p>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -333,7 +339,7 @@
                 <div class="section-title-wrapper">
                     <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Your
                         Recently</span>
-                    <h2 class="title">Viewed Items</h2>
+                    <h2 class="title">Produits similaire</h2>
                 </div>
                 <div class="recent-product-activation slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
 
