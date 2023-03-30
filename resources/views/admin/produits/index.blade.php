@@ -320,9 +320,9 @@
                                             {{ $index + 1 }}
                                         </td>
                                         <td>
-                                            <div style="max-width: 200px; min-width: 100px;">
+                                            <div style="max-width: 200px; min-width: 100px; ">
                                                 <img src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                    class="avatar me-3" style="width: 100%; height: auto;">
+                                                    class="avatar me-3 " style="width: 100%; height: auto;">
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">

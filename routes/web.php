@@ -31,13 +31,13 @@ use Illuminate\Support\Facades\Mail;
 
 
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 
-Route::get('/send', function(){
+/*Route::get('/send', function(){
     Mail::to('talbirahma73@gmail.com')->send(new MailVerification());
     return response('sending');
-});
+});*/
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
