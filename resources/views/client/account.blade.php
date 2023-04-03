@@ -95,8 +95,6 @@
                                                     </h6>
                                                     <h6 class="text-secondary py-2">Numéro téléphone:
                                                         <p>{{auth()->user()->phone}}</p></h6>
-                                                    <h6 class="text-secondary py-2">cin: 
-                                                        <p>{{auth()->user()->cin}}</p></h6>
                                                 </div>
                                             </div>
                                     </div>
@@ -185,12 +183,6 @@
                                                         <div class="form-group">
                                                             <label>Nom</label>
                                                             <input name="first_name" type="text" class="form-control" value="{{auth()->user()->first_name}}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label>CIN</label>
-                                                            <input name="cin" type="text" class="form-control" value="{{auth()->user()->cin}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">

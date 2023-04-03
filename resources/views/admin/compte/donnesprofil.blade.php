@@ -190,8 +190,6 @@
                         <a href="" class="h6 text-default text-md">{{ auth()->user()->email }}</a>
                         <h5 class="text-secondary text-uppercase py-4">Numéro téléphone:</h5>
                         <h6 class="text-default text-md">{{ auth()->user()->phone }}</h6>
-                        <h5 class="text-secondary text-uppercase py-4">cin:</h5>
-                        <h6 class="text-default text-md">{{ auth()->user()->cin }}</h6>
                         <h5 class="text-secondary text-uppercase py-4">Réseaux sociaux:</h5>
                         <button type="button" class="btn btn-facebook btn-icon">
                             <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>

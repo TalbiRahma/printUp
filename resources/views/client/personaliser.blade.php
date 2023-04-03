@@ -149,7 +149,7 @@
 
                                 <div class="group-btn">
                                     <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
-                                    <a href="" class="axil-btn btn-bg-secondary">Ajouter au panie</a>
+                                    <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
                                 </div>
                             </div>
                         </div>

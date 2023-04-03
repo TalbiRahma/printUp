@@ -243,11 +243,6 @@
                                     <input name="phone" class="form-control" type="tel"
                                         value="{{ auth()->user()->phone }}" id="example-tel-input">
                                 </div>
-                                <div class="form-group">
-                                    <label for="example-number-input" class="form-control-label">CIN</label>
-                                    <input name="cin" class="form-control" type="number"
-                                        value="{{ auth()->user()->cin }}" id="example-number-input">
-                                </div>
 
 
                             </div>

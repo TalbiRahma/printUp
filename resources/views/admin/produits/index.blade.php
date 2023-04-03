@@ -483,6 +483,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        <div class="pagination justify-content-center" >
+                            {{ $product->links()}}
+                        </div>
                     </div>
 
                 </div>
