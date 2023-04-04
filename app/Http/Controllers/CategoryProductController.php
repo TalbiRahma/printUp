@@ -10,7 +10,7 @@ class CategoryProductController extends Controller
     //
 
     public function index(){
-        $category_product = CategoryProduct::all();
+        $category_product = CategoryProduct::latest()->paginate(10);
         return view('admin.categories.produits.index')->with('category_product' , $category_product);
     }
 

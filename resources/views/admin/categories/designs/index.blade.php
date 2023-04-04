@@ -373,6 +373,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="pagination justify-content-center" >
+                            {{  $category_design->links()}}
+                        </div>
                     </div>
 
                 </div>

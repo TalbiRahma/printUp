@@ -10,7 +10,7 @@ class CategoryDesignController extends Controller
     //
 
     public function index(){
-        $category_design = CategoryDesign::all();
+        $category_design = CategoryDesign::latest()->paginate(10);
         return view('admin.categories.designs.index')->with('category_design' , $category_design);
     }
 

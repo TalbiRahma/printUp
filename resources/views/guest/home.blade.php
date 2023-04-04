@@ -239,7 +239,7 @@
             <div class="container">
                 <div class="section-title-wrapper">
                     <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i>
-                        Categories</span>
+                        Categories Designs</span>
                     <h2 class="title">Parcourir Par Catégorie</h2>
                 </div>
                 <div class="row">
@@ -247,15 +247,15 @@
                         class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
 
 
-                        @foreach ($category_product as $cp)
+                        @foreach ($category_design as $cd)
                             <div class="col-2">
                                 <div class="slick-single-layout">
                                     <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200"
                                         data-sal-duration="500">
                                         <a href="#">
-                                            <img class="img-fluid" src="{{ asset('uploads') }}/{{ $cp->photo }}"
+                                            <img class="img-fluid" src="{{ asset('uploads') }}/{{ $cd->photo }}"
                                                 alt="product categorie">
-                                            <h6 class="cat-title">{{ $cp->name }}</h6>
+                                            <h6 class="cat-title">{{ $cd->name }}</h6>
                                         </a>
                                     </div>
                                     <!-- End .categrie-product -->
