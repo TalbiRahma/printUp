@@ -80,8 +80,40 @@
                             </div>
                             <ul class="mainmenu">
                                 <li>
-                                    <a href="#">Télechargé</a>
+                                    <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Télechargé
+                                    </a>
                                 </li>
+                                <!-- Button trigger modal -->
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Ajouter votre design</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="">
+                                                    <h6>Ajouter vorte design</h6>
+                                                    <h6>Ajouter le non de design</h6>
+                                                    <h6>Ajouter la decription</h6>
+                                                    <h6>Choisir la categorie de votre design</h6>
+                                                    <h6>Ajouter le prix de votre design</h6>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Annuler</button>
+                                                <button type="button" class="btn btn-primary">Ajouter</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <li>
                                     <a href="#">Catalogue design</a>
                                 </li>
@@ -212,11 +244,10 @@
         }
 
         .axil-product-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 
 </body>
