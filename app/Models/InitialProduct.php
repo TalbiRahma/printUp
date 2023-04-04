@@ -28,5 +28,12 @@ public function reviews()
 {
     return $this->hasMany(Review::class, 'initial_product_id', 'id');
 }
-    
-}
+ 
+
+////////////
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'favorite_product', 'user_id', 'initial_product_id');
+    }
+
+}   

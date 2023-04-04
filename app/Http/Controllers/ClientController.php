@@ -108,16 +108,7 @@ class ClientController extends Controller
 
     }
 
-    public function whishlist(){
-
-        $initial_products = InitialProduct::all();
-        $designs = Design::all();
-        $category_product = CategoryProduct::all();
-        $category_design = CategoryDesign::all();
-        
-        return view('client.whishlist', compact('designs', 'initial_products', 'category_product', 'category_design'));
-
-    }
+    
 
     public function addReview(Request $request)
 {

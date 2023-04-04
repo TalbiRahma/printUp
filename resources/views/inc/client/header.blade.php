@@ -104,10 +104,29 @@
                                 <i class="flaticon-magnifying-glass"></i>
                             </a>
                         </li>
-                        <li class="wishlist">
-                            <a href="{{ route('whishlist') }}">
+                        <li class="my-account">
+                            <a href="javascript:void(0)">
                                 <i class="flaticon-heart"></i>
                             </a>
+                            <div class="my-account-dropdown">
+                                <span class="title">Listes Des Favories</span>
+                                <ul>
+                                    <li>
+                                        @if (auth()->user())
+                                            <a href="{{route('product.wishlist')}}">Mes produits favoris</a>
+                                        @else
+                                            <a href="{{ route('register') }}">Mes produits favoris</a>
+                                        @endif
+                                    </li>
+                                    <li>
+                                        @if (auth()->user())
+                                            <a href="#">Mes produits designs</a>
+                                        @else
+                                            <a href="{{ route('register') }}">Mes designs favoris</a>
+                                        @endif
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="shopping-cart">
                             <a href="#" class="cart-dropdown-btn">

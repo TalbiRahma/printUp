@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\MailVerification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -11,10 +13,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
 use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\FavoriteProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Mail\MailVerification;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +61,15 @@ Route::prefix('geust')->group(function (){
 
 /*************CLIENT******** */
 Route::prefix('client')->group(function () {
-    Route::get('/cart', [ClientController::class,'cart'])->name('cart');
-    Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
-    Route::get('/whishlist', [ClientController::class,'whishlist'])->name('whishlist');
+        Route::get('/cart', [ClientController::class,'cart'])->name('cart');
+        Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
+
+    Route::prefix('wishlist')->group(function () {
+        Route::get('/products', [FavoriteProductController::class,'productWishlist'])->name('product.wishlist');
+        Route::post('/products/add', [FavoriteProductController::class,'addToWishlist'])->name('wishlist.add.product');
+        Route::get('/products/delete/{id}', [FavoriteProductController::class,'deleteWishlist'])->name('product.wishlist.delete');
+        Route::get('/designs', [ClientController::class,'wishlist'])->name('wishlist');
+    });
     Route::get('/account', [ClientController::class,'account'])->name('account');
     Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
     Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
