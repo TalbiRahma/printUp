@@ -12,7 +12,7 @@ class InitialProductController extends Controller
 
     public function index(){
         
-        $product = InitialProduct::all();
+        $product = InitialProduct::latest()->paginate(3);
         $category_product = CategoryProduct::all();
         return view('admin.produits.index')->with('product' , $product)->with('category_product' , $category_product);
     }

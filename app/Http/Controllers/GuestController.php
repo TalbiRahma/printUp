@@ -15,7 +15,7 @@ class GuestController extends Controller
 
     public function home(){
 
-        $initial_products = InitialProduct::all();
+        $initial_products = InitialProduct::latest()->paginate(8);
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();

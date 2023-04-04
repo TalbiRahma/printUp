@@ -20,7 +20,6 @@ class AdminSeeder extends Seeder
 
         DB::table('users')->insert(
             [
-                'cin' => '11970216',
                 'first_name' => 'Admin',
                 'last_name' => 'Admin',
                 'email' => 'printUp.laravel@gmail.com',
