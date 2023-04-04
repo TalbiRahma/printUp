@@ -217,6 +217,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="pagination justify-content-center" >
+                        {{ $clients->links()}}
+                    </div>
                 </div>
             </div>
         </div>

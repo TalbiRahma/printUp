@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function clients()
     {
-        $clients = User::where('role', 'user')->get();
+        $clients = User::where('role', 'user')->latest()->paginate(10);
         return view('admin.clients.index')->with('clients' , $clients);
     }
 
