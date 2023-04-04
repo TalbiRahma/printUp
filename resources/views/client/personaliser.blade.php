@@ -80,20 +80,113 @@
                             </div>
                             <ul class="mainmenu">
                                 <li>
-                                    <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <a type="button" class="" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
                                         Télechargé
                                     </a>
                                 </li>
                                 <!-- Button trigger modal -->
 
+                                <!-- Product Quick View Modal Start -->
+                                <div class="modal fade quick-view-product" id="exampleModal" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Ajouter votre design
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"><i class="far fa-times"></i></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="single-product-thumb">
+                                                        <form class="singin-form" method="POST" action="" enctype="multipart/form-data">
+                                                            @csrf 
+                                                            
+                                                                <div class="col-6">
+                                                                    <label>Ajouter votre design</label>
+                                                                    <div class="form-group ">
+                                                                        
+                                                                        <input name="photo"  type="file" class="input-group-text form-control"accept="image/*">
+                                                                        @error('photo')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="form-group">
+                                                                        <label>Ajouter le nom de design</label>
+                                                                        <input name="name" type="text"
+                                                                            class="form-control"
+                                                                            placeholder="Nom de Design" required
+                                                                             autofocus>
+                                                                        @error('name')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                            <div class="form-group mb-5">
+                                                                <label>Ajouter la decription</label>
+                                                                <textarea name="description" type="text"
+                                                                    class="form-control" placeholder="Description"
+                                                                     required></textarea>
+                                
+                                                                @error('description')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="form-group mb-5">
+                                                                <label>Choisir la categorie de votre design</label>
+                                                                <select class="form-control" name="category_product"
+                                                                    id="choices-button" placeholder="Departure">
+                                                                    
+                                                                </select>
+                                
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="form-group mb-5">
+                                                                <label>Ajouter le prix de votre design</label>
+                                                                <input name="price" type="text" class="form-control"
+                                                                    placeholder="Prix de design" required >
+                                                                    @error('price')
+                                                                        <div class="class alert alert-danger">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                            </div>
+                                                            <div class="form-group mb-5">
+                                                                <button type="submit" class="axil-btn btn-bg-primary submit-btn">Ajouter Design</button>
+                                                            </div>
+                                                        </form>
+                                                        
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product Quick View Modal End -->
+
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                <div class="modal fade" id="exampleModal111111" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Ajouter votre design</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Ajouter votre design
+                                                </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>

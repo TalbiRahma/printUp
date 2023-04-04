@@ -321,7 +321,7 @@
                                                             href="{{ route('products.details', ['id' => $p->id ?? '']) }}"><i
                                                                 class="far fa-eye"></i></a></li>
                                                     <li class="select-option">
-                                                        <a href="single-product.html">
+                                                        <a href="{{route('personaliser')}}">
                                                             Personnalisé
                                                         </a>
                                                     </li>
