@@ -104,16 +104,19 @@
                                                             @csrf 
                                                             
                                                                 <div class="col-6">
-                                                                    <label>Ajouter votre design</label>
-                                                                    <div class="form-group ">
+                                                                    <label class="ps-5">Ajouter votre design</label>
+                                                                    <div class="form-group">
+                                                                        <div class="input-group mb-3">
                                                                         
-                                                                        <input name="photo"  type="file" class="input-group-text form-control"accept="image/*">
+                                                                        <input type="file" class="form-control" name="photo" accept="image/*" aria-describedby="button-addon2" placeholder="Ajouter votre design">
                                                                         @error('photo')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
                                                                             </span>
                                                                         @enderror
                                                                     </div>
+                                                                    </div>
+                                                                    
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <div class="form-group">
@@ -179,34 +182,7 @@
                                 <!-- Product Quick View Modal End -->
 
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal111111" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Ajouter votre design
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="">
-                                                    <h6>Ajouter vorte design</h6>
-                                                    <h6>Ajouter le non de design</h6>
-                                                    <h6>Ajouter la decription</h6>
-                                                    <h6>Choisir la categorie de votre design</h6>
-                                                    <h6>Ajouter le prix de votre design</h6>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Annuler</button>
-                                                <button type="button" class="btn btn-primary">Ajouter</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <li>
                                     <a href="#">Catalogue design</a>
                                 </li>

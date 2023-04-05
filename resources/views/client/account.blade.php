@@ -93,12 +93,22 @@
             data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
-                    </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+                    <ul class="navbar-nav  justify-content">
+                        <li class="nav-item dropdown px-3 d-flex align-items-center">
+                                <a href="javascript:;" class="nav-link font-weight-bolder text-white p-0" id="dropdownMagasin"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Magasin
+                            </a>
+                            <ul class="dropdown-menu"
+                                aria-labelledby="dropdownMagasin">
+                                <li class="mb-2"><a class="dropdown-item border-radius-md font-weight-bold" href="{{ route('products.index') }}">Produits</a></li>
+                                <li class="mb-2"><a class="dropdown-item border-radius-md font-weight-bold" href="{{ route('designs.index') }}">Designs</a></li>
+                                <li class="mb-2"><a class="dropdown-item border-radius-md font-weight-bold" href="{{ route('Costumize.products.index') }}">Personnaliser</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center"><a href=""
+                                class="font-weight-bolder text-white">Dashboard</a></li>
+                    </ul>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">

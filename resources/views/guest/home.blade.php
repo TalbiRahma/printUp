@@ -35,14 +35,30 @@
     <header class="header axil-header header-style-1">
         <div class="axil-header-top">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-end">
 
-                    <div class="col-sm-6">
-                        <div class="header-top-link">
+                    <div class="col-sm-6 ">
+                        <div class="header-top-link ">
                             <ul class="quick-link">
-                                <li><a href="#">Help</a></li>
-                                <li><a href="sign-up.html">Join Us</a></li>
-                                <li><a href="sign-in.html">Sign In</a></li>
+                                @if (auth()->user())
+                                    <li><a href="{{ route('login') }}"
+                                            onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"
+                                            class="btn-link">Déconnexion</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ route('login') }}" class="btn-link">Connexion</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('register') }}" class="btn-link">Inscrire</a>
+
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -55,10 +71,10 @@
             <div class="container">
                 <div class="header-navbar">
                     <div class="header-brand">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="{{ route('home') }}" class="logo logo-dark">
                             <img src="{{ asset('/mainassets/images/logo/logo.png') }}" alt="Site Logo">
                         </a>
-                        <a href="index.html" class="logo logo-light">
+                        <a href="{{ route('home') }}" class="logo logo-light">
                             <img src="{{ asset('/mainassets/images/logo/logo-light.png') }}" alt="Site Logo">
                         </a>
                     </div>
@@ -67,13 +83,18 @@
                         <nav class="mainmenu-nav">
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
-                                <a href="index.html" class="logo">
+                                <a href="{{ route('home') }}" class="logo">
                                     <img src="{{ asset('/mainassets/images/logo/logo.png') }}888888" alt="Site Logo">
                                 </a>
                             </div>
                             <ul class="mainmenu">
-                                <li class="">
+                                <li class="menu-item-has-children">
                                     <a href="#">Magasin</a>
+                                <ul class="axil-submenu">
+                                    <li><a href="{{ route('products.index') }}">Produits</a></li>
+                                    <li><a href="{{ route('designs.index') }}">Designs</a></li>
+                                    <li><a href="{{ route('Costumize.products.index') }}">Personnaliser</a></li>
+                                </ul>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">Categories</a>
@@ -119,7 +140,7 @@
                                     <ul>
                                         <li>
                                             @if (auth()->user())
-                                                <a href="{{route('product.wishlist')}}">Mes produits favoris</a>
+                                                <a href="{{ route('product.wishlist') }}">Mes produits favoris</a>
                                             @else
                                                 <a href="{{ route('register') }}">Mes produits favoris</a>
                                             @endif
@@ -321,15 +342,18 @@
                                                             href="{{ route('products.details', ['id' => $p->id ?? '']) }}"><i
                                                                 class="far fa-eye"></i></a></li>
                                                     <li class="select-option">
-                                                        <a href="{{route('personaliser')}}">
+                                                        <a href="{{ route('personaliser') }}">
                                                             Personnalisé
                                                         </a>
                                                     </li>
                                                     <li class="wishlist">
-                                                        <form method="post" action="{{ route('wishlist.add.product')}}">
+                                                        <form method="post"
+                                                            action="{{ route('wishlist.add.product') }}">
                                                             @csrf
-                                                            <input type="hidden" name="product_id" value="{{ $p->id }}">
-                                                            <a href="javascript:void(0)"><button type="submit"><i class="far fa-heart"></i></button></a>
+                                                            <input type="hidden" name="product_id"
+                                                                value="{{ $p->id }}">
+                                                            <a href="javascript:void(0)"><button type="submit"><i
+                                                                        class="far fa-heart"></i></button></a>
                                                         </form>
                                                     </li>
                                                 </ul>
