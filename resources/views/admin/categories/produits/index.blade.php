@@ -298,7 +298,7 @@
                                     <a class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#categorieModif{{ $cp->id }}">Modifier</a>
                                     <!--Modal Modifier produit-->
-                                    @foreach ($category_product as $index => $cp)
+                                    
                                         <div class="modal fade" id="categorieModif{{ $cp->id }}"
                                             tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
                                             aria-hidden="true">
@@ -360,7 +360,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    
                                     <!--End modal modifier produit-->
                                     <a onclick="return confirm('Voulez-vous vraiment supprimer cette categorie de produits?')"
                                         href="{{ route('delete.category_product', ['id' => $cp->id ]) }}"

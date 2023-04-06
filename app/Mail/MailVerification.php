@@ -10,17 +10,17 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class MailVerification extends Mailable
-{
+{    
     use Queueable, SerializesModels;
-
+    protected $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data=$data;
     }
 
     /**
@@ -44,7 +44,10 @@ class MailVerification extends Mailable
     {
         return new Content(
             markdown: 'emails.mailverification',
+            with: ['content'=>$this->data['content']]
         );
+        
+    
     }
 
     /**
@@ -56,4 +59,6 @@ class MailVerification extends Mailable
     {
         return [];
     }
+
+    
 }

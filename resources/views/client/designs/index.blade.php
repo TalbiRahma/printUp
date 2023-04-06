@@ -37,70 +37,62 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link active" href="#nav-account">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Tableau de bord</span>
+                        <span class="nav-link-text ms-1">Compte</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('users') }}">
+                    <a class="nav-link " href="#nav-boutique">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Clients</span>
+                        <span class="nav-link-text ms-1">Modifier Compte</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('category_product') }}">
+                    <a class="nav-link " href="../pages/billing.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
+                        <span class="nav-link-text ms-1">Ma Boutique</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category_design') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Designs</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('products') }}">
+                    <a class="nav-link " href="../pages/virtual-reality.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Produits</span>
+                        <span class="nav-link-text ms-1">Commande</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/commandes">
+                    <a class="nav-link " href="{{route('designs')}}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                            <i class="ni ni-app text-info text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Commandes</span>
+                        <span class="nav-link-text ms-1">Mes Design</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/admin/paiement">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Paiement</span>
-                    </a>
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        <i class="ni ni-collection text-info text-sm opacity-10"></i>
+                        <span class="nav-link-text ms-1">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
@@ -112,24 +104,40 @@
             data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Clients</li>
-                    </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Clients</h6>
+                    <ul class="navbar-nav  justify-content">
+                        <li class="nav-item dropdown px-3 d-flex align-items-center">
+                                <a href="javascript:;" class="nav-link font-weight-bolder text-white p-0" id="dropdownMagasin"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Magasin
+                            </a>
+                            <ul class="dropdown-menu"
+                                aria-labelledby="dropdownMagasin">
+                                <li class="mb-2"><a class="dropdown-item border-radius-md font-weight-bold" href="{{ route('products.index') }}">Produits</a></li>
+                                <li class="mb-2"><a class="dropdown-item border-radius-md font-weight-bold" href="{{ route('designs.index') }}">Designs</a></li>
+                                <li class="mb-2"><a class="dropdown-item border-radius-md font-weight-bold" href="{{ route('Costumize.products.index') }}">Personnaliser</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center"><a href=""
+                                class="font-weight-bolder text-white">Dashboard</a></li>
+                    </ul>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        @include('inc.admin.globalsearch')
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search"
+                                    aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Type here...">
+                        </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
-                        <!--profile-->
                         <li class="nav-item d-flex align-items-center">
-                            @include('inc.admin.profile')
+                            <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                                <i class="fa fa-user me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Sign In</span>
+                            </a>
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
                                     <i class="sidenav-toggler-line bg-white"></i>
                                     <i class="sidenav-toggler-line bg-white"></i>
@@ -137,14 +145,101 @@
                                 </div>
                             </a>
                         </li>
-
-                        <!--notificaton-->
-                        @include('inc.admin.notification')
-            <!--end notificaton-->
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0">
+                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+                        <!--notification-->
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-bell cursor-pointer"></i>
+                            </a>
+                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                                aria-labelledby="dropdownMenuButton">
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">New message</span> from Laur
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="../assets/img/small-logos/logo-spotify.svg"
+                                                    class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">New album</span> by Travis Scott
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                                                <svg width="12px" height="12px" viewBox="0 0 43 36"
+                                                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <title>credit-card</title>
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <g transform="translate(-2169.000000, -745.000000)"
+                                                            fill="#FFFFFF" fill-rule="nonzero">
+                                                            <g transform="translate(1716.000000, 291.000000)">
+                                                                <g transform="translate(453.000000, 454.000000)">
+                                                                    <path class="color-background"
+                                                                        d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
+                                                                        opacity="0.593633743"></path>
+                                                                    <path class="color-background"
+                                                                        d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                                                    </path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    Payment successfully completed
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--endnotification-->
                     </ul>
                 </div>
             </div>
-        </nav>  
+        </nav> 
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="card card-frame">
@@ -251,10 +346,10 @@
                                                 </div>
                                                 <label>Categorie</label>
                                                 <div class="input-group mb-3"> 
-                                                    <select class="form-control" name="category_product"
+                                                    <select class="form-control" name="category_design"
                                                         id="choices-button" placeholder="Departure">
-                                                        @foreach ($category_product as $cp)
-                                                            <option value="{{ $cp->id }}">{{ $cp->name }}
+                                                        @foreach ($category_design as $cd)
+                                                            <option value="{{ $cd->id }}">{{ $cd->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -300,13 +395,11 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                         style="width: 25%;">Image</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 15%;">Produit</th>
+                                        style="width: 15%;">Design</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                         style="width: 20%;">Description</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
                                         style="width: 10%;">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 10%;">Taille</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
                                         style="width: 10%;">Categorie</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
@@ -314,66 +407,50 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($product as $index => $p)
+                                @foreach ($design as $index => $d)
                                     <tr>
                                         <td class="align-middle text-sm">
                                             {{ $index + 1 }}
                                         </td>
                                         <td>
                                             <div style="max-width: 200px; min-width: 100px; ">
-                                                <img src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                <img src="{{ asset('uploads') }}/{{ $d->photo }}"
                                                     class="avatar me-3 " style="width: 100%; height: auto;">
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">
                                             <div class="d-flex px-2">
                                                 <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">{{ $p->name }}</h5>
+                                                    <h5 class="mb-0 text-sm">{{ $d->name }}</h5>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">
                                             <p class="text-xs text-secondary mb-0 force-line-break">
-                                                {{ $p->description }}</p>
+                                                {{ $d->description }}</p>
                                         </td>
                                         <td class="align-middle text-sm">
                                             <div class="d-flex px-2">
                                                 <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">{{ $p->price }} TND</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="d-flex px-2">
-                                                <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">
-                                                        @if ($p->sizes)
-                                                            @php $sizes = json_decode($p->sizes, true); @endphp
-                                                            @foreach ($sizes as $size)
-                                                                <span
-                                                                    class="badge badge-secondary">{{ $size }}</span>
-                                                            @endforeach
-                                                            {{ implode(',', $sizes) }}
-                                                        @endif
-                                                    </h5>
+                                                    <h5 class="mb-0 text-sm">{{ $d->price }} TND</h5>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                                data-toggle="tooltip"
-                                                data-original-title="afficher liste de categories">
-                                                {{ $p->categorie_products->name }}
-                                            </a>
+                                            <div class="d-flex px-2">
+                                                <div class="my-auto">
+                                                    <h5 class="mb-0 text-sm">{{ $d->categorie_designs->name }}</h5>
+                                                </div>
+                                            </div>
                                         </td>
 
                                         <td class="align-middle ">
                                             <button type="button" class="btn bg-gradient-primary btn-sm"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#produitModif{{ $p->id }}">Modifier</button>
+                                                data-bs-target="#produitModif{{ $d->id }}">Modifier</button>
 
                                             <!--Modal modif produit-->
-                                            <div class="modal fade" id="produitModif{{ $p->id }}"
+                                            <div class="modal fade" id="produitModif{{ $d->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-md"
@@ -385,18 +462,18 @@
                                                                     <h3
                                                                         class="font-weight-bolder text-primary text-gradient">
                                                                         Modifier Produit : </h3>
-                                                                    <h4 class="mb-0">{{ $p->name }}</h4>
+                                                                    <h4 class="mb-0">{{ $d->name }}</h4>
                                                                 </div>
                                                                 <form action="{{ route('edit.product') }}" method="POST"
                                                                     enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div class="card-body pb-3">
                                                                         <input type="hidden" name="id_product"
-                                                                            value="{{ $p->id }}">
+                                                                            value="{{ $d->id }}">
 
                                                                         <div
                                                                             style="max-width: 200px; min-width: 100px;">
-                                                                            <img src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                                            <img src="{{ asset('uploads') }}/{{ $d->photo }}"
                                                                                 class="avatar me-3"
                                                                                 style="width: 100%; height: auto;">
                                                                         </div>
@@ -408,11 +485,11 @@
                                                                                 placeholder="Nom de Produit"
                                                                                 aria-label="Name"
                                                                                 aria-describedby="name-addon"
-                                                                                value="{{ $p->name }}">
+                                                                                value="{{ $d->name }}">
                                                                         </div>
                                                                         <label>Description</label>
                                                                         <div class="input-group mb-3">
-                                                                            <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $p->description }}</textarea>
+                                                                            <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $d->description }}</textarea>
                                                                         </div>
                                                                         <label>Prix</label>
                                                                         <div class="input-group mb-3">
@@ -420,7 +497,7 @@
                                                                                 class="form-control"
                                                                                 placeholder="Prix de produit"
                                                                                 aria-label="Name"
-                                                                                aria-describedby="name-addon"value="{{ $p->price }}">
+                                                                                aria-describedby="name-addon"value="{{ $d->price }}">
                                                                         </div>
                                                                         <label>Taille</label>
                                                                         <div class="input-group mb-3">
@@ -442,10 +519,10 @@
                                                                         <div class="input-group mb-3">
                                                                             <select name="category_product"
                                                                                 class="form-select">
-                                                                                @foreach ($category_product as $category)
+                                                                                @foreach ($category_design as $category)
                                                                                     <option
                                                                                         value="{{ $category->id }}"
-                                                                                        {{ $category->id == $p->category_product_id ? 'selected' : '' }}>
+                                                                                        {{ $category->id == $d->category_design_id ? 'selected' : '' }}>
                                                                                         {{ $category->name }}
                                                                                     </option>
                                                                                 @endforeach
@@ -473,8 +550,8 @@
                                                 </div>
                                             </div>
                                             <!--End modal ajout produit-->
-                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                                href="{{ route('delete.product', ['id' => $p->id ]) }}"
+                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
+                                                href="{{ route('delete.design', ['id' => $d->id ]) }}"
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
@@ -485,7 +562,7 @@
                         </table>
 
                         <div class="pagination justify-content-center" >
-                            {{ $product->links()}}
+                            {{ $design->links()}}
                         </div>
                     </div>
 

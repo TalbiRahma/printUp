@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DesignController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\FavoriteProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ProduitPersonnaliserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -73,7 +75,18 @@ Route::prefix('client')->group(function () {
     Route::get('/account', [ClientController::class,'account'])->name('account');
     Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
     Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
+    
+    /***********client DESIGN***** */
+    Route::prefix('designs')->group(function () {
+        Route::get('', [DesignController::class, 'index'])->name('designs');
+        Route::post('/add', [DesignController::class, 'ajouterDesign'])->name('add.design');
+        Route::get('/{id}/delete', [DesignController::class, 'supprimerDesign'])->name('delete.design');
+        Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
+        Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
+    });
+
     Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
+    Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
 });
 
 

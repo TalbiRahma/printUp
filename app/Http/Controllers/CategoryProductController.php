@@ -45,6 +45,7 @@ class CategoryProductController extends Controller
 
     public function supprimerCategroieProduit($id){
 
+        
         $category_product = CategoryProduct::find($id);
 
        $file_path = public_path().'/uploads/'.$category_product->photo;

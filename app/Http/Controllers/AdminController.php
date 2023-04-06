@@ -95,4 +95,5 @@ class AdminController extends Controller
     public function donnesProfil(){
         return view('admin.compte.donnesprofil');
     }
+    
 }

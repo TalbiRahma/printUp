@@ -27,7 +27,7 @@ class InitialProductController extends Controller
             'photo' => 'required',
             
 
-        ]);
+        ]); 
 
         $product = new InitialProduct();
         $product->name = $request->name;
@@ -126,4 +126,5 @@ class InitialProductController extends Controller
 
         return view('admin.produits.index' , compact('product','category_product'));
     }
+    
 }

@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('produit_personnalisers', function (Blueprint $table) {
             $table->id();
-
+            $table->unsignedBigInteger('design_id');
+            $table->foreign('design_id')->references('id')->on('designs')->onDelete('cascade');
+            $table->unsignedBigInteger('initial_product_id');
+            $table->foreign('initial_product_id')->references('id')->on('initial_products')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -100,80 +100,86 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="single-product-thumb">
-                                                        <form class="singin-form" method="POST" action="" enctype="multipart/form-data">
-                                                            @csrf 
-                                                            
-                                                                <div class="col-6">
-                                                                    <label class="ps-5">Ajouter votre design</label>
-                                                                    <div class="form-group">
-                                                                        <div class="input-group mb-3">
-                                                                        
-                                                                        <input type="file" class="form-control" name="photo" accept="image/*" aria-describedby="button-addon2" placeholder="Ajouter votre design">
-                                                                        @error('photo')
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>{{ $message }}</strong>
-                                                                            </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <div class="form-group">
-                                                                        <label>Ajouter le nom de design</label>
-                                                                        <input name="name" type="text"
-                                                                            class="form-control"
-                                                                            placeholder="Nom de Design" required
-                                                                             autofocus>
-                                                                        @error('name')
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>{{ $message }}</strong>
-                                                                            </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                            
-                                                            <div class="form-group mb-5">
-                                                                <label>Ajouter la decription</label>
-                                                                <textarea name="description" type="text"
-                                                                    class="form-control" placeholder="Description"
-                                                                     required></textarea>
-                                
-                                                                @error('description')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group mb-5">
-                                                                <label>Choisir la categorie de votre design</label>
-                                                                <select class="form-control" name="category_product"
-                                                                    id="choices-button" placeholder="Departure">
-                                                                    
-                                                                </select>
-                                
-                                                                @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group mb-5">
-                                                                <label>Ajouter le prix de votre design</label>
-                                                                <input name="price" type="text" class="form-control"
-                                                                    placeholder="Prix de design" required >
-                                                                    @error('price')
-                                                                        <div class="class alert alert-danger">
-                                                                            {{ $message }}
-                                                                        </div>
+                                                    <form class="singin-form" method="POST" action="{{ route('add.design') }}"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="col-6">
+                                                            <label class="ps-5">Ajouter votre design</label>
+                                                            <div class="form-group">
+                                                                <div class="input-group mb-3">
+
+                                                                    <input type="file" class="form-control"
+                                                                        name="photo" accept="image/*"
+                                                                        aria-describedby="button-addon2"
+                                                                        placeholder="Ajouter votre design">
+                                                                    @error('photo')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
                                                                     @enderror
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group mb-5">
-                                                                <button type="submit" class="axil-btn btn-bg-primary submit-btn">Ajouter Design</button>
+
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label>Ajouter le nom de design</label>
+                                                                <input name="name" type="text"
+                                                                    class="form-control" placeholder="Nom de Design"
+                                                                    required autofocus>
+                                                                @error('name')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
-                                                        </form>
-                                                        
-                                                    
+                                                        </div>
+
+                                                        <div class="form-group mb-5">
+                                                            <label>Ajouter la decription</label>
+                                                            <textarea name="description" type="text" class="form-control" placeholder="Description" required></textarea>
+
+                                                            @error('description')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group mb-5">
+                                                            <label>Choisir la categorie de votre design</label>
+                                                            <select class="form-control" name="category_design"
+                                                                id="choices-button" placeholder="Departure">
+                                                                @foreach ($category_design as $cd)
+                                                                    <option value="{{ $cd->id }}">
+                                                                        {{ $cd->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+
+                                                            @error('password')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group mb-5">
+                                                            <label>Ajouter le prix de votre design</label>
+                                                            <input name="price" type="text" class="form-control"
+                                                                placeholder="Prix de design" required>
+                                                            @error('price')
+                                                                <div class="class alert alert-danger">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group mb-5">
+                                                            <button type="submit"
+                                                                class="axil-btn btn-bg-primary submit-btn">Ajouter
+                                                                Design</button>
+                                                        </div>
+                                                    </form>
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +188,7 @@
                                 <!-- Product Quick View Modal End -->
 
 
-                                
+
                                 <li>
                                     <a href="#">Catalogue design</a>
                                 </li>
@@ -213,7 +219,8 @@
                             <div class="col">
                                 <div class="axil-product-list">
                                     <div class="product-content1">
-                                        <img src="{{ asset('uploads/T-shirt.jpg') }}" alt="Product">
+                                        <img src="{{ asset('uploads') }}/{{ $initial_product->photo }}"
+                                            alt="Product">
                                     </div>
                                 </div>
                             </div>
@@ -243,8 +250,32 @@
                             </div>
                             <div class="row col-12 ps-4 mt-3">
                                 <h3>Nom produit personanlisée</h3>
-                                <h5 class="text-secondary mb-3">Prix Produit Initial: 30 TND</h5>
-                                <h6 class="text-secondary">size: xs , s</h6>
+                                <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
+                                    {{ $initial_product->price }} TND</h5>
+                                <div class="product-variations-wrapper">
+
+                                    <!-- Start Product Variation  -->
+                                    <div class="product-variation product-size-variation">
+                                        @if ($initial_product->sizes)
+                                            @php $sizes = json_decode($initial_product->sizes, true); @endphp
+                                            <div class="product-variation">
+                                                @if (count($sizes) > 0)
+                                                    <h6 class="title">Size:</h6>
+                                                @endif
+                                                <ul class="range-variant">
+
+                                                    @foreach ($sizes as $size)
+                                                        <li>{{ $size }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+
+                                        @endif
+                                    </div>
+                                    <!-- End Product Variation  -->
+
+                                </div>
+
 
                                 <h5>Total: 45 TND</h5>
 
