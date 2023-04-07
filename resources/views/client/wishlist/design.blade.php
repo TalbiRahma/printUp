@@ -50,21 +50,24 @@
                             <tr>
                                 <th scope="col" class="product-remove"></th>
                                 <th scope="col" class="product-thumbnail">image</th>
-                                <th scope="col" class="product-title">Produit</th>
+                                <th scope="col" class="product-title">Design</th>
                                 <th scope="col" class="product-price">Prix</th>
                                 
                                 <th scope="col" class="product-add-cart"></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($designs as $d)
                             <tr>
-                                <td class="product-remove"><a href="#" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
-                                <td class="product-thumbnail"><a href="single-product.html"><img src="{{asset('/mainassets/images/product/electric/product-01.png')}}" alt="Digital Product"></a></td>
-                                <td class="product-title"><a href="single-product.html">Wireless PS Handler</a></td>
-                                <td class="product-price" data-title="Price">124.00<span class="currency-symbol"> TND</span></td>
+                                <td class="product-remove"><a href="{{ route('wishlist.delete.design', ['id' => $d->id]) }}" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
+                                <td class="product-thumbnail"><a href="single-product.html"><img src="{{asset('uploads')}}/{{$d->photo}}" alt="{{$d->name}}" alt="Digital Design"></a></td>
+                                <td class="product-title"><a href="single-product.html">{{$d->name}}</a></td>
+                                <td class="product-price" data-title="Price">{{$d->price}}<span class="currency-symbol"> TND</span></td>
                                 
                                 <td class="product-add-cart"><a href="cart.html" class="axil-btn btn-outline">Ajouter au panier</a></td>
                             </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>

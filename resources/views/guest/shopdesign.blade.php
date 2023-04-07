@@ -82,46 +82,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="toggle-list product-color active">
-                                <h6 class="title">COULEUR</h6>
-                                <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#" class="color-extra-01"></a></li>
-                                        <li><a href="#" class="color-extra-02"></a></li>
-                                        <li><a href="#" class="color-extra-03"></a></li>
-                                        <li><a href="#" class="color-extra-04"></a></li>
-                                        <li><a href="#" class="color-extra-05"></a></li>
-                                        <li><a href="#" class="color-extra-06"></a></li>
-                                        <li><a href="#" class="color-extra-07"></a></li>
-                                        <li><a href="#" class="color-extra-08"></a></li>
-                                        <li><a href="#" class="color-extra-09"></a></li>
-                                        <li><a href="#" class="color-extra-10"></a></li>
-                                        <li><a href="#" class="color-extra-11"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="toggle-list product-size active">
-                                <h6 class="title">TAILLE</h6>
-                                <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#">Standar</a></li>
-                                        <li><a href="#">XS</a></li>
-                                        <li><a href="#">S</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">XL</a></li>
-                                        <li><a href="#">XXL</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                             <div class="toggle-list product-price-range active">
                                 <h6 class="title">PRIX</h6>
                                 <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#">30</a></li>
-                                        <li><a href="#">5000</a></li>
-                                    </ul>
                                     <form action="#" class="mt--25">
                                         <div id="slider-range"></div>
                                         <div class="flex-center mt--20">
@@ -158,35 +122,44 @@
                             </div>
                         </div>
                         <!-- End .row -->
-                        <div class="row row--15">
+                        <div class="row row--15"> 
+                            @foreach ($designs as $d)
                             <div class="col-xl-4 col-sm-6">
                                 <div class="axil-product product-style-one mb--30">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img src="{{ asset('/mainassets/images/product/electric/product-01.png') }}"
-                                                alt="Product Images">
-                                        </a>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i
-                                                            class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="cart.html">Personnalisé</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#quick-view-modal"><i
-                                                            class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">name produit</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price current-price">30TND</span>
+                                    <div class="slick-single-layout">
+                                        <div class="axil-product product-style-two">
+                                            <div class="thumbnail">
+                                                <a href="single-product.html">
+                                                    <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
+                                                        src="{{ asset('uploads') }}/{{ $d->photo }}"
+                                                        alt="Product Images">
+                                                </a>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="inner">
+                                                    <h5 class="title"><a href="single-product.html">{{$d->name}}</a></h5>
+                                                    <h6 class=""><a href="single-product.html">boutique</a></h6>
+                                                    <div class="product-price-variant">
+                                                        <span class="price current-price">{{$d->price}} TND</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-hover-action">
+                                                    <ul class="cart-action">
+                                                        <li class="quickview"><a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a>
+                                                        </li>
+                                                        <li class="select-option"><a href="single-product.html">Personnalisé</a>
+                                                        </li>
+                                                        <li class="wishlist"><a href="wishlist.html"><i
+                                                                    class="far fa-heart"></i></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                             <!-- End Single Product  -->
                             <div class="text-center pt--20">
                                 <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Voire plus</a>

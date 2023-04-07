@@ -16,6 +16,7 @@ use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\FavoriteProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\FavoriteDesignController;
 use App\Http\Controllers\ProduitPersonnaliserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -50,12 +51,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [GuestController::class, 'home'])->name('home');
 
-Route::prefix('geust')->group(function (){
-    Route::get('/shop/products', [GuestController::class, 'indexProduits'])->name('products.index');
-    Route::get('/shop/products/filter', [GuestController::class, 'filter'])->name('products.filter');
-    Route::get('/shop/products/{id}/details', [GuestController::class, 'productDetails'])->name('products.details');
-    Route::get('/shop/designs', [GuestController::class, 'shopDesign'])->name('designs.index');
-    Route::get('/shop/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products.index');
+Route::prefix('geust/shop')->group(function (){
+    Route::get('/products', [GuestController::class, 'indexProduits'])->name('products.index');
+    Route::get('/products/filter', [GuestController::class, 'filter'])->name('products.filter');
+    Route::get('/products/{id}/details', [GuestController::class, 'productDetails'])->name('products.details');
+    Route::get('/designs', [GuestController::class, 'shopDesign'])->name('designs.index');
+    Route::get('/designs/{id}/details', [GuestController::class, 'designDetails'])->name('designs.details');
+    Route::get('/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products.index');
 });
 
 
@@ -66,11 +68,21 @@ Route::prefix('client')->group(function () {
         Route::get('/cart', [ClientController::class,'cart'])->name('cart');
         Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
 
+
+    /***************WISHLIST******* */
     Route::prefix('wishlist')->group(function () {
-        Route::get('/products', [FavoriteProductController::class,'productWishlist'])->name('product.wishlist');
-        Route::post('/products/add', [FavoriteProductController::class,'addToWishlist'])->name('wishlist.add.product');
-        Route::get('/products/delete/{id}', [FavoriteProductController::class,'deleteWishlist'])->name('product.wishlist.delete');
-        Route::get('/designs', [ClientController::class,'wishlist'])->name('wishlist');
+        /***********PRODUCT WISHLIST******** */
+        Route::prefix('products')->group(function () {
+            Route::get('', [FavoriteProductController::class,'productWishlist'])->name('product.wishlist');
+            Route::post('/add', [FavoriteProductController::class,'addToWishlist'])->name('wishlist.add.product');
+            Route::get('/delete/{id}', [FavoriteProductController::class,'deleteWishlist'])->name('product.wishlist.delete');
+        });
+         /***********DESIGN WISHLIST******** */
+        Route::prefix('designs')->group(function () {
+        Route::get('', [FavoriteDesignController::class,'designWishlist'])->name('design.wishlist');
+        Route::post('/add', [FavoriteDesignController::class,'addToWishlist'])->name('wishlist.add.design');
+        Route::get('/delete/{id}', [FavoriteDesignController::class,'deleteWishlist'])->name('wishlist.delete.design');
+        });
     });
     Route::get('/account', [ClientController::class,'account'])->name('account');
     Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');

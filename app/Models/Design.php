@@ -24,4 +24,10 @@ class Design extends Model
     {
         return $this->belongsToMany(InitialProduct::class, 'produit_personnaliser', 'design_id', 'initial_product_id');
     }
+
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'favorite_design', 'user_id', 'design_id');
+    }
 }

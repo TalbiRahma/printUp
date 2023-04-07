@@ -147,7 +147,7 @@
                                         </li>
                                         <li>
                                             @if (auth()->user())
-                                                <a href="#">Mes produits designs</a>
+                                                <a href="{{route('design.wishlist')}}">Mes produits designs</a>
                                             @else
                                                 <a href="{{ route('register') }}">Mes designs favoris</a>
                                             @endif
@@ -339,10 +339,10 @@
                                             <div class="product-hover-action">
                                                 <ul class="cart-action">
                                                     <li class="quickview"><a
-                                                            href="{{ route('products.details', ['id' => $p->id ?? '']) }}"><i
+                                                            href="{{ route('products.details', ['id' => $p->id ]) }}"><i
                                                                 class="far fa-eye"></i></a></li>
                                                     <li class="select-option">
-                                                        <a href="{{ route('personnaliser-produit',['id' => $p->id]) }}">
+                                                        <a href="{{route('personnaliser-produit', ['id' => $p->id])}}">
                                                             Personnalisé
                                                         </a>
                                                     </li>
@@ -411,41 +411,50 @@
                     <div
                         class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
                         <!-- End .slick-single-layout -->
+                        @foreach ($designs as $d)
                         <div class="slick-single-layout">
                             <div class="axil-product product-style-two">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
                                         <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
-                                            src="{{ asset('/mainassets/images/product/electric/product-06.png') }}"
+                                            src="{{ asset('uploads') }}/{{ $d->photo }}"
                                             alt="Product Images">
                                     </a>
                                 </div>
                                 <div class="product-content">
                                     <div class="inner">
-                                        <h5 class="title"><a href="single-product.html">name design</a></h5>
+                                        <h5 class="title"><a href="single-product.html">{{$d->name}}</a></h5>
                                         <h6 class=""><a href="single-product.html">boutique</a></h6>
                                         <div class="product-price-variant">
-                                            <span class="price current-price">40TND</span>
+                                            <span class="price current-price">{{$d->price}} TND</span>
                                         </div>
                                     </div>
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
-                                            <li class="quickview"><a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a>
+                                            <li class="quickview"><a href="{{route('designs.details', ['id' => $d->id])}}"><i class="far fa-eye"></i></a>
                                             </li>
                                             <li class="select-option"><a href="single-product.html">Personnalisé</a>
                                             </li>
-                                            <li class="wishlist"><a href="wishlist.html"><i
-                                                        class="far fa-heart"></i></a></li>
+                                            <li class="wishlist">
+                                                <form method="post"
+                                                    action="{{route('wishlist.add.design')}}">
+                                                    @csrf
+                                                    <input type="hidden" name="design_id"
+                                                        value="{{ $d->id }}">
+                                                    <a href="javascript:void(0)"><button type="submit"><i
+                                                                class="far fa-heart"></i></button></a>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                            <a href="shop.html" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les
+                            <a href="{{ Route('designs.index') }}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les
                                 Désigns</a>
                         </div>
                     </div>
