@@ -35,7 +35,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
-Auth::routes();
+Auth::routes([
+    'verify' =>true
+]);
 
 
 /*Route::get('/send', function(){
@@ -44,7 +46,7 @@ Auth::routes();
 });*/
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('verified');
 
 
 /*********GUEST********** */
@@ -64,42 +66,45 @@ Route::prefix('geust/shop')->group(function (){
 
 
 /*************CLIENT******** */
-Route::prefix('client')->group(function () {
-        Route::get('/cart', [ClientController::class,'cart'])->name('cart');
-        Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
+Route::group(['middleware' => ['auth']], function(){
+    Route::prefix('client')->group(function () {
+            Route::get('/cart', [ClientController::class,'cart'])->name('cart');
+            Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
 
 
-    /***************WISHLIST******* */
-    Route::prefix('wishlist')->group(function () {
-        /***********PRODUCT WISHLIST******** */
-        Route::prefix('products')->group(function () {
-            Route::get('', [FavoriteProductController::class,'productWishlist'])->name('product.wishlist');
-            Route::post('/add', [FavoriteProductController::class,'addToWishlist'])->name('wishlist.add.product');
-            Route::get('/delete/{id}', [FavoriteProductController::class,'deleteWishlist'])->name('product.wishlist.delete');
+        /***************WISHLIST******* */
+        Route::prefix('wishlist')->group(function () {
+            /***********PRODUCT WISHLIST******** */
+            Route::prefix('products')->group(function () {
+                Route::get('', [FavoriteProductController::class,'productWishlist'])->name('product.wishlist');
+                Route::post('/add', [FavoriteProductController::class,'addToWishlist'])->name('wishlist.add.product');
+                Route::get('/delete/{id}', [FavoriteProductController::class,'deleteWishlist'])->name('product.wishlist.delete');
+            });
+            /***********DESIGN WISHLIST******** */
+            Route::prefix('designs')->group(function () {
+            Route::get('', [FavoriteDesignController::class,'designWishlist'])->name('design.wishlist');
+            Route::post('/add', [FavoriteDesignController::class,'addToWishlist'])->name('wishlist.add.design');
+            Route::get('/delete/{id}', [FavoriteDesignController::class,'deleteWishlist'])->name('wishlist.delete.design');
+            });
         });
-         /***********DESIGN WISHLIST******** */
+        Route::get('/account', [ClientController::class,'account'])->name('account');
+        Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
+        Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
+        
+        /***********client DESIGN***** */
         Route::prefix('designs')->group(function () {
-        Route::get('', [FavoriteDesignController::class,'designWishlist'])->name('design.wishlist');
-        Route::post('/add', [FavoriteDesignController::class,'addToWishlist'])->name('wishlist.add.design');
-        Route::get('/delete/{id}', [FavoriteDesignController::class,'deleteWishlist'])->name('wishlist.delete.design');
+            Route::get('', [DesignController::class, 'index'])->name('designs');
+            Route::post('/add', [DesignController::class, 'ajouterDesign'])->name('add.design');
+            Route::get('/{id}/delete', [DesignController::class, 'supprimerDesign'])->name('delete.design');
+            Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
+            Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
         });
-    });
-    Route::get('/account', [ClientController::class,'account'])->name('account');
-    Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
-    Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
-    
-    /***********client DESIGN***** */
-    Route::prefix('designs')->group(function () {
-        Route::get('', [DesignController::class, 'index'])->name('designs');
-        Route::post('/add', [DesignController::class, 'ajouterDesign'])->name('add.design');
-        Route::get('/{id}/delete', [DesignController::class, 'supprimerDesign'])->name('delete.design');
-        Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
-        Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
-    });
 
-    Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
-    Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
+        Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
+        Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
+    });
 });
+
 
 
 
@@ -109,79 +114,62 @@ Route::prefix('client')->group(function () {
 
 
 /*************ADMIN******** */
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/profil/edit', [AdminController::class, 'modifProfil'])->name('modifier.profil');
-    Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
-    Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'])->name('donnes.profil');
+Route::group(['middleware' => ['auth','admin']], function(){
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profil/edit', [AdminController::class, 'modifProfil'])->name('modifier.profil');
+        Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
+        Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'])->name('donnes.profil');
 
 
-    /************admin CLIENT****** */
-    Route::prefix('user')->group(function () {
-        Route::get('', [AdminController::class, 'clients'])->name('users');
-        Route::get('/user/{id}/bloquer', [AdminController::class, 'bloquerUser'])->name('user.bloquer');
-        Route::get('/user/{id}/activer', [AdminController::class, 'activerUser'])->name('user.activer');
-    });
+        /************admin CLIENT****** */
+        Route::prefix('user')->group(function () {
+            Route::get('', [AdminController::class, 'clients'])->name('users');
+            Route::get('/user/{id}/bloquer', [AdminController::class, 'bloquerUser'])->name('user.bloquer');
+            Route::get('/user/{id}/activer', [AdminController::class, 'activerUser'])->name('user.activer');
+        });
 
 
-    /***********admin CATEGORY***** */
-    Route::prefix('categories')->group(function () {
-        /***********PRODUCT*********** */
-        Route::get('/produits', [CategoryProductController::class, 'index'])->name('category_product');
-        Route::get('/{category_id}/produits/all', [CategoryProductController::class, 'showProduitsByCategory'])->name('product.all');
+        /***********admin CATEGORY***** */
+        Route::prefix('categories')->group(function () {
+            /***********PRODUCT*********** */
+            Route::get('/produits', [CategoryProductController::class, 'index'])->name('category_product');
+            Route::get('/{category_id}/produits/all', [CategoryProductController::class, 'showProduitsByCategory'])->name('product.all');
 
-        /***********DESIGN*********** */
-        Route::get('/designs', [CategoryDesignController::class, 'index'])->name('category_design');
-        Route::get('/{category_design_id}/designs/all', [CategoryDesignController::class, 'showDesignsByCategory'])->name('design.all');
-    });
-
-
-    /********category Product****** */
-    Route::prefix('category_product')->group(function () {
-        Route::post('/store', [CategoryProductController::class, 'ajouterCategroieProduit'])->name('add.category_product');
-        Route::get('/{id}/delete', [CategoryProductController::class, 'supprimerCategroieProduit'])->name('delete.category_product');
-        Route::post('/update', [CategoryProductController::class, 'modifierCategroieProduit'])->name('edit.category_product');
-        Route::post('/search', [CategoryProductController::class, 'searchCategory'])->name('search.category.product');
-    });
+            /***********DESIGN*********** */
+            Route::get('/designs', [CategoryDesignController::class, 'index'])->name('category_design');
+            Route::get('/{category_design_id}/designs/all', [CategoryDesignController::class, 'showDesignsByCategory'])->name('design.all');
+        });
 
 
-    /**********category Design********* */
-    Route::prefix('category_design')->group(function () {
-        Route::post('/store', [CategoryDesignController::class, 'ajouterCategroieDesign'])->name('add.category_design');
-        Route::get('/{id}/delete', [CategoryDesignController::class, 'supprimerCategroieDesign'])->name('delete.category_design');
-        Route::post('/update', [CategoryDesignController::class, 'modifierCategroieDesign'])->name('edit.category_design');
-        Route::post('/search', [CategoryDesignController::class, 'searchCategory'])->name('search.category.design');
-    });
+        /********category Product****** */
+        Route::prefix('category_product')->group(function () {
+            Route::post('/store', [CategoryProductController::class, 'ajouterCategroieProduit'])->name('add.category_product');
+            Route::get('/{id}/delete', [CategoryProductController::class, 'supprimerCategroieProduit'])->name('delete.category_product');
+            Route::post('/update', [CategoryProductController::class, 'modifierCategroieProduit'])->name('edit.category_product');
+            Route::post('/search', [CategoryProductController::class, 'searchCategory'])->name('search.category.product');
+        });
 
 
-    /***********admin PRODUCT***** */
-    Route::prefix('products')->group(function () {
-        Route::get('', [InitialProductController::class, 'index'])->name('products');
-        Route::post('/store', [InitialProductController::class, 'ajouterProduit'])->name('add.product');
-        Route::get('/{id}/delete', [InitialProductController::class, 'supprimerProduit'])->name('delete.product');
-        Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
-        Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
+        /**********category Design********* */
+        Route::prefix('category_design')->group(function () {
+            Route::post('/store', [CategoryDesignController::class, 'ajouterCategroieDesign'])->name('add.category_design');
+            Route::get('/{id}/delete', [CategoryDesignController::class, 'supprimerCategroieDesign'])->name('delete.category_design');
+            Route::post('/update', [CategoryDesignController::class, 'modifierCategroieDesign'])->name('edit.category_design');
+            Route::post('/search', [CategoryDesignController::class, 'searchCategory'])->name('search.category.design');
+        });
+
+
+        /***********admin PRODUCT***** */
+        Route::prefix('products')->group(function () {
+            Route::get('', [InitialProductController::class, 'index'])->name('products');
+            Route::post('/store', [InitialProductController::class, 'ajouterProduit'])->name('add.product');
+            Route::get('/{id}/delete', [InitialProductController::class, 'supprimerProduit'])->name('delete.product');
+            Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
+            Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
+        });
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

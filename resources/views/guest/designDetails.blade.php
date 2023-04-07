@@ -117,28 +117,6 @@
                                                             <div class="product-additional-info">
                                                                 <p class="mb--15"><strong>À propos de ce produit</strong></p>
                                                                 <p>{{$design->description}}</p>
-                                                                <div class="table-responsive">
-                                                                    <table>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th>Contract Address</th>
-                                                                                <td>0xd4fio...se520</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>Token ID</th>
-                                                                                <td>420</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>Token Standard</th>
-                                                                                <td>Bna-420</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>Blockchain</th>
-                                                                                <td>Ethereum</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="additional-info" role="tabpanel" aria-labelledby="additional-info-tab">
@@ -232,218 +210,35 @@
         <div class="axil-product-area bg-color-white pt--10 pb--50 pb_sm--30">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Related</span>
-                    <h2 class="title">Related Product</h2>
+                    <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Similaire</span>
+                    <h2 class="title">Produit Similaire</h2>
                 </div>
                 <div class="recent-product-activation slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
+                    @foreach ($designs as $ds)
                     <div class="slick-single-layout">
                         <div class="axil-product product-style-six">
                             <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="assets/images/product/nft/product-6.png" alt="Product Images">
+                                <a href="{{route('designs.details', ['id' => $ds->id])}}">
+                                    <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{ asset('uploads') }}/{{ $ds->photo }}" alt="Design Images">
                                 </a>
                             </div>
                             <div class="product-content">
                                 <div class="inner">
                                     <div class="product-price-variant">
-                                        <span class="price current-price">$30</span>
+                                        <span class="price current-price">{{$ds->price}} TND</span>
                                     </div>
                                     <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
+                                            <li class="select-option"><a href="single-product-7.html">Personnaliser</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="200" data-sal-duration="1500" src="assets/images/product/nft/product-5.png" alt="Product Images">
-                                </a>
-
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$3000</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club</a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="300" data-sal-duration="1500" src="assets/images/product/nft/product-4.png" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$100</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="400" data-sal-duration="1500" src="assets/images/product/nft/product-3.png" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$2000</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="assets/images/product/nft/product-2.png" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$5000</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club</a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="200" data-sal-duration="1500" src="assets/images/product/nft/product-5.png" alt="Product Images">
-                                </a>
-
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$3000</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club</a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="300" data-sal-duration="1500" src="assets/images/product/nft/product-4.png" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$100</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="400" data-sal-duration="1500" src="assets/images/product/nft/product-3.png" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$2000</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-six">
-                            <div class="thumbnail">
-                                <a href="single-product-7.html">
-                                    <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="assets/images/product/nft/product-2.png" alt="Product Images">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$5000</span>
-                                    </div>
-                                    <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club</a></h5>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    
                     <!-- End .slick-single-layout -->
                 </div>
             </div>
