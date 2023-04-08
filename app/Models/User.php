@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable 
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -72,5 +72,10 @@ class User extends Authenticatable
     public function initialProducts()
     {
         return $this->belongsToMany(InitialProduct::class, 'favorite_product', 'user_id', 'initial_product_id');
+    }
+
+    public function designs()
+    {
+        return $this->belongsToMany(Design::class, 'favorite_design', 'user_id', 'design_id');
     }
 }

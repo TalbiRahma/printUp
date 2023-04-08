@@ -54,7 +54,7 @@
                                 <th scope="col" class="product-price">Prix</th>
                                 
                                 <th scope="col" class="product-add-cart"></th>
-                            </tr>
+                            </tr> 
                         </thead>
                         <tbody>
                             @foreach ($initial_products as $p)

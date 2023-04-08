@@ -76,7 +76,22 @@ class GuestController extends Controller
         return view('guest.shopdesign')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);;
     }
 
+    public function designDetails($id){
+        $design = Design::find($id);
+        $category = $design->categorie_designs;
 
+        //ba3ed nbadelha par boutique
+        $designs = Design::whereHas('categorie_designs', function($query) use ($category) {
+            $query->where('name', $category->name);
+        })->where('id', '!=', $id)->get();
+        //
+        
+        $initial_products = InitialProduct::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+
+        return view('guest.designDetails', compact('initial_products', 'design', 'category_product', 'category_design', 'designs','category'));
+    }
 
 
 
