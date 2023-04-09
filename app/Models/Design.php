@@ -22,12 +22,12 @@ class Design extends Model
 
     public function initialProducts()
     {
-        return $this->belongsToMany(InitialProduct::class, 'produit_personnaliser', 'design_id', 'initial_product_id');
+        return $this->belongsToMany(InitialProduct::class, 'produit_personnalisers', 'design_id', 'initial_product_id');
     }
 
 
     public function members()
     {
-        return $this->belongsToMany(User::class, 'favorite_design', 'user_id', 'design_id');
+        return $this->belongsToMany(User::class, 'favorite_designs', 'user_id', 'design_id');
     }
 }

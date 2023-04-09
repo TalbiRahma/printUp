@@ -17,7 +17,7 @@ class FavoriteDesignController extends Controller
         
         // Récupère la liste des produits favoris de l'utilisateur
         $wishlist = FavoriteDesign::where('user_id', Auth::id())->get();
-        $design = [];
+        $designs = [];
     
         // Récupère les détails des produits favoris
         foreach ($wishlist as $item) {
@@ -29,7 +29,7 @@ class FavoriteDesignController extends Controller
         
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
-    
+     
         return view('client.wishlist.design', compact('designs', 'category_product', 'category_design'));
     }
 

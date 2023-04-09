@@ -16,7 +16,7 @@ class InitialProduct extends Model
 
     public function designs()
     {
-        return $this->belongsToMany(Design::class, 'produit_personnaliser', 'initial_product_id', 'design_id');
+        return $this->belongsToMany(Design::class, 'produit_personnalisers', 'initial_product_id', 'design_id');
     }
 
 /**
@@ -33,7 +33,7 @@ public function reviews()
 ////////////
     public function members()
     {
-        return $this->belongsToMany(User::class, 'favorite_product', 'user_id', 'initial_product_id');
+        return $this->belongsToMany(User::class, 'favorite_products', 'user_id', 'initial_product_id');
     }
 
 }   

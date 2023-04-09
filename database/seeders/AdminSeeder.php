@@ -27,7 +27,7 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'phone' => '+216 22776933',
                 'photo' => null,
-
+                'email_verified_at' => '2023-04-06 15:10:00',
             ]
         );
     }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
-            $table->dateTime('email_verified_at');
+            $table->dateTime('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

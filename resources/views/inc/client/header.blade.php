@@ -120,7 +120,7 @@
                                     </li>
                                     <li>
                                         @if (auth()->user())
-                                            <a href="#">Mes produits designs</a>
+                                            <a href="{{route('design.wishlist')}}">Mes produits designs</a>
                                         @else
                                             <a href="{{ route('register') }}">Mes designs favoris</a>
                                         @endif

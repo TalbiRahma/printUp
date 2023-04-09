@@ -135,12 +135,17 @@ class ClientController extends Controller
 
 
     public function personaliser(Request $request){
-        $initial_products = InitialProduct::all();
+        $initial_product = InitialProduct::all();
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         
-        return view('client.personaliser', compact('designs', 'initial_products', 'category_product', 'category_design'));
+        
+        
+
+        
+        
+        return view('client.personaliser', compact('designs', 'initial_product', 'category_product', 'category_design'));
 
     }
 

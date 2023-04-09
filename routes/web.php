@@ -18,6 +18,7 @@ use App\Http\Controllers\FavoriteProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\FavoriteDesignController;
 use App\Http\Controllers\ProduitPersonnaliserController;
+use App\Models\ProduitPersonnaliser;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -63,7 +64,7 @@ Route::prefix('geust/shop')->group(function (){
 });
 
 
-
+Route::get('test', [ProduitPersonnaliserController::class, 'produitPersonnaliser']);
 
 /*************CLIENT******** */
 Route::group(['middleware' => ['auth']], function(){

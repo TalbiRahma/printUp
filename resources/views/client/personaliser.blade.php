@@ -100,9 +100,12 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="single-product-thumb">
-                                                    <form class="singin-form" method="POST" action="{{ route('add.design') }}"
+                                                    <form class="singin-form" method="POST"
+                                                        action="{{ route('add.design') }}"
                                                         enctype="multipart/form-data">
                                                         @csrf
+                                                        <input type="hidden" name="user_id"
+                                                            value="{{ auth()->user()->id }}">
                                                         <div class="col-6">
                                                             <label class="ps-5">Ajouter votre design</label>
                                                             <div class="form-group">
@@ -188,10 +191,10 @@
                                 <!-- Product Quick View Modal End -->
 
 
-                                
+
                                 <li>
                                     <a type="button" class="" data-bs-toggle="modal"
-                                        data-bs-target="#catalogue">Designs Favorie</a>
+                                        data-bs-target="#catalogue">Designs Favoris</a>
                                 </li>
                                 <!-- Product Quick View Modal Start -->
                                 <div class="modal fade quick-view-product" id="catalogue" tabindex="-1"
@@ -199,43 +202,60 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Design Favorie
+                                                <h5 class="modal-title" id="exampleModalLabel">Design Favoris
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"><i class="far fa-times"></i></button>
                                             </div>
                                             <div class="modal-body">
+
+
                                                 <div class="single-product-thumb">
-                                                    <form class="singin-form" method="POST" action=""
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="container">
-                                                            <div class="arrow-top-slide">
-                                                                <div class="row">
+
+                                                    <div class="container">
+                                                        <div class="arrow-top-slide">
+                                                            <div class="row">
+                                                                @foreach ($favorite_designs as $fd)
                                                                     <div class="col-2">
-                                                                        <div class="row">
-                                                                            <div class="col mb-0">
-                                                                                <a href="#"><i
-                                                                                        class="far fa-times"></i></a>
+                                                                        <form class="singin-form" method="POST"
+                                                                            action=""
+                                                                            enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            <div class="row">
+                                                                                <div class="col mb-0">
+                                                                                    <a href="#"><i
+                                                                                            class="far fa-times"></i></a>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <img src="{{ asset('uploads') }}/{{ $fd->photo }}"
+                                                                                        width="125px" alt="">
+                                                                                </div>
+                                                                                <h5 class="mb-1 mt-1">
+                                                                                    {{ $fd->name }}</h5>
+                                                                                <h6 class="mb-1 mt-1">name
+                                                                                    boutique</h6>
+                                                                                <p class="mb-1 mt-1">prix:
+                                                                                    {{ $fd->price }} TND</p>
+                                                                                <div
+                                                                                    class="justify-content-center mb-4 mt-2">
+                                                                                    <button type="button"
+                                                                                        class="axil-btn-custom">Personnalisé</button>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-12">
-                                                                                <img src="{{ asset('/uploads/642b202be9c98.jpg') }}"
-                                                                                    width="125px" alt="">
-                                                                            </div>
-                                                                            <h5 class="mb-1 mt-1">name design</h5>
-                                                                            <h6 class="mb-1 mt-1">name boutique</h6>
-                                                                            <p class="mb-1 mt-1">prix: 05 TND</p>
-                                                                            <div class="justify-content-center mb-4 mt-2">
-                                                                                <button type="button"
-                                                                                    class="axil-btn-custom">Personnalisé</button>
-                                                                            </div>
-                                                                        </div>
+                                                                        </form>
                                                                     </div>
-                                                                </div>
+                                                                @endforeach
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
+
                                                 </div>
+
+
+
+
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -243,10 +263,10 @@
                                 <!-- Product Quick View Modal End -->
                                 <li>
                                     <a type="button" class="" data-bs-toggle="modal"
-                                    data-bs-target="#userdesign">Mes designs</a>
+                                        data-bs-target="#userfaivoritedesign">Mes designs</a>
                                 </li>
                                 <!-- Product Quick View Modal Start -->
-                                <div class="modal fade quick-view-product" id="userdesign" tabindex="-1"
+                                <div class="modal fade quick-view-product" id="userfaivoritedesign" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -258,34 +278,39 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="single-product-thumb">
-                                                    <form class="singin-form" method="POST" action=""
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="container">
-                                                            <div class="arrow-top-slide">
-                                                                <div class="row">
-                                                                    <div class="col-2">
+
+                                                    <div class="container">
+                                                        <div class="arrow-top-slide">
+                                                            <div class="row">
+                                                                @foreach ($mes_design as $md)
+                                                                <div class="col-2">
+                                                                    <form class="singin-form" method="POST"
+                                                                        action="" enctype="multipart/form-data">
+                                                                        @csrf
                                                                         <div class="row">
                                                                             <div class="col mb-0">
                                                                                 <a href="#"><i
                                                                                         class="far fa-times"></i></a>
                                                                             </div>
                                                                             <div class="col-12">
-                                                                                <img src="{{ asset('/uploads/642b202be9c98.jpg') }}"
+                                                                                <img src="{{ asset('/uploads') }}/{{$md->photo}}"
                                                                                     width="125px" alt="">
                                                                             </div>
-                                                                            <h5 class="mb-1 mt-1">name design</h5>
-                                                                            <h6 class="mb-1 mt-1">Categorie</h6>
-                                                                            <p class="mb-1 mt-1">prix: 05 TND</p>
-                                                                            <div class="justify-content-center mb-4 mt-2">
+                                                                            <h5 class="mb-1 mt-1">{{$md->name}}</h5>
+                                                                            <h6 class="mb-1 mt-1">{{$md->categorie_designs->name}}</h6>
+                                                                            <p class="mb-1 mt-1">prix: {{$md->price}} TND</p>
+                                                                            <div
+                                                                                class="justify-content-center mb-4 mt-2">
                                                                                 <button type="button"
                                                                                     class="axil-btn-custom">Personnalisé</button>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
                                                                 </div>
+                                                                @endforeach
+                                                                
                                                             </div>
                                                         </div>
+                                                    </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -295,7 +320,7 @@
                                 <!-- Product Quick View Modal End -->
                                 <li>
                                     <a type="button" class="" data-bs-toggle="modal"
-                                    data-bs-target="#produitinitial">Produits Favorie</a>
+                                        data-bs-target="#produitinitial">Produits Favoris</a>
                                 </li>
                                 <!-- Product Quick View Modal Start -->
                                 <div class="modal fade quick-view-product" id="produitinitial" tabindex="-1"
@@ -303,42 +328,52 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Mes design
+                                                <h5 class="modal-title" id="exampleModalLabel">Produits Favoris
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"><i class="far fa-times"></i></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="single-product-thumb">
-                                                    <form class="singin-form" method="POST" action=""
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="container">
-                                                            <div class="arrow-top-slide">
-                                                                <div class="row">
+
+                                                    <div class="container">
+                                                        <div class="arrow-top-slide">
+                                                            <div class="row">
+                                                                @foreach ($favorite_products as $fp)
                                                                     <div class="col-3">
-                                                                        <div class="row">
-                                                                            <div class="col mb-0">
-                                                                                <a href="#"><i
-                                                                                        class="far fa-times"></i></a>
+                                                                        <form class="singin-form" method="POST"
+                                                                            action=""
+                                                                            enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            <div class="row">
+                                                                                <div class="col mb-0">
+                                                                                    <a href="#"><i
+                                                                                            class="far fa-times"></i></a>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <img src="{{ asset('uploads') }}/{{ $fp->photo }}"
+                                                                                        width="150px" alt="">
+                                                                                </div>
+                                                                                <h5 class="mb-1 mt-1">
+                                                                                    {{ $fp->name }}</h5>
+                                                                                <h6 class="mb-1 mt-1">
+                                                                                    {{ $fp->categorie_products->name }}
+                                                                                </h6>
+                                                                                <p class="mb-1 mt-1">prix:
+                                                                                    {{ $fp->price }} TND</p>
+
+                                                                                <div
+                                                                                    class="justify-content-center mb-4 mt-2">
+                                                                                    <button type="button"
+                                                                                        class="axil-btn-custom">Personnalisé</button>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-12">
-                                                                                <img src="{{ asset('/uploads/T-shirt.jpg') }}"
-                                                                                    width="150px" alt="">
-                                                                            </div>
-                                                                            <h5 class="mb-1 mt-1">name produit</h5>
-                                                                            <h6 class="mb-1 mt-1">Categorie</h6>
-                                                                            <p class="mb-1 mt-1">prix: 30 TND</p>
-                                                                            <p class="mb-1 mt-1">size: S , L</p>
-                                                                            <div class="justify-content-center mb-4 mt-2">
-                                                                                <button type="button"
-                                                                                    class="axil-btn-custom">Personnalisé</button>
-                                                                            </div>
-                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                @endforeach
+
                                                             </div>
                                                         </div>
+                                                    </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -367,7 +402,9 @@
                             <div class="col">
                                 <div class="axil-product-list">
                                     <div class="product-content1">
-                                        <img src="{{ asset('uploads/T-shirt.jpg') }}" alt="Product">
+
+                                        <img src="{{ asset('uploads') }}/{{ $initial_product->photo }}"
+                                            alt="Product">
                                     </div>
                                 </div>
                             </div>
@@ -397,22 +434,45 @@
                             </div>
                             <div class="row col-12 ps-4 mt-3">
                                 <h3>Nom produit personanlisée</h3>
-                                <h5 class="text-secondary mb-3">Prix Produit Initial: 30 TND</h5>
-                                <h6 class="text-secondary">size: xs , s</h6>
+                                <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
+                                    {{ $initial_product->price }} TND</h5>
+                                <div class="product-variations-wrapper">
 
-                                    <h5>Total: 45 TND</h5>
+                                    <!-- Start Product Variation  -->
+                                    <div class="product-variation product-size-variation">
+                                        @if ($initial_product->sizes)
+                                            @php $sizes = json_decode($initial_product->sizes, true); @endphp
+                                            <div class="product-variation">
+                                                @if (count($sizes) > 0)
+                                                    <h6 class="title">Size:</h6>
+                                                @endif
+                                                <ul class="range-variant">
 
-                                    <div class="group-btn">
-                                        <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
-                                        <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
+                                                    @foreach ($sizes as $size)
+                                                        <li>{{ $size }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+
+                                        @endif
                                     </div>
+                                    <!-- End Product Variation  -->
+
+                                </div>
+
+                                <h5>Total: 45 TND</h5>
+
+                                <div class="group-btn">
+                                    <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
+                                    <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Slider Area -->
+        </div>
+        <!-- End Slider Area -->
 
 
 
@@ -472,7 +532,7 @@
             align-items: center;
         }
 
-        .axil-btn-custom{
+        .axil-btn-custom {
             background-color: #5e72e4 !important;
             color: #FFFFFF !important;
             font-size: 15px !important;

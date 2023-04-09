@@ -82,7 +82,7 @@ class InitialProductController extends Controller
         $category_product = CategoryProduct::all();
         //dd($product);
         $product->name = $request->name;
-        $product->category_product_id = $request->category_product;
+        $product->category_product_id = $request->category_product; 
         $product->description = $request->description;
         $product->price = $request->price;
         $sizes = array(

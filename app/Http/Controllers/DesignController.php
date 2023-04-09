@@ -11,7 +11,8 @@ class DesignController extends Controller
     //
     public function index(){
         
-        $design = Design::latest()->paginate(3);
+        $user = auth()->user(); 
+        $design =  Design::where('user_id', $user->id)->latest()->paginate(3);
         $category_design = CategoryDesign::all();
         return view('client.designs.index')->with('design' , $design)->with('category_design' , $category_design);
     }
@@ -32,6 +33,7 @@ class DesignController extends Controller
          $design->category_design_id = $request->category_design;
          $design->description = $request->description;
          $design->price = $request->price;
+         $design->user_id = $request->user_id;
          
          //upload image
          $newname = uniqid();

@@ -48,21 +48,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function boutique()
-    {
-        return $this->hasOne(Boutique::class , 'boutique_id' , 'id');
-    }
-
-
-    public function portmonnaie()
-    {
-        return $this->hasOne(Portmonnaie::class , 'portmonnaie_id' , 'id');
-    }
-
-    public function paniers()
-    {
-        return $this->hasMany(Panier::class , 'user_id' , 'id');
-    }
 
     public function reviews()
     {
@@ -71,11 +56,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function initialProducts()
     {
-        return $this->belongsToMany(InitialProduct::class, 'favorite_product', 'user_id', 'initial_product_id');
+        return $this->belongsToMany(InitialProduct::class, 'favorite_products', 'user_id', 'initial_product_id');
     }
 
     public function designs()
     {
-        return $this->belongsToMany(Design::class, 'favorite_design', 'user_id', 'design_id');
+        return $this->belongsToMany(Design::class, 'favorite_designs', 'user_id', 'design_id');
     }
 }
