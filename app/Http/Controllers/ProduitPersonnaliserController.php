@@ -99,7 +99,19 @@ class ProduitPersonnaliserController extends Controller
         return redirect()->back();
     }
 
-    public function modifierMesDesign(Request $request)
+
+
+    public function supprimerDesignFavori(Request $request)
+{
+    // Supprimer les données du design favori
+    $request->session()->forget('design_data');
+
+    // Rediriger vers la page personnaliser avec l'affichage statique
+    return redirect()->back();
+}
+
+
+    /*public function modifierMesDesign(Request $request)
 {
     // récupérer les données du design sélectionné dans la liste des designs de l'utilisateur connecté
     $design_id = $request->input('mon_design_id');
@@ -141,7 +153,7 @@ class ProduitPersonnaliserController extends Controller
 
     // rediriger vers la page personnaliser
     return redirect()->back();
-}
+}*/
 
 
    /* public function modifierMesDesign(Request $request)
