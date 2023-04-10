@@ -50,7 +50,7 @@
                             <h1 class="title">Explorer tous les produits</h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
+                    <div class="col-lg-6 col-md-4"> 
                         <div class="inner">
                             <div class="bradcrumb-thumb">
                                 <img src="{{ asset('/mainassets/images/product/product-45.png') }}" alt="Image">
@@ -168,7 +168,7 @@
                                             <ul class="cart-action">
                                                 <li class="wishlist"><a href="wishlist.html"><i
                                                             class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="cart.html">Personnalisé</a></li>
+                                                <li class="select-option"><a href="{{route('personnaliser-produit', ['id' => $p->id])}}">Personnalisé</a></li>
                                                 <li class="quickview"><a href="#"><i class="far fa-eye"></i></a></li>
                                             </ul>
                                         </div>

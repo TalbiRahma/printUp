@@ -106,6 +106,9 @@
                                                         @csrf
                                                         <input type="hidden" name="user_id"
                                                             value="{{ auth()->user()->id }}">
+                                                        <input type="hidden" name="id"
+                                                            value="{{ mt_rand(100000, 999999) }}">
+
                                                         <div class="col-6">
                                                             <label class="ps-5">Ajouter votre design</label>
                                                             <div class="form-group">
@@ -221,8 +224,7 @@
                                                                             action="{{ route('modifier-design-favori') }}"
                                                                             enctype="multipart/form-data">
                                                                             @csrf
-                                                                            <input type="hidden"
-                                                                                name="id_design_favori"
+                                                                            <input type="hidden" name="id"
                                                                                 value="{{ $fd->id }}">
                                                                             <div class="row">
                                                                                 <div class="col mb-0">
@@ -288,10 +290,11 @@
                                                                 @foreach ($mes_design as $md)
                                                                     <div class="col-2">
                                                                         <form class="singin-form" method="POST"
-                                                                            action="{{ route('modifier-mon-design') }}"
+                                                                            action="{{ route('modifier-design-favori') }}"
                                                                             enctype="multipart/form-data">
                                                                             @csrf
-                                                                            <input type="hidden" name="mon_design_id" value="{{ $md->id }}">
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $md->id }}">
                                                                             <div class="row">
                                                                                 <div class="col mb-0">
                                                                                     <a href="#"><i
@@ -436,55 +439,31 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                @if ($design_data) 
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="row row-cols-xl row-cols-1">
-                                            <div class="col">
-                                                <div class="axil-product-list">
-                                                    <div class="product-content2">
-                                                        <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
-                                                            alt="Product">
+                                @if ($design_data)
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="row row-cols-xl row-cols-1">
+                                                <div class="col">
+
+                                                    <div class="axil-product-list">
+                                                        <div class="product-content2">
+
+                                                            <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
+                                                                alt="Product">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div>
-                                            <h4 class="mb-3">{{ $design_data['name'] }}</h4>
-                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                            <h6 class="text-secondary mb-3 mt-3">Category</h6>
-                                            <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                    
-                                @elseif (session('design'))
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="row row-cols-xl row-cols-1">
-                                            <div class="col">
-                                                <div class="axil-product-list">
-                                                    <div class="product-content2">
-                                                        <img src="{{ asset('uploads/' . session('design')->photo) }}"
-                                                            alt="Product">
-                                                    </div>
-                                                </div>
+                                        <div class="col-7">
+                                            <div>
+                                                <h4 class="mb-3">{{ $design_data['name'] }}</h4>
+                                                <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+                                                
+                                                <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-7">
-                                        <div>
-                                            <h4 class="mb-3">{{ session('design')->name }}</h4>
-                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                            <h6 class="text-secondary mb-3 mt-3">
-                                                {{ session('design')->categorie_designs->name }}</h6>
-                                            <h3 class="mt-3">{{ session('design')->price }} TND</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 @else
                                     <div class="row">
                                         <div class="col-5">
@@ -503,7 +482,7 @@
                                             <div>
                                                 <h4 id="design-name" class="mb-3">nom design</h4>
                                                 <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                                <h6 class="text-secondary mb-3 mt-3">Category</h6>
+                                                
                                                 <h3 id="design-price" class="mt-3">15 TND</h3>
                                             </div>
                                         </div>
@@ -551,30 +530,31 @@
             </div>
             <!-- End Iniatial Product Slider Area -->
         @else
-            <!-- Start Iniatial Product Slider Area -->
-            <div class="axil-main-slider-area main-slider-style-2">
-                <div class="container">
-                    <div class="slider-offset-left">
-                        <div class="row row-20">
-                            <div class="row row-cols-xl row-cols-1 col-lg-6">
-                                <div class="col">
-                                    <div class="axil-product-list">
-                                        <div class="product-content1">
+        <div class="axil-main-slider-area main-slider-style-2">
+            <div class="container">
+                <div class="slider-offset-left">
+                    <div class="row row-20">
+                        <div class="row row-cols-xl row-cols-1 col-lg-6">
+                            <div class="col">
+                                <div class="axil-product-list">
+                                    <div class="product-content1">
 
-                                            <img src="{{ asset('uploads') }}/{{ $initial_product->photo }}"
-                                                alt="Product">
-                                        </div>
+                                        <img src="{{ asset('uploads') }}/{{ $initial_product->photo }}"
+                                            alt="Product">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                @if ($design_data) 
+                        </div>
+                        <div class="col-6">
+                            @if ($design_data)
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="row row-cols-xl row-cols-1">
                                             <div class="col">
+
                                                 <div class="axil-product-list">
                                                     <div class="product-content2">
+
                                                         <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
                                                             alt="Product">
                                                     </div>
@@ -586,20 +566,19 @@
                                         <div>
                                             <h4 class="mb-3">{{ $design_data['name'] }}</h4>
                                             <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                            <h6 class="text-secondary mb-3 mt-3">Category</h6>
+                                            
                                             <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
                                         </div>
                                     </div>
                                 </div>
-                                    
-                                @elseif (session('design'))
+                            @else
                                 <div class="row">
                                     <div class="col-5">
                                         <div class="row row-cols-xl row-cols-1">
                                             <div class="col">
                                                 <div class="axil-product-list">
-                                                    <div class="product-content2">
-                                                        <img src="{{ asset('uploads/' . session('design')->photo) }}"
+                                                    <div id="design-image" class="product-content2">
+                                                        <img src="{{ asset('mainassets/images/product/design.png') }}"
                                                             alt="Product">
                                                     </div>
                                                 </div>
@@ -608,80 +587,55 @@
                                     </div>
                                     <div class="col-7">
                                         <div>
-                                            <h4 class="mb-3">{{ session('design')->name }}</h4>
+                                            <h4 id="design-name" class="mb-3">nom design</h4>
                                             <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                            <h6 class="text-secondary mb-3 mt-3">
-                                                {{ session('design')->categorie_designs->name }}</h6>
-                                            <h3 class="mt-3">{{ session('design')->price }} TND</h3>
+                                            
+                                            <h3 id="design-price" class="mt-3">15 TND</h3>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                @else
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="row row-cols-xl row-cols-1">
-                                                <div class="col">
-                                                    <div class="axil-product-list">
-                                                        <div id="design-image" class="product-content2">
-                                                            <img src="{{ asset('mainassets/images/product/design.png') }}"
-                                                                alt="Product">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            @endif
+                            <div class="row col-12 ps-4 mt-3">
+                                <h3>Nom produit personanlisée</h3>
+                                <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
+                                    {{ $initial_product->price }} TND</h5>
+                                <div class="product-variations-wrapper">
+
+                                    <!-- Start Product Variation  -->
+                                    <div class="product-variation product-size-variation">
+                                        @if ($initial_product->sizes)
+                                            @php $sizes = json_decode($initial_product->sizes, true); @endphp
+                                            <div class="product-variation">
+                                                @if (!empty($sizes))
+                                                    <h6 class="title">Size:</h6>
+                                                @endif
+                                                <ul class="range-variant">
+
+                                                    @foreach ($sizes as $size)
+                                                        <li>{{ $size }}</li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                        </div>
-                                        <div class="col-7">
-                                            <div>
-                                                <h4 id="design-name" class="mb-3">nom design</h4>
-                                                <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                                <h6 class="text-secondary mb-3 mt-3">Category</h6>
-                                                <h3 id="design-price" class="mt-3">15 TND</h3>
-                                            </div>
-                                        </div>
+
+                                        @endif
                                     </div>
-                                @endif
-                                <div class="row col-12 ps-4 mt-3">
-                                    <h3>Nom produit personanlisée</h3>
-                                    <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
-                                        {{ $initial_product->price }} TND</h5>
-                                    <div class="product-variations-wrapper">
+                                    <!-- End Product Variation  -->
 
-                                        <!-- Start Product Variation  -->
-                                        <div class="product-variation product-size-variation">
-                                            @if ($initial_product->sizes)
-                                                @php $sizes = json_decode($initial_product->sizes, true); @endphp
-                                                <div class="product-variation">
-                                                    @if (count($sizes) > 0)
-                                                        <h6 class="title">Size:</h6>
-                                                    @endif
-                                                    <ul class="range-variant">
+                                </div>
 
-                                                        @foreach ($sizes as $size)
-                                                            <li>{{ $size }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
+                                <h5>Total: 45 TND</h5>
 
-                                            @endif
-                                        </div>
-                                        <!-- End Product Variation  -->
-
-                                    </div>
-
-                                    <h5>Total: 45 TND</h5>
-
-                                    <div class="group-btn">
-                                        <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
-                                        <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
-                                    </div>
+                                <div class="group-btn">
+                                    <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
+                                    <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Iniatial Product Slider Area -->
+        </div>
+        <!-- End Iniatial Product Slider Area -->
         @endif
 
 

@@ -120,6 +120,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/designs/{design}', [DesignController::class, 'afficherDesignAjoute']);
         Route::post('/modifier-design-favori', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-design-favori');
         Route::post('/modifier-mon-design', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-mon-design');
+        Route::get('/supprimer_design_personnaliser/{id}', [ProduitPersonnaliserController::class, 'supprimerDesignFavori'])->name('supprimer_design_personnaliser');
 
         
 

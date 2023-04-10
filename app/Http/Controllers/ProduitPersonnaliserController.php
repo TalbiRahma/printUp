@@ -74,7 +74,7 @@ class ProduitPersonnaliserController extends Controller
     {
         
         // récupérer les données du design favori ici
-        $design_id = $request->input('id_design_favori');
+        $design_id = $request->input('id'); 
         $fdesign = Design::find($design_id);
 
         // stocker les données dans un tableau JSON
@@ -101,15 +101,27 @@ class ProduitPersonnaliserController extends Controller
 
 
 
-    public function supprimerDesignFavori(Request $request)
+   /* public function supprimerDesignFavori(Request $request)
 {
     // Supprimer les données du design favori
     $request->session()->forget('design_data');
 
     // Rediriger vers la page personnaliser avec l'affichage statique
     return redirect()->back();
-}
+}*/
 
+public function supprimerDesignFavori(Request $request, $id)
+{
+    // Vérifier si les données stockées correspondent à l'ID du design à supprimer
+    $design_data = $request->session()->get('design_data');
+   
+        // Supprimer les données du design favori
+        $request->session()->forget('design_data');
+    
+
+    // Rediriger vers la page personnaliser avec l'affichage statique
+    return redirect()->back();
+}
 
     /*public function modifierMesDesign(Request $request)
 {

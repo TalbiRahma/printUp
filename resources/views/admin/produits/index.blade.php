@@ -474,7 +474,7 @@
                                             </div>
                                             <!--End modal ajout produit-->
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                                href="{{ route('delete.product', ['id' => $p->id ]) }}"
+                                                href="{{ route('delete.product', ['id' => $p->id ]) }}" 
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
