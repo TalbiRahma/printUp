@@ -400,7 +400,7 @@
         <!-- End Expolre Product Area  -->
 
 
-        <!-- Start New Arrivals Product Area  -->
+        <!-- Start New Arrivals Design Area  -->
         <div class="axil-new-arrivals-product-area bg-color-white axil-section-gap pb--0">
             <div class="container">
                 <div class="product-area pb--50">
@@ -433,7 +433,7 @@
                                         <ul class="cart-action">
                                             <li class="quickview"><a href="{{route('designs.details', ['id' => $d->id])}}"><i class="far fa-eye"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="single-product.html">Personnalisé</a>
+                                            <li class="select-option"><a href="single-product.html">Voir Boutique</a>
                                             </li>
                                             <li class="wishlist">
                                                 <form method="post"
@@ -461,9 +461,9 @@
                 </div>
             </div>
         </div>
-        <!-- End New Arrivals Product Area  -->
+        <!-- End New Arrivals Design Area  -->
 
-        <!-- Start Most Sold Product Area  -->
+        <!-- Start Most Sold Product Personnaliser Area  -->
         <div class="axil-most-sold-product axil-section-gap">
             <div class="container">
                 <div class="product-area pb--50">

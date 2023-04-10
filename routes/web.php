@@ -1,6 +1,8 @@
 <?php
 
+use Intervention\Image\Image;
 use App\Mail\MailVerification;
+use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -12,13 +14,12 @@ use App\Http\Controllers\DesignController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
+use App\Http\Controllers\FavoriteDesignController;
 use App\Http\Controllers\InitialProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\FavoriteProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\FavoriteDesignController;
 use App\Http\Controllers\ProduitPersonnaliserController;
-use App\Models\ProduitPersonnaliser;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -40,6 +41,19 @@ Auth::routes([
     'verify' =>true
 ]);
 
+
+
+Route::get('test', function(){
+    $image = new Image();
+
+// Charger l'image et la redimensionner
+$img = $image::make(public_path('/uploads/T-shirt.jpg'))->resize(300, 200);
+return view('test');
+});
+
+Route::post('/upload', function(){
+
+});
 
 /*Route::get('/send', function(){
     Mail::to('talbirahma73@gmail.com')->send(new MailVerification());
@@ -64,7 +78,6 @@ Route::prefix('geust/shop')->group(function (){
 });
 
 
-Route::get('test', [ProduitPersonnaliserController::class, 'produitPersonnaliser']);
 
 /*************CLIENT******** */
 Route::group(['middleware' => ['auth']], function(){
@@ -103,6 +116,14 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
         Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
+        Route::post('/modifier-produit-initial', [ProduitPersonnaliserController::class, 'modifierProduitInitial'])->name('modifier_produit_initial');
+        Route::get('/designs/{design}', [DesignController::class, 'afficherDesignAjoute']);
+        Route::post('/modifier-design-favori', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-design-favori');
+
+        
+
+
+
     });
 });
 

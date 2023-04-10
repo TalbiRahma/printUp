@@ -188,7 +188,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Product Quick View Modal End -->
+                                <!-- Modal Ajout design End -->
 
 
 
@@ -196,7 +196,7 @@
                                     <a type="button" class="" data-bs-toggle="modal"
                                         data-bs-target="#catalogue">Designs Favoris</a>
                                 </li>
-                                <!-- Product Quick View Modal Start -->
+                                <!-- Favorite Design Quick View Modal Start -->
                                 <div class="modal fade quick-view-product" id="catalogue" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -218,9 +218,9 @@
                                                                 @foreach ($favorite_designs as $fd)
                                                                     <div class="col-2">
                                                                         <form class="singin-form" method="POST"
-                                                                            action=""
-                                                                            enctype="multipart/form-data">
+                                                                            action="{{ route('modifier-design-favori') }}" enctype="multipart/form-data">
                                                                             @csrf
+                                                                            <input type="hidden" name="id_design_favori" value="{{ $fd->id }}">
                                                                             <div class="row">
                                                                                 <div class="col mb-0">
                                                                                     <a href="#"><i
@@ -238,7 +238,7 @@
                                                                                     {{ $fd->price }} TND</p>
                                                                                 <div
                                                                                     class="justify-content-center mb-4 mt-2">
-                                                                                    <button type="button"
+                                                                                    <button type="submit"
                                                                                         class="axil-btn-custom">Personnalisé</button>
                                                                                 </div>
                                                                             </div>
@@ -260,12 +260,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Product Quick View Modal End -->
+                                <!-- Favorite Design Quick View Modal End -->
                                 <li>
                                     <a type="button" class="" data-bs-toggle="modal"
                                         data-bs-target="#userfaivoritedesign">Mes designs</a>
                                 </li>
-                                <!-- Product Quick View Modal Start -->
+                                <!-- Mes Design Quick View Modal Start -->
                                 <div class="modal fade quick-view-product" id="userfaivoritedesign" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -279,7 +279,7 @@
                                             <div class="modal-body">
                                                 <div class="single-product-thumb">
 
-                                                    <div class="container">
+                                                    <div class="container" id="favorite-designs">
                                                         <div class="arrow-top-slide">
                                                             <div class="row">
                                                                 @foreach ($mes_design as $md)
@@ -305,24 +305,27 @@
                                                                                     class="axil-btn-custom">Personnalisé</button>
                                                                             </div>
                                                                         </div>
+                                                                    </form>
                                                                 </div>
                                                                 @endforeach
                                                                 
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Product Quick View Modal End -->
+                                <!-- Mes Design View Modal End -->
                                 <li>
                                     <a type="button" class="" data-bs-toggle="modal"
                                         data-bs-target="#produitinitial">Produits Favoris</a>
                                 </li>
-                                <!-- Product Quick View Modal Start -->
+
+
+                                <!-- Faivorite Product Quick View Modal Start -->
                                 <div class="modal fade quick-view-product" id="produitinitial" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -342,9 +345,9 @@
                                                                 @foreach ($favorite_products as $fp)
                                                                     <div class="col-3">
                                                                         <form class="singin-form" method="POST"
-                                                                            action=""
-                                                                            enctype="multipart/form-data">
+                                                                            action="{{ route('modifier_produit_initial') }}" enctype="multipart/form-data">
                                                                             @csrf
+                                                                            <input type="hidden" name="id_produit_favori" value="{{ $fp->id }}">
                                                                             <div class="row">
                                                                                 <div class="col mb-0">
                                                                                     <a href="#"><i
@@ -364,23 +367,24 @@
 
                                                                                 <div
                                                                                     class="justify-content-center mb-4 mt-2">
-                                                                                    <button type="button"
+                                                                                    <button type="submit"
                                                                                         class="axil-btn-custom">Personnalisé</button>
                                                                                 </div>
                                                                             </div>
+                                                                        </form>
                                                                     </div>
                                                                 @endforeach
 
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Product Quick View Modal End -->
+                                <!-- Faivorite Product Quick View Modal End -->
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->
@@ -393,7 +397,138 @@
 
     <main class="main-wrapper">
 
-        <!-- Start Slider Area -->
+        @if(isset($product))
+         <!-- Start Iniatial Product Slider Area -->
+        <div class="axil-main-slider-area main-slider-style-2">
+            <div class="container">
+                <div class="slider-offset-left">
+                    <div class="row row-20">
+                        <div class="row row-cols-xl row-cols-1 col-lg-6">
+                            <div class="col">
+                                <div class="axil-product-list">
+                                    <div class="product-content1">
+
+                                        <img src="{{ asset('uploads') }}/{{ $product->photo }}"
+                                            alt="Product">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            @if (session('design'))
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="row row-cols-xl row-cols-1">
+                                        <div class="col">
+                                            <div class="axil-product-list">
+                                                <div class="product-content2">
+                                                    <img src="{{ asset('uploads/' . session('design')->photo) }}"
+                                                        alt="Product">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div>
+                                        <h4 class="mb-3">{{ session('design')->name }}</h4>
+                                        <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+                                        <h6 class="text-secondary mb-3 mt-3">{{ session('design')->categorie_designs->name }}</h6>
+                                        <h3 class="mt-3">{{ session('design')->price }}  TND</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            @elseif (isset($fdesign))
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="row row-cols-xl row-cols-1">
+                                            <div class="col">
+                                                <div class="axil-product-list">
+                                                    <div class="product-content2">
+                                                        <img src="{{ asset('uploads') }}/{{ $fdesign->photo }}"
+                                                            alt="Product">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div>
+                                            <h4 class="mb-3">{{ $fdesign->name }}</h4>
+                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+                                            <h6 class="text-secondary mb-3 mt-3">Category</h6>
+                                            <h3 class="mt-3">{{ $fdesign->price }} TND</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="row row-cols-xl row-cols-1">
+                                            <div class="col">
+                                                <div class="axil-product-list">
+                                                    <div class="product-content2">
+                                                        <img src="{{ asset('mainassets/images/product/design.png') }}"
+                                                            alt="Product">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div>
+                                            <h4 class="mb-3">nom design</h4>
+                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+                                            <h6 class="text-secondary mb-3 mt-3">Category</h6>
+                                            <h3 class="mt-3">15 TND</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            @endif
+                            <div class="row col-12 ps-4 mt-3">
+                                <h3>Nom produit personanlisée</h3>
+                                <h5 class="text-secondary mb-3">Prix {{ $product->name }}:
+                                    {{ $product->price }} TND</h5>
+                                <div class="product-variations-wrapper">
+
+                                    <!-- Start Product Variation  -->
+                                    <div class="product-variation product-size-variation">
+                                        @if ($product->sizes)
+                                            @php $sizes = json_decode($product->sizes, true); @endphp
+                                            <div class="product-variation">
+                                                @if (count($sizes) > 0)
+                                                    <h6 class="title">Size:</h6>
+                                                @endif
+                                                <ul class="range-variant">
+
+                                                    @foreach ($sizes as $size)
+                                                        <li>{{ $size }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+
+                                        @endif
+                                    </div>
+                                    <!-- End Product Variation  -->
+
+                                </div>
+
+                                <h5>Total: 45 TND</h5>
+
+                                <div class="group-btn">
+                                    <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
+                                    <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Iniatial Product Slider Area -->
+        @else
+        <!-- Start Iniatial Product Slider Area -->
         <div class="axil-main-slider-area main-slider-style-2">
             <div class="container">
                 <div class="slider-offset-left">
@@ -410,13 +545,14 @@
                             </div>
                         </div>
                         <div class="col-6">
+                            @if (session('design'))
                             <div class="row">
                                 <div class="col-5">
                                     <div class="row row-cols-xl row-cols-1">
                                         <div class="col">
                                             <div class="axil-product-list">
                                                 <div class="product-content2">
-                                                    <img src="{{ asset('mainassets/images/product/design.png') }}"
+                                                    <img src="{{ asset('uploads/' . session('design')->photo) }}"
                                                         alt="Product">
                                                 </div>
                                             </div>
@@ -425,13 +561,61 @@
                                 </div>
                                 <div class="col-7">
                                     <div>
-                                        <h4 class="mb-3">nom design</h4>
+                                        <h4 class="mb-3">{{ session('design')->name }}</h4>
                                         <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                        <h6 class="text-secondary mb-3 mt-3">Category</h6>
-                                        <h3 class="mt-3">15 TND</h3>
+                                        <h6 class="text-secondary mb-3 mt-3">{{ session('design')->categorie_designs->name }}</h6>
+                                        <h3 class="mt-3">{{ session('design')->price }}  TND</h3>
                                     </div>
                                 </div>
                             </div>
+                            @elseif (isset($fdesign))
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="row row-cols-xl row-cols-1">
+                                            <div class="col">
+                                                <div class="axil-product-list">
+                                                    <div class="product-content2">
+                                                        <img src="{{ asset('uploads') }}/{{ $fdesign->photo }}"
+                                                            alt="Product">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div>
+                                            <h4 class="mb-3">{{ $fdesign->name }}</h4>
+                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+                                            <h6 class="text-secondary mb-3 mt-3">Category</h6>
+                                            <h3 class="mt-3">{{ $fdesign->price }} TND</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="row row-cols-xl row-cols-1">
+                                            <div class="col">
+                                                <div class="axil-product-list">
+                                                    <div id="design-image" class="product-content2">
+                                                        <img src="{{ asset('mainassets/images/product/design.png') }}"
+                                                            alt="Product">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div>
+                                            <h4 id="design-name" class="mb-3">nom design</h4>
+                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+                                            <h6 class="text-secondary mb-3 mt-3">Category</h6>
+                                            <h3 id="design-price" class="mt-3">15 TND</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            @endif
                             <div class="row col-12 ps-4 mt-3">
                                 <h3>Nom produit personanlisée</h3>
                                 <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
@@ -472,8 +656,8 @@
                 </div>
             </div>
         </div>
-        <!-- End Slider Area -->
-
+        <!-- End Iniatial Product Slider Area -->
+        @endif
 
 
 
@@ -512,6 +696,35 @@
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Envoyer une requête AJAX lorsqu'on clique sur le bouton "Personnalisé"
+            $(".select-design").click(function() {
+                var design_id = $(this).data('design-id');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('modifier-design-favori') }}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        design_id: design_id
+                    },
+                    success: function(response) {
+                        // Mettre à jour les données du design affichées sans rafraîchissement de la page
+                        $("#design-name").text(response.name);
+                        $("#design-boutique").text(response.boutique_name);
+                        $("#design-category").text(response.category_name);
+                        $("#design-price").text(response.price + " TND");
+                        $("#design-image").attr('src', "{{ asset('uploads') }}/" + response.photo);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+    });
+</script>
+    
 
     <style>
         .product-content1 img {

@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    
     <img src="/uploads/T-shirt.jpg" alt="" width="75%" height="75%">
+
 </body>
 </html>

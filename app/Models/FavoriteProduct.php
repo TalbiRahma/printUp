@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FavoriteProduct extends Model
 {
     use HasFactory;
-    public function initialProduct()
-    {
-        return $this->belongsTo(InitialProduct::class ,'initial_product_id' , 'id' );
-    }
+    
 
     public function member()
     {
