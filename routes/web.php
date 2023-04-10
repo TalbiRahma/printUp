@@ -116,9 +116,10 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
         Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
-        Route::post('/modifier-produit-initial', [ProduitPersonnaliserController::class, 'modifierProduitInitial'])->name('modifier_produit_initial');
+        Route::post('/modifier-produit-initial/{id}', [ProduitPersonnaliserController::class, 'modifierProduitInitial'])->name('modifier_produit_initial');
         Route::get('/designs/{design}', [DesignController::class, 'afficherDesignAjoute']);
         Route::post('/modifier-design-favori', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-design-favori');
+        Route::post('/modifier-mon-design', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-mon-design');
 
         
 
