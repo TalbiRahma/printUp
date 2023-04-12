@@ -415,10 +415,10 @@
         @php
             $product_data_json = session('product_data');
             $design_data_json = session('design_data');
-            //$mon_design_data_json = session('mon_design_data');
+            $custom_product_data_json = session('custom_product_data');
             $product_data = json_decode($product_data_json, true);
             $design_data = json_decode($design_data_json, true);
-            //$mon_design_data = json_decode($mon_design_data_json, true);
+            $custom_product_data = json_decode($custom_product_data_json, true);
             //dd($design_data)
         @endphp
         @if ($product_data)
@@ -430,10 +430,15 @@
                             <div class="row row-cols-xl row-cols-1 col-lg-6">
                                 <div class="col">
                                     <div class="axil-product-list">
+                                        
                                         <div class="product-content1">
-
-                                            <img src="{{ asset('uploads') }}/{{ $product_data['photo'] }}"
+                                            @if ($custom_product_data)
+                                            <img src="{{ $custom_product_data['photo'] }}"
                                                 alt="Product">
+                                             @else
+                                            <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
+                                                alt="Product">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

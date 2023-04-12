@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function reviews()
     {
-        return $this->hasMany(Review::class , 'user_id' , 'id');
+        return $this->hasMany(Review::class, 'user_id', 'id');
     }
 
     public function initialProducts()
@@ -62,5 +62,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function designs()
     {
         return $this->belongsToMany(Design::class, 'favorite_designs', 'user_id', 'design_id');
+    }
+
+    public function produits_personnalises()
+    {
+        return $this->hasMany(ProduitPersonnaliser::class, 'membre_id', 'id');
     }
 }

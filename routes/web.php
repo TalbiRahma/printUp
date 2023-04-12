@@ -1,6 +1,6 @@
 <?php
 
-use Intervention\Image\Image;
+
 use App\Mail\MailVerification;
 use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +21,7 @@ use App\Http\Controllers\FavoriteProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ProduitPersonnaliserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,13 +44,15 @@ Auth::routes([
 
 
 
-Route::get('test', function(){
-    $image = new Image();
+Route::get('test', [ProduitPersonnaliserController::class, 'produitPersonnaliser']);
+Route::post('produit-personnaliser-2', [ProduitPersonnaliserController::class, 'produitPersonnaliser2'])->name('produit-personnaliser-2');
+Route::post('/modifierProduitInitial', [ProduitPersonnaliserController::class, 'modifierProduitInitial'])->name('modifier_produit_initial');
+Route::post('/modifierDesignFavori', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier_design_favori');
 
-// Charger l'image et la redimensionner
-$img = $image::make(public_path('/uploads/T-shirt.jpg'))->resize(300, 200);
-return view('test');
-});
+
+
+
+    
 
 Route::post('/upload', function(){
 
@@ -114,6 +117,7 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
         });
 
+        /****PERSONNALISER****** */
         Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
         Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
         Route::post('/modifier-produit-initial/{id}', [ProduitPersonnaliserController::class, 'modifierProduitInitial'])->name('modifier_produit_initial');
@@ -121,6 +125,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/modifier-design-favori', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-design-favori');
         Route::post('/modifier-mon-design', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-mon-design');
         Route::get('/supprimer_design_personnaliser/{id}', [ProduitPersonnaliserController::class, 'supprimerDesignFavori'])->name('supprimer_design_personnaliser');
+        Route::get('/create-custom-product', [ProduitPersonnaliserController::class, 'createCustomProduct']);
 
         
 

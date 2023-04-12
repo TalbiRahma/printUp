@@ -11,16 +11,16 @@ class ProduitPersonnaliser extends Model
 
     public function initialProduct()
     {
-        return $this->belongsTo(InitialProduct::class ,'initial_product_id' , 'id' );
+        return $this->belongsTo(InitialProduct::class, 'initial_product_id', 'id');
     }
 
     public function design()
     {
-        return $this->belongsTo(Design::class , 'design_id' , 'id');
+        return $this->belongsTo(Design::class, 'design_id', 'id');
     }
 
-    public function lignePaniers()
+    public function membre()
     {
-        return $this->hasMany(LignePanier::class , 'ligne_panier_id' , 'id');
+        return $this->belongsTo(Membre::class, 'membre_id', 'id');
     }
 }

@@ -7,8 +7,18 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="{{ route('produit-personnaliser-2') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="uploaded_file">
+        <button type="submit">Télécharger</button>
+    </form>
     
-    <img src="/uploads/T-shirt.jpg" alt="" width="75%" height="75%">
+    @if (Session::has('image'))
+        
+        <img src="{{ $shirtImage->encode('data-url') }}" alt="" width="75%" height="75%">
+    @else
+        <img src="/uploads/T-shirt.jpg" alt="" width="75%" height="75%">
+    @endif
 
 </body>
 </html>
