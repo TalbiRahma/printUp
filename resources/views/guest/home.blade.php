@@ -283,8 +283,7 @@
                     <h2 class="title">Parcourir Par Catégorie</h2>
                 </div>
                 <div class="row">
-                    <div
-                        class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
+                    <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
 
 
                         @foreach ($category_design as $cd)

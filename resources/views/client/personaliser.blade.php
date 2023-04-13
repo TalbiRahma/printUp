@@ -88,7 +88,7 @@
                                 <!-- Button trigger modal -->
 
                                 <!--Modal Ajout design-->
-                                <div class="modal fade quick-view-product" id="exampleModal" tabindex="-1"
+                                <div class="modal fade form-telecharger" id="exampleModal" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -109,7 +109,7 @@
                                                         <input type="hidden" name="id"
                                                             value="{{ mt_rand(100000, 999999) }}">
 
-                                                        <div class="col-6">
+                                                        <div class="">
                                                             <label class="ps-5">Ajouter votre design</label>
                                                             <div class="form-group">
                                                                 <div class="input-group mb-3">
@@ -127,7 +127,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="">
                                                             <div class="form-group">
                                                                 <label>Ajouter le nom de design</label>
                                                                 <input name="name" type="text"
@@ -140,47 +140,52 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
+                                                        <div class="">
+                                                            <div class="form-group">
+                                                                <label>Ajouter la decription</label>
+                                                                <textarea name="description" type="text" class="form-control" placeholder="Description" required></textarea>
 
-                                                        <div class="form-group mb-5">
-                                                            <label>Ajouter la decription</label>
-                                                            <textarea name="description" type="text" class="form-control" placeholder="Description" required></textarea>
+                                                                @error('description')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="">
+                                                            <div class="form-group">
+                                                                <label>Choisir la categorie de votre design</label>
+                                                                <select class="form-control" name="category_design"
+                                                                    id="choices-button" placeholder="Departure">
+                                                                    @foreach ($category_design as $cd)
+                                                                        <option value="{{ $cd->id }}">
+                                                                            {{ $cd->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
 
-                                                            @error('description')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group mb-5">
-                                                            <label>Choisir la categorie de votre design</label>
-                                                            <select class="form-control" name="category_design"
-                                                                id="choices-button" placeholder="Departure">
-                                                                @foreach ($category_design as $cd)
-                                                                    <option value="{{ $cd->id }}">
-                                                                        {{ $cd->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-
-                                                            @error('password')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        <div class="">
+                                                            <div class="form-group">
+                                                                <label>Ajouter le prix de votre design</label>
+                                                                <input name="price" type="text"
+                                                                    class="form-control" placeholder="Prix de design"
+                                                                    required>
+                                                                @error('price')
+                                                                    <div class="class alert alert-danger">
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group mb-5">
-                                                            <label>Ajouter le prix de votre design</label>
-                                                            <input name="price" type="text" class="form-control"
-                                                                placeholder="Prix de design" required>
-                                                            @error('price')
-                                                                <div class="class alert alert-danger">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group mb-5">
-                                                            <button type="submit"
-                                                                class="axil-btn btn-bg-primary submit-btn">Ajouter
+                                                        <div class="form-group">
+                                                            <button type="submit" class="axil-btn-Modal">Ajouter
                                                                 Design</button>
                                                         </div>
                                                     </form>
@@ -220,34 +225,37 @@
                                                             <div class="row">
                                                                 @foreach ($favorite_designs as $fd)
                                                                     <div class="col-2">
-                                                                        <form class="singin-form" method="POST"
-                                                                            action="{{ route('modifier-design-favori') }}"
-                                                                            enctype="multipart/form-data">
-                                                                            @csrf
-                                                                            <input type="hidden" name="id"
-                                                                                value="{{ $fd->id }}">
-                                                                            <div class="row">
-                                                                                <div class="col mb-0">
-                                                                                    <a href="#"><i
-                                                                                            class="far fa-times"></i></a>
+                                                                        <div class="axil-product-list">
+                                                                            <form class="singin-form" method="POST"
+                                                                                action="{{ route('modifier-design-favori') }}"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $fd->id }}">
+                                                                                <div class="row">
+                                                                                    <div class="col mb-0">
+                                                                                        <a href="#"><i
+                                                                                                class="far fa-times"></i></a>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <img src="{{ asset('uploads') }}/{{ $fd->photo }}"
+                                                                                            width="125px"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                    <h5 class="mb-1 mt-1">
+                                                                                        {{ $fd->name }}</h5>
+                                                                                    <h6 class="mb-1 mt-1">name
+                                                                                        boutique</h6>
+                                                                                    <p class="mb-1 mt-1">prix:
+                                                                                        {{ $fd->price }} TND</p>
+                                                                                    <div
+                                                                                        class="justify-content-center mb-4 mt-2">
+                                                                                        <button type="submit"
+                                                                                            class="axil-btn-custom">Personnalisé</button>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="col-12">
-                                                                                    <img src="{{ asset('uploads') }}/{{ $fd->photo }}"
-                                                                                        width="125px" alt="">
-                                                                                </div>
-                                                                                <h5 class="mb-1 mt-1">
-                                                                                    {{ $fd->name }}</h5>
-                                                                                <h6 class="mb-1 mt-1">name
-                                                                                    boutique</h6>
-                                                                                <p class="mb-1 mt-1">prix:
-                                                                                    {{ $fd->price }} TND</p>
-                                                                                <div
-                                                                                    class="justify-content-center mb-4 mt-2">
-                                                                                    <button type="submit"
-                                                                                        class="axil-btn-custom">Personnalisé</button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 @endforeach
                                                             </div>
@@ -289,35 +297,39 @@
                                                             <div class="row">
                                                                 @foreach ($mes_design as $md)
                                                                     <div class="col-2">
-                                                                        <form class="singin-form" method="POST"
-                                                                            action="{{ route('modifier-design-favori') }}"
-                                                                            enctype="multipart/form-data">
-                                                                            @csrf
-                                                                            <input type="hidden" name="id"
-                                                                                value="{{ $md->id }}">
-                                                                            <div class="row">
-                                                                                <div class="col mb-0">
-                                                                                    <a href="#"><i
-                                                                                            class="far fa-times"></i></a>
+                                                                        <div class="axil-product-list">
+                                                                            <form class="singin-form" method="POST"
+                                                                                action="{{ route('modifier-design-favori') }}"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $md->id }}">
+                                                                                <div class="row">
+                                                                                    <div class="col mb-0">
+                                                                                        <a href="#"><i
+                                                                                                class="far fa-times"></i></a>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <img src="{{ asset('/uploads') }}/{{ $md->photo }}"
+                                                                                            width="100%"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                    <h5 class="mb-1 mt-1">
+                                                                                        {{ $md->name }}</h5>
+                                                                                    <h6 class="mb-1 mt-1">
+                                                                                        {{ $md->categorie_designs->name }}
+                                                                                    </h6>
+                                                                                    <p class="mb-1 mt-1">prix:
+                                                                                        {{ $md->price }} TND</p>
+                                                                                    <div
+                                                                                        class="justify-content-center mb-4 mt-2">
+                                                                                        <button type="submit"
+                                                                                            class="axil-btn-custom">Personnalisé</button>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="col-12">
-                                                                                    <img src="{{ asset('/uploads') }}/{{ $md->photo }}"
-                                                                                        width="125px" alt="">
-                                                                                </div>
-                                                                                <h5 class="mb-1 mt-1">
-                                                                                    {{ $md->name }}</h5>
-                                                                                <h6 class="mb-1 mt-1">
-                                                                                    {{ $md->categorie_designs->name }}
-                                                                                </h6>
-                                                                                <p class="mb-1 mt-1">prix:
-                                                                                    {{ $md->price }} TND</p>
-                                                                                <div
-                                                                                    class="justify-content-center mb-4 mt-2">
-                                                                                    <button type="submit"
-                                                                                        class="axil-btn-custom">Personnalisé</button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
+
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 @endforeach
 
@@ -356,37 +368,40 @@
                                                             <div class="row">
                                                                 @foreach ($favorite_products as $fp)
                                                                     <div class="col-3">
-                                                                        <form class="singin-form" method="post"
-                                                                            action="{{ route('modifier_produit_initial', ['id' => $fp->id]) }}"
-                                                                            enctype="multipart/form-data">
-                                                                            @csrf
-                                                                            <input type="hidden"
-                                                                                name="id_produit_favori"
-                                                                                value="{{ $fp->id }}">
-                                                                            <div class="row">
-                                                                                <div class="col mb-0">
-                                                                                    <a href="#"><i
-                                                                                            class="far fa-times"></i></a>
-                                                                                </div>
-                                                                                <div class="col-12">
-                                                                                    <img src="{{ asset('uploads') }}/{{ $fp->photo }}"
-                                                                                        width="150px" alt="">
-                                                                                </div>
-                                                                                <h5 class="mb-1 mt-1">
-                                                                                    {{ $fp->name }}</h5>
-                                                                                <h6 class="mb-1 mt-1">
-                                                                                    {{ $fp->categorie_products->name }}
-                                                                                </h6>
-                                                                                <p class="mb-1 mt-1">prix:
-                                                                                    {{ $fp->price }} TND</p>
+                                                                        <div class="axil-product-list">
+                                                                            <form class="singin-form" method="post"
+                                                                                action="{{ route('modifier_produit_initial', ['id' => $fp->id]) }}"
+                                                                                enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <input type="hidden"
+                                                                                    name="id_produit_favori"
+                                                                                    value="{{ $fp->id }}">
+                                                                                <div class="row">
+                                                                                    <div class="col mb-0">
+                                                                                        <a href="#"><i
+                                                                                                class="far fa-times"></i></a>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <img src="{{ asset('uploads') }}/{{ $fp->photo }}"
+                                                                                            width="auto"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                    <h5 class="mb-1 mt-1">
+                                                                                        {{ $fp->name }}</h5>
+                                                                                    <h6 class="mb-1 mt-1">
+                                                                                        {{ $fp->categorie_products->name }}
+                                                                                    </h6>
+                                                                                    <p class="mb-1 mt-1">prix:
+                                                                                        {{ $fp->price }} TND</p>
 
-                                                                                <div
-                                                                                    class="justify-content-center mb-4 mt-2">
-                                                                                    <button type="submit"
-                                                                                        class="axil-btn-custom">Personnalisé</button>
+                                                                                    <div
+                                                                                        class="justify-content-center mb-4 mt-2">
+                                                                                        <button type="submit"
+                                                                                            class="axil-btn-custom">Personnalisé</button>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </form>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                 @endforeach
 
@@ -430,14 +445,13 @@
                             <div class="row row-cols-xl row-cols-1 col-lg-6">
                                 <div class="col">
                                     <div class="axil-product-list">
-                                        
+
                                         <div class="product-content1">
                                             @if ($custom_product_data)
-                                            <img src="{{ $custom_product_data['photo'] }}"
-                                                alt="Product">
-                                             @else
-                                            <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
-                                                alt="Product">
+                                                <img src="{{ $custom_product_data['photo'] }}" alt="Product">
+                                            @else
+                                                <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
+                                                    alt="Product">
                                             @endif
                                         </div>
                                     </div>
@@ -464,7 +478,7 @@
                                             <div>
                                                 <h4 class="mb-3">{{ $design_data['name'] }}</h4>
                                                 <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                                
+
                                                 <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
                                             </div>
                                         </div>
@@ -487,7 +501,7 @@
                                             <div>
                                                 <h4 id="design-name" class="mb-3">nom design</h4>
                                                 <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                                
+
                                                 <h3 id="design-price" class="mt-3">15 TND</h3>
                                             </div>
                                         </div>
@@ -535,112 +549,112 @@
             </div>
             <!-- End Iniatial Product Slider Area -->
         @else
-        <div class="axil-main-slider-area main-slider-style-2">
-            <div class="container">
-                <div class="slider-offset-left">
-                    <div class="row row-20">
-                        <div class="row row-cols-xl row-cols-1 col-lg-6">
-                            <div class="col">
-                                <div class="axil-product-list">
-                                    <div class="product-content1">
+            <div class="axil-main-slider-area main-slider-style-2">
+                <div class="container">
+                    <div class="slider-offset-left">
+                        <div class="row row-20">
+                            <div class="row row-cols-xl row-cols-1 col-lg-6">
+                                <div class="col">
+                                    <div class="axil-product-list">
+                                        <div class="product-content1">
 
-                                        <img src="{{ asset('uploads') }}/{{ $initial_product->photo }}"
-                                            alt="Product">
+                                            <img src="{{ asset('uploads') }}/{{ $initial_product->photo }}"
+                                                alt="Product">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            @if ($design_data)
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="row row-cols-xl row-cols-1">
-                                            <div class="col">
+                            <div class="col-6">
+                                @if ($design_data)
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="row row-cols-xl row-cols-1">
+                                                <div class="col">
 
-                                                <div class="axil-product-list">
-                                                    <div class="product-content2">
+                                                    <div class="axil-product-list">
+                                                        <div class="product-content2">
 
-                                                        <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
-                                                            alt="Product">
+                                                            <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
+                                                                alt="Product">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div>
-                                            <h4 class="mb-3">{{ $design_data['name'] }}</h4>
-                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                            
-                                            <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
+                                        <div class="col-7">
+                                            <div>
+                                                <h4 class="mb-3">{{ $design_data['name'] }}</h4>
+                                                <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+
+                                                <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @else
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="row row-cols-xl row-cols-1">
-                                            <div class="col">
-                                                <div class="axil-product-list">
-                                                    <div id="design-image" class="product-content2">
-                                                        <img src="{{ asset('mainassets/images/product/design.png') }}"
-                                                            alt="Product">
+                                @else
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="row row-cols-xl row-cols-1">
+                                                <div class="col">
+                                                    <div class="axil-product-list">
+                                                        <div id="design-image" class="product-content2">
+                                                            <img src="{{ asset('mainassets/images/product/design.png') }}"
+                                                                alt="Product">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div>
-                                            <h4 id="design-name" class="mb-3">nom design</h4>
-                                            <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-                                            
-                                            <h3 id="design-price" class="mt-3">15 TND</h3>
+                                        <div class="col-7">
+                                            <div>
+                                                <h4 id="design-name" class="mb-3">nom design</h4>
+                                                <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+
+                                                <h3 id="design-price" class="mt-3">15 TND</h3>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
-                            <div class="row col-12 ps-4 mt-3">
-                                <h3>Nom produit personanlisée</h3>
-                                <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
-                                    {{ $initial_product->price }} TND</h5>
-                                <div class="product-variations-wrapper">
+                                @endif
+                                <div class="row col-12 ps-4 mt-3">
+                                    <h3>Nom produit personanlisée</h3>
+                                    <h5 class="text-secondary mb-3">Prix {{ $initial_product->name }}:
+                                        {{ $initial_product->price }} TND</h5>
+                                    <div class="product-variations-wrapper">
 
-                                    <!-- Start Product Variation  -->
-                                    <div class="product-variation product-size-variation">
-                                        @if ($initial_product->sizes)
-                                            @php $sizes = json_decode($initial_product->sizes, true); @endphp
-                                            <div class="product-variation">
-                                                @if (!empty($sizes))
-                                                    <h6 class="title">Size:</h6>
-                                                @endif
-                                                <ul class="range-variant">
+                                        <!-- Start Product Variation  -->
+                                        <div class="product-variation product-size-variation">
+                                            @if ($initial_product->sizes)
+                                                @php $sizes = json_decode($initial_product->sizes, true); @endphp
+                                                <div class="product-variation">
+                                                    @if (!empty($sizes))
+                                                        <h6 class="title">Size:</h6>
+                                                    @endif
+                                                    <ul class="range-variant">
 
-                                                    @foreach ($sizes as $size)
-                                                        <li>{{ $size }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+                                                        @foreach ($sizes as $size)
+                                                            <li>{{ $size }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
 
-                                        @endif
+                                            @endif
+                                        </div>
+                                        <!-- End Product Variation  -->
+
                                     </div>
-                                    <!-- End Product Variation  -->
 
-                                </div>
+                                    <h5>Total: 45 TND</h5>
 
-                                <h5>Total: 45 TND</h5>
-
-                                <div class="group-btn">
-                                    <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
-                                    <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
+                                    <div class="group-btn">
+                                        <a href="" class="axil-btn btn-bg-primary">Ajouter au boutique</a>
+                                        <a href="" class="axil-btn btn-bg-secondary">Ajouter au panier</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End Iniatial Product Slider Area -->
+            <!-- End Iniatial Product Slider Area -->
         @endif
 
 
@@ -736,9 +750,71 @@
             font-size: 15px !important;
             border-radius: 5px !important;
             border: none !important;
-            width: 130px;
+            width: 100%;
             height: 30px;
             justify-content: center;
+        }
+
+        .axil-btn-Modal {
+            background-color: #5e72e4 !important;
+            color: #FFFFFF !important;
+            font-size: 17px !important;
+            border-radius: 5px !important;
+            border: none !important;
+            width: 100%;
+            height: 40px;
+            justify-content: center;
+        }
+
+
+        .form-telecharger .modal-dialog {
+            max-width: 720px;
+        }
+
+        .form-telecharger .modal-content {
+            border: none;
+        }
+
+        .form-telecharger .modal-header {
+            padding: 30px 15px;
+            justify-content: flex-end;
+        }
+
+        .form-telecharger .modal-header .btn-close {
+            width: auto;
+            background-image: none;
+            font-size: 14px;
+            padding: 0 10px;
+            transition: var(--transition);
+            position: relative;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .form-telecharger .modal-header .btn-close:after {
+            content: "";
+            height: 35px;
+            width: 35px;
+            background: var(--color-argon);
+            border-radius: 50%;
+            position: absolute;
+            top: -9px;
+            left: -3px;
+            transform: scale(0);
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .form-telecharger .modal-header .btn-close:hover {
+            color: var(--color-white);
+        }
+
+        .form-telecharger .modal-header .btn-close:hover:after {
+            transform: scale(1);
+        }
+
+        .form-telechargerF .modal-body {
+            padding: 30px;
         }
     </style>
 

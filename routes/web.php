@@ -11,7 +11,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DesignController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PortmonnaieController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
 use App\Http\Controllers\FavoriteDesignController;
@@ -150,7 +152,7 @@ Route::group(['middleware' => ['auth','admin']], function(){
         Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
         Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'])->name('donnes.profil');
 
-
+        
         /************admin CLIENT****** */
         Route::prefix('user')->group(function () {
             Route::get('', [AdminController::class, 'clients'])->name('users');
@@ -197,6 +199,10 @@ Route::group(['middleware' => ['auth','admin']], function(){
             Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
             Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
         });
+
+        Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes');
+        Route::get('/paiment', [PortmonnaieController::class, 'index'])->name('paiment');
+
     });
 });
 
@@ -205,5 +211,5 @@ Route::group(['middleware' => ['auth','admin']], function(){
 
 
 
-Route::get('admin/commandes', 'App\Http\Controllers\Controller@commandes');
-Route::get('admin/paiement', 'App\Http\Controllers\Controller@paiement');
+
+

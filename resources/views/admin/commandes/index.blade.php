@@ -39,71 +39,65 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Tableau de bord</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('users') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Clients</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('category_product') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category_design') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Designs</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('products') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-info text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/admin/commandes">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Commandes</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="/admin/paiement">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Paiement</span>
-                    </a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Tableau de bord</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('users') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Clients</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link "  href="{{ route('category_product') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Categories Produits</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('category_design') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Categories Designs</span>
+                </a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('products') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-app text-info text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Produits</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('commandes') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Commandes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('paiment') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Paiment</span>
+                </a>
+              </li>
             </ul>
-        </div>
+          </div>
     </aside>
     <!-- End Side bar -->
     <main class="main-content position-relative border-radius-lg ">
@@ -159,14 +153,16 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7" style="width: 5%;">Id
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clients
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20%;">Clients
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Boutique
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 35%;">
+                                    Produit Personnaliser
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 20%;">Total
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20%;">Etat
                                 </th>
                             </tr>
                         </thead>
@@ -188,18 +184,15 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">name Boutique</p>
-                                    <p class="text-xs text-secondary mb-0">nbr design</p>
+                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Voir Détail"><img src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}" alt="" width="75%"></a>
+                                </td>
+                                <td>
+                                    <h6 class="text-xs">45 TND</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <a href="javascript:;" class="text-success font-weight-bold text-xs p-2"
-                                        data-toggle="tooltip" data-original-title="activer client">
-                                        Activer
-                                    </a>
-                                    <a href="javascript:;" class="text-warning font-weight-bold text-xs p-2"
-                                        data-toggle="tooltip" data-original-title="bloquer client">
-                                        Bloquer
-                                    </a>
+                                    <span class="badge bg-gradient-info">En Cour</span>
+                                    
+                                    <span class="badge bg-gradient-success">Valider</span>
                                 </td>
                             </tr>
                         </tbody>

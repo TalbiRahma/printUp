@@ -39,71 +39,65 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Tableau de bord</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('users') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Clients</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('category_product') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category_design') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Designs</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('products') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-info text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="/admin/commandes">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Commandes</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/admin/paiement">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Paiement</span>
-                    </a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Tableau de bord</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('users') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Clients</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link "  href="{{ route('category_product') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Categories Produits</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('category_design') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Categories Designs</span>
+                </a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('products') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-app text-info text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Produits</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('commandes') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Commandes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('paiment') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Paiment</span>
+                </a>
+              </li>
             </ul>
-        </div>
+          </div>
     </aside>
     <!-- End Side bar -->
     <main class="main-content position-relative border-radius-lg ">
