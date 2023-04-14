@@ -156,10 +156,17 @@
                                 </div>
                             </li>
                             <li class="shopping-cart">
+                                @if (auth()->user())
                                 <a href="#" class="cart-dropdown-btn">
+                                    <span class="cart-count">{{ $commande->lignecommandes->count() }}</span>
+                                    <i class="flaticon-shopping-cart"></i>
+                                </a>
+                                @else
+                                <a href="{{ route('login') }}" class="cart-dropdown-btn">
                                     <span class="cart-count">3</span>
                                     <i class="flaticon-shopping-cart"></i>
                                 </a>
+                                @endif
                             </li>
                             <li class="my-account">
                                 <a href="javascript:void(0)">
@@ -341,7 +348,7 @@
                                                             href="{{ route('products.details', ['id' => $p->id ]) }}"><i
                                                                 class="far fa-eye"></i></a></li>
                                                     <li class="select-option">
-                                                        <a href="{{route('personnaliser-produit', ['id' => $p->id])}}">
+                                                        <a href="{{route('personnaliser.produit', ['id' => $p->id])}}">
                                                             Personnalisé
                                                         </a>
                                                     </li>

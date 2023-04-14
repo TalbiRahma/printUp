@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Models\CategoryDesign;
 use App\Models\FavoriteDesign;
@@ -29,8 +30,8 @@ class FavoriteDesignController extends Controller
         
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
-     
-        return view('client.wishlist.design', compact('designs', 'category_product', 'category_design'));
+        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        return view('client.wishlist.design', compact('designs', 'category_product', 'category_design','commande'));
     }
 
     public function addToWishlist(Request $request)

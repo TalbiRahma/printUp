@@ -168,7 +168,7 @@
                                             <ul class="cart-action">
                                                 <li class="wishlist"><a href="wishlist.html"><i
                                                             class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('personnaliser-produit', ['id' => $p->id])}}">Personnalisé</a></li>
+                                                <li class="select-option"><a href="{{route('personnaliser.produit', ['id' => $p->id])}}">Personnalisé</a></li>
                                                 <li class="quickview"><a href="#"><i class="far fa-eye"></i></a></li>
                                             </ul>
                                         </div>

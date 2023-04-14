@@ -21,7 +21,7 @@ class DesignController extends Controller
 
     public function ajouterDesign(Request  $request)
     {
-
+        
         //dd($request);
         $request->validate([
             'name' => 'required',

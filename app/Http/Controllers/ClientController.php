@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Design;
 use App\Models\Review;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
@@ -89,7 +90,9 @@ class ClientController extends Controller
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         
-        return view('client.cart', compact('designs', 'initial_products', 'category_product', 'category_design'));
+
+        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        return view('client.cart', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
 
     }
 
@@ -98,13 +101,13 @@ class ClientController extends Controller
     
 
     public function checkout(){
-
+        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
         $initial_products = InitialProduct::all();
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         
-        return view('client.checkout', compact('designs', 'initial_products', 'category_product', 'category_design'));
+        return view('client.checkout', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
 
     }
 
@@ -135,6 +138,7 @@ class ClientController extends Controller
 
 
     public function personaliser(Request $request){
+        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
         $initial_product = InitialProduct::all();
         $designs = Design::all();
         $category_product = CategoryProduct::all();
@@ -145,7 +149,7 @@ class ClientController extends Controller
 
         
         
-        return view('client.personaliser', compact('designs', 'initial_product', 'category_product', 'category_design'));
+        return view('client.personaliser', compact('designs', 'initial_product', 'category_product', 'category_design', 'commande'));
 
     }
 

@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
+            $table->enum('etat', ['en cours', 'payee', 'valider'])->default('en cours');
+            $table->unsignedBigInteger('member_id')->nullable();
+            $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

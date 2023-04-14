@@ -39,7 +39,7 @@ class InitialProductController extends Controller
             'XS' => $request->input('XS'),
             'S' => $request->input('S'),
             'M' => $request->input('M'),
-            'L' => $request->input('L'),
+            'L' => $request->input('L'), 
 
         );
 

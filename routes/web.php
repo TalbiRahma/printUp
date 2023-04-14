@@ -41,7 +41,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 Auth::routes([
-    'verify' =>true
+    'verify' => true
 ]);
 
 
@@ -54,10 +54,9 @@ Route::post('/modifierDesignFavori', [ProduitPersonnaliserController::class, 'mo
 
 
 
-    
 
-Route::post('/upload', function(){
 
+Route::post('/upload', function () {
 });
 
 /*Route::get('/send', function(){
@@ -73,7 +72,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 
 Route::get('/', [GuestController::class, 'home'])->name('home');
 
-Route::prefix('geust/shop')->group(function (){
+Route::prefix('geust/shop')->group(function () {
     Route::get('/products', [GuestController::class, 'indexProduits'])->name('products.index');
     Route::get('/products/filter', [GuestController::class, 'filter'])->name('products.filter');
     Route::get('/products/{id}/details', [GuestController::class, 'productDetails'])->name('products.details');
@@ -85,31 +84,32 @@ Route::prefix('geust/shop')->group(function (){
 
 
 /*************CLIENT******** */
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function () {
     Route::prefix('client')->group(function () {
-            Route::get('/cart', [ClientController::class,'cart'])->name('cart');
-            Route::get('/checkout', [ClientController::class,'checkout'])->name('checkout');
+        Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
+        Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
+        Route::get('/account', [ClientController::class, 'account'])->name('account');
+        Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update');
+        Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
 
 
         /***************WISHLIST******* */
         Route::prefix('wishlist')->group(function () {
             /***********PRODUCT WISHLIST******** */
             Route::prefix('products')->group(function () {
-                Route::get('', [FavoriteProductController::class,'productWishlist'])->name('product.wishlist');
-                Route::post('/add', [FavoriteProductController::class,'addToWishlist'])->name('wishlist.add.product');
-                Route::get('/delete/{id}', [FavoriteProductController::class,'deleteWishlist'])->name('product.wishlist.delete');
+                Route::get('', [FavoriteProductController::class, 'productWishlist'])->name('product.wishlist');
+                Route::post('/add', [FavoriteProductController::class, 'addToWishlist'])->name('wishlist.add.product');
+                Route::get('/delete/{id}', [FavoriteProductController::class, 'deleteWishlist'])->name('product.wishlist.delete');
             });
             /***********DESIGN WISHLIST******** */
             Route::prefix('designs')->group(function () {
-            Route::get('', [FavoriteDesignController::class,'designWishlist'])->name('design.wishlist');
-            Route::post('/add', [FavoriteDesignController::class,'addToWishlist'])->name('wishlist.add.design');
-            Route::get('/delete/{id}', [FavoriteDesignController::class,'deleteWishlist'])->name('wishlist.delete.design');
+                Route::get('', [FavoriteDesignController::class, 'designWishlist'])->name('design.wishlist');
+                Route::post('/add', [FavoriteDesignController::class, 'addToWishlist'])->name('wishlist.add.design');
+                Route::get('/delete/{id}', [FavoriteDesignController::class, 'deleteWishlist'])->name('wishlist.delete.design');
             });
         });
-        Route::get('/account', [ClientController::class,'account'])->name('account');
-        Route::post('/account/update', [ClientController::class,'updateAccount'])->name('account.update');
-        Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
-        
+
+
         /***********client DESIGN***** */
         Route::prefix('designs')->group(function () {
             Route::get('', [DesignController::class, 'index'])->name('designs');
@@ -120,19 +120,21 @@ Route::group(['middleware' => ['auth']], function(){
         });
 
         /****PERSONNALISER****** */
-        Route::get('/personaliser', [ClientController::class, 'personaliser'])->name('personaliser');
-        Route::get('/personnaliser-produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser-produit');
-        Route::post('/modifier-produit-initial/{id}', [ProduitPersonnaliserController::class, 'modifierProduitInitial'])->name('modifier_produit_initial');
-        Route::get('/designs/{design}', [DesignController::class, 'afficherDesignAjoute']);
-        Route::post('/modifier-design-favori', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-design-favori');
-        Route::post('/modifier-mon-design', [ProduitPersonnaliserController::class, 'modifierDesignFavori'])->name('modifier-mon-design');
-        Route::get('/supprimer_design_personnaliser/{id}', [ProduitPersonnaliserController::class, 'supprimerDesignFavori'])->name('supprimer_design_personnaliser');
-        Route::get('/create-custom-product', [ProduitPersonnaliserController::class, 'createCustomProduct']);
-
-        
+        Route::prefix('personnaliser')->group(function () {
+        Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
+        Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
+        Route::get('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct']);
+        });
 
 
+        /*****COMMANDE *****/
+        Route::prefix('commande')->group(function () 
+        {
+            Route::post('/store', [CommandeController::class, 'addCommande'])->name('command.add');
+            Route::get('/lc/{idlc}/destroy', [CommandeController::class, 'ligneCommandeDestroy'])->name('command.delete');
+            Route::post('/update', [CommandeController::class, 'updateLigne'])->name('commande.update');
 
+        });
     });
 });
 
@@ -145,14 +147,14 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 /*************ADMIN******** */
-Route::group(['middleware' => ['auth','admin']], function(){
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/profil/edit', [AdminController::class, 'modifProfil'])->name('modifier.profil');
         Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
         Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'])->name('donnes.profil');
 
-        
+
         /************admin CLIENT****** */
         Route::prefix('user')->group(function () {
             Route::get('', [AdminController::class, 'clients'])->name('users');
@@ -202,14 +204,5 @@ Route::group(['middleware' => ['auth','admin']], function(){
 
         Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes');
         Route::get('/paiment', [PortmonnaieController::class, 'index'])->name('paiment');
-
     });
 });
-
-
-
-
-
-
-
-
