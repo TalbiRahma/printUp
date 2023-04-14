@@ -230,7 +230,7 @@
                                     <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Personnaliser</a></li>
+                                            <li class="select-option"><a href="single-product-7.html">ajouter aux Favoris</a></li>
                                         </ul>
                                     </div>
                                 </div>

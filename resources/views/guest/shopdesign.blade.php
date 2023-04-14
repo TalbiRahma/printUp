@@ -145,13 +145,20 @@
                                                 </div>
                                                 <div class="product-hover-action">
                                                     <ul class="cart-action">
-                                                        <li class="quickview"><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a>
+                                                        <li class="quickview"><a href="{{route('designs.details', ['id' => $d->id])}}" ><i class="far fa-eye"></i></a>
                                                         </li>
                                                         <li class="select-option"><a href="single-product.html">Personnalisé</a>
                                                         </li>
-                                                        <li class="wishlist"><a href="wishlist.html"><i
-                                                                    class="far fa-heart"></i></a></li>
+                                                        <li class="wishlist">
+                                                            <form method="post"
+                                                                action="{{route('wishlist.add.design')}}">
+                                                                @csrf
+                                                                <input type="hidden" name="design_id"
+                                                                    value="{{ $d->id }}">
+                                                                <a href="javascript:void(0)"><button type="submit"><i
+                                                                            class="far fa-heart"></i></button></a>
+                                                            </form>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>

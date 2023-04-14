@@ -15,7 +15,7 @@
                                 <div class="item-img">
                                     <a href="single-product.html"><img src="/{{ $lc->customproduct->photo }}"
                                             alt="{{ $lc->customproduct->name }}"></a>
-                                    <button class="close-btn"><i class="fas fa-times"></i></button>
+                                    <a href="{{ route('command.delete', ['idlc' => $lc->id]) }}" class="close-btn"><i class="fas fa-times"></i></a>
                                 </div>
                                 <div class="item-content">
                                     <h3 class="item-title"><a
