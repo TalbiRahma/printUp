@@ -120,7 +120,7 @@
                                     </li>
                                     <li>
                                         @if (auth()->user())
-                                            <a href="{{route('design.wishlist')}}">Mes produits designs</a>
+                                            <a href="{{route('design.wishlist')}}">Mes designs favoris</a>
                                         @else
                                             <a href="{{ route('register') }}">Mes designs favoris</a>
                                         @endif
@@ -129,10 +129,17 @@
                             </div>
                         </li>
                         <li class="shopping-cart">
+                            @if(auth()->user())
                             <a href="#" class="cart-dropdown-btn">
-                                <span class="cart-count">3</span>
+                                <span class="cart-count"> {{ $commande->lignecommandes->count() }}</span>
                                 <i class="flaticon-shopping-cart"></i>
                             </a>
+                            @else
+                            <div href="#" class="cart-dropdown-btn">
+                                <span class="cart-count">3</span>
+                                <i class="flaticon-shopping-cart"></i>
+                            </div>
+                            @endif
                         </li>
                         <li class="my-account">
                             <a href="javascript:void(0)">

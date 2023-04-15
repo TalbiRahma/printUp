@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
 use App\Models\CategoryProduct;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
@@ -16,6 +18,7 @@ class GuestController extends Controller
     {
         $request->session()->forget('product_data');
         $request->session()->forget('design_data');
+        $request->session()->forget('custom_product_data');
     }
     public function home(Request $request)
     {
@@ -24,6 +27,10 @@ class GuestController extends Controller
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
+        }
 
         $this->clearSessionData($request);
         return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design'));
@@ -38,6 +45,10 @@ class GuestController extends Controller
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         $sizes = ['S', 'M', 'L', 'XL'];
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design','commande'));
+        }
 
         return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design'));
     }
@@ -59,9 +70,12 @@ class GuestController extends Controller
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.initialProductDetails', compact('designs', 'product', 'category_product', 'category_design', 'products','commande'));
+        }
 
-        return view('guest.initialProductDetails')->with('designs', $designs)->with('product', $product)->with('category_product', $category_product)->with('category_design', $category_design)
-            ->with('products', $products);
+        return view('guest.initialProductDetails', compact('designs', 'product', 'category_product', 'category_design', 'products'));
     }
 
 
@@ -76,8 +90,11 @@ class GuestController extends Controller
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
-
-        return view('guest.shopdesign')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);;
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design','commande'));
+        }
+        return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design'));
     }
 
     public function designDetails($id)
@@ -89,11 +106,15 @@ class GuestController extends Controller
         $designs = Design::whereHas('categorie_designs', function ($query) use ($category) {
             $query->where('name', $category->name);
         })->where('id', '!=', $id)->get();
-        //
+        
 
         $initial_products = InitialProduct::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.designDetails', compact('initial_products', 'design', 'category_product', 'category_design', 'designs', 'category','commande'));
+        }
 
         return view('guest.designDetails', compact('initial_products', 'design', 'category_product', 'category_design', 'designs', 'category'));
     }
@@ -107,7 +128,10 @@ class GuestController extends Controller
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
-
-        return view('guest.shoppersonaliser')->with('designs', $designs)->with('initial_products', $initial_products)->with('category_product', $category_product)->with('category_design', $category_design);;
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.designDetails', compact('initial_products', 'design', 'category_product', 'category_design', 'designs', 'category','commande'));
+        }
+        return view('guest.shoppersonaliser', compact('designs','initial_products', 'category_product', 'category_design'));
     }
 }
