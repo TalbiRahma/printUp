@@ -9,6 +9,6 @@ class PortmonnaieController extends Controller
     //
     public function index(){
         
-        return view('admin.paiment.index');
+        return view('admin.paiement.index');
     }
 }

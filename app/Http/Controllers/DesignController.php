@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class DesignController extends Controller
 {
     //
+
+    public function designs()
+    {
+        return view('admin.designs.index');
+    }
+
     public function index()
     {
 

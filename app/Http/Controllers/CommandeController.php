@@ -11,4 +11,8 @@ class CommandeController extends Controller
         
         return view('admin.commandes.index');
     }
+    public function detail(){
+        
+        return view('admin.commandes.detail');
+    }
 }

@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        PrintUp
+        Produits
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -30,8 +30,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-                target="_blank">
+            <a class="navbar-brand m-0" href="/" target="_blank">
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
             </a>
@@ -58,7 +57,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('category_product') }}">
+                    <a class="nav-link " href="{{ route('category_product') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
@@ -85,6 +84,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link " href="{{ route('designs') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="{{ route('commandes') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -94,12 +102,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('paiment') }}">
+                    <a class="nav-link " href="{{ route('paiement') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Paiment</span>
+                        <span class="nav-link-text ms-1">Paiement</span>
                     </a>
                 </li>
             </ul>
@@ -140,11 +148,11 @@
 
                         <!--notificaton-->
                         @include('inc.admin.notification')
-            <!--end notificaton-->
+                        <!--end notificaton-->
                     </ul>
                 </div>
             </div>
-        </nav>  
+        </nav>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="card card-frame">
@@ -157,25 +165,27 @@
             <div class="card">
                 <div class="container-fluid py-4">
                     <div class="row">
-                    <div class="col-9">
-                    <h5>Ajouter un Produit:</h5>
-                    <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#produitAjout">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text">Ajouter</span>
-                    </button>
-                    </div>
-                    <div class="col-3">
-                        <form action="{{route('search.product')}}" method="POST">
-                            @csrf
-                            <div class="input-group">
-                             
-                              <button type="submit" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
-                              <input name="product_name" type="text" class="form-control" placeholder="Tapez ici...">
-                              
-                            </div>
-                        </form>
-                    </div>
+                        <div class="col-9">
+                            <h5>Ajouter un Produit:</h5>
+                            <button class="btn btn-icon btn-3 bg-gradient-success" type="button"
+                                data-bs-toggle="modal" data-bs-target="#produitAjout">
+                                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                <span class="btn-inner--text">Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <form action="{{ route('search.product') }}" method="POST">
+                                @csrf
+                                <div class="input-group">
+
+                                    <button type="submit" class="input-group-text text-body"><i
+                                            class="fas fa-search" aria-hidden="true"></i></button>
+                                    <input name="product_name" type="text" class="form-control"
+                                        placeholder="Tapez ici...">
+
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!--Modal Ajout produit-->
 
@@ -183,7 +193,8 @@
                         aria-labelledby="exampleModalSignTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('add.product') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body p-0">
                                         <div class="card card-plain">
@@ -250,7 +261,7 @@
                                                     @enderror
                                                 </div>
                                                 <label>Categorie</label>
-                                                <div class="input-group mb-3"> 
+                                                <div class="input-group mb-3">
                                                     <select class="form-control" name="category_product"
                                                         id="choices-button" placeholder="Departure">
                                                         @foreach ($category_product as $cp)
@@ -289,211 +300,201 @@
                 </div>
                 <hr class="horizontal dark mt-0">
                 <div class="table-responsive">
-
-
-                    <div class="table-responsive">
-                        <table class="table align-items-center mb-0">
-                            <thead>
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 5%;">ID</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 25%;">Image</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 15%;">Produit</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 20%;">Description</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Prix</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Taille</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Categorie</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($product as $index => $p)
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 5%;">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 25%;">Image</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 15%;">Produit</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 20%;">Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 10%;">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 10%;">Taille</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 10%;">Categorie</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 15%;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($product as $index => $p)
-                                    <tr>
-                                        <td class="align-middle text-sm">
-                                            {{ $index + 1 }}
-                                        </td>
-                                        <td>
-                                            <div style="max-width: 200px; min-width: 100px; ">
-                                                <img src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                    class="avatar me-3 " style="width: 100%; height: auto;">
+                                    <td class="align-middle text-sm">
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 100px; ">
+                                            <img src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                class="avatar me-3 " style="width: 100%; height: auto;">
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $p->name }}</h5>
                                             </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="d-flex px-2">
-                                                <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">{{ $p->name }}</h5>
-                                                </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <p class="text-xs text-secondary mb-0 force-line-break">
+                                            {{ $p->description }}</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $p->price }} TND</h5>
                                             </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <p class="text-xs text-secondary mb-0 force-line-break">
-                                                {{ $p->description }}</p>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="d-flex px-2">
-                                                <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">{{ $p->price }} TND</h5>
-                                                </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">
+                                                    @if ($p->sizes)
+                                                        @php $sizes = json_decode($p->sizes, true); @endphp
+                                                        @foreach ($sizes as $size)
+                                                            <span
+                                                                class="badge badge-secondary">{{ $size }}</span>
+                                                        @endforeach
+                                                        {{ implode(',', $sizes) }}
+                                                    @endif
+                                                </h5>
                                             </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="d-flex px-2">
-                                                <div class="my-auto">
-                                                    <h5 class="mb-0 text-sm">
-                                                        @if ($p->sizes)
-                                                            @php $sizes = json_decode($p->sizes, true); @endphp
-                                                            @foreach ($sizes as $size)
-                                                                <span
-                                                                    class="badge badge-secondary">{{ $size }}</span>
-                                                            @endforeach
-                                                            {{ implode(',', $sizes) }}
-                                                        @endif
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                                data-toggle="tooltip"
-                                                data-original-title="afficher liste de categories">
-                                                {{ $p->categorie_products->name }}
-                                            </a>
-                                        </td>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                            data-toggle="tooltip" data-original-title="afficher liste de categories">
+                                            {{ $p->categorie_products->name }}
+                                        </a>
+                                    </td>
 
-                                        <td class="align-middle ">
-                                            <button type="button" class="btn bg-gradient-primary btn-sm"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#produitModif{{ $p->id }}">Modifier</button>
+                                    <td class="align-middle ">
+                                        <button type="button" class="btn bg-gradient-primary btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#produitModif{{ $p->id }}">Modifier</button>
 
-                                            <!--Modal modif produit-->
-                                            <div class="modal fade" id="produitModif{{ $p->id }}"
-                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-md"
-                                                    role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body p-0">
-                                                            <div class="card card-plain">
-                                                                <div class="card-header pb-0 text-left">
-                                                                    <h3
-                                                                        class="font-weight-bolder text-primary text-gradient">
-                                                                        Modifier Produit : </h3>
-                                                                    <h4 class="mb-0">{{ $p->name }}</h4>
-                                                                </div>
-                                                                <form action="{{ route('edit.product') }}" method="POST"
-                                                                    enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    <div class="card-body pb-3">
-                                                                        <input type="hidden" name="id_product"
-                                                                            value="{{ $p->id }}">
-
-                                                                        <div
-                                                                            style="max-width: 200px; min-width: 100px;">
-                                                                            <img src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                                                class="avatar me-3"
-                                                                                style="width: 100%; height: auto;">
-                                                                        </div>
-
-                                                                        <label>Nom Produit</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input name="name" type="text"
-                                                                                class="form-control"
-                                                                                placeholder="Nom de Produit"
-                                                                                aria-label="Name"
-                                                                                aria-describedby="name-addon"
-                                                                                value="{{ $p->name }}">
-                                                                        </div>
-                                                                        <label>Description</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $p->description }}</textarea>
-                                                                        </div>
-                                                                        <label>Prix</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input name="price" type="text"
-                                                                                class="form-control"
-                                                                                placeholder="Prix de produit"
-                                                                                aria-label="Name"
-                                                                                aria-describedby="name-addon"value="{{ $p->price }}">
-                                                                        </div>
-                                                                        <label>Taille</label>
-                                                                        <div class="input-group mb-3">
-
-                                                                            <input type="checkbox" id="size1"
-                                                                                name="XS" value="XS">
-                                                                            <label for="size1"> XS</label><br>
-                                                                            <input type="checkbox" id="size2"
-                                                                                name="S" value="S">
-                                                                            <label for="size2"> S</label><br>
-                                                                            <input type="checkbox" id="size3"
-                                                                                name="M" value="M">
-                                                                            <label for="size3"> M</label>
-                                                                            <input type="checkbox" id="size4"
-                                                                                name="L" value="L">
-                                                                            <label for="size4"> L</label>
-                                                                        </div>
-                                                                        <label>Categorie</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <select name="category_product"
-                                                                                class="form-select">
-                                                                                @foreach ($category_product as $category)
-                                                                                    <option
-                                                                                        value="{{ $category->id }}"
-                                                                                        {{ $category->id == $p->category_product_id ? 'selected' : '' }}>
-                                                                                        {{ $category->name }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <label>Photo</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input name="photo" type="file"
-                                                                                class="form-control" accept="image/*">
-                                                                        </div>
-                                                                        <div class="text-center"
-                                                                            style="display:flex; flex-direction: row;">
-                                                                            <button type="submit"
-                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
-                                                                                Modifier</button>
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                                                data-bs-dismiss="modal">Annuler</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
+                                        <!--Modal modif produit-->
+                                        <div class="modal fade" id="produitModif{{ $p->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalSignTitle"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body p-0">
+                                                        <div class="card card-plain">
+                                                            <div class="card-header pb-0 text-left">
+                                                                <h3
+                                                                    class="font-weight-bolder text-primary text-gradient">
+                                                                    Modifier Produit : </h3>
+                                                                <h4 class="mb-0">{{ $p->name }}</h4>
                                                             </div>
+                                                            <form action="{{ route('edit.product') }}" method="POST"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="card-body pb-3">
+                                                                    <input type="hidden" name="id_product"
+                                                                        value="{{ $p->id }}">
+
+                                                                    <div style="max-width: 200px; min-width: 100px;">
+                                                                        <img src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                                            class="avatar me-3"
+                                                                            style="width: 100%; height: auto;">
+                                                                    </div>
+
+                                                                    <label>Nom Produit</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input name="name" type="text"
+                                                                            class="form-control"
+                                                                            placeholder="Nom de Produit"
+                                                                            aria-label="Name"
+                                                                            aria-describedby="name-addon"
+                                                                            value="{{ $p->name }}">
+                                                                    </div>
+                                                                    <label>Description</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $p->description }}</textarea>
+                                                                    </div>
+                                                                    <label>Prix</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input name="price" type="text"
+                                                                            class="form-control"
+                                                                            placeholder="Prix de produit"
+                                                                            aria-label="Name"
+                                                                            aria-describedby="name-addon"value="{{ $p->price }}">
+                                                                    </div>
+                                                                    <label>Taille</label>
+                                                                    <div class="input-group mb-3">
+
+                                                                        <input type="checkbox" id="size1"
+                                                                            name="XS" value="XS">
+                                                                        <label for="size1"> XS</label><br>
+                                                                        <input type="checkbox" id="size2"
+                                                                            name="S" value="S">
+                                                                        <label for="size2"> S</label><br>
+                                                                        <input type="checkbox" id="size3"
+                                                                            name="M" value="M">
+                                                                        <label for="size3"> M</label>
+                                                                        <input type="checkbox" id="size4"
+                                                                            name="L" value="L">
+                                                                        <label for="size4"> L</label>
+                                                                    </div>
+                                                                    <label>Categorie</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <select name="category_product"
+                                                                            class="form-select">
+                                                                            @foreach ($category_product as $category)
+                                                                                <option value="{{ $category->id }}"
+                                                                                    {{ $category->id == $p->category_product_id ? 'selected' : '' }}>
+                                                                                    {{ $category->name }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <label>Photo</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input name="photo" type="file"
+                                                                            class="form-control" accept="image/*">
+                                                                    </div>
+                                                                    <div class="text-center"
+                                                                        style="display:flex; flex-direction: row;">
+                                                                        <button type="submit"
+                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
+                                                                            Modifier</button>
+                                                                        <button type="button"
+                                                                            class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
+                                                                            data-bs-dismiss="modal">Annuler</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--End modal ajout produit-->
-                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
-                                                href="{{ route('delete.product', ['id' => $p->id ]) }}" 
-                                                class="btn bg-gradient-danger btn-sm">Supprimer</a>
+                                        </div>
+                                        <!--End modal ajout produit-->
+                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                            href="{{ route('delete.product', ['id' => $p->id]) }}"
+                                            class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                        <div class="pagination justify-content-center" >
-                            {{ $product->links()}}
-                        </div>
+                    <div class="pagination justify-content-center">
+                        {{ $product->links() }}
                     </div>
-
                 </div>
             </div>
         </div>
         @include('inc.admin.footer')
-        </div>
     </main>
 
     <!--   Core JS Files   -->

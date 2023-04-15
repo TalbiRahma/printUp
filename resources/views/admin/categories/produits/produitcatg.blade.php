@@ -30,7 +30,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
+            <a class="navbar-brand m-0" href=""
                 target="_blank">
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
@@ -85,6 +85,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link " href="{{ route('designs') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="{{ route('commandes') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -94,12 +103,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('paiment') }}">
+                    <a class="nav-link " href="{{ route('paiement') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Paiment</span>
+                        <span class="nav-link-text ms-1">Paiement</span>
                     </a>
                 </li>
             </ul>

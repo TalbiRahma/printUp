@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        PrintUp
+        Commandes
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -30,8 +30,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-                target="_blank">
+            <a class="navbar-brand m-0" href="/" target="_blank">
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
             </a>
@@ -39,65 +38,80 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Tableau de bord</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('users') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Clients</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "  href="{{ route('category_product') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Categories Produits</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('category_design') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Categories Designs</span>
-                </a>
-            </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('products') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-app text-info text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Produits</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('commandes') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Commandes</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{{ route('paiment') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Paiment</span>
-                </a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Tableau de bord</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('users') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('category_product') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('category_design') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('products') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('designs') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('commandes') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Commandes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('paiement') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Paiement</span>
+                    </a>
+                </li>
             </ul>
-          </div>
+        </div>
     </aside>
     <!-- End Side bar -->
     <main class="main-content position-relative border-radius-lg ">
@@ -153,16 +167,27 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7" style="width: 5%;">Id
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 5%;">Id
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20%;">Clients
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 20%;">
+                                    Produits
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 35%;">
-                                    Produit Personnaliser
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                    style="width: 20%;">Clients
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="width: 20%;">Total
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 10%;">Total
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20%;">Etat
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    style="width: 15%;">Etat
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                    style="width: 15%;">Paiement
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                    style="width: 15%;">Plus
                                 </th>
                             </tr>
                         </thead>
@@ -170,6 +195,13 @@
                             <tr>
                                 <td class="align-middle">
                                     #001
+                                </td>
+                                <td>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#products">
+                                        <h6 class="mb-0 text-xs">Capuche Blanc Girl</h6>
+                                        <h6 class="mb-0 text-xs">T-shirt Girl</h6>
+                                        <h6 class="mb-0 text-xs">Cup Girl</h6>
+                                    </a>
                                 </td>
                                 <td>
                                     <div class="d-flex px-2 py-1">
@@ -184,15 +216,20 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Voir Détail"><img src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}" alt="" width="75%"></a>
-                                </td>
-                                <td>
                                     <h6 class="text-xs">45 TND</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <span class="badge bg-gradient-info">En Cour</span>
-                                    
-                                    <span class="badge bg-gradient-success">Valider</span>
+                                    <a href=""><span class="badge bg-gradient-secondary">En Attente</span></a>
+                                    <!--<a><span class="badge bg-gradient-info">En Cours</span></a>
+                                    <a><span class="badge bg-gradient-success">Validée</span></a>-->
+                                </td>
+                                <td class="align-middle text-sm ">
+                                    <span class="badge bg-gradient-warning">Non Payé</span>
+                                    <!--<span class="badge bg-gradient-success">Payé</span>-->
+                                </td>
+                                <td style="text-align: center;">
+                                    <button type="button" class="btn bg-gradient-primary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#plus">Voir Plus</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -203,6 +240,169 @@
         @include('inc.admin.footer')
         </div>
     </main>
+
+    <!-- Modal Voir Plus -->
+    <div class="modal fade" id="plus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5 style="color: #525f7f;">Produits:</h5>
+                        <a href="{{ route('commandes.detail') }}">
+                            <h5 style="color: #32325d; margin-left: 10px;">5 Capuche Blanc Girl</h5>
+                        </a>
+                        <a href="{{ route('commandes.detail') }}">
+                            <h5 style="color: #32325d; margin-left: 10px;">2 T-shirt Girl</h5>
+                        </a>
+                        <a href="{{ route('commandes.detail') }}">
+                            <h5 style="color: #32325d; margin-left: 10px;">1 Cup Girl</h5>
+                        </a>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Client:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Foulen Ben Foulen
+                        </h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                            Foulen.benfoulen@gmail.com</h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">+216 99 999 999
+                        </h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Monastir</h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Ksibet El
+                            Médiouni</h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Nahj eltaieb
+                            lmhiri ,5031</h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">45 TND</h6>
+                    </div>
+                    <div>
+                        <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
+                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">à la livraison</h6>
+                        <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
+                        <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All products-->
+    <div class="modal fade" id="products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tout Les Produit Commandé</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                    <a href="javascript:;" class="d-block">
+                                        <img style="width: 100%; height: auto;"
+                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="card-body pt-2">
+                                    <a href="{{ route('commandes.detail') }}"
+                                        class="card-title h6 d-block text-darker">
+                                        Capuche Blanc Girl
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                    <a href="{{ route('commandes.detail') }}" class="d-block">
+                                        <img style="width: 100%; height: auto;"
+                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="card-body pt-2">
+                                    <a href="{{ route('commandes.detail') }}"
+                                        class="card-title h6 d-block text-darker">
+                                        Capuche Blanc Girl
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                    <a href="{{ route('commandes.detail') }}" class="d-block">
+                                        <img style="width: 100%; height: auto;"
+                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="card-body pt-2">
+                                    <a href="javascript:;" class="card-title h6 d-block text-darker">
+                                        Capuche Blanc Girl
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                    <a href="{{ route('commandes.detail') }}" class="d-block">
+                                        <img style="width: 100%; height: auto;"
+                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="card-body pt-2">
+                                    <a href="javascript:;" class="card-title h6 d-block text-darker">
+                                        Capuche Blanc Girl
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

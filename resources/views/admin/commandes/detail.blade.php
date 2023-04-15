@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Designs Categories
+        Détails Commande
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users') }}">
+                    <a class="nav-link " href="{{ route('users') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"href="{{ route('category_design') }}">
+                    <a class="nav-link" href="{{ route('category_design') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -103,7 +103,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('paiement') }}">
+                    <a class="nav-link active" href="{{ route('paiment') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
@@ -124,15 +124,13 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">categories</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Commandes</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Categories Designs</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Commandes</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        
                         @include('inc.admin.globalsearch')
-                    
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <!--profile-->
@@ -157,84 +155,154 @@
             </div>
         </nav>
         <!-- End Navbar -->
-
         <div class="container-fluid py-4">
-            <div class="card">
-                <div class="container-fluid py-4">
-                    <h6>Designs de Categories {{ $category_design->name }}:</h6>
-                    <a href="{{ route('designs') }}" class="btn btn-icon btn-3 bg-gradient-primary" >
-                        <span class="btn-inner--text">Categories designs</span>
-                    </a>
-
-                    <hr class="horizontal dark mt-0">
-
-
-                    <div class="table-responsive">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 5%;">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 25%;">Image</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 20%;">Produit</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        style="width: 25%;">Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                        style="width: 15%;">Prix</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($designs as $index => $design)
-                                <tr>
-                                    <td class="align-middle text-sm">
-                                        {{ $index +1}}
-                                    </td>
-                                    <td>
-                                        <div style="max-width: 200px; min-width: 100px;">
-                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}" class="avatar me-3"
-                                                style="width: 100%; height: auto;">
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">{{$design->name}}</h5>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <p class="text-xs text-secondary mb-0 force-line-break">
-                                            {{$design->description}}</p>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">{{$design->price}} TND</h5>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        
-                    </div>
-                    
-
+            <div class="card card-frame">
+                <div class="card-body">
+                    <h4>Détails Commande</h4>
                 </div>
+            </div>
+        </div>
+        <div class="container-fluid py-4">
+            <div class="card card-frame">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-4">
+                            <img style="width: 250px; height: auto;"
+                                src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                alt="">
+                        </div>
+                        <div class="col-8">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h3 style="color: #525f7f; margin-bottom: 20px;">Capuche Blanc Girl</h3>
+                                <button type="button" class="btn btn-info"
+                                    style="margin-left: auto;">Télécharger</button>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Produit Initial:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    Capuche Blanc</h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Design:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    Girl</h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Quantité:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">5 Piece
+                                </h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">S, XL
+                                </h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">45 TND</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-xl-7 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
+                                style="margin-bottom: 20px;">
+                                <h4 style="color: #525f7f;">Détails Produit Initial:</h4>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <img src="{{ asset('/uploads/642eb6ef37316.jpg') }}"
+                                            class="img-fluid border-radius-lg">
+                                    </div>
+                                    <div class="col-5">
+                                        <h4 style="color: #525f7f; margin-bottom: 10px;">Capuche Blanc:</h4>
+                                        <div>
+                                            <h5 style="color: #525f7f; display: inline-block;">Categorie:</h5>
+                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                Vêtements</h6>
+                                        </div>
+                                        <div>
+                                            <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
+                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">30
+                                                TND</h6>
+                                        </div>
+                                        <div>
+                                            <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
+                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">S, XL
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: #525f7f;">Description:</h5>
+                                        <p>Une capuche de qualité doit être confortable, résistante, pratique et facile
+                                            à
+                                            entretenir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h4 style="color: #525f7f;">Détails Design:</h4>
+                                <button type="button" class="btn btn-info"
+                                    style="margin-left: auto;">Télécharger</button>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
+                                        class="img-fluid border-radius-lg" style="margin-bottom: 15px;">
+                                </div>
+                                <div class="col-6">
+                                    <h4 style="color: #525f7f; margin-bottom: 10px;">Girl:</h4>
+                                    <div>
+                                        <h5 style="color: #525f7f; display: inline-block;">Categorie:</h5>
+                                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                            Anime</h6>
+                                    </div>
+                                    <div>
+                                        <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
+                                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">15TND
+                                        </h6>
+                                    </div>
+                                </div>
 
+                                <div>
+                                    <h5 style="color: #525f7f; display: inline-block;">Désigner:</h5>
+                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Foulan El
+                                        Foulani
+                                    </h6>
+                                </div>
+                                <div>
+                                    <h5 style="color: #525f7f; display: inline-block;">Boutique:</h5>
+                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Best Creation
+                                    </h6>
 
-
-
+                                </div>
+                                <div>
+                                    <h5 style="color: #525f7f;">Description:</h5>
+                                    <p>Ce personnage d'animation de ses grands yeux expressifs à ses couleurs vives et
+                                        joyeuses,il est le choix parfait pour égayer tout projet d'animation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         @include('inc.admin.footer')
-        </div>
         </div>
     </main>
 

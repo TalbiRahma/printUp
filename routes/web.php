@@ -199,10 +199,16 @@ Route::group(['middleware' => ['auth','admin']], function(){
             Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
             Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
         });
+        Route::prefix('commandes')->group(function () {
+            Route::get('/', [CommandeController::class, 'index'])->name('commandes');
+            Route::get('/detail', [CommandeController::class, 'detail'])->name('commandes.detail');
+        });
 
-        Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes');
-        Route::get('/paiment', [PortmonnaieController::class, 'index'])->name('paiment');
-
+        Route::prefix('designs')->group(function () {
+            Route::get('/', [DesignController::class, 'designs'])->name('designs');
+        });
+        
+        Route::get('/paiement', [PortmonnaieController::class, 'index'])->name('paiement');
     });
 });
 
