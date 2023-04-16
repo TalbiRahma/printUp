@@ -158,7 +158,11 @@
                             <li class="shopping-cart">
                                 @if (auth()->user())
                                 <a href="#" class="cart-dropdown-btn">
+                                    @if ($commande)
                                     <span class="cart-count">{{ $commande->lignecommandes->count() }}</span>
+                                    @else 
+                                    <span class="cart-count">0</span>
+                                    @endif
                                     <i class="flaticon-shopping-cart"></i>
                                 </a>
                                 @else

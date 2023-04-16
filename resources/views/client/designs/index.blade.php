@@ -253,134 +253,21 @@
                 <div class="container-fluid py-4">
                     <div class="row">
                     <div class="col-9">
-                    <h5>Ajouter un Produit:</h5>
-                    <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#produitAjout">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text">Ajouter</span>
-                    </button>
+                    
                     </div>
                     <div class="col-3">
-                        <form action="{{route('search.product')}}" method="POST">
+                        <form action="{{route('search.design')}}" method="POST">
                             @csrf
                             <div class="input-group">
                              
                               <button type="submit" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
-                              <input name="product_name" type="text" class="form-control" placeholder="Tapez ici...">
+                              <input name="design_name" type="text" class="form-control" placeholder="Tapez ici...">
                               
                             </div>
                         </form>
                     </div>
                     </div>
-                    <!--Modal Ajout produit-->
-
-                    <div class="modal fade" id="produitAjout" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                                <form action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-body p-0">
-                                        <div class="card card-plain">
-                                            <div class="card-header pb-0 text-left">
-                                                <h3 class="font-weight-bolder text-primary text-gradient">
-                                                    Ajouter Produit</h3>
-                                                <p class="mb-0">Ajouter un nouveau produit</p>
-                                            </div>
-                                            <div class="card-body pb-3">
-
-                                                <label>Nom Produit</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Nom de Produit" aria-label="Name"
-                                                        aria-describedby="name-addon">
-                                                    @error('name')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Description</label>
-                                                <div class="input-group mb-3">
-                                                    <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
-                                                    @error('description')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Prix</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="price" type="text" class="form-control"
-                                                        placeholder="Prix de produit" aria-label="Name"
-                                                        aria-describedby="name-addon">
-                                                    @error('price')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Taille</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="checkbox" id="size1" name="XS"
-                                                        value="XS">
-                                                    <label class="col-sm-1 p-2" for="size1">XS</label>
-
-                                                    <input class="col-1 p-4" type="checkbox" id="size2"
-                                                        name="S" value="S">
-                                                    <label class="col-sm-1 p-2" for="size2">S</label>
-
-                                                    <input class="col-1 p-4" type="checkbox" id="size3"
-                                                        name="M" value="M">
-                                                    <label class="col-sm-1 p-2" for="size3">M</label>
-
-                                                    <input class="col-1 p-4" type="checkbox" id="size4"
-                                                        name="L" value="L">
-                                                    <label class="col-sm-1 p-2" for="size4"> L</label>
-
-                                                    @error('sizes')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Categorie</label>
-                                                <div class="input-group mb-3"> 
-                                                    <select class="form-control" name="category_design"
-                                                        id="choices-button" placeholder="Departure">
-                                                        @foreach ($category_design as $cd)
-                                                            <option value="{{ $cd->id }}">{{ $cd->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <label>Photo</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="photo" type="file" class="form-control"
-                                                        accept="image/*">
-                                                    @error('photo')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="text-center" style="display:flex; flex-direction: row;">
-                                                    <button type="submit"
-                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
-                                                        Ajouter</button>
-                                                    <button type="button"
-                                                        class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                        data-bs-dismiss="modal">Annuler</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--End modal ajout produit-->
+                    
                 </div>
                 <hr class="horizontal dark mt-0">
                 <div class="table-responsive">
@@ -445,111 +332,7 @@
                                         </td>
 
                                         <td class="align-middle ">
-                                            <button type="button" class="btn bg-gradient-primary btn-sm"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#produitModif{{ $d->id }}">Modifier</button>
-
-                                            <!--Modal modif produit-->
-                                            <div class="modal fade" id="produitModif{{ $d->id }}"
-                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-md"
-                                                    role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body p-0">
-                                                            <div class="card card-plain">
-                                                                <div class="card-header pb-0 text-left">
-                                                                    <h3
-                                                                        class="font-weight-bolder text-primary text-gradient">
-                                                                        Modifier Produit : </h3>
-                                                                    <h4 class="mb-0">{{ $d->name }}</h4>
-                                                                </div>
-                                                                <form action="{{ route('edit.product') }}" method="POST"
-                                                                    enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    <div class="card-body pb-3">
-                                                                        <input type="hidden" name="id_product"
-                                                                            value="{{ $d->id }}">
-
-                                                                        <div
-                                                                            style="max-width: 200px; min-width: 100px;">
-                                                                            <img src="{{ asset('uploads') }}/{{ $d->photo }}"
-                                                                                class="avatar me-3"
-                                                                                style="width: 100%; height: auto;">
-                                                                        </div>
-
-                                                                        <label>Nom Produit</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input name="name" type="text"
-                                                                                class="form-control"
-                                                                                placeholder="Nom de Produit"
-                                                                                aria-label="Name"
-                                                                                aria-describedby="name-addon"
-                                                                                value="{{ $d->name }}">
-                                                                        </div>
-                                                                        <label>Description</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $d->description }}</textarea>
-                                                                        </div>
-                                                                        <label>Prix</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input name="price" type="text"
-                                                                                class="form-control"
-                                                                                placeholder="Prix de produit"
-                                                                                aria-label="Name"
-                                                                                aria-describedby="name-addon"value="{{ $d->price }}">
-                                                                        </div>
-                                                                        <label>Taille</label>
-                                                                        <div class="input-group mb-3">
-
-                                                                            <input type="checkbox" id="size1"
-                                                                                name="XS" value="XS">
-                                                                            <label for="size1"> XS</label><br>
-                                                                            <input type="checkbox" id="size2"
-                                                                                name="S" value="S">
-                                                                            <label for="size2"> S</label><br>
-                                                                            <input type="checkbox" id="size3"
-                                                                                name="M" value="M">
-                                                                            <label for="size3"> M</label>
-                                                                            <input type="checkbox" id="size4"
-                                                                                name="L" value="L">
-                                                                            <label for="size4"> L</label>
-                                                                        </div>
-                                                                        <label>Categorie</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <select name="category_product"
-                                                                                class="form-select">
-                                                                                @foreach ($category_design as $category)
-                                                                                    <option
-                                                                                        value="{{ $category->id }}"
-                                                                                        {{ $category->id == $d->category_design_id ? 'selected' : '' }}>
-                                                                                        {{ $category->name }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <label>Photo</label>
-                                                                        <div class="input-group mb-3">
-                                                                            <input name="photo" type="file"
-                                                                                class="form-control" accept="image/*">
-                                                                        </div>
-                                                                        <div class="text-center"
-                                                                            style="display:flex; flex-direction: row;">
-                                                                            <button type="submit"
-                                                                                class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
-                                                                                Modifier</button>
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                                                data-bs-dismiss="modal">Annuler</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--End modal ajout produit-->
+                                            
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
                                                 href="{{ route('delete.design', ['id' => $d->id ]) }}"
                                                 class="btn bg-gradient-danger btn-sm">Supprimer</a>
@@ -561,9 +344,7 @@
                             </tbody>
                         </table>
 
-                        <div class="pagination justify-content-center" >
-                            {{ $design->links()}}
-                        </div>
+                        
                     </div>
 
                 </div>

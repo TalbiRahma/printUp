@@ -15,12 +15,10 @@ class CommandeController extends Controller
 
         return view('admin.commandes.index');
     }
-<<<<<<< HEAD
     public function detail(){
         
         return view('admin.commandes.detail');
-=======
-
+    }
     public function addCommande(Request $request)
     {
 
@@ -89,6 +87,5 @@ class CommandeController extends Controller
         }
 
         return redirect()->back();
->>>>>>> d2089af65f5b0e3903622ccd472096e868eb1d75
     }
 }

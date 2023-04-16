@@ -102,7 +102,7 @@
                                                 <div class="single-product-thumb">
                                                     <form class="singin-form" method="POST"
                                                         action="{{ route('add.design') }}"
-                                                        enctype="multipart/form-data">
+                                                        enctype="multipart/form-data" id="design-form">
                                                         @csrf
                                                         <input type="hidden" name="user_id"
                                                             value="{{ auth()->user()->id }}">
@@ -185,8 +185,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="axil-btn-Modal">Ajouter
+                                                            <button type="submit" class="axil-btn-custom">Ajouter
                                                                 Design</button>
+
                                                         </div>
                                                     </form>
 
@@ -228,7 +229,8 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
-                                                                                enctype="multipart/form-data">
+                                                                                enctype="multipart/form-data"
+                                                                                id="design-form">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $fd->id }}">
@@ -300,7 +302,8 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
-                                                                                enctype="multipart/form-data">
+                                                                                enctype="multipart/form-data"
+                                                                                id="design-form">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $md->id }}">
@@ -369,12 +372,12 @@
                                                                 @foreach ($favorite_products as $fp)
                                                                     <div class="col-3">
                                                                         <div class="axil-product-list">
-                                                                            <form class="singin-form" method="get" 
-                                                                                action="{{route('personnaliser.produit', ['id' => $fp->id])}}"
-                                                                                enctype="multipart/form-data">
+                                                                            <form class="singin-form" method="GET"
+                                                                                action="{{ route('personnaliser.produit', ['id' => $fp->id]) }}"
+                                                                                enctype="multipart/form-data"
+                                                                                id="custom-product-form">
                                                                                 @csrf
-                                                                                <input type="hidden"
-                                                                                    name="id_produit_favori"
+                                                                                <input type="hidden" name="id"
                                                                                     value="{{ $fp->id }}">
                                                                                 <div class="row">
                                                                                     <div class="col mb-0">
@@ -397,7 +400,8 @@
                                                                                     <div
                                                                                         class="justify-content-center mb-4 mt-2">
                                                                                         <button type="submit"
-                                                                                            class="axil-btn-custom">Personnalisé</button>
+                                                                                            class="axil-btn-custom "
+                                                                                            id="custom-button">Personnalisé</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>
@@ -438,9 +442,9 @@
         @endphp
         @if ($product_data)
             <!-- Custom Product Slider Area -->
-            <form action="{{route('command.add')}}" method="POST">
+            <form action="{{ route('command.add') }}" method="POST">
                 @csrf
-                
+
                 <div class="axil-main-slider-area main-slider-style-2">
                     <div class="container">
                         <div class="slider-offset-left">
@@ -513,7 +517,8 @@
                                     <div class="row col-12 ps-4 mt-3">
                                         @if ($custom_product_data)
                                             <h3>{{ $custom_product_data['name'] }}</h3>
-                                            <input type="hidden" value="{{$custom_product_data['id']}}" name="custom_product_id">
+                                            <input type="hidden" value="{{ $custom_product_data['id'] }}"
+                                                name="custom_product_id">
                                         @else
                                             <h3>Nom produit personanlisée</h3>
                                         @endif
@@ -552,13 +557,16 @@
 
                                         <div class="product-quantity" data-title="Qty">
                                             <div class="pro-qty">
-                                                <input name="qte" type="number" class="quantity-input" value="1">
+                                                <input name="qte" type="number" class="quantity-input"
+                                                    value="1">
                                             </div>
                                         </div>
 
                                         <div class="group-btn">
-                                            <button href="" class="axil-btn btn-bg-primary">Ajouter au boutique</button>
-                                            <button type="submit" class="axil-btn btn-bg-secondary">Ajouter au panier</button>
+                                            <button href="" class="axil-btn btn-bg-primary">Ajouter au
+                                                boutique</button>
+                                            <button type="submit" class="axil-btn btn-bg-secondary">Ajouter au
+                                                panier</button>
                                         </div>
                                     </div>
                                 </div>
@@ -610,6 +618,67 @@
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
 
+    <script>
+        $(document).ready(function() {
+            $('form#design-form').submit(function(event) {
+                event.preventDefault(); // empêche la soumission du formulaire
+
+                // vérifie si le tableau existe et le vide s'il existe
+                if (typeof custom_product_data !== 'undefined') {
+                    custom_product_data = [];
+                }
+
+                // récupère les données du formulaire
+                var form_data = new FormData(this);
+
+                // soumet le formulaire via AJAX vers la première route
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // soumet le formulaire via AJAX vers la deuxième route
+                        $.ajax({
+                            url: '/client/personnaliser/create_custom_product',
+                            type: 'get',
+                            success: function(response) {
+                                // redirige l'utilisateur vers la page de personnalisation de produit
+                                window.location.href =
+                                    '/client/personnaliser/create_custom_product';
+                            },
+                            error: function(xhr, status, error) {
+                                // gère les erreurs
+                                console.log(error);
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // gère les erreurs
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <style>
         .product-content1 img {
             width: 100% !important;
@@ -640,7 +709,7 @@
             justify-content: center;
         }
 
-        .axil-btn-Modal {
+        .axil-btn-custom {
             background-color: #5e72e4 !important;
             color: #FFFFFF !important;
             font-size: 17px !important;

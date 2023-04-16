@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('designs') }}">
+                    <a class="nav-link active" href="{{ route('verif.designs') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-primary text-sm opacity-10"></i>
@@ -188,57 +188,71 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle text-sm">
-                                    01
-                                </td>
-                                <td>
-                                    <div>
-                                        <img src="{{ asset('/uploads/6431ec57b2855.png') }}" class="avatar me-3 "
-                                            style="width: 150px; height: auto;">
-                                    </div>
-                                </td>
-                                <td class="align-middle text-sm">
-                                    <div class="d-flex px-2">
-                                        <div class="my-auto">
-                                            <h5 class="mb-0 text-sm">Girl</h5>
+                            @foreach ($designs as $index => $design)
+                                <tr>
+                                    <td class="align-middle text-sm">
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}"
+                                                class="avatar me-3 " style="width: 150px; height: auto;">
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-sm">
-                                    <div class="d-flex px-2">
-                                        <div class="my-auto">
-                                            <h5 class="mb-0 text-sm">Foulan foulani</h5>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $design->name }}</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                        data-toggle="tooltip" data-original-title="afficher liste de categories">
-                                        Anime
-                                    </a>
-                                </td>
-                                <td class="align-middle text-sm">
-                                    <p class="text-xs text-secondary mb-0 force-line-break">Ce personnage d'animation de ses grands yeux expressifs à ses couleurs vives et joyeuses.</p>
-                                </td>
-                                <td class="align-middle text-sm">
-                                    <div class="d-flex px-2">
-                                        <div class="my-auto">
-                                            <h5 class="mb-0 text-sm">15 TND</h5>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                               
+                                                <h5 class="mb-0 text-sm">
+                                                    
+                                                </h5>
+                                               
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle ">
-                                    <span class="badge bg-gradient-success">Valider</span>
-                                    <!--<span class="badge bg-gradient-danger">Supprimer</span>-->
-                                </td>
-                                <td class="align-middle ">
-                                    <div class="d-flex flex-column">
-                                        <button type="button" class="btn btn-success btn-sm">Valider</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                            data-toggle="tooltip" data-original-title="afficher liste de categories">
+                                            {{ $design->categorie_designs->name }}
+                                        </a>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <p class="text-xs text-secondary mb-0 force-line-break">
+                                            {{ $design->description }}</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $design->price }} TND</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle ">
+                                         @if ($design->etat == "en attend")
+                                         <span class="badge badge-warning">en attend</span>
+                                        @else
+                                        <span class="badge badge-success">Valider</span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle ">
+                                        <div class="d-flex flex-column">
+                                            <a href="{{ route('valider.designs', ['id' => $design->id]) }}"
+                                                class="btn btn-success btn-sm">Valider</a>
+                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
+                                                href="{{ route('delete.design', ['id' => $design->id]) }}"
+                                                class="btn btn-danger btn-sm">Supprimer</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -247,7 +261,26 @@
         @include('inc.admin.footer')
         </div>
     </main>
+    <style>
+        .badge-success {
+            color: #1aae6f;
+            background-color: #b0eed3;
 
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+
+        .badge-warning {
+            color: #ff3709;
+            background-color: #fee6e0;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

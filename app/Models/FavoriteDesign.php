@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class FavoriteDesign extends Model
 {
     use HasFactory;
-
+ 
     public function member()
     {
         return $this->belongsTo(User::class ,'user_id' , 'id' );

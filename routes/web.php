@@ -115,8 +115,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('', [DesignController::class, 'index'])->name('designs');
             Route::post('/add', [DesignController::class, 'ajouterDesign'])->name('add.design');
             Route::get('/{id}/delete', [DesignController::class, 'supprimerDesign'])->name('delete.design');
-            Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
-            Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
+            Route::post('/search', [DesignController::class, 'searchDesign'])->name('search.design');
         });
 
         /****PERSONNALISER****** */
@@ -201,20 +200,22 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
             Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
         });
+        /**********admin DESIGN****** */
+
+        Route::prefix('designs')->group(function () {
+            Route::get('/', [AdminController::class, 'designs'])->name('verif.designs');
+            Route::get('/{id}/valider', [AdminController::class, 'validerDesign'])->name('valider.designs');
+            
+        });
+
+
+        /********admin COMMANDES****** */
         Route::prefix('commandes')->group(function () {
             Route::get('/', [CommandeController::class, 'index'])->name('commandes');
             Route::get('/detail', [CommandeController::class, 'detail'])->name('commandes.detail');
         });
 
-<<<<<<< HEAD
-        Route::prefix('designs')->group(function () {
-            Route::get('/', [DesignController::class, 'designs'])->name('designs');
-        });
         
         Route::get('/paiement', [PortmonnaieController::class, 'index'])->name('paiement');
-=======
-        Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes');
-        Route::get('/paiment', [PortmonnaieController::class, 'index'])->name('paiment');
->>>>>>> d2089af65f5b0e3903622ccd472096e868eb1d75
     });
 });

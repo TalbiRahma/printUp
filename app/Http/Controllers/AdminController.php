@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Design;
 use Illuminate\Http\Request;
+use App\Models\CategoryDesign;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -57,7 +59,7 @@ class AdminController extends Controller
         $user->last_name =$request->last_name;
         $user->email =$request->email;
         $user->phone =$request->phone;
-
+ 
         if ($request->password){
             $user->password = Hash::make($request->password);
         }
@@ -96,4 +98,23 @@ class AdminController extends Controller
         return view('admin.compte.donnesprofil');
     }
     
+
+    public function designs()
+    {
+        $designs = Design::with('members')->get();
+        $category_design = CategoryDesign::all();
+        
+
+        return view('admin.designs.index', compact('designs'));
+    }
+
+    public function validerDesign($id)
+    {
+        $design = Design::find($id);
+        $design->etat = 'valider';
+        $design->update();
+
+        return redirect()->back()->with('success' , 'design valider');
+        
+    }
 }

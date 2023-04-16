@@ -10,10 +10,7 @@ class DesignController extends Controller
 {
     //
 
-    public function designs()
-    {
-        return view('admin.designs.index');
-    }
+    
 
     public function index()
     {
@@ -23,7 +20,7 @@ class DesignController extends Controller
         $category_design = CategoryDesign::all();
         return view('client.designs.index')->with('design', $design)->with('category_design', $category_design);
     }
-
+ 
 
     public function ajouterDesign(Request  $request)
     {
@@ -92,5 +89,13 @@ class DesignController extends Controller
         } else {
             echo "error";
         }
+    }
+
+    public function searchDesign(Request $request){
+        //dd($request);
+        $category_design = CategoryDesign::all();
+        $design = Design::where('name', 'LIKE' , '%'. $request->design_name .'%')->get();
+
+        return view('client.designs.index' , compact('design','category_design'));
     }
 }

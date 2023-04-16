@@ -25,6 +25,7 @@ class Design extends Model
         return $this->belongsToMany(InitialProduct::class, 'produit_personnalisers', 'design_id', 'initial_product_id');
     }
 
+   
 
     public function members()
     {
