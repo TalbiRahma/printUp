@@ -102,7 +102,7 @@
                                                 <div class="single-product-thumb">
                                                     <form class="singin-form" method="POST"
                                                         action="{{ route('add.design') }}"
-                                                        enctype="multipart/form-data">
+                                                        enctype="multipart/form-data" id="design-form">
                                                         @csrf
                                                         <input type="hidden" name="user_id"
                                                             value="{{ auth()->user()->id }}">
@@ -185,12 +185,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="axil-btn-Modal">Ajouter
+                                                            <button type="submit" class="axil-btn-custom">Ajouter
                                                                 Design</button>
+
                                                         </div>
                                                     </form>
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -216,10 +215,7 @@
                                                     aria-label="Close"><i class="far fa-times"></i></button>
                                             </div>
                                             <div class="modal-body">
-
-
                                                 <div class="single-product-thumb">
-
                                                     <div class="container">
                                                         <div class="arrow-top-slide">
                                                             <div class="row">
@@ -228,7 +224,8 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
-                                                                                enctype="multipart/form-data">
+                                                                                enctype="multipart/form-data"
+                                                                                id="design-form">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $fd->id }}">
@@ -244,9 +241,9 @@
                                                                                     </div>
                                                                                     <h5 class="mb-1 mt-1">
                                                                                         {{ $fd->name }}</h5>
-                                                                                    <h6 class="mb-1 mt-1">name
-                                                                                        boutique</h6>
-                                                                                    <p class="mb-1 mt-1">prix:
+                                                                                    <h6 class="mb-1 mt-1">Non
+                                                                                        Boutique</h6>
+                                                                                    <p class="mb-1 mt-1">Prix:
                                                                                         {{ $fd->price }} TND</p>
                                                                                     <div
                                                                                         class="justify-content-center mb-4 mt-2">
@@ -261,14 +258,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
-
-
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +290,8 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
-                                                                                enctype="multipart/form-data">
+                                                                                enctype="multipart/form-data"
+                                                                                id="design-form">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $md->id }}">
@@ -327,16 +318,13 @@
                                                                                             class="axil-btn-custom">Personnalisé</button>
                                                                                     </div>
                                                                                 </div>
-
                                                                             </form>
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
-
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -347,8 +335,6 @@
                                     <a type="button" class="" data-bs-toggle="modal"
                                         data-bs-target="#produitinitial">Produits Favoris</a>
                                 </li>
-
-
                                 <!-- Faivorite Product Quick View Modal Start -->
                                 <div class="modal fade quick-view-product" id="produitinitial" tabindex="-1"
                                     aria-hidden="true">
@@ -369,12 +355,12 @@
                                                                 @foreach ($favorite_products as $fp)
                                                                     <div class="col-3">
                                                                         <div class="axil-product-list">
-                                                                            <form class="singin-form" method="get" 
-                                                                                action="{{route('personnaliser.produit', ['id' => $fp->id])}}"
-                                                                                enctype="multipart/form-data">
+                                                                            <form class="singin-form" method="GET"
+                                                                                action="{{ route('personnaliser.produit', ['id' => $fp->id]) }}"
+                                                                                enctype="multipart/form-data"
+                                                                                id="custom-product-form">
                                                                                 @csrf
-                                                                                <input type="hidden"
-                                                                                    name="id_produit_favori"
+                                                                                <input type="hidden" name="id"
                                                                                     value="{{ $fp->id }}">
                                                                                 <div class="row">
                                                                                     <div class="col mb-0">
@@ -397,18 +383,17 @@
                                                                                     <div
                                                                                         class="justify-content-center mb-4 mt-2">
                                                                                         <button type="submit"
-                                                                                            class="axil-btn-custom">Personnalisé</button>
+                                                                                            class="axil-btn-custom "
+                                                                                            id="custom-button">Personnalisé</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
-
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -426,7 +411,6 @@
     </header>
 
     <main class="main-wrapper">
-
         @php
             $product_data_json = session('product_data');
             $design_data_json = session('design_data');
@@ -438,9 +422,8 @@
         @endphp
         @if ($product_data)
             <!-- Custom Product Slider Area -->
-            <form action="{{route('command.add')}}" method="POST">
+            <form action="{{ route('command.add') }}" method="POST">
                 @csrf
-                
                 <div class="axil-main-slider-area main-slider-style-2">
                     <div class="container">
                         <div class="slider-offset-left">
@@ -466,10 +449,8 @@
                                             <div class="col-5">
                                                 <div class="row row-cols-xl row-cols-1">
                                                     <div class="col">
-
                                                         <div class="axil-product-list">
                                                             <div class="product-content2">
-
                                                                 <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
                                                                     alt="Product">
                                                             </div>
@@ -502,23 +483,25 @@
                                             </div>
                                             <div class="col-7">
                                                 <div>
-                                                    <h4 id="design-name" class="mb-3">nom design</h4>
-                                                    <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-
-                                                    <h3 id="design-price" class="mt-3">15 TND</h3>
+                                                    <h4 id="design-name" class="mb-3">Nom Design</h4>
+                                                    <h5 class="text-secondary mb-3 mt-3">Nom Boutique</h5>
+                                                    <h3 id="design-price" class="mt-3">00 TND</h3>
                                                 </div>
                                             </div>
                                         </div>
                                     @endif
-                                    <div class="row col-12 ps-4 mt-3">
-                                        @if ($custom_product_data)
-                                            <h3>{{ $custom_product_data['name'] }}</h3>
-                                            <input type="hidden" value="{{$custom_product_data['id']}}" name="custom_product_id">
-                                        @else
-                                            <h3>Nom produit personanlisée</h3>
-                                        @endif
+                                    <div class="row col-12 ps-4">
+                                        <div class="">
+                                            @if ($custom_product_data)
+                                                <h3>{{ $custom_product_data['name'] }}</h3>
+                                                <input type="hidden" value="{{ $custom_product_data['id'] }}"
+                                                    name="custom_product_id">
+                                            @else
+                                                <h3>Nom produit personanlisé</h3>
+                                            @endif
+                                        </div>
 
-                                        <h5 class="text-secondary mb-3">Prix {{ $product_data['name'] }}:
+                                        <h5 class="text-secondary" style="margin-top: -20px;">Prix {{ $product_data['name'] }}:
                                             {{ $product_data['price'] }} TND</h5>
                                         <div class="product-variations-wrapper">
 
@@ -526,18 +509,19 @@
                                             <div class="product-variation product-size-variation">
                                                 @if ($product_data['sizes'])
                                                     @php $sizes = json_decode($product_data['sizes'], true); @endphp
-                                                    <div class="product-variation">
+                                                    <div class="product-variation" style="margin-top: -10px; display: inline-block;">
                                                         @if (!empty($sizes))
-                                                            <h6 class="title">Size:</h6>
+                                                            <h6 class="title"
+                                                                style="display: inline-block; margin-right: 10px;">
+                                                                Taille:</h6>
                                                         @endif
-                                                        <ul class="range-variant">
-
+                                                        <ul class="range-variant" style="display: inline-block;">
                                                             @foreach ($sizes as $size)
-                                                                <li>{{ $size }}</li>
+                                                                <li style="display: inline-block; margin-right: 5px;">
+                                                                    {{ $size }}</li>
                                                             @endforeach
                                                         </ul>
                                                     </div>
-
                                                 @endif
                                             </div>
                                             <!-- End Product Variation  -->
@@ -551,14 +535,19 @@
 
 
                                         <div class="product-quantity" data-title="Qty">
-                                            <div class="pro-qty">
-                                                <input name="qte" type="number" class="quantity-input" value="1">
+                                            <div class="pro-qty" style="margin-top: -10px;">
+                                                <input name="qte" type="number" class="quantity-input"
+                                                    value="1">
                                             </div>
                                         </div>
 
-                                        <div class="group-btn">
-                                            <button href="" class="axil-btn btn-bg-primary">Ajouter au boutique</button>
-                                            <button type="submit" class="axil-btn btn-bg-secondary">Ajouter au panier</button>
+                                        <div class="group-btn" style="margin-top: 15px;">
+                                            <button href=""
+                                                class="axil-btn axil-btn-custom1 btn-bg-primary">Ajouter au
+                                                boutique</button>
+                                            <button type="submit"
+                                                class="axil-btn axil-btn-custom2 btn-bg-secondary">Ajouter au
+                                                panier</button>
                                         </div>
                                     </div>
                                 </div>
@@ -610,6 +599,51 @@
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
 
+    <script>
+        $(document).ready(function() {
+            $('form#design-form').submit(function(event) {
+                event.preventDefault(); // empêche la soumission du formulaire
+
+                // vérifie si le tableau existe et le vide s'il existe
+                if (typeof custom_product_data !== 'undefined') {
+                    custom_product_data = [];
+                }
+
+                // récupère les données du formulaire
+                var form_data = new FormData(this);
+
+                // soumet le formulaire via AJAX vers la première route
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: form_data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // soumet le formulaire via AJAX vers la deuxième route
+                        $.ajax({
+                            url: '/client/personnaliser/create_custom_product',
+                            type: 'get',
+                            success: function(response) {
+                                // redirige l'utilisateur vers la page de personnalisation de produit
+                                window.location.href =
+                                    '/client/personnaliser/create_custom_product';
+                            },
+                            error: function(xhr, status, error) {
+                                // gère les erreurs
+                                console.log(error);
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // gère les erreurs
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+
     <style>
         .product-content1 img {
             width: 100% !important;
@@ -640,14 +674,25 @@
             justify-content: center;
         }
 
-        .axil-btn-Modal {
+        .axil-btn-custom1 {
             background-color: #5e72e4 !important;
             color: #FFFFFF !important;
-            font-size: 17px !important;
+            font-size: 15px !important;
             border-radius: 5px !important;
             border: none !important;
-            width: 100%;
-            height: 40px;
+            width: 235px;
+            height: 60px;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .axil-btn-custom2 {
+            color: #FFFFFF !important;
+            font-size: 15px !important;
+            border-radius: 5px !important;
+            border: none !important;
+            width: 235px;
+            height: 60px;
             justify-content: center;
         }
 

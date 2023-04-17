@@ -98,6 +98,7 @@ class ProduitPersonnaliserController extends Controller
 
     public function createCustomProduct(Request $request)
     {
+        
         // récupérer les données du produit initial et du design depuis la session ou le cookie
         $product_data = json_decode($request->session()->get('product_data'), true);
         $design_data = json_decode($request->session()->get('design_data'), true);
@@ -153,7 +154,10 @@ class ProduitPersonnaliserController extends Controller
 
         // transformer les données en JSON
         $custom_product_data_json = json_encode($custom_product_data);
-
+        // Si le tableau custom_product_data existe dans la session, le supprimer
+    if ($request->session()->has('custom_product_data')) {
+        $request->session()->forget('custom_product_data');
+    }
         // stocker les données JSON dans un cookie ou dans la session
         $request->session()->put('custom_product_data', $custom_product_data_json);
 

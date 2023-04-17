@@ -69,6 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Commande::class, 'member_id', 'id');
     }
 
+  
 
     
 

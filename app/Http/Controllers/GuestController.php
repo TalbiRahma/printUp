@@ -22,7 +22,7 @@ class GuestController extends Controller
     }
     public function home(Request $request)
     {
-
+        $this->clearSessionData($request);
         $initial_products = InitialProduct::latest()->paginate(8);
         $designs = Design::all();
         $category_product = CategoryProduct::all();
