@@ -206,15 +206,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/detail', [CommandeController::class, 'detail'])->name('commandes.detail');
         });
 
-<<<<<<< HEAD
+
         Route::prefix('designs')->group(function () {
             Route::get('/', [DesignController::class, 'designs'])->name('designs');
         });
         
         Route::get('/paiement', [PortmonnaieController::class, 'index'])->name('paiement');
-=======
-        Route::get('/commandes', [CommandeController::class, 'index'])->name('commandes');
-        Route::get('/paiment', [PortmonnaieController::class, 'index'])->name('paiment');
->>>>>>> d2089af65f5b0e3903622ccd472096e868eb1d75
+
     });
 });
