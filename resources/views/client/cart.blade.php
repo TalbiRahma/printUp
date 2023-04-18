@@ -41,69 +41,79 @@
             <!-- Start Cart Area  -->
             <div class="axil-product-cart-area axil-section-gap">
                 <div class="container">
-                    
+
                     <div class="axil-product-cart-wrap">
-                        <form action="{{route('commande.update')}}" method="POST">
+                        <form action="{{ route('commande.update') }}" method="POST">
                             @csrf
-                        <div class="product-table-heading">
-                            <h4 class="title">Votre panier</h4>
-                            <a href="#" class="cart-clear">Effacer le panier</a>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table axil-product-table axil-cart-table mb--40">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="product-remove"></th>
-                                        <th scope="col" class="product-thumbnail">Produit</th>
-                                        <th scope="col" class="product-title"></th>
-                                        <th scope="col" class="product-price">Prix</th>
-                                        <th scope="col" class="product-quantity">Quantité</th>
-                                        <th scope="col" class="product-subtotal">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($commande->lignecommandes as $lc)
+                            <div class="product-table-heading">
+                                <h4 class="title">Votre panier</h4>
+                                <a href="#" class="cart-clear">Effacer le panier</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table axil-product-table axil-cart-table mb--40">
+                                    <thead>
                                         <tr>
-                                            <td class="product-remove"><a
-                                                    href="{{ route('command.delete', ['idlc' => $lc->id]) }}"
-                                                    class="remove-wishlist"><i class="fal fa-times"></i></a></td>
-                                            <td class="product-thumbnail"><a href="single-product.html"><img
-                                                        src="/{{ $lc->customproduct->photo }}"></a></td>
-                                            <td class="product-title"><a
-                                                    href="single-product.html">{{ $lc->customproduct->name }}</a> <span
-                                                    class="badge text-bg-success"> ETAT</span></td>
-                                            <td class="product-price" data-title="Price">
-                                                {{ $lc->customproduct->price }}<span class="currency-symbol">TND</span>
-                                            </td>
-                                            <td class="product-quantity" >
-                                                <div class="pro-qty">
-                                                    <input name="qte[{{ $lc->id }}]" type="number" class="quantity-input" value="{{ $lc->qte }}">
-                                                </div>
-                                                
-                                            </td>
-                                            <td class="product-subtotal" data-title="Subtotal">
-                                                {{ $lc->customproduct->price * $lc->qte }}<span
-                                                    class="currency-symbol">TND</span></td>
+                                            <th scope="col" class="product-remove"></th>
+                                            <th scope="col" class="product-thumbnail">Produit</th>
+                                            <th scope="col" class="product-title"></th>
+                                            <th scope="col" class="product-title">Taille</th>
+                                            <th scope="col" class="product-price">Prix</th>
+                                            <th scope="col" class="product-quantity">Quantité</th>
+                                            <th scope="col" class="product-subtotal">Total</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($commande->lignecommandes as $lc)
+                                            <tr>
+                                                <td class="product-remove"><a
+                                                        href="{{ route('command.delete', ['idlc' => $lc->id]) }}"
+                                                        class="remove-wishlist"><i class="fal fa-times"></i></a></td>
+                                                <td class="product-thumbnail"><a href="single-product.html"><img
+                                                            src="/{{ $lc->customproduct->photo }}"></a></td>
+                                                <td class="product-title"><a
+                                                        href="single-product.html">{{ $lc->customproduct->name }}</a>
+                                                        @if ($lc->customproduct->etat == "en attend")
+                                                        <span class="badge badge-warning">en attend</span>
+                                                       @else
+                                                       <span class="badge badge-success">Valider</span>
+                                                       @endif</td>
+                                                <td class="product-selected_size" data-title="selected_size">
+                                                    {{ $lc->selected_size }}
+                                                </td>
+                                                <td class="product-price" data-title="Price">
+                                                    {{ $lc->customproduct->price }}<span
+                                                        class="currency-symbol">TND</span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <div class="pro-qty">
+                                                        <input name="qte[{{ $lc->id }}]" type="number"
+                                                            class="quantity-input" value="{{ $lc->qte }}">
+                                                    </div>
+
+                                                </td>
+                                                <td class="product-subtotal" data-title="Subtotal">
+                                                    {{ $lc->customproduct->price * $lc->qte }}<span
+                                                        class="currency-symbol">TND</span></td>
+                                            </tr>
+                                        @endforeach
 
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="cart-update-btn-area">
-                            <div class="input-group product-cupon">
-                                <input placeholder="Entrer le code de réduction" type="text">
-                                <div class="product-cupon-btn">
-                                    <button type="submit" class="axil-btn btn-outline">Appliquer</button>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="cart-update-btn-area">
+                                <div class="input-group product-cupon">
+                                    <input placeholder="Entrer le code de réduction" type="text">
+                                    <div class="product-cupon-btn">
+                                        <button type="submit" class="axil-btn btn-outline">Appliquer</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="update-btn">
-                                <button type="submit" class="axil-btn btn-outline" >Mise à jour du
-                                    panier</button>
-                            </div>
+                                <div class="update-btn">
+                                    <button type="submit" class="axil-btn btn-outline">Mise à jour du
+                                        panier</button>
+                                </div>
 
-                        </div>
+                            </div>
                         </form>
                         <div class="row">
                             <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
@@ -173,7 +183,26 @@
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
-    
+    <style>
+        .badge-success {
+            color: #1aae6f;
+            background-color: #b0eed3;
+
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+
+        .badge-warning {
+            color: #ff3709;
+            background-color: #fee6e0;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
 
 </body>
 

@@ -96,7 +96,7 @@ class AdminController extends Controller
 
     public function donnesProfil(){
         return view('admin.compte.donnesprofil');
-    }
+    } 
     
 
     public function designs()
@@ -116,5 +116,11 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success' , 'design valider');
         
+    }
+
+    public function commandes(Request $request){
+        
+        dd($request);
+        return view('client.historiquecommande');
     }
 }

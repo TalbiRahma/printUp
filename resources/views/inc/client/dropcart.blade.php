@@ -22,10 +22,19 @@
                                     <div class="item-content">
                                         <h3 class="item-title"><a
                                                 href="single-product-3.html">{{ $lc->customproduct->name }}</a></h3>
+                                        <div class="item-price">Taille: <span
+                                                class="currency-symbol">
+                                                {{ $lc->selected_size }}</span></div>
                                         <div class="item-price">{{ $lc->customproduct->price }}<span
                                                 class="currency-symbol">
                                                 TND</span></div>
+                                                @if ($lc->customproduct->etat == "en attend")
+                                                <span class="badge badge-warning">en attend</span>
+                                               @else
+                                               <span class="badge badge-success">Valider</span>
+                                               @endif
                                         <div class="pro-qty item-quantity">
+                                            
                                             <input type="number" class="quantity-input" value="{{ $lc->qte }}">
                                         </div>
                                     </div>
@@ -49,24 +58,45 @@
             </div>
         </div>
     @else
-    <div class="cart-dropdown" id="cart-dropdown">
-        <div class="cart-content-wrap">
-            <div class="cart-header">
-                <h2 class="header-title">Examen du panier</h2>
-                <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
-            </div>
-
-            <div class="cart-body">
-                
-                   
-                            
-                <div class="group-btn">
-                    <a href="{{ route('cart') }}" class="axil-btn btn-bg-primary viewcart-btn">Voir le panier</a>
-                    
+        <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-content-wrap">
+                <div class="cart-header">
+                    <h2 class="header-title">Examen du panier</h2>
+                    <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
                 </div>
-            </div>
 
+                <div class="cart-body">
+
+
+
+                    <div class="group-btn">
+                        <a href="{{ route('cart') }}" class="axil-btn btn-bg-primary viewcart-btn">Voir le panier</a>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
     @endif
 @endif
+
+<style>
+    .badge-success {
+        color: #1aae6f;
+        background-color: #b0eed3;
+
+    }
+
+    .badge {
+        text-transform: uppercase;
+    }
+
+    .badge-warning {
+        color: #ff3709;
+        background-color: #fee6e0;
+    }
+
+    .badge {
+        text-transform: uppercase;
+    }
+</style>

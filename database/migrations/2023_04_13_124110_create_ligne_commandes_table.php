@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ligne_commandes', function (Blueprint $table) {
             $table->id();
             $table->integer('qte');
+            $table->string('selected_size')->nullable();
             $table->unsignedBigInteger('custom_product_id')->nullable();
             $table->foreign('custom_product_id')->references('id')->on('produit_personnalisers')->onDelete('cascade');
             $table->unsignedBigInteger('commande_id')->nullable();

@@ -233,7 +233,7 @@
                                                 <h5 class="mb-0 text-sm">{{ $design->price }} TND</h5>
                                             </div>
                                         </div>
-                                    </td>
+                                    </td> 
                                     <td class="align-middle ">
                                          @if ($design->etat == "en attend")
                                          <span class="badge badge-warning">en attend</span>

@@ -132,6 +132,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/store', [CommandeController::class, 'addCommande'])->name('command.add');
             Route::get('/lc/{idlc}/destroy', [CommandeController::class, 'ligneCommandeDestroy'])->name('command.delete');
             Route::post('/update', [CommandeController::class, 'updateLigne'])->name('commande.update');
+            Route::post('/envoi', [AdminController::class, 'commandes'])->name('commande.envoi');
+            Route::post('/list', [CommandeController::class, 'listCommande'])->name('commande.list');
+
 
         });
     });

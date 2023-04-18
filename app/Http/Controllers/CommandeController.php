@@ -21,7 +21,7 @@ class CommandeController extends Controller
     }
     public function addCommande(Request $request)
     {
-
+        
         $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
         //dd($commande);
 
@@ -31,7 +31,7 @@ class CommandeController extends Controller
             $existe = false;
             foreach ($commande->lignecommandes as $lignec) {
 
-                if ($lignec->custom_product_id == $request->custom_product_id) {
+                if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
                     $existe = true;
                     $lignec->qte += $request->qte;
                     $lignec->update();
@@ -43,6 +43,7 @@ class CommandeController extends Controller
                 $lc = new LigneCommande();
                 $lc->qte = $request->qte;
                 $lc->custom_product_id = $request->custom_product_id;
+                $lc->selected_size = $request->input('selected_size');
                 $lc->commande_id = $commande->id;
                 $lc->save();
             }
@@ -57,6 +58,7 @@ class CommandeController extends Controller
                 $lc = new LigneCommande();
                 $lc->qte = $request->qte;
                 $lc->custom_product_id = $request->custom_product_id;
+                $lc->selected_size = $request->input('selected_size');
                 $lc->commande_id = $commande->id;
                 $lc->save();
 
@@ -87,5 +89,10 @@ class CommandeController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function listCommande(Request $request){
+        
+        return view('client.historiquecommande.detail');
     }
 }

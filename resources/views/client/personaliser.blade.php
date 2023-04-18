@@ -501,29 +501,35 @@
                                             @endif
                                         </div>
 
-                                        <h5 class="text-secondary" style="margin-top: -20px;">Prix {{ $product_data['name'] }}:
+                                        <h5 class="text-secondary" style="margin-top: -20px;">Prix
+                                            {{ $product_data['name'] }}:
                                             {{ $product_data['price'] }} TND</h5>
                                         <div class="product-variations-wrapper">
 
                                             <!-- Start Product Variation  -->
                                             <div class="product-variation product-size-variation">
+
                                                 @if ($product_data['sizes'])
                                                     @php $sizes = json_decode($product_data['sizes'], true); @endphp
-                                                    <div class="product-variation" style="margin-top: -10px; display: inline-block;">
+                                                    <div class="product-variation">
                                                         @if (!empty($sizes))
                                                             <h6 class="title"
                                                                 style="display: inline-block; margin-right: 10px;">
                                                                 Taille:</h6>
                                                         @endif
-                                                        <ul class="range-variant" style="display: inline-block;">
+                                                        <ul class="range-variant">
+
                                                             @foreach ($sizes as $size)
-                                                                <li style="display: inline-block; margin-right: 5px;">
-                                                                    {{ $size }}</li>
+                                                            <li class="size-btn" onclick="selectSize('{{ $size }}')"><a href="#" >{{ $size }}</a></li>
                                                             @endforeach
+                                                            <input type="hidden" name="selected_size" id="selected_size">
                                                         </ul>
                                                     </div>
+                                                    
                                                 @endif
+                                               
                                             </div>
+
                                             <!-- End Product Variation  -->
 
                                         </div>
@@ -598,7 +604,33 @@
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
-
+    <script>
+        function selectSize(size) {
+          // Récupérer tous les boutons de taille
+          const sizeButtons = document.querySelectorAll('.size-btn');
+      
+          // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+          sizeButtons.forEach((button) => {
+            if (button.textContent.trim() === size) {
+              button.classList.add('selected');
+            } else {
+              button.classList.remove('selected');
+            }
+          });
+      
+          // Mettre à jour la valeur de l'input caché "selected_size"
+          document.querySelector('#selected_size').value = size;
+        }
+      
+        // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
+        const sizeLinks = document.querySelectorAll('.size-btn');
+        sizeLinks.forEach((link) => {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+          });
+        });
+      </script>
+      
     <script>
         $(document).ready(function() {
             $('form#design-form').submit(function(event) {
@@ -645,6 +677,11 @@
     </script>
 
     <style>
+        .size-btn.selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
         .product-content1 img {
             width: 100% !important;
             height: auto !important;

@@ -100,7 +100,7 @@ class ClientController extends Controller
     
     
 
-    public function checkout(){
+    public function checkout(){ 
         $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
         $initial_products = InitialProduct::all();
         $designs = Design::all();

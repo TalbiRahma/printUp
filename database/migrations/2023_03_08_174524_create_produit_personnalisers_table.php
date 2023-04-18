@@ -20,6 +20,8 @@ return new class extends Migration
             $table->float('price');
             $table->string('photo');
             $table->json('sizes')->nullable();
+            
+            $table->string('etat')->nullable();
             $table->unsignedBigInteger('design_id');
             $table->foreign('design_id')->references('id')->on('designs')->onDelete('cascade');
             $table->unsignedBigInteger('initial_product_id');
