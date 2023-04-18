@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        PrintUp
+        Paiement
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -30,8 +30,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="/"
-                target="_blank">
+            <a class="navbar-brand m-0" href="/" target="_blank">
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
             </a>
@@ -39,74 +38,80 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Tableau de bord</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('users') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Clients</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "  href="{{ route('category_product') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Categories Produits</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('category_design') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Categories Designs</span>
-                </a>
-            </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('products') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-app text-info text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Produits</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('verif.designs') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-image text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Designs</span>
-                </a>
-            </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('commandes') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Commandes</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{{ route('paiement') }}">
-                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Paiement</span>
-                </a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Tableau de bord</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('users') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('category_product') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('category_design') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('products') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('verif.designs') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Designs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('commandes') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Commandes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('paiement') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Paiement</span>
+                    </a>
+                </li>
             </ul>
-          </div>
+        </div>
     </aside>
     <!-- End Side bar -->
     <main class="main-content position-relative border-radius-lg ">
@@ -162,15 +167,20 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clients
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Boutique
-                                </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
-                                </th>
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7"
+                                    style="width: 5%;">Id</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    style="width: 20%;">Clients</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    style="width: 15%;">Boutique</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Montant Total</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Montant demandé </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Remboursement</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Historique</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -191,17 +201,21 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">name Boutique</p>
-                                    <p class="text-xs text-secondary mb-0">nbr design</p>
+                                    <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <a href="javascript:;" class="text-success font-weight-bold text-xs p-2"
-                                        data-toggle="tooltip" data-original-title="activer client">
-                                        Activer
-                                    </a>
-                                    <a href="javascript:;" class="text-warning font-weight-bold text-xs p-2"
-                                        data-toggle="tooltip" data-original-title="bloquer client">
-                                        Bloquer
+                                    <h6 class="text-s font-weight-bold mb-0">150 TND</h6>
+                                </td>
+                                <td class="align-middle text-sm ">
+                                    <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                </td>
+                                <td class="align-middle text-sm ">
+                                    <button type="button" class="btn bg-gradient-primary btn-sm" 
+                                    data-bs-toggle="modal" data-bs-target="#procedure">Payé</button>
+                                </td>
+                                <td class="align-middle text-sm ">
+                                    <a href="{{ route('paiement.historique') }}" class="text-primary font-weight-bold ">
+                                        Voir
                                     </a>
                                 </td>
                             </tr>
@@ -210,9 +224,55 @@
                 </div>
             </div>
         </div>
+
         @include('inc.admin.footer')
-        </div>
     </main>
+
+    <!-- Modal Procedure -->
+    <div class="modal fade" id="procedure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Procédure de paiement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5 style=" display: inline-block;">Nom et Prénom:</h5>
+                        <h6 style=" display: inline-block; margin-left: 10px;">Foulen Fouleni</h6>
+                    </div>
+                    <div>
+                        <h5 style=" display: inline-block;">Email:</h5>
+                        <h6 style=" display: inline-block; margin-left: 10px;">flan@gmail.com</h6>
+                    </div>
+                    <div>
+                        <h5 style=" display: inline-block;">Numéro Tél:</h5>
+                        <h6 style=" display: inline-block; margin-left: 10px;">+216 99 999 999</h6>
+                    </div>
+                    <div>
+                        <h5 style=" display: inline-block;">Proced:</h5>
+                        <h6 style=" display: inline-block; margin-left: 10px;">D17</h6>
+                    </div>
+                    <div>
+                        <h5 style=" display: inline-block;">RIP:</h5>
+                        <h6 style=" display: inline-block; margin-left: 10px;">1111 1111 1111 1111</h6>
+                    </div>
+                    <div class="mt-4">
+                        <button type="button" class="btn bg-gradient-primary">Transfert de l'argent</button>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

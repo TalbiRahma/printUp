@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Account
+        Ma Boutique
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('maboutique') }}">
+                    <a class="nav-link active" href="{{ route('maboutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
@@ -91,7 +91,7 @@
                     <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link active" href="{{ route('account') }}">
+                    <a class="nav-link " href="{{ route('account') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
@@ -170,37 +170,12 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <div class="row gx-4">
-                                <div class="col-auto">
-                                    <div class="avatar avatar-xl position-relative">
-                                        @if (auth()->user()->photo == null)
-                                            <img
-                                                src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
-                                        @else
-                                            <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                                                alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-auto my-auto">
-                                    <div class="h-100">
-                                        <h5 class="mb-1">
-                                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto my-auto">
-                                <a href="{{ route('account.update') }}" class="btn btn-primary btn-sm">Modifier
-                                    profile</a>
+
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <hr class="horizontal dark">
-                        <h5 class="text-secondary text-uppercase py-4">Email:</h5>
-                        <a href="" class="h6 text-default text-md">{{ auth()->user()->email }}</a>
-                        <h5 class="text-secondary text-uppercase py-4">Numéro téléphone:</h5>
-                        <h6 class="text-default text-md">{{ auth()->user()->phone }}</h6>
+                        <div class="card-body">
+
+                        </div>
                     </div>
                 </div>
             </div>

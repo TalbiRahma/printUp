@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Détails Commande
+        Paiement
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -123,9 +123,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Commandes</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Paiement</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Commandes</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Paiement</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -157,152 +157,112 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Détails Commande</h4>
+                    <h4>Historique de flan lfoulani</h4>
                 </div>
             </div>
         </div>
-        <div class="container-fluid py-4">
-            <div class="card card-frame">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-4">
-                            <img style="width: 250px; height: auto;"
-                                src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                alt="">
-                        </div>
-                        <div class="col-8">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h3 style="color: #525f7f; margin-bottom: 20px;">Capuche Blanc Girl</h3>
-                                <button type="button" class="btn btn-info"
-                                    style="margin-left: auto;">Télécharger</button>
-                            </div>
-                            <div>
-                                <h5 style="color: #525f7f; display: inline-block;">Produit Initial:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                    Capuche Blanc</h6>
-                            </div>
-                            <div>
-                                <h5 style="color: #525f7f; display: inline-block;">Design:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                    Girl</h6>
-                            </div>
-                            <div>
-                                <h5 style="color: #525f7f; display: inline-block;">Quantité:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">5 Piece
-                                </h6>
-                            </div>
-                            <div>
-                                <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">S, XL
-                                </h6>
-                            </div>
-                            <div>
-                                <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">45 TND</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="container-fluid py-4">
             <div class="row">
-                <div class="col-xl-7 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+
+
                     <div class="card">
-                        <div class="card-body p-3">
-                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                                style="margin-bottom: 20px;">
-                                <h4 style="color: #525f7f;">Détails Produit Initial:</h4>
-                            </div>
-                            <div class="card-body pt-2">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <img src="{{ asset('/uploads/642eb6ef37316.jpg') }}"
-                                            class="img-fluid border-radius-lg">
-                                    </div>
-                                    <div class="col-5">
-                                        <h4 style="color: #525f7f; margin-bottom: 10px;">Capuche Blanc:</h4>
-                                        <div>
-                                            <h5 style="color: #525f7f; display: inline-block;">Categorie:</h5>
-                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                                Vêtements</h6>
-                                        </div>
-                                        <div>
-                                            <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
-                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">30
-                                                TND</h6>
-                                        </div>
-                                        <div>
-                                            <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
-                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">S, XL
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h5 style="color: #525f7f;">Description:</h5>
-                                        <p>Une capuche de qualité doit être confortable, résistante, pratique et facile
-                                            à
-                                            entretenir.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
+                            style="margin-bottom: 10px;">
+                            <h5 style="color: #525f7f;">Historique Paiement:</h5>
+
+                        </div>
+                        <hr class="horizontal dark mt-0">
+                        <div class="p-0 mx-3  position-relative z-index-1" style="margin-bottom: 5px;">
+                            <h6 style="color: #525f7f;">Montant resté: 100TND</h6>
+                            <h6 style="color: #525f7f;">Montant total transféré: 100TND</h6>
+                        </div>
+                        <hr class="horizontal dark mt-0">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            style="width: 40%;">Date</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                            style="width: 60%;">Montant transféré</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle">
+                                            27-09-2023
+                                        </td>
+                                        <td class="align-middle text-sm ">
+                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+
                 </div>
-                <div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
-                        <div class="card-body p-3">
-                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h4 style="color: #525f7f;">Détails Design:</h4>
-                                <button type="button" class="btn btn-info"
-                                    style="margin-left: auto;">Télécharger</button>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6">
-                                    <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
-                                        class="img-fluid border-radius-lg" style="margin-bottom: 15px;">
-                                </div>
-                                <div class="col-6">
-                                    <h4 style="color: #525f7f; margin-bottom: 10px;">Girl:</h4>
-                                    <div>
-                                        <h5 style="color: #525f7f; display: inline-block;">Categorie:</h5>
-                                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                            Anime</h6>
-                                    </div>
-                                    <div>
-                                        <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
-                                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">15TND
-                                        </h6>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h5 style="color: #525f7f; display: inline-block;">Désigner:</h5>
-                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Foulan El
-                                        Foulani
-                                    </h6>
-                                </div>
-                                <div>
-                                    <h5 style="color: #525f7f; display: inline-block;">Boutique:</h5>
-                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Best Creation
-                                    </h6>
-
-                                </div>
-                                <div>
-                                    <h5 style="color: #525f7f;">Description:</h5>
-                                    <p>Ce personnage d'animation de ses grands yeux expressifs à ses couleurs vives et
-                                        joyeuses,il est le choix parfait pour égayer tout projet d'animation.</p>
-                                </div>
-                            </div>
+                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
+                            style="margin-bottom: 10px;">
+                            <h5 style="color: #525f7f;">Historique de Ventes:</h5>
+                        </div>
+                        <hr class="horizontal dark mt-0">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                            style="width: 20%;">Date</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            style="width: 30%;">Designs</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                            style="width: 15%;">Quantité</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                            style="width: 15%;">Prix</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                            style="width: 20%;">Totale</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle">
+                                            27-09-2023
+                                        </td>
+                                        <td class="align-middle text-sm ">
+                                            <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
+                                        class="img-fluid border-radius-lg" style="width: 150px; height: auto;">
+                                        </td>
+                                        <td class="align-middle text-sm ">
+                                            <h6 class="text-s font-weight-bold mb-0">3 Pièce</h6>
+                                        </td>
+                                        <td class="align-middle text-sm ">
+                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                        </td>
+                                        <td class="align-middle text-sm ">
+                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
         @include('inc.admin.footer')
     </main>
+
+    <!-- Modal Procedure -->
+
+
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

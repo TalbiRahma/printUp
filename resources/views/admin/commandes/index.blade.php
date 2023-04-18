@@ -238,7 +238,7 @@
             </div>
         </div>
         @include('inc.admin.footer')
-        </div>
+        
     </main>
 
     <!-- Modal Voir Plus -->
@@ -340,6 +340,8 @@
                                         class="card-title h6 d-block text-darker">
                                         Capuche Blanc Girl
                                     </a>
+                                    <h6 class="text-xs">Taille: XS</h6>
+                                <h6 class="text-xs">Qte: 2 Pièce</h6>
                                 </div>
                             </div>
                         </div>
@@ -358,6 +360,8 @@
                                         class="card-title h6 d-block text-darker">
                                         Capuche Blanc Girl
                                     </a>
+                                    <h6 class="text-xs">Taille: XS</h6>
+                                <h6 class="text-xs">Qte: 2 Pièce</h6>
                                 </div>
                             </div>
                         </div>
@@ -375,6 +379,8 @@
                                     <a href="javascript:;" class="card-title h6 d-block text-darker">
                                         Capuche Blanc Girl
                                     </a>
+                                    <h6 class="text-xs">Taille: XS</h6>
+                                <h6 class="text-xs">Qte: 2 Pièce</h6>
                                 </div>
                             </div>
                         </div>
@@ -392,6 +398,8 @@
                                     <a href="javascript:;" class="card-title h6 d-block text-darker">
                                         Capuche Blanc Girl
                                     </a>
+                                    <h6 class="text-xs">Taille: XS</h6>
+                                <h6 class="text-xs">Qte: 2 Pièce</h6>
                                 </div>
                             </div>
                         </div>

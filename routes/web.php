@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DesignController;
+use App\Http\Controllers\BoutiqueController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PortmonnaieController;
@@ -92,6 +93,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update');
         Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
 
+        
+        Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
+        Route::get('/porte-monnaie', [ClientController::class, 'portemonnaie'])->name('porte-monnaie');
+        
+
+
 
         /***************WISHLIST******* */
         Route::prefix('wishlist')->group(function () {
@@ -134,8 +141,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/update', [CommandeController::class, 'updateLigne'])->name('commande.update');
             Route::post('/envoi', [AdminController::class, 'commandes'])->name('commande.envoi');
             Route::post('/list', [CommandeController::class, 'listCommande'])->name('commande.list');
-
-
+            Route::get('/historique', [CommandeController::class, 'historiqueCommande'])->name('commande.historique');
+            Route::get('/historique/details', [CommandeController::class, 'detailCommande'])->name('commande.historique.details');
         });
     });
 });
@@ -224,7 +231,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/{id}/valider', [AdminController::class, 'validerDesign'])->name('valider.designs');
         });
         
-        Route::get('/paiement', [PortmonnaieController::class, 'index'])->name('paiement');
-
+        Route::prefix('paiement')->group(function () {
+            Route::get('/', [PortmonnaieController::class, 'index'])->name('paiement');
+            Route::get('/historique', [PortmonnaieController::class, 'historiquePaiement'])->name('paiement.historique');
+        });
     });
 });

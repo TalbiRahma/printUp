@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Détails Commande
+        Account
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -23,7 +23,6 @@
 
 <body class="g-sidenav-show   bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
-    <!-- Side bar -->
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -34,110 +33,116 @@
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
             </a>
+
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link " href="/">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-shop text-sm opacity-10" style="color: #2b6cf7 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Tableau de bord</span>
+                        <span class="nav-link-text ms-1">Accueil</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('users') }}">
+                    <a class="nav-link " href="{{ route('maboutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Clients</span>
+                        <span class="nav-link-text ms-1">Ma Boutique</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('category_product') }}">
+                    <a class="nav-link " href="{{ route('designs') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
+                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
+                        <span class="nav-link-text ms-1">Mes Designs</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category_design') }}">
+                    <a class="nav-link active" href="{{ route('commande.historique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Designs</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('products') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-info text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('verif.designs') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Designs</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('commandes') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                            <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('paiement') }}">
+                    <a class="nav-link " href="{{ route('porte-monnaie') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-money-coins text-sm opacity-10" style="color: #f1c037 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Paiement</span>
+                        <span class="nav-link-text ms-1">Porte-monnaie</span>
                     </a>
                 </li>
             </ul>
         </div>
+        <div class="sidenav-footer  ">
+            <ul class="navbar-nav">
+                <li class="nav-item mt-3">
+                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('account') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Compte</span>
+                    </a>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('account.update') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Modifier Compte</span>
+                    </a>
+                </li>
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        <i class="ni ni-ui-04 text-warning text-sm opacity-10"></i>
+                        <span class="nav-link-text ms-1">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
     </aside>
-    <!-- End Side bar -->
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
             <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Commandes</li>
-                    </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Commandes</h6>
-                </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        @include('inc.admin.globalsearch')
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search"
+                                    aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Type here...">
+                        </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
-                        <!--profile-->
                         <li class="nav-item d-flex align-items-center">
-                            @include('inc.admin.profile')
+                            <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                                <i class="fa fa-user me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Sign In</span>
+                            </a>
                         </li>
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
                                     <i class="sidenav-toggler-line bg-white"></i>
                                     <i class="sidenav-toggler-line bg-white"></i>
@@ -145,15 +150,22 @@
                                 </div>
                             </a>
                         </li>
-
-                        <!--notificaton-->
-                        @include('inc.admin.notification')
-                        <!--end notificaton-->
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0">
+                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+                        <!--notification-->
+                        @include('inc.client.notification')
+                        <!--endnotification-->
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- End Navbar -->
+
+        <!--detail commande-->
+
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
@@ -173,8 +185,6 @@
                         <div class="col-8">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <h3 style="color: #525f7f; margin-bottom: 20px;">Capuche Blanc Girl</h3>
-                                <button type="button" class="btn btn-info"
-                                    style="margin-left: auto;">Télécharger</button>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Produit Initial:</h5>
@@ -255,8 +265,6 @@
                             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                                 <h4 style="color: #525f7f;">Détails Design:</h4>
-                                <button type="button" class="btn btn-info"
-                                    style="margin-left: auto;">Télécharger</button>
                             </div>
 
                             <div class="row">
@@ -301,8 +309,15 @@
                 </div>
             </div>
         </div>
+
+        <!--end detail commande-->
+
+        
+        <!--footer-->
         @include('inc.admin.footer')
+
     </main>
+
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

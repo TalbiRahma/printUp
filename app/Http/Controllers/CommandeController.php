@@ -95,4 +95,14 @@ class CommandeController extends Controller
         
         return view('client.historiquecommande.detail');
     }
+
+    public function historiqueCommande(Request $request){
+        
+        return view('client.commandes.historiquecommande');
+    }
+    public function detailCommande(){
+        
+        return view('client.commandes.details');
+    }
+
 }
