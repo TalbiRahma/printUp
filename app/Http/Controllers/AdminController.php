@@ -110,7 +110,7 @@ class AdminController extends Controller
 
     public function validerDesign($id)
     {
-        $design = Design::find($id);
+        $design = Design::find($id); 
         $design->etat = 'valider';
         $design->update();
 
@@ -118,9 +118,5 @@ class AdminController extends Controller
         
     }
 
-    public function commandes(Request $request){
-        
-        dd($request);
-        return view('client.historiquecommande');
-    }
+    
 }

@@ -101,7 +101,7 @@ class InitialProductController extends Controller
             //supprimer ancienne photo
             $file_path = public_path().'/uploads/'.$product->photo;
             unlink($file_path);
-
+ 
             //upload nv photo
             $newname = uniqid();
             $image = $request->file('photo');

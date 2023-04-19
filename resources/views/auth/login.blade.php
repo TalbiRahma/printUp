@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
-                        <p>Not a member?</p>
-                        <a href="{{route('register')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
+                        <p>Pas un membre?</p>
+                        <a href="{{route('register')}}" class="axil-btn btn-bg-secondary sign-up-btn">S'inscrire maintenant</a>
                     </div>
                 </div>
             </div>

@@ -520,7 +520,7 @@
                                                         <ul class="range-variant">
 
                                                             @foreach ($sizes as $size)
-                                                            <li class="size-btn" onclick="selectSize('{{ $size }}')"><a href="#" >{{ $size }}</a></li>
+                                                            <li class="size-btn" onclick="selectSize('{{ $size }}')">{{ $size }}</li>
                                                             @endforeach
                                                             <input type="hidden" name="selected_size" id="selected_size">
                                                         </ul>

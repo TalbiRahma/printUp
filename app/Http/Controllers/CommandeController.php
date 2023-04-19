@@ -15,7 +15,7 @@ class CommandeController extends Controller
 
         return view('admin.commandes.index');
     }
-    public function detail(){
+    public function detail(){ 
         
         return view('admin.commandes.detail');
     }
@@ -89,6 +89,45 @@ class CommandeController extends Controller
         }
 
         return redirect()->back();
+    }
+    public function validerCommandes(Request $request){
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'region' => 'required',
+            'adresse' => 'required',
+            'ville' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'livraison' => 'required',
+            
+
+        ]); 
+         // stocker les données dans un tableau JSON
+         $commande_data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'region' => $request->region,
+            'adresse' => $request->adresse,
+            'ville' => $request->ville,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'notes' => $request->notes,
+            'livraison' => $request->livraison,
+            
+        ];
+
+        // transformer les données en JSON
+        $commande_data_json = json_encode($commande_data);
+
+        
+        $commande = Commande::find($request->commande_id);
+
+        
+        $commande->coordonnees = $commande_data;
+        $commande->etat = "valider";
+        $commande->update();
+        return view('client.commandes.historiquecommande');
     }
 
     public function listCommande(Request $request){

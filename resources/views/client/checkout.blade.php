@@ -44,6 +44,7 @@
                     <div class="container">
                         <form action="{{route('commande.envoi')}}" method="POST">
                             @csrf
+                            <input type="hidden"name="commande_id" value="{{$commande->id}}">
                             <div class="row">
                                 <div class="col-lg-6">
 
@@ -119,7 +120,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($commande->lignecommandes as $lc)
-                                                    <input type="hidden"name="commande_id" value="{{$commande->id}}">
+                                                   
                                                         <tr class="order-product ">
                                                             <td>{{ $lc->customproduct->name }}  </td>
                                                             <td>{{ $lc->selected_size }} <span>x{{ $lc->qte }}</span> </td>
@@ -139,7 +140,7 @@
                                                     <tr class="order-total">
                                                         <td>Total</td>
                                                         <td class="order-total-amount">
-                                                            {{ $lc->customproduct->price * $lc->qte + 8.0 }} TND</td>
+                                                            {{ $commande->getTotal() + 8.0 }} TND</td>
                                                     </tr>
 
                                                 </tbody>

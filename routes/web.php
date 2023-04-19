@@ -139,7 +139,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/store', [CommandeController::class, 'addCommande'])->name('command.add');
             Route::get('/lc/{idlc}/destroy', [CommandeController::class, 'ligneCommandeDestroy'])->name('command.delete');
             Route::post('/update', [CommandeController::class, 'updateLigne'])->name('commande.update');
-            Route::post('/envoi', [AdminController::class, 'commandes'])->name('commande.envoi');
+            Route::post('/envoi', [CommandeController::class, 'validerCommandes'])->name('commande.envoi');
             Route::post('/list', [CommandeController::class, 'listCommande'])->name('commande.list');
             Route::get('/historique', [CommandeController::class, 'historiqueCommande'])->name('commande.historique');
             Route::get('/historique/details', [CommandeController::class, 'detailCommande'])->name('commande.historique.details');

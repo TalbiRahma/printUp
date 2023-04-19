@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('etat', ['en cours', 'payee', 'valider'])->default('en cours');
             $table->unsignedBigInteger('member_id')->nullable();
             $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
+            $table->json('coordonnees')->nullable();
             $table->timestamps();
         });
     }

@@ -201,19 +201,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach (auth()->user()->commandes as $commande )
                             <tr>
                                 <td class="align-middle">
-                                    27-09-2023
+                                    {{$commande->created_at}}
                                 </td>
                                 <td>
                                     <a href="" data-bs-target="#products" data-bs-toggle="modal">
-                                        <h6 class="mb-0 text-xs">Capuche Blanc Girl</h6>
-                                        <h6 class="mb-0 text-xs">T-shirt Girl</h6>
-                                        <h6 class="mb-0 text-xs">Cup Girl</h6>
+                                        @foreach ($commande->lignecommandes as $lc)
+                                        <h6 class="mb-0 text-xs">{{$lc->customproduct->name}}</h6>
+                                        @endforeach
+                                        
+                                        
                                     </a>
                                 </td>
                                 <td>
-                                    <h6 class="text-xs">45 TND</h6>
+                                    <h6 class="text-xs">{{$commande->getTotal()+ 8.000}} TND</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
                                     <span class="badge bg-gradient-secondary" data-bs-toggle="tooltip"
@@ -234,6 +237,8 @@
                                         data-bs-toggle="modal" data-bs-target="#plus">Voir Plus</button>
                                 </td>
                             </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
@@ -254,17 +259,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
+
                         <div>
                             <h5 style="color: #525f7f;">Produits:</h5>
+                            @foreach ($commande->lignecommandes as $lc)
                             <a href="{{ route('commande.historique.details') }}">
-                                <h5 style="color: #32325d; margin-left: 10px;">5 Capuche Blanc Girl</h5>
+                                <h5 style="color: #32325d; margin-left: 10px;">{{$lc->customproduct->name}}</h5>
                             </a>
-                            <a href="{{ route('commande.historique.details') }}">
-                                <h5 style="color: #32325d; margin-left: 10px;">2 T-shirt Girl</h5>
-                            </a>
-                            <a href="{{ route('commande.historique.details') }}">
-                                <h5 style="color: #32325d; margin-left: 10px;">1 Cup Girl</h5>
-                            </a>
+                            @endforeach
                         </div>
                         <div>
                             <h5 style="color: #525f7f; display: inline-block;">Nom et Prénom:</h5>
