@@ -4,21 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use App\Models\LigneCommande;
+use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommandeController extends Controller
 {
     //
-    public function index()
-    {
-
-        return view('admin.commandes.index');
-    }
-    public function detail(){ 
-        
-        return view('admin.commandes.detail');
-    }
+    
     public function addCommande(Request $request)
     {
         
@@ -139,9 +132,9 @@ class CommandeController extends Controller
         
         return view('client.commandes.historiquecommande');
     }
-    public function detailCommande(){
-        
-        return view('client.commandes.details');
+    public function detailCommande($id){ 
+        $lc = LigneCommande::find($id);
+        return view('client.commandes.details', compact('lc'));
     }
 
 }

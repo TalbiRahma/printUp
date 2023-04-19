@@ -118,5 +118,13 @@ class AdminController extends Controller
         
     }
 
-    
+    public function index()
+    {
+
+        return view('admin.commandes.index');
+    }
+    public function detail(){ 
+        
+        return view('admin.commandes.detail');
+    }
 }

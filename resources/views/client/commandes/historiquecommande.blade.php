@@ -134,7 +134,7 @@
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Commandes</h6>
                 </nav>
-                    @include('inc.client.navbar')
+                @include('inc.client.navbar')
             </div>
         </nav>
         <!-- End Navbar -->
@@ -176,44 +176,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (auth()->user()->commandes as $commande )
-                            <tr>
-                                <td class="align-middle">
-                                    {{$commande->created_at}}
-                                </td>
-                                <td>
-                                    <a href="" data-bs-target="#products" data-bs-toggle="modal">
-                                        @foreach ($commande->lignecommandes as $lc)
-                                        <h6 class="mb-0 text-xs">{{$lc->customproduct->name}}</h6>
-                                        @endforeach
-                                        
-                                        
-                                    </a>
-                                </td>
-                                <td>
-                                    <h6 class="text-xs">{{$commande->getTotal()+ 8.000}} TND</h6>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <span class="badge bg-gradient-secondary" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom"
-                                        title="Nous sommes en train de vérifier votre commande." data-container="body"
-                                        data-animation="true">En Attente</span>
-                                    <!--<span class="badge bg-gradient-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nous sommes en train de préparer votre commande.">En Cours</span>
+                            @foreach (auth()->user()->commandes as $commande)
+                                <tr>
+                                    <td class="align-middle">
+                                        {{ $commande->created_at }}
+                                    </td>
+                                    <td>
+                                        <a href="" data-bs-target="#products{{ $commande->id }}"
+                                            data-bs-toggle="modal">
+                                            @foreach ($commande->lignecommandes as $lc)
+                                                <h6 class="mb-0 text-xs">{{ $lc->customproduct->name }}</h6>
+                                            @endforeach
+
+
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <span class="badge bg-gradient-secondary" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom"
+                                            title="Nous sommes en train de vérifier votre commande."
+                                            data-container="body" data-animation="true">En Attente</span>
+                                        <!--<span class="badge bg-gradient-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nous sommes en train de préparer votre commande.">En Cours</span>
                                     <span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tu as déjà reçu cette commande.">Validée</span>-->
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <span class="badge bg-gradient-warning" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom"
-                                        title="Votre commande n'a pas encore été payée.">Non Payé</span>
-                                    <!--<span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cette commande a été payée.">Payé</span>-->
-                                </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn bg-gradient-primary btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#plus">Voir Plus</button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <span class="badge bg-gradient-warning" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom"
+                                            title="Votre commande n'a pas encore été payée.">Non Payé</span>
+                                        <!--<span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cette commande a été payée.">Payé</span>-->
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn bg-gradient-primary btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#plus{{ $commande->id }}">Voir
+                                            Plus</button>
+                                    </td>
+                                </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -222,175 +224,129 @@
 
         <!--end tabl list historique commande client-->
 
-        <!-- Modal Voir Plus -->
-        <div class="modal fade" id="plus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
 
-                        <div>
-                            <h5 style="color: #525f7f;">Produits:</h5>
-                            @foreach ($commande->lignecommandes as $lc)
-                            <a href="{{ route('commande.historique.details') }}">
-                                <h5 style="color: #32325d; margin-left: 10px;">{{$lc->customproduct->name}}</h5>
-                            </a>
-                            @endforeach
+        <!-- Modal Voir Plus -->
+        @foreach (auth()->user()->commandes as $commande)
+            @php
+                $coordonnees = json_decode($commande->coordonnees, true);
+            @endphp
+            <div class="modal fade" id="plus{{ $commande->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Nom et Prénom:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Foulen Ben Foulen
-                            </h6>
+                        <div class="modal-body">
+                            <div>
+                                <h5 style="color: #525f7f;">Produits:</h5>
+                                @foreach ($commande->lignecommandes as $lc)
+                                    <a href="{{ route('commande.historique.details', ['id' => $lc->id]) }}">
+                                        <h5 style="color: #32325d; margin-left: 10px;">{{ $lc->customproduct->name }}
+                                        </h5>
+                                    </a>
+                                @endforeach
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Nom et Prénom:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
+                                </h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $coordonnees['email'] }}</h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['phone'] }}
+                                </h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['ville'] }}</h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['region'] }}
+                                    </h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['adresse'] }}
+                                   </h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $commande->getTotal() + 8.0 }} DT</h6>
+                            </div>
+                            <div>
+                                <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['livraison'] }}
+                                </h6>
+                                <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
+                                <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                            </div>
                         </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                Foulen.benfoulen@gmail.com</h6>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-gradient-secondary"
+                                data-bs-dismiss="modal">Fermer</button>
                         </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">+216 99 999 999
-                            </h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Monastir</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Ksibet El
-                                Médiouni</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Nahj eltaieb
-                                lmhiri ,5031</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">45 TND</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">à la livraison</h6>
-                            <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
-                            <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary"
-                            data-bs-dismiss="modal">Fermer</button>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
+
 
         <!-- All products-->
-    <div class="modal fade" id="products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tout Les Produit Commandé</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                <a href="{{ route('commande.historique.details') }}" class="d-block">
-                                    <img style="width: 100%; height: auto;"
-                                        src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                        alt="">
-                                </a>
-                            </div>
+        @foreach (auth()->user()->commandes as $commande)
+            <div class="modal fade" id="products{{ $commande->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tout Les Produit Commandé</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                @foreach ($commande->lignecommandes as $lc)
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                                <a href="{{ route('commande.historique.details', ['id' => $lc->id]) }}" class="d-block">
+                                                    <img style="width: 100%; height: auto;"
+                                                        src="/{{ $lc->customproduct->photo }}" alt="">
+                                                </a>
+                                            </div>
 
-                            <div class="card-body pt-2">
-                                <a href="{{ route('commande.historique.details') }}"
-                                    class="card-title h6 d-block text-darker">
-                                    Capuche Blanc Girl
-                                </a>
-                                <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
+                                            <div class="card-body pt-2">
+                                                <a href="{{ route('commande.historique.details', ['id' => $lc->id]) }}"
+                                                    class="card-title h6 d-block text-darker">
+                                                    {{ $lc->name }}
+                                                </a>
+                                                <h6 class="text-xs">Taille: {{ $lc->selected_size }}</h6>
+                                                <h6 class="text-xs">Qte: {{ $lc->qte }} Pièce</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                <a href="{{ route('commande.historique.details') }}" class="d-block">
-                                    <img style="width: 100%; height: auto;"
-                                        src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                        alt="">
-                                </a>
-                            </div>
-
-                            <div class="card-body pt-2">
-                                <a href="{{ route('commande.historique.details') }}"
-                                    class="card-title h6 d-block text-darker">
-                                    Capuche Blanc Girl
-                                </a>
-                                <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                <a href="{{ route('commande.historique.details') }}" class="d-block">
-                                    <img style="width: 100%; height: auto;"
-                                        src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                        alt="">
-                                </a>
-                            </div>
-
-                            <div class="card-body pt-2">
-                                <a href="{{ route('commande.historique.details') }}" class="card-title h6 d-block text-darker">
-                                    Capuche Blanc Girl
-                                </a>
-                                <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                <a href="{{ route('commande.historique.details') }}" class="d-block">
-                                    <img style="width: 100%; height: auto;"
-                                        src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                        alt="">
-                                </a>
-                            </div>
-
-                            <div class="card-body pt-2">
-                                <a href="{{ route('commande.historique.details') }}" class="card-title h6 d-block text-darker">
-                                    Capuche Blanc Girl
-                                </a>
-                                <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-gradient-secondary"
+                                data-bs-dismiss="modal">Fermer</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+        @endforeach
         <!--footer-->
         @include('inc.admin.footer')
 

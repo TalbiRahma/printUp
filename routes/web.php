@@ -142,7 +142,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/envoi', [CommandeController::class, 'validerCommandes'])->name('commande.envoi');
             Route::post('/list', [CommandeController::class, 'listCommande'])->name('commande.list');
             Route::get('/historique', [CommandeController::class, 'historiqueCommande'])->name('commande.historique');
-            Route::get('/historique/details', [CommandeController::class, 'detailCommande'])->name('commande.historique.details');
+            Route::get('{id}/historique/details', [CommandeController::class, 'detailCommande'])->name('commande.historique.details');
         });
     });
 });
@@ -221,15 +221,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
         /********admin COMMANDES****** */
         Route::prefix('commandes')->group(function () {
-            Route::get('/', [CommandeController::class, 'index'])->name('commandes');
-            Route::get('/detail', [CommandeController::class, 'detail'])->name('commandes.detail');
+            Route::get('/', [AdminController::class, 'index'])->name('commandes');
+            Route::get('/detail', [AdminController::class, 'detail'])->name('commandes.detail');
         });
 
-
-        Route::prefix('designs')->group(function () {
-            Route::get('/', [AdminController::class, 'designs'])->name('verif.designs');
-            Route::get('/{id}/valider', [AdminController::class, 'validerDesign'])->name('valider.designs');
-        });
         
         Route::prefix('paiement')->group(function () {
             Route::get('/', [PortmonnaieController::class, 'index'])->name('paiement');
