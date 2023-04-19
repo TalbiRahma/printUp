@@ -244,41 +244,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-lg-6 mb-lg-0 mb-4">
-                    <div class="card ">
-                        <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-2">Historique de transfert de l'argent:</h6>
-                            </div>
-                        </div>
-                        <div class="card-body p-3">
-                            <hr class="horizontal dark mt-0">
-                            <div class="table-responsive">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                style="width: 40%;">Date</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                                style="width: 60%;">Montant transféré</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="align-middle">
-                                                27-09-2023
-                                            </td>
-                                            <td class="align-middle text-sm ">
-                                                <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-lg-0 mb-4">
+                <div class="col-lg-8 mb-lg-0 mb-4">
                     <div class="card ">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
@@ -318,6 +284,40 @@
                                             </td>
                                             <td class="align-middle text-sm ">
                                                 <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                            </td>
+                                            <td class="align-middle text-sm ">
+                                                <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-lg-0 mb-4">
+                    <div class="card ">
+                        <div class="card-header pb-0 p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-2">Historique de transfert de l'argent:</h6>
+                            </div>
+                        </div>
+                        <div class="card-body p-3">
+                            <hr class="horizontal dark mt-0">
+                            <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                style="width: 40%;">Date</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                                style="width: 60%;">Montant transféré</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle">
+                                                27-09-2023
                                             </td>
                                             <td class="align-middle text-sm ">
                                                 <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
