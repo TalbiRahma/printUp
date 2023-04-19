@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         
         Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
-        Route::get('/porte-monnaie', [ClientController::class, 'portemonnaie'])->name('porte-monnaie');
+        Route::get('/porte-monnaie', [PortmonnaieController::class, 'portemonnaie'])->name('porte-monnaie');
         
 
 
