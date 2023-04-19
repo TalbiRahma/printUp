@@ -167,38 +167,38 @@
                     <div class="row">
                         <div class="col-4">
                             <img style="width: 250px; height: auto;"
-                                src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                src="/{{ $lc->customproduct->photo }}"
                                 alt="">
                         </div>
                         <div class="col-8">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h3 style="color: #525f7f; margin-bottom: 20px;">Capuche Blanc Girl</h3>
+                                <h3 style="color: #525f7f; margin-bottom: 20px;">{{ $lc->customproduct->name }}</h3>
                                 <button type="button" class="btn btn-info"
                                     style="margin-left: auto;">Télécharger</button>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Produit Initial:</h5>
                                 <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                    Capuche Blanc</h6>
+                                    {{ $lc->customproduct->initialProduct->name }}</h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Design:</h5>
                                 <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                    Girl</h6>
+                                    {{ $lc->customproduct->design->name }}</h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Quantité:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">5 Piece
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->qte }} Piece(s)
                                 </h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">S, XL
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->selected_size }}
                                 </h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">45 TND</h6>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->customproduct->price }} DT</h6>
                             </div>
                         </div>
                     </div>
@@ -217,32 +217,29 @@
                             <div class="card-body pt-2">
                                 <div class="row">
                                     <div class="col-7">
-                                        <img src="{{ asset('/uploads/642eb6ef37316.jpg') }}"
+                                        <img src="{{ asset('/uploads') }}/{{ $lc->customproduct->initialProduct->photo }}"
                                             class="img-fluid border-radius-lg">
                                     </div>
                                     <div class="col-5">
-                                        <h4 style="color: #525f7f; margin-bottom: 10px;">Capuche Blanc:</h4>
+                                        <h4 style="color: #525f7f; margin-bottom: 10px;">{{ $lc->customproduct->initialProduct->name}}:</h4>
                                         <div>
                                             <h5 style="color: #525f7f; display: inline-block;">Categorie:</h5>
                                             <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                                Vêtements</h6>
+                                                {{ $lc->customproduct->initialProduct->categorie_products->name }}</h6>
                                         </div>
                                         <div>
                                             <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
-                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">30
-                                                TND</h6>
+                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->customproduct->initialProduct->price }} DT</h6>
                                         </div>
                                         <div>
                                             <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
-                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">S, XL
+                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->selected_size }}
                                             </h6>
                                         </div>
                                     </div>
                                     <div>
                                         <h5 style="color: #525f7f;">Description:</h5>
-                                        <p>Une capuche de qualité doit être confortable, résistante, pratique et facile
-                                            à
-                                            entretenir.</p>
+                                        <p>{{ $lc->customproduct->initialProduct->description }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -261,19 +258,19 @@
 
                             <div class="row">
                                 <div class="col-6">
-                                    <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
+                                    <img src="{{ asset('/uploads') }}/{{ $lc->customproduct->design->photo }}"
                                         class="img-fluid border-radius-lg" style="margin-bottom: 15px;">
                                 </div>
                                 <div class="col-6">
-                                    <h4 style="color: #525f7f; margin-bottom: 10px;">Girl:</h4>
+                                    <h4 style="color: #525f7f; margin-bottom: 10px;">{{ $lc->customproduct->design->name }}:</h4>
                                     <div>
                                         <h5 style="color: #525f7f; display: inline-block;">Categorie:</h5>
                                         <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                            Anime</h6>
+                                            {{ $lc->customproduct->design->categorie_designs->name }}</h6>
                                     </div>
                                     <div>
                                         <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
-                                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">15TND
+                                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->customproduct->design->price }} DT
                                         </h6>
                                     </div>
                                 </div>
@@ -282,7 +279,7 @@
                                     <h5 style="color: #525f7f; display: inline-block;">Désigner:</h5>
                                     <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Foulan El
                                         Foulani
-                                    </h6>
+                                    </h6> 
                                 </div>
                                 <div>
                                     <h5 style="color: #525f7f; display: inline-block;">Boutique:</h5>
@@ -292,8 +289,7 @@
                                 </div>
                                 <div>
                                     <h5 style="color: #525f7f;">Description:</h5>
-                                    <p>Ce personnage d'animation de ses grands yeux expressifs à ses couleurs vives et
-                                        joyeuses,il est le choix parfait pour égayer tout projet d'animation.</p>
+                                    <p>{{ $lc->customproduct->design->description }}</p>
                                 </div>
                             </div>
                         </div>

@@ -173,7 +173,7 @@
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Quantité:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->qte }}
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->qte }} Piece(s)
                                 </h6>
                             </div>
                             <div>
@@ -214,7 +214,7 @@
                                         </div>
                                         <div>
                                             <h5 style="color: #525f7f; display: inline-block;">Prix:</h5>
-                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->customproduct->initialProduct->price }}</h6>
+                                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $lc->customproduct->initialProduct->price }} DT</h6>
                                         </div>
                                         <div>
                                             <h5 style="color: #525f7f; display: inline-block;">Taille:</h5>
@@ -224,7 +224,7 @@
                                     </div>
                                     <div>
                                         <h5 style="color: #525f7f;">Description:</h5>
-                                        <p>{{ $lc->customproduct->initialProduct->description }}.</p>
+                                        <p>{{ $lc->customproduct->initialProduct->description }}</p>
                                     </div>
                                 </div>
                             </div>

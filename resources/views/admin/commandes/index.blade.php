@@ -192,128 +192,138 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    #001
-                                </td>
-                                <td>
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#products">
-                                        <h6 class="mb-0 text-xs">Capuche Blanc Girl</h6>
-                                        <h6 class="mb-0 text-xs">T-shirt Girl</h6>
-                                        <h6 class="mb-0 text-xs">Cup Girl</h6>
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                class="avatar avatar-sm me-3">
+                            @foreach ($commandes as $index => $commande)
+                                <tr>
+                                    <td class="align-middle">
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <a href="" data-bs-toggle="modal"
+                                            data-bs-target="#products{{ $commande->id }}">
+
+                                            @foreach ($commande->lignecommandes as $lc)
+                                                <h6 class="mb-0 text-xs">{{ $lc->customproduct->name }}</h6>
+                                            @endforeach
+
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                <img src="{{asset('/uploads')}}/{{ $commande->member->photo }}"
+                                                    class="avatar avatar-sm me-3">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-xs">{{ $commande->member->first_name }} {{ $commande->member->last_name }}</h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    {{ $commande->member->email }}</p>
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-xs">name client</h6>
-                                            <p class="text-xs text-secondary mb-0">email@mail.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h6 class="text-xs">45 TND</h6>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <a href=""><span class="badge bg-gradient-secondary">En Attente</span></a>
-                                    <!--<a><span class="badge bg-gradient-info">En Cours</span></a>
+                                    </td>
+                                    <td>
+                                        <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <a href=""><span class="badge bg-gradient-secondary">En
+                                                Attente</span></a>
+                                        <!--<a><span class="badge bg-gradient-info">En Cours</span></a>
                                     <a><span class="badge bg-gradient-success">Validée</span></a>-->
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <span class="badge bg-gradient-warning">Non Payé</span>
-                                    <!--<span class="badge bg-gradient-success">Payé</span>-->
-                                </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn bg-gradient-primary btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#plus">Voir Plus</button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <span class="badge bg-gradient-warning">Non Payé</span>
+                                        <!--<span class="badge bg-gradient-success">Payé</span>-->
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn bg-gradient-primary btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#plus{{ $commande->id }}">Voir
+                                            Plus</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         @include('inc.admin.footer')
-        
+
     </main>
 
     <!-- Modal Voir Plus -->
-    <div class="modal fade" id="plus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <h5 style="color: #525f7f;">Produits:</h5>
-                        <a href="{{ route('commandes.detail') }}">
-                            <h5 style="color: #32325d; margin-left: 10px;">5 Capuche Blanc Girl</h5>
-                        </a>
-                        <a href="{{ route('commandes.detail') }}">
-                            <h5 style="color: #32325d; margin-left: 10px;">2 T-shirt Girl</h5>
-                        </a>
-                        <a href="{{ route('commandes.detail') }}">
-                            <h5 style="color: #32325d; margin-left: 10px;">1 Cup Girl</h5>
-                        </a>
+    @foreach ($commandes as $commande)
+        @php
+            $coordonnees = json_decode($commande->coordonnees, true);
+        @endphp
+        <div class="modal fade" id="plus{{ $commande->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Client:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Foulen Ben Foulen
-                        </h6>
+                    <div class="modal-body">
+                        <div>
+                            <h5 style="color: #525f7f;">Produits:</h5>
+                            @foreach ($commande->lignecommandes as $lc)
+                            <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}">
+                                <h5 style="color: #32325d; margin-left: 10px;">{{ $lc->customproduct->name }}</h5>
+                            </a>
+                            @endforeach
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Client:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
+                            </h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                {{ $coordonnees['email'] }}</h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['phone'] }}
+                            </h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['ville'] }}</h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['region'] }}</h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['adresse'] }}</h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $commande->getTotal() + 8.0 }} DT</h6>
+                        </div>
+                        <div>
+                            <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['livraison'] }}</h6>
+                            <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
+                            <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                        </div>
                     </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                            Foulen.benfoulen@gmail.com</h6>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
                     </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">+216 99 999 999
-                        </h6>
-                    </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Monastir</h6>
-                    </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Ksibet El
-                            Médiouni</h6>
-                    </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">Nahj eltaieb
-                            lmhiri ,5031</h6>
-                    </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">45 TND</h6>
-                    </div>
-                    <div>
-                        <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
-                        <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">à la livraison</h6>
-                        <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
-                        <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
+
 
     <!-- All products-->
-    <div class="modal fade" id="products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    @foreach ($commandes as $commande)
+    <div class="modal fade" id="products{{ $commande->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -325,84 +335,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        @foreach ($commande->lignecommandes as $lc)
                         <div class="col-4">
                             <div class="card">
                                 <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="javascript:;" class="d-block">
+                                    <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}" class="d-block">
                                         <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
+                                            src="/{{ $lc->customproduct->photo }}"
                                             alt="">
                                     </a>
                                 </div>
 
                                 <div class="card-body pt-2">
-                                    <a href="{{ route('commandes.detail') }}"
+                                    <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}"
                                         class="card-title h6 d-block text-darker">
-                                        Capuche Blanc Girl
+                                        {{ $lc->customproduct->name }}
                                     </a>
-                                    <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
+                                    <h6 class="text-xs">Taille: {{ $lc->selected_size }}</h6>
+                                    <h6 class="text-xs">Qte: {{ $lc->qte }} Pièce</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="{{ route('commandes.detail') }}" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                            alt="">
-                                    </a>
-                                </div>
-
-                                <div class="card-body pt-2">
-                                    <a href="{{ route('commandes.detail') }}"
-                                        class="card-title h6 d-block text-darker">
-                                        Capuche Blanc Girl
-                                    </a>
-                                    <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="{{ route('commandes.detail') }}" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                            alt="">
-                                    </a>
-                                </div>
-
-                                <div class="card-body pt-2">
-                                    <a href="javascript:;" class="card-title h6 d-block text-darker">
-                                        Capuche Blanc Girl
-                                    </a>
-                                    <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="{{ route('commandes.detail') }}" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/uploads/custom_products/1681338232-tS9TcMe8jk.jpg') }}"
-                                            alt="">
-                                    </a>
-                                </div>
-
-                                <div class="card-body pt-2">
-                                    <a href="javascript:;" class="card-title h6 d-block text-darker">
-                                        Capuche Blanc Girl
-                                    </a>
-                                    <h6 class="text-xs">Taille: XS</h6>
-                                <h6 class="text-xs">Qte: 2 Pièce</h6>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -411,7 +365,7 @@
             </div>
         </div>
     </div>
-
+    @endforeach
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

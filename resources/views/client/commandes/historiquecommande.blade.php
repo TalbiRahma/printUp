@@ -329,7 +329,7 @@
                                             <div class="card-body pt-2">
                                                 <a href="{{ route('commande.historique.details', ['id' => $lc->id]) }}"
                                                     class="card-title h6 d-block text-darker">
-                                                    {{ $lc->name }}
+                                                    {{ $lc->customproduct->name }}
                                                 </a>
                                                 <h6 class="text-xs">Taille: {{ $lc->selected_size }}</h6>
                                                 <h6 class="text-xs">Qte: {{ $lc->qte }} Pièce</h6>

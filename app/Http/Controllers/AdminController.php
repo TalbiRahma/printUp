@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Design;
+use App\Models\Commande;
 use Illuminate\Http\Request;
+use App\Models\LigneCommande;
 use App\Models\CategoryDesign;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -118,13 +120,12 @@ class AdminController extends Controller
         
     }
 
-    public function index()
-    {
-
-        return view('admin.commandes.index');
+    public function commandes()
+    {   $commandes = Commande::all();
+        return view('admin.commandes.index', compact('commandes'));
     }
-    public function detail(){ 
-        
-        return view('admin.commandes.detail');
+    public function commandeDetail($id){ 
+        $lc = LigneCommande::find($id);
+        return view('admin.commandes.detail', compact('lc'));
     }
 }

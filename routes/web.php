@@ -221,8 +221,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
         /********admin COMMANDES****** */
         Route::prefix('commandes')->group(function () {
-            Route::get('/', [AdminController::class, 'index'])->name('commandes');
-            Route::get('/detail', [AdminController::class, 'detail'])->name('commandes.detail');
+            Route::get('/', [AdminController::class, 'commandes'])->name('commandes');
+            Route::get('{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
         });
 
         
