@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class CommandeController extends Controller
 {
     //
-    
+
     public function addCommande(Request $request)
     {
-        
+
         $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
         //dd($commande);
 
@@ -83,7 +83,9 @@ class CommandeController extends Controller
 
         return redirect()->back();
     }
-    public function validerCommandes(Request $request){
+
+    public function validerCommandes(Request $request)
+    {
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -93,11 +95,11 @@ class CommandeController extends Controller
             'phone' => 'required',
             'email' => 'required',
             'livraison' => 'required',
-            
 
-        ]); 
-         // stocker les données dans un tableau JSON
-         $commande_data = [
+
+        ]);
+        // stocker les données dans un tableau JSON
+        $commande_data = [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'region' => $request->region,
@@ -106,35 +108,41 @@ class CommandeController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'notes' => $request->notes,
-            'livraison' => $request->livraison,
             
+
         ];
 
         // transformer les données en JSON
         $commande_data_json = json_encode($commande_data);
 
-        
-        $commande = Commande::find($request->commande_id);
 
-        
-        $commande->coordonnees = $commande_data;
-        $commande->etat = "valider";
-        $commande->update();
-        return view('client.commandes.historiquecommande');
+        $commandes = Commande::find($request->commande_id);
+
+
+        $commandes->coordonnees = $commande_data;
+        $commandes->etat = "en attente";
+        $commandes->update();
+        return redirect('client/commande/historique');
     }
 
-    public function listCommande(Request $request){
-        
+    public function listCommande()
+    {
+
         return view('client.historiquecommande.detail');
     }
 
-    public function historiqueCommande(Request $request){
-        
-        return view('client.commandes.historiquecommande');
+    public function historiqueCommande()
+    {
+        $user = auth()->user();
+        $commandes = Commande::where('member_id', '=', $user->id)
+            ->whereIn('etat', ['en attente'])
+            ->get();
+        return view('client.commandes.historiquecommande', compact('commandes'));
     }
-    public function detailCommande($id){ 
+
+    public function detailCommande($id)
+    {
         $lc = LigneCommande::find($id);
         return view('client.commandes.details', compact('lc'));
     }
-
 }

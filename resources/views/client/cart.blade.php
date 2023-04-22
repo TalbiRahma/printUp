@@ -45,6 +45,7 @@
                     <div class="axil-product-cart-wrap">
                         <form action="{{ route('commande.update') }}" method="POST">
                             @csrf
+                            @include('inc.flashmessage')
                             <div class="product-table-heading">
                                 <h4 class="title">Votre panier</h4>
                                 <a href="#" class="cart-clear">Effacer le panier</a>
@@ -72,11 +73,12 @@
                                                             src="/{{ $lc->customproduct->photo }}"></a></td>
                                                 <td class="product-title"><a
                                                         href="single-product.html">{{ $lc->customproduct->name }}</a>
-                                                        @if ($lc->customproduct->etat == "en attend")
-                                                        <span class="badge badge-warning">en attend</span>
-                                                       @else
-                                                       <span class="badge badge-success">Valider</span>
-                                                       @endif</td>
+                                                    @if ($lc->customproduct->etat == 'en attente')
+                                                        <span class="badge badge-warning">en attente</span>
+                                                    @else
+                                                        <span class="badge badge-success">Valide</span>
+                                                    @endif
+                                                </td>
                                                 <td class="product-selected_size" data-title="selected_size">
                                                     {{ $lc->selected_size }}
                                                 </td>
@@ -123,7 +125,7 @@
                                         <table class="table summery-table mb--30">
                                             <tbody>
                                                 <tr class="order-subtotal">
-                                                    <td>Total</td>
+                                                    <td>Total</td> 
                                                     <td>{{ $commande->getTotal() }} TND</td>
                                                 </tr>
 

@@ -8,6 +8,8 @@ use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Models\LigneCommande;
 use App\Models\CategoryDesign;
+use Illuminate\Support\Facades\DB;
+use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -16,115 +18,129 @@ class AdminController extends Controller
 {
     // 
 
-    public function dashboard(){
+    public function dashboard()
+    {
         return view('admin.dashboard');
     }
 
     public function clients()
     {
         $clients = User::where('role', 'user')->latest()->paginate(10);
-        return view('admin.clients.index')->with('clients' , $clients);
+        return view('admin.clients.index')->with('clients', $clients);
     }
 
-    public function bloquerUser( $iduser ){
+    public function bloquerUser($iduser)
+    {
 
         $client = User::find($iduser);
         $client->is_active = false;
         $client->update();
 
-        return redirect()->back()->with('success' , 'Client bloquee');
-
+        return redirect()->back()->with('success', 'Client bloquee');
     }
 
-    public function activerUser( $iduser ){
+    public function activerUser($iduser)
+    {
 
         $client = User::find($iduser);
         $client->is_active = true;
         $client->update();
 
-        return redirect()->back()->with('success' , 'Client activee');
-
+        return redirect()->back()->with('success', 'Client activee');
     }
 
-    public function modifProfil(){
+    public function modifProfil()
+    {
         return view('admin.compte.editprofil');
     }
 
-    public function updatetProfil(Request $request){
+    public function updatetProfil(Request $request)
+    {
 
         $request->validate([
-            'password' =>'confirmed' 
+            'password' => 'confirmed'
         ]);
-       // dd($request);
+        // dd($request);
         $user = Auth::user();
-        $user->first_name =$request->first_name;
-        $user->last_name =$request->last_name;
-        $user->email =$request->email;
-        $user->phone =$request->phone;
- 
-        if ($request->password){
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+
+        if ($request->password) {
             $user->password = Hash::make($request->password);
         }
 
-       //upload image
-       if($request->file('photo')){
-        if($user->photo){
-            //supprimer ancienne photo
-            $file_path = public_path().'/uploads/'.$user->photo;
-            unlink($file_path);
+        //upload image
+        if ($request->file('photo')) {
+            if ($user->photo) {
+                //supprimer ancienne photo
+                $file_path = public_path() . '/uploads/' . $user->photo;
+                unlink($file_path);
 
-            //upload nv photo
-            $newname = uniqid();
-            $image = $request->file('photo');
-            $newname.= "." . $image->getClientOriginalExtension();
-            $destinationPath = 'uploads';
-            $image->move($destinationPath , $newname);
-            $user->photo = $newname;
-        }else{
-            //upload nv photo
-            $newname = uniqid();
-            $image = $request->file('photo');
-            $newname.= "." . $image->getClientOriginalExtension();
-            $destinationPath = 'uploads';
-            $image->move($destinationPath , $newname);
-            $user->photo = $newname;
-        }
-        
+                //upload nv photo
+                $newname = uniqid();
+                $image = $request->file('photo');
+                $newname .= "." . $image->getClientOriginalExtension();
+                $destinationPath = 'uploads';
+                $image->move($destinationPath, $newname);
+                $user->photo = $newname;
+            } else {
+                //upload nv photo
+                $newname = uniqid();
+                $image = $request->file('photo');
+                $newname .= "." . $image->getClientOriginalExtension();
+                $destinationPath = 'uploads';
+                $image->move($destinationPath, $newname);
+                $user->photo = $newname;
+            }
         }
 
         $user->update();
         return view('admin.compte.editprofil');
     }
 
-    public function donnesProfil(){
+    public function donnesProfil()
+    {
         return view('admin.compte.donnesprofil');
-    } 
-    
+    }
+
 
     public function designs()
     {
-        $designs = Design::with('members')->get();
+        $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
+        ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
+        ->get();
         $category_design = CategoryDesign::all();
-        
+
 
         return view('admin.designs.index', compact('designs'));
     }
 
     public function validerDesign($id)
     {
-        $design = Design::find($id); 
-        $design->etat = 'valider';
+        $design = Design::find($id);
+        $design->etat = 'valide';
         $design->update();
+        $custom_products = ProduitPersonnaliser::where('design_id', $id)->get();
 
-        return redirect()->back()->with('success' , 'design valider');
-        
+        foreach ($custom_products as $custom_product) {
+            $custom_product->etat = 'valide';
+            $custom_product->update();
+        }
+
+        return redirect()->back()->with('success', 'design valider');
     }
 
     public function commandes()
-    {   $commandes = Commande::all();
+    {
+        $commandes = Commande::where('etat', 'en attente')->get();
         return view('admin.commandes.index', compact('commandes'));
     }
-    public function commandeDetail($id){ 
+
+
+    public function commandeDetail($id)
+    {
         $lc = LigneCommande::find($id);
         return view('admin.commandes.detail', compact('lc'));
     }

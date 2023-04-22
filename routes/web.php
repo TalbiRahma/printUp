@@ -83,7 +83,7 @@ Route::prefix('geust/shop')->group(function () {
 });
 
 
-
+ 
 /*************CLIENT******** */
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('client')->group(function () {

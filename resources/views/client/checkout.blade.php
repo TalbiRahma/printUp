@@ -159,8 +159,8 @@
                                             </div>
                                             <div class="single-payment">
                                                 <div class="input-group">
-                                                    <input type="radio" id="radio5" name="livraison">
-                                                    <label for="radio5">Paiement à la livraison</label>
+                                                    <input type="radio" id="radio5" name="livraison"  value="à la livraison">
+                                                    <label for="radio5">Paiement à la livraison</label> 
                                                 </div>
                                                 <p>Payez en espèces à la livraison.</p>
                                             </div>

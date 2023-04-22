@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('category_design_id');
             $table->foreign('category_design_id')->references('id')->on('category_designs')->onDelete('cascade');
-            $table->enum('etat', ['en attend', 'valider'])->default('en attend');
+            $table->enum('etat', ['en attente', 'valide'])->default('en attente');
             $table->timestamps();
         });
     }

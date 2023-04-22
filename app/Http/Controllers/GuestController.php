@@ -24,7 +24,7 @@ class GuestController extends Controller
     {
         $this->clearSessionData($request);
         $initial_products = InitialProduct::latest()->paginate(8);
-        $designs = Design::all();
+        $designs = Design::where('etat', 'valide')->get();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         if (auth()->check()) {

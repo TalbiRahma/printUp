@@ -230,7 +230,7 @@
                                     <a><span class="badge bg-gradient-success">Validée</span></a>-->
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <span class="badge bg-gradient-warning">Non Payé</span>
+                                        <span class="badge bg-gradient-warning">{{$commande->paiement}}</span>
                                         <!--<span class="badge bg-gradient-success">Payé</span>-->
                                     </td>
                                     <td style="text-align: center;">
@@ -306,7 +306,7 @@
                         </div>
                         <div>
                             <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['livraison'] }}</h6>
+                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{$commande->paiement}}</h6>
                             <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
                             <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
                         </div>

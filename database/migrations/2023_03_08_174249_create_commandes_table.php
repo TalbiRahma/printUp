@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->enum('etat', ['en cours', 'payee', 'valider'])->default('en cours');
+            $table->enum('etat', ['en cours', 'en attente', 'valide'])->default('en cours');
+            $table->enum('paiement', ['payee', 'à la livraison'])->default('à la livraison');
             $table->unsignedBigInteger('member_id')->nullable();
             $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
             $table->json('coordonnees')->nullable();

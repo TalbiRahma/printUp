@@ -209,11 +209,11 @@
                                     <td class="align-middle text-sm">
                                         <div class="d-flex px-2">
                                             <div class="my-auto">
-                                               
+
                                                 <h5 class="mb-0 text-sm">
-                                                    
+                                                    {{$design->user_name}}
                                                 </h5>
-                                               
+
                                             </div>
                                         </div>
                                     </td>
@@ -233,18 +233,20 @@
                                                 <h5 class="mb-0 text-sm">{{ $design->price }} TND</h5>
                                             </div>
                                         </div>
-                                    </td> 
+                                    </td>
                                     <td class="align-middle ">
-                                         @if ($design->etat == "en attend")
-                                         <span class="badge badge-warning">en attend</span>
+                                        @if ($design->etat == 'en attente')
+                                            <span class="badge badge-warning">en attente</span>
                                         @else
-                                        <span class="badge badge-success">Valider</span>
+                                            <span class="badge badge-success">Valide</span>
                                         @endif
                                     </td>
                                     <td class="align-middle ">
                                         <div class="d-flex flex-column">
-                                            <a href="{{ route('valider.designs', ['id' => $design->id]) }}"
-                                                class="btn btn-success btn-sm">Valider</a>
+                                            @if ($design->etat == 'en attente')
+                                                <a href="{{ route('valider.designs', ['id' => $design->id]) }}"
+                                                    class="btn btn-success btn-sm">Valider</a>
+                                            @endif
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
                                                 href="{{ route('delete.design', ['id' => $design->id]) }}"
                                                 class="btn btn-danger btn-sm">Supprimer</a>

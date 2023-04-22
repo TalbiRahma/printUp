@@ -176,7 +176,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (auth()->user()->commandes as $commande)
+                            @foreach ($commandes as $commande)
                                 <tr>
                                     <td class="align-middle">
                                         {{ $commande->created_at }}
@@ -198,7 +198,7 @@
                                         <span class="badge bg-gradient-secondary" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom"
                                             title="Nous sommes en train de vérifier votre commande."
-                                            data-container="body" data-animation="true">En Attente</span>
+                                            data-container="body" data-animation="true">{{$commande->etat}}</span>
                                         <!--<span class="badge bg-gradient-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nous sommes en train de préparer votre commande.">En Cours</span>
                                     <span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tu as déjà reçu cette commande.">Validée</span>-->
                                     </td>
@@ -226,7 +226,7 @@
 
 
         <!-- Modal Voir Plus -->
-        @foreach (auth()->user()->commandes as $commande)
+        @foreach ($commandes as $commande)
             @php
                 $coordonnees = json_decode($commande->coordonnees, true);
             @endphp
@@ -238,7 +238,7 @@
                             <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </button> 
                         </div>
                         <div class="modal-body">
                             <div>
@@ -286,7 +286,7 @@
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['livraison'] }}
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{$commande->paiement}}
                                 </h6>
                                 <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
                                 <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
@@ -303,7 +303,7 @@
 
 
         <!-- All products-->
-        @foreach (auth()->user()->commandes as $commande)
+        @foreach ($commandes as $commande)
             <div class="modal fade" id="products{{ $commande->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

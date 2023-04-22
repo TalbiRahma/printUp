@@ -28,10 +28,10 @@
                                         <div class="item-price">{{ $lc->customproduct->price }}<span
                                                 class="currency-symbol">
                                                 TND</span></div>
-                                                @if ($lc->customproduct->etat == "en attend")
-                                                <span class="badge badge-warning">en attend</span>
+                                                @if ($lc->customproduct->etat == "en attente")
+                                                <span class="badge badge-warning">en attente</span>
                                                @else
-                                               <span class="badge badge-success">Valider</span>
+                                               <span class="badge badge-success">Valide</span>
                                                @endif
                                         <div class="pro-qty item-quantity">
                                             

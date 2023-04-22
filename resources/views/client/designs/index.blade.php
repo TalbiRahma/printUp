@@ -121,7 +121,7 @@
             </ul>
         </div>
     </aside>
-    
+
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
@@ -135,7 +135,7 @@
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Mes Designs</h6>
                 </nav>
-                    @include('inc.client.navbar')
+                @include('inc.client.navbar')
             </div>
         </nav>
         <!-- End Navbar -->
@@ -167,6 +167,8 @@
                                     style="width: 10%;">Prix</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                     style="width: 10%;">Categorie</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 10%;">Etat</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                     style="width: 15%;">Action</th>
                             </tr>
@@ -208,6 +210,21 @@
                                             </div>
                                         </div>
                                     </td>
+
+                                    <td>
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                @if ($d->etat == 'en attente') 
+                                                    <span class="badge badge-warning">en attente</span>
+                                                @else
+                                                    <span class="badge badge-success">Valide</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+
 
                                     <td class="align-middle ">
 
@@ -335,6 +352,26 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('/dashassets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
+    <style>
+        .badge-success {
+            color: #1aae6f;
+            background-color: #b0eed3;
+
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+
+        .badge-warning {
+            color: #ff3709;
+            background-color: #fee6e0;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
 </body>
 
 </html>
