@@ -92,7 +92,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/account', [ClientController::class, 'account'])->name('account');
         Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update');
         Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
-
+        Route::get('/contact', [ClientController::class, 'contact'])->name('contact');
+        Route::post('/contact/send', [ClientController::class, 'contactSend'])->name('contact.send');
         
         Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
         Route::get('/porte-monnaie', [PortmonnaieController::class, 'portemonnaie'])->name('porte-monnaie');
@@ -215,6 +216,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::prefix('designs')->group(function () {
             Route::get('/', [AdminController::class, 'designs'])->name('verif.designs');
             Route::get('/{id}/valider', [AdminController::class, 'validerDesign'])->name('valider.designs');
+            Route::get('/{id}/delete', [AdminController::class, 'AdminSupprimerDesign'])->name('admin.delete.design');
             
         });
 

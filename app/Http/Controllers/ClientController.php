@@ -6,12 +6,14 @@ use App\Models\Design;
 use App\Models\Review;
 use App\Models\Commande;
 use Illuminate\Http\Request;
+use App\Mail\ContactFormMail;
 use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
 use App\Models\CategoryProduct;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -162,11 +164,33 @@ class ClientController extends Controller
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
 
-
-
-
-
-
         return view('client.personaliser', compact('designs', 'initial_product', 'category_product', 'category_design', 'commande'));
+    }
+
+    public function contact()
+    {
+        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        $initial_product = InitialProduct::all();
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+
+        return view('client.contact', compact('designs', 'initial_product', 'category_product', 'category_design', 'commande'));
+    }
+
+    public function contactSend(Request $request)
+    {
+        
+        $details = [
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
+       
+
+        Mail::to('printUp.laravel@gmail.com')->send(new ContactFormMail($details));
+
+        return redirect()->back()->with('success', 'Votre message a été envoyé avec succès!');
     }
 }

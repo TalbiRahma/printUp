@@ -3,3 +3,10 @@
     <p class="mb-0 flex-1">{{$message}}</p>
   </div>
 @endif
+
+
+@if($message = Session::get('success'))
+  <div class="alert alert-success" role="alert">
+    <p class="mb-0 flex-1">{{$message}}</p>
+  </div>
+@endif

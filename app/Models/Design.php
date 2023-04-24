@@ -31,4 +31,9 @@ class Design extends Model
     {
         return $this->belongsToMany(User::class, 'favorite_designs', 'user_id', 'design_id');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

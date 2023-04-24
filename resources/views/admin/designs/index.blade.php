@@ -248,7 +248,7 @@
                                                     class="btn btn-success btn-sm">Valider</a>
                                             @endif
                                             <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
-                                                href="{{ route('delete.design', ['id' => $design->id]) }}"
+                                                href="{{ route('admin.delete.design', ['id' => $design->id]) }}"
                                                 class="btn btn-danger btn-sm">Supprimer</a>
                                         </div>
                                     </td>

@@ -86,7 +86,7 @@
                             </li> 
                             <li><a href="#">Boutiques</a></li>
                                 <li><a href="#">A propos</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{route('contact')}}">Contact</a></li>
                         </ul>
                     </nav>
                     <!-- End Mainmanu Nav -->

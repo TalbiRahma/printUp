@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Design;
 use App\Models\Commande;
+use App\Events\DeleteDesign;
 use Illuminate\Http\Request;
+use App\Mail\DesignSupprimer;
 use App\Models\LigneCommande;
 use App\Models\CategoryDesign;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -109,8 +112,8 @@ class AdminController extends Controller
     public function designs()
     {
         $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
-        ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
-        ->get();
+            ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
+            ->get();
         $category_design = CategoryDesign::all();
 
 
@@ -131,6 +134,25 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'design valider');
     }
+
+    public function AdminSupprimerDesign($id)
+    {
+        $design = Design::find($id);
+        $user_data = $design->user; // récupère toutes les données de l'utilisateur
+        //dd($user_data->email);
+        $file_path = public_path() . '/uploads/' . $design->photo;
+
+        unlink($file_path);
+        if ($design->delete()) {
+            $mailable = new DesignSupprimer($user_data->name, $user_data->email);
+            Mail::to($user_data->email)->send($mailable);
+            return redirect()->back();
+        } else {
+            echo "error";
+        }
+    }
+
+
 
     public function commandes()
     {
