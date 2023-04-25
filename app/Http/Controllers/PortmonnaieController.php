@@ -53,14 +53,11 @@ class PortmonnaieController extends Controller
         // Valide les données du formulaire
         $validatedData = $request->validate([
             'procedure' => ['required', 'string'],
-            'Num_cart' => ['required', 'string', 'regex:/^\d{16}$/'],
-          ], [
-            'Num_cart.regex' => 'Le numéro de carte doit être composé exactement de 16 chiffres.',
-          ]);
+            'Num_cart' => 'required', ]);
 
         // Met à jour les coordonnées de portefeuille de l'utilisateur
         $user->portmonnaie->procedure = $validatedData['procedure'];
-        $user->portmonnaie->Num_cart = $validatedData['card_number'];
+        $user->portmonnaie->Num_cart = $validatedData['Num_cart'];
         $user->portmonnaie->save();
         dd($user->portmonnaie);
         return redirect()->back();
