@@ -56,24 +56,28 @@
                         <span class="nav-link-text ms-1">Clients</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('category_product') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category_design') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories Designs</span>
+                        <span class="nav-link-text ms-1">Categories</span>
                     </a>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('category_product') }}">
+
+                            <span class="nav-link-text ms-1">Categories Produits</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('category_design') }}">
+
+                            <span class="nav-link-text ms-1">Categories Designs</span>
+                        </a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('products') }}">
                         <div
@@ -101,14 +105,88 @@
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('paiement') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                        aria-expanded="false" aria-controls="collapseTow">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Commandes</span>
+                    </a>
+                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('commandes') }}">
+
+                            <span class="nav-link-text ms-1">En Attente</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('historiques') }}">
+
+                            <span class="nav-link-text ms-1">Validée</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                        aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
+                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('paiement') }}">
+
+                            <span class="nav-link-text ms-1">Demandes</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('historiques') }}">
+
+                            <span class="nav-link-text ms-1">Historiques</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidenav-footer  ">
+            <ul class="navbar-nav">
+                <li class="nav-item mt-3">
+                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('account') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Compte</span>
+                    </a>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('modifier.profil') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Modifier Profil</span>
+                    </a>
+                </li>
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                        <path fill-rule="evenodd"
+                                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                    </svg>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
@@ -210,11 +288,12 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="{{asset('/uploads')}}/{{ $commande->member->photo }}"
+                                                <img src="{{ asset('/uploads') }}/{{ $commande->member->photo }}"
                                                     class="avatar avatar-sm me-3">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-xs">{{ $commande->member->first_name }} {{ $commande->member->last_name }}</h6>
+                                                <h6 class="mb-0 text-xs">{{ $commande->member->first_name }}
+                                                    {{ $commande->member->last_name }}</h6>
                                                 <p class="text-xs text-secondary mb-0">
                                                     {{ $commande->member->email }}</p>
                                             </div>
@@ -230,7 +309,7 @@
                                     <a><span class="badge bg-gradient-success">Validée</span></a>-->
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <span class="badge bg-gradient-warning">{{$commande->paiement}}</span>
+                                        <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
                                         <!--<span class="badge bg-gradient-success">Payé</span>-->
                                     </td>
                                     <td style="text-align: center;">
@@ -265,53 +344,162 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <h5 style="color: #525f7f;">Produits:</h5>
-                            @foreach ($commande->lignecommandes as $lc)
-                            <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}">
-                                <h5 style="color: #32325d; margin-left: 10px;">{{ $lc->customproduct->name }}</h5>
-                            </a>
-                            @endforeach
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Client:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
-                            </h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                {{ $coordonnees['email'] }}</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['phone'] }}
-                            </h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['ville'] }}</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['region'] }}</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['adresse'] }}</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $commande->getTotal() + 8.0 }} DT</h6>
-                        </div>
-                        <div>
-                            <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
-                            <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{$commande->paiement}}</h6>
-                            <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
-                            <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                        <div class="table-responsive">
+                            <table class="table align-items-center ">
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f;">Produits:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                @foreach ($commande->lignecommandes as $lc)
+                                                    <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}">
+                                                        <h5 style="color: #32325d; margin-left: 10px;">
+                                                            {{ $lc->customproduct->name }}</h5>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Client:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
+                                                </h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['email'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:
+                                                </h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['phone'] }}
+                                                </h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['ville'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['ville'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['region'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Adresse De
+                                                    Livraison:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['adresse'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $commande->getTotal() + 8.0 }} DT</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:
+                                                </h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $commande->paiement }}</h6>
+                                                <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non
+                                                    Payé</span>
+                                                <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button class="btn bg-gradient-success" type="button">
+                            <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
+                            <span class="btn-inner--text">Validée</span>
+                        </button>
                         <button type="button" class="btn bg-gradient-secondary"
                             data-bs-dismiss="modal">Fermer</button>
                     </div>
@@ -323,48 +511,49 @@
 
     <!-- All products-->
     @foreach ($commandes as $commande)
-    <div class="modal fade" id="products{{ $commande->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tout Les Produit Commandé</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        @foreach ($commande->lignecommandes as $lc)
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="/{{ $lc->customproduct->photo }}"
-                                            alt="">
-                                    </a>
-                                </div>
-
-                                <div class="card-body pt-2">
-                                    <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}"
-                                        class="card-title h6 d-block text-darker">
-                                        {{ $lc->customproduct->name }}
-                                    </a>
-                                    <h6 class="text-xs">Taille: {{ $lc->selected_size }}</h6>
-                                    <h6 class="text-xs">Qte: {{ $lc->qte }} Pièce</h6>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
+        <div class="modal fade" id="products{{ $commande->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tout Les Produit Commandé</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <div class="modal-body">
+                        <div class="row">
+                            @foreach ($commande->lignecommandes as $lc)
+                                <div class="col-4">
+                                    <div class="card">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}"
+                                                class="d-block">
+                                                <img style="width: 100%; height: auto;"
+                                                    src="/{{ $lc->customproduct->photo }}" alt="">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body pt-2">
+                                            <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}"
+                                                class="card-title h6 d-block text-darker">
+                                                {{ $lc->customproduct->name }}
+                                            </a>
+                                            <h6 class="text-xs">Taille: {{ $lc->selected_size }}</h6>
+                                            <h6 class="text-xs">Qte: {{ $lc->qte }} Pièce</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endforeach
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

@@ -232,6 +232,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::prefix('paiement')->group(function () {
             Route::get('/', [PortmonnaieController::class, 'index'])->name('paiement');
             Route::get('/historique', [PortmonnaieController::class, 'historiquePaiement'])->name('paiement.historique');
+            Route::get('/historiques', [PortmonnaieController::class, 'historiques'])->name('historiques');
         });
     });
 });

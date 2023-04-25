@@ -22,6 +22,11 @@ class PortmonnaieController extends Controller
 
         return view('admin.paiement.historiquepaiement');
     }
+    public function historiques()
+    {
+
+        return view('admin.paiement.historiques');
+    }
 
     public function portemonnaie()
     {
