@@ -133,9 +133,9 @@
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Porte-monnaie</h6>
                 </nav>
-                
-                    @include('inc.client.navbar')
-                    
+
+                @include('inc.client.navbar')
+
             </div>
         </nav>
         <!-- End Navbar -->
@@ -152,7 +152,7 @@
                                     <div class="numbers">
                                         <p class="text-sm mb-1 text-uppercase font-weight-bold">Montant Existe</p>
                                         <h5 class="font-weight-bolder">
-                                            135 DT
+                                            {{ auth()->user()->portmonnaie->montant_existe }} DT
                                         </h5>
 
                                     </div>
@@ -179,7 +179,7 @@
                                         <p class="text-sm mb-1 text-uppercase font-weight-bold">Total des transferts
                                         </p>
                                         <h5 class="font-weight-bolder">
-                                            100 DT
+                                            {{ auth()->user()->portmonnaie->montant_transferts }} DT
                                         </h5>
 
                                     </div>
@@ -208,23 +208,28 @@
                                         <p class="text-sm mb-3 text-uppercase font-weight-bold">Votre coordonné:</p>
                                         <div>
                                             <h5 style=" display: inline-block;">Nom et Prénom:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">Foulen Fouleni</h6>
+                                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</h6>
                                         </div>
                                         <div>
                                             <h5 style=" display: inline-block;">Email:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">flan@gmail.com</h6>
+                                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                                {{ auth()->user()->email }}</h6>
                                         </div>
                                         <div>
                                             <h5 style=" display: inline-block;">Numéro Tél:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">+216 99 999 999</h6>
+                                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                                {{ auth()->user()->phone }}</h6>
                                         </div>
                                         <div>
                                             <h5 style=" display: inline-block;">Proced:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">D17</h6>
+                                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                                {{ auth()->user()->portmonnaie->Procedure }}</h6>
                                         </div>
                                         <div>
                                             <h5 style=" display: inline-block;">Numéro de Cart:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">1111 1111 1111 1111
+                                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                                {{ auth()->user()->portmonnaie->Num_cart }}
                                             </h6>
                                         </div>
                                         <div class="mt-4">
@@ -270,25 +275,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="align-middle">
-                                                27-09-2023
-                                            </td>
-                                            <td class="align-middle text-sm ">
-                                                <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
-                                                    class="img-fluid border-radius-lg"
-                                                    style="width: 150px; height: auto;">
-                                            </td>
-                                            <td class="align-middle text-sm ">
-                                                <h6 class="text-s font-weight-bold mb-0">3 Pièce</h6>
-                                            </td>
-                                            <td class="align-middle text-sm ">
-                                                <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                            </td>
-                                            <td class="align-middle text-sm ">
-                                                <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                            </td>
-                                        </tr>
+                                        @foreach ($commandes as $commande)
+                                            @foreach ($commande->lignecommandes as $lc)
+                                                <tr>
+                                                    <td class="align-middle">
+                                                        {{ $lc->created_at }}
+                                                    </td>
+                                                    <td class="align-middle text-sm ">
+                                                        <img src="{{ asset('/uploads') }}/{{ $lc->customproduct->design->photo }}"
+                                                            class="img-fluid border-radius-lg"
+                                                            style="width: 150px; height: auto;">
+                                                    </td>
+                                                    <td class="align-middle text-sm ">
+                                                        <h6 class="text-s font-weight-bold mb-0">{{ $lc->qte }}
+                                                            Pièce(s)</h6>
+                                                    </td>
+                                                    <td class="align-middle text-sm ">
+                                                        <h6 class="text-s font-weight-bold mb-0">
+                                                            {{ $lc->customproduct->design->price }} DT</h6>
+                                                    </td>
+                                                    <td class="align-middle text-sm ">
+                                                        <h6 class="text-s font-weight-bold mb-0">
+                                                            {{ $lc->customproduct->design->price * $lc->qte }}</h6>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -315,16 +327,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="align-middle">
-                                                27-09-2023
-                                            </td>
-                                            <td class="align-middle text-sm ">
-                                                <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                            </td>
-                                        </tr>
+                                        @if ($montants_transferts)
+                                        @foreach ($montants_transferts as $montant)
+                                                <tr>
+                                                    <td class="align-middle">{{ $montant->created_at->format('d-m-Y') }}
+                                                    </td>
+                                                    <td class="align-middle text-sm ">
+                                                        <h6 class="text-s font-weight-bold mb-0">
+                                                            {{ $montant->montant_transferts }} TND</h6>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -350,13 +367,13 @@
                                     <form role="form text-left">
                                         <label>Procedure:</label>
                                         <div class="input-group mb-3">
-                                            <input type="email" class="form-control"
+                                            <input name="procedure" type="text" class="form-control"
                                                 placeholder="Procedure de paiement" aria-label="Email"
                                                 aria-describedby="email-addon">
                                         </div>
                                         <label>Numéro de Cart:</label>
                                         <div class="input-group mb-3">
-                                            <input type="email" class="form-control"
+                                            <input name="Num_cart" type="text" class="form-control"
                                                 placeholder="0000 0000 0000 0000" aria-label="Password"
                                                 aria-describedby="password-addon">
                                         </div>

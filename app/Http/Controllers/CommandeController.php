@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\Portmonnaie;
+use Illuminate\Http\Request;
 use App\Models\LigneCommande;
 use Illuminate\Console\Command;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommandeController extends Controller
@@ -108,7 +109,7 @@ class CommandeController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'notes' => $request->notes,
-            
+
 
         ];
 
@@ -122,6 +123,28 @@ class CommandeController extends Controller
         $commandes->coordonnees = $commande_data;
         $commandes->etat = "en attente";
         $commandes->update();
+
+
+        // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
+        foreach ($commandes->lignecommandes as $ligne_commande) {
+            $montant = $ligne_commande->customproduct->design->price;
+            $user = $ligne_commande->customproduct->design->user;
+            $user_id = $user->id;
+            $portemonnaie = Portmonnaie::where('user_id', $user_id)->first();
+            
+            if ($portemonnaie) {
+                // Mettre à jour la colonne "montant_existe"
+                $portemonnaie->montant_existe += $montant;
+                $portemonnaie->save();
+            } else {
+                // Le portefeuille n'existe pas encore pour cet utilisateur, créer un nouveau portefeuille avec le montant initial
+                $portemonnaie = new Portmonnaie;
+                $portemonnaie->user_id = $user_id;
+                $portemonnaie->montant_existe = $montant;
+                //dd($portemonnaie);
+                $portemonnaie->save();
+            }
+        }
         return redirect('client/commande/historique');
     }
 
@@ -132,7 +155,7 @@ class CommandeController extends Controller
     }
 
     public function historiqueCommande()
-    {
+    { 
         $user = auth()->user();
         $commandes = Commande::where('member_id', '=', $user->id)
             ->whereIn('etat', ['en attente'])

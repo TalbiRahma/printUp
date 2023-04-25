@@ -56,32 +56,25 @@
                         <span class="nav-link-text ms-1">Clients</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <div class="accordion-1">
-                        <div class=" mx-auto">
-                            <div class="accordion" id="accordionRental">
-                                <div class="accordion-item ">
-                                    <a class="accordion-button collapsed nav-link" href="{{ route('category_design') }}" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                    aria-expanded="false" aria-controls="collapseOne">
-                                          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                                <i class="ni ni-collection text-danger text-sm opacity-10"></i>
-                                            </div>  
-                                        <span class="nav-link-text ms-1">Categories</span>
-                                    </a>
-                                    <div id="collapseOne" class="accordion-collapse collapse"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionRental" style="">
-                                        <a class="nav-link " href="{{ route('category_product') }}">
-                                            
-                                            <span class="nav-link-text ms-1">Categories Produits</span>
-                                        </a>
-                                        <a class="nav-link" href="{{ route('category_design') }}">
-                                            
-                                            <span class="nav-link-text ms-1">Categories Designs</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
+                        <span class="nav-link-text ms-1">Categories</span>
+                    </a>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('category_product') }}">
+
+                            <span class="nav-link-text ms-1">Categories Produits</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('category_design') }}">
+
+                            <span class="nav-link-text ms-1">Categories Designs</span>
+                        </a>
                     </div>
                 </li>
 
@@ -112,14 +105,88 @@
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('paiement') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                        aria-expanded="false" aria-controls="collapseTow">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Commandes</span>
+                    </a>
+                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('commandes') }}">
+
+                            <span class="nav-link-text ms-1">En Attente</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('historiques') }}">
+
+                            <span class="nav-link-text ms-1">Validée</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                        aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
+                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('paiement') }}">
+
+                            <span class="nav-link-text ms-1">Demandes</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('historiques') }}">
+
+                            <span class="nav-link-text ms-1">Historiques</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidenav-footer  ">
+            <ul class="navbar-nav">
+                <li class="nav-item mt-3">
+                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('account') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Compte</span>
+                    </a>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('modifier.profil') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Modifier Profil</span>
+                    </a>
+                </li>
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                        <path fill-rule="evenodd"
+                                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                    </svg>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>

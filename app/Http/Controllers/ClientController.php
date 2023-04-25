@@ -187,8 +187,7 @@ class ClientController extends Controller
             'email' => $request->input('email'),
             'message' => $request->input('message'),
         ];
-       
-
+        
         Mail::to('printUp.laravel@gmail.com')->send(new ContactFormMail($details));
 
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès!');

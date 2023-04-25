@@ -12,12 +12,12 @@ class Design extends Model
 
     public function categorie_designs()
     {
-        return $this->belongsTo(CategoryDesign::class , 'category_design_id' , 'id');
+        return $this->belongsTo(CategoryDesign::class, 'category_design_id', 'id');
     }
 
     public function boutique()
     {
-        return $this->belongsTo(Boutique::class , 'boutique_id' , 'id' );
+        return $this->belongsTo(Boutique::class, 'boutique_id', 'id');
     }
 
     public function initialProducts()
@@ -25,15 +25,16 @@ class Design extends Model
         return $this->belongsToMany(InitialProduct::class, 'produit_personnalisers', 'design_id', 'initial_product_id');
     }
 
-   
-
     public function members()
     {
         return $this->belongsToMany(User::class, 'favorite_designs', 'user_id', 'design_id');
     }
 
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    
+
 }

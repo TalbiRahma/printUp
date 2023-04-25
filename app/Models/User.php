@@ -70,7 +70,10 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
   
-
+    public function portmonnaie()
+    {
+        return $this->hasOne(Portmonnaie::class, 'user_id' , 'id');
+    }
     
 
     public function produits_personnalises()

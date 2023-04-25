@@ -23,7 +23,7 @@
         </li>
         <hr class="horizontal dark mt-0">
         <li><a href="{{ route('modifier.profil') }}" class="dropdown-item">
-                <span class="btn-inner--icon"><i class="ni ni-settings-gear-65"></i></span>
+                <span class="btn-inner--icon"><i class="ni ni-settings"></i></span>
                 <span class="btn-inner--text text-center ps-2">Modifier profil</span></a></li>
         <li><a onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"
