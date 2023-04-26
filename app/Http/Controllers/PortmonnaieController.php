@@ -53,12 +53,13 @@ class PortmonnaieController extends Controller
         // Valide les données du formulaire
         $validatedData = $request->validate([
             'procedure' => ['required', 'string'],
-            'Num_cart' => ['required', ],
-        ]);
+            'Num_cart' => 'required', ]);
 
         // Met à jour les coordonnées de portefeuille de l'utilisateur
         $user->portmonnaie->procedure = $validatedData['procedure'];
-        $user->portmonnaie->Num_cart = $validatedData['card_number'];
-        $user->save();
+        $user->portmonnaie->Num_cart = $validatedData['Num_cart'];
+        $user->portmonnaie->save();
+        dd($user->portmonnaie);
+        return redirect()->back();
     }
 }

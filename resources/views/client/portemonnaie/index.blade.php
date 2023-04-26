@@ -364,7 +364,8 @@
                                     <p class="mb-0">Modifier votre coordonnée de paiement</p>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form text-left">
+                                    <form role="form text-left" action="{{route('porte-monnaie.modif')}}" method="POST">
+                                        @csrf
                                         <label>Procedure:</label>
                                         <div class="input-group mb-3">
                                             <input name="procedure" type="text" class="form-control"
@@ -378,7 +379,7 @@
                                                 aria-describedby="password-addon">
                                         </div>
                                         <div class="text-center">
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Confirmer</button>
                                         </div>
                                     </form>

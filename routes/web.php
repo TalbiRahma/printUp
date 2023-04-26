@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
         
         Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
         Route::get('/porte-monnaie', [PortmonnaieController::class, 'portemonnaie'])->name('porte-monnaie');
+        Route::post('/porte-monnaie/modif', [PortmonnaieController::class, 'modifierCoordonnees'])->name('porte-monnaie.modif');
         
 
 

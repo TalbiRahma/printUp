@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->float('montant_existe')->default(0);
             $table->float('montant_transferts')->default(0);
-            $table->integer('Num_cart')->nullable();
+            $table->string('Num_cart')->nullable();
             $table->string('Procedure')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
