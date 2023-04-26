@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        PrintUp
+        Clients
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -30,8 +30,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-                target="_blank">
+            <a class="navbar-brand m-0" href="/" target="_blank">
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
             </a>
@@ -57,24 +56,28 @@
                         <span class="nav-link-text ms-1">Clients</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('category_product') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Categories Produits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category_design') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories Designs</span>
+                        <span class="nav-link-text ms-1">Categories</span>
                     </a>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('category_product') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Categories Produits</span>
+                        </a>
+                        <a class="nav-link " href="{{ route('category_design') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Categories Designs</span>
+                        </a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link " href="{{ route('products') }}">
                         <div
@@ -84,31 +87,101 @@
                         <span class="nav-link-text ms-1">Produits</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('verif.designs') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Designs</span>
                     </a>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('validee') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Validée</span>
+                        </a>
+                        <a class="nav-link " href="{{ route('verif.designs') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Non Validée</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('commandes') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link" href="{{ route('commandes') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">En Attente</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('commandes.validee') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Validée</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('paiement') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                        aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
+                    </a>
+                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('paiement') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Demandes</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('historiques') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Historiques</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidenav-footer">
+            <ul class="navbar-nav">
+                <li class="nav-item mt-3">
+                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('donnes.profil') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Compte</span>
+                    </a>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('ma.boutique') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Ma Boutique</span>
+                    </a>
+                </li>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('mes.designs') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Mes Designs</span>
                     </a>
                 </li>
             </ul>

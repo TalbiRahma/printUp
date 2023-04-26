@@ -57,6 +57,16 @@ class AdminController extends Controller
         return view('admin.compte.editprofil');
     }
 
+    public function maBoutique()
+    {
+        return view('admin.compte.maboutiques');
+    }
+
+    public function mesDesigns()
+    {
+        return view('admin.compte.mesdesigns');
+    }
+
     public function updatetProfil(Request $request)
     {
 
@@ -152,7 +162,14 @@ class AdminController extends Controller
         }
     }
 
-
+    public function validee()
+    {
+        $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
+            ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
+            ->get();
+        $category_design = CategoryDesign::all();
+        return view('admin.designs.validee', compact('designs'));
+    }
 
     public function commandes()
     {
@@ -165,5 +182,11 @@ class AdminController extends Controller
     {
         $lc = LigneCommande::find($id);
         return view('admin.commandes.detail', compact('lc'));
+    }
+
+    public function commandesValidee()
+    { 
+        $commandes = Commande::where('etat', 'en attente')->get();
+        return view('admin.commandes.validee', compact('commandes'));
     }
 }

@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Commandes
+        Commandes En Attente
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
                         aria-expanded="false" aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -69,11 +69,11 @@
                         data-bs-parent="#accordionRental" style="">
                         <a class="nav-link " href="{{ route('category_product') }}">
 
-                            <span class="nav-link-text ms-1">Categories Produits</span>
+                            <span class="nav-link-text ms-4 text-dark">Categories Produits</span>
                         </a>
-                        <a class="nav-link" href="{{ route('category_design') }}">
+                        <a class="nav-link " href="{{ route('category_design') }}">
 
-                            <span class="nav-link-text ms-1">Categories Designs</span>
+                            <span class="nav-link-text ms-4 text-dark">Categories Designs</span>
                         </a>
                     </div>
                 </li>
@@ -87,42 +87,45 @@
                         <span class="nav-link-text ms-1">Produits</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('verif.designs') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Designs</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('commandes') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Commandes</span>
-                    </a>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('validee') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Validée</span>
+                        </a>
+                        <a class="nav-link " href="{{ route('verif.designs') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Non Validée</span>
+                        </a>
+                    </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
-                        aria-expanded="false" aria-controls="collapseTow">
+                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
-                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne"
                         data-bs-parent="#accordionRental" style="">
-                        <a class="nav-link " href="{{ route('commandes') }}">
+                        <a class="nav-link active" href="{{ route('commandes') }}">
 
-                            <span class="nav-link-text ms-1">En Attente</span>
+                            <span class="nav-link-text ms-4 text-dark">En Attente</span>
                         </a>
-                        <a class="nav-link" href="{{ route('historiques') }}">
+                        <a class="nav-link" href="{{ route('commandes.validee') }}">
 
-                            <span class="nav-link-text ms-1">Validée</span>
+                            <span class="nav-link-text ms-4 text-dark">Validée</span>
                         </a>
                     </div>
                 </li>
@@ -139,23 +142,23 @@
                         data-bs-parent="#accordionRental" style="">
                         <a class="nav-link " href="{{ route('paiement') }}">
 
-                            <span class="nav-link-text ms-1">Demandes</span>
+                            <span class="nav-link-text ms-4 text-dark">Demandes</span>
                         </a>
                         <a class="nav-link" href="{{ route('historiques') }}">
 
-                            <span class="nav-link-text ms-1">Historiques</span>
+                            <span class="nav-link-text ms-4 text-dark">Historiques</span>
                         </a>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="sidenav-footer  ">
+        <div class="sidenav-footer">
             <ul class="navbar-nav">
                 <li class="nav-item mt-3">
                     <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('account') }}">
+                    <a class="nav-link " href="{{ route('donnes.profil') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
@@ -164,29 +167,22 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('modifier.profil') }}">
+                    <a class="nav-link " href="{{ route('ma.boutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
+                            <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Modifier Profil</span>
+                        <span class="nav-link-text ms-1">Ma Boutique</span>
                     </a>
                 </li>
-                <li class="nav-item ps-2">
-                    <a class="nav-link" href="{{ route('login') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                        <path fill-rule="evenodd"
-                                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                                    </svg>
-                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                <li class="nav-item ps--3">
+                    <a class="nav-link " href="{{ route('mes.designs') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Mes Designs</span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -203,7 +199,7 @@
                                 href="javascript:;">Pages</a></li>
                         <li class="breadcrumb-item text-sm text-white active" aria-current="page">Commandes</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Commandes</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Commandes En Attente</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -235,7 +231,7 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Liste de commandes</h4>
+                    <h4>Liste de commandes en attente</h4>
                 </div>
             </div>
         </div>

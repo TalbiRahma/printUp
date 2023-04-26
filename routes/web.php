@@ -163,6 +163,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('/profil/edit', [AdminController::class, 'modifProfil'])->name('modifier.profil');
         Route::post('/profil/update', [AdminController::class, 'updatetProfil'])->name('update.profil');
         Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'])->name('donnes.profil');
+        Route::get('/profil/boutique',  [AdminController::class, 'maBoutique'])->name('ma.boutique');
+        Route::get('/profil/designs',  [AdminController::class, 'mesDesigns'])->name('mes.designs');
 
 
         /************admin CLIENT****** */
@@ -215,6 +217,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
         Route::prefix('designs')->group(function () {
             Route::get('/', [AdminController::class, 'designs'])->name('verif.designs');
+            Route::get('/validee', [AdminController::class, 'validee'])->name('validee');
             Route::get('/{id}/valider', [AdminController::class, 'validerDesign'])->name('valider.designs');
             Route::get('/{id}/delete', [AdminController::class, 'AdminSupprimerDesign'])->name('admin.delete.design');
             
@@ -224,6 +227,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         /********admin COMMANDES****** */
         Route::prefix('commandes')->group(function () {
             Route::get('/', [AdminController::class, 'commandes'])->name('commandes');
+            Route::get('/validée', [AdminController::class, 'commandesValidee'])->name('commandes.validee');
             Route::get('{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
         });
 

@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Paiement
+        Designs Validée
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                         aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -98,7 +98,7 @@
                     </a>
                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne"
                         data-bs-parent="#accordionRental" style="">
-                        <a class="nav-link " href="{{ route('validee') }}">
+                        <a class="nav-link active" href="{{ route('validee') }}">
 
                             <span class="nav-link-text ms-4 text-dark">Validée</span>
                         </a>
@@ -130,7 +130,7 @@
                     </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -140,7 +140,7 @@
                     </a>
                     <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
                         data-bs-parent="#accordionRental" style="">
-                        <a class="nav-link active" href="{{ route('paiement') }}">
+                        <a class="nav-link " href="{{ route('paiement') }}">
 
                             <span class="nav-link-text ms-4 text-dark">Demandes</span>
                         </a>
@@ -197,9 +197,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Paiement</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Designs</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Paiement</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Designs Validée</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -231,113 +231,132 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Historique de flan lfoulani</h4>
+                    <h4>Liste de Designs</h4>
                 </div>
             </div>
         </div>
-
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 5%;">ID</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 20%;">Image</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Designs</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Designer</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Categorie</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Description</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Prix</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 10%;">Validation</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 10%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($designs as $index => $design)
+                                <tr>
+                                    <td class="align-middle text-sm">
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}"
+                                                class="avatar me-3 " style="width: 150px; height: auto;">
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $design->name }}</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
 
+                                                <h5 class="mb-0 text-sm">
+                                                    {{$design->user_name}}
+                                                </h5>
 
-                    <div class="card">
-                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                            style="margin-bottom: 10px;">
-                            <h5 style="color: #525f7f;">Historique Paiement:</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
+                                            data-toggle="tooltip" data-original-title="afficher liste de categories">
+                                            {{ $design->categorie_designs->name }}
+                                        </a>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <p class="text-xs text-secondary mb-0 force-line-break">
+                                            {{ $design->description }}</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $design->price }} TND</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle ">
+                                        @if ($design->etat == 'en attente')
+                                            <span class="badge badge-warning">en attente</span>
+                                        @else
+                                            <span class="badge badge-success">Valide</span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle ">
+                                        <div class="d-flex flex-column">
+                                            @if ($design->etat == 'en attente')
+                                                <a href="{{ route('valider.designs', ['id' => $design->id]) }}"
+                                                    class="btn btn-success btn-sm">Valider</a>
+                                            @endif
+                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
+                                                href="{{ route('admin.delete.design', ['id' => $design->id]) }}"
+                                                class="btn btn-danger btn-sm">Supprimer</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="p-0 mx-3  position-relative z-index-1" style="margin-bottom: 5px;">
-                            <h6 style="color: #525f7f;">Montant resté: 100TND</h6>
-                            <h6 style="color: #525f7f;">Montant total transféré: 100TND</h6>
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            style="width: 40%;">Date</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 60%;">Montant transféré</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            27-09-2023
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                            style="margin-bottom: 10px;">
-                            <h5 style="color: #525f7f;">Historique de Ventes:</h5>
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 20%;">Date</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            style="width: 30%;">Designs</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 15%;">Quantité</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 15%;">Prix</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 20%;">Totale</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            27-09-2023
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
-                                        class="img-fluid border-radius-lg" style="width: 150px; height: auto;">
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">3 Pièce</h6>
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-
-
         @include('inc.admin.footer')
+        </div>
     </main>
+    <style>
+        .badge-success {
+            color: #1aae6f;
+            background-color: #b0eed3;
 
-    <!-- Modal Procedure -->
+        }
 
+        .badge {
+            text-transform: uppercase;
+        }
 
+        .badge-warning {
+            color: #ff3709;
+            background-color: #fee6e0;
+        }
 
-
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

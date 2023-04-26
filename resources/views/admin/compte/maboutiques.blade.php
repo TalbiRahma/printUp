@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Paiement
+        Compte
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -21,8 +21,12 @@
     <link id="pagestyle" href="{{ asset('/dashassets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+<body class="g-sidenav-show bg-gray-100">
+    <div class="position-absolute w-100 min-height-300 top-0"
+        style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
+
+        <span class="mask bg-primary opacity-2"></span>
+    </div>
     <!-- Side bar -->
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
@@ -88,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                         aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -130,7 +134,7 @@
                     </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -140,7 +144,7 @@
                     </a>
                     <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
                         data-bs-parent="#accordionRental" style="">
-                        <a class="nav-link active" href="{{ route('paiement') }}">
+                        <a class="nav-link " href="{{ route('paiement') }}">
 
                             <span class="nav-link-text ms-4 text-dark">Demandes</span>
                         </a>
@@ -167,7 +171,7 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('ma.boutique') }}">
+                    <a class="nav-link active" href="{{ route('ma.boutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
@@ -188,7 +192,7 @@
         </div>
     </aside>
     <!-- End Side bar -->
-    <main class="main-content position-relative border-radius-lg ">
+    <div class="main-content position-relative max-height-vh-100 h-100">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
@@ -197,9 +201,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Paiement</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Compte</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Paiement</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Compte</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -210,6 +214,8 @@
                         <li class="nav-item d-flex align-items-center">
                             @include('inc.admin.profile')
                         </li>
+
+                        <!--afficher le sidebar-->
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
@@ -219,6 +225,7 @@
                                 </div>
                             </a>
                         </li>
+                        <!--parametre-->
 
                         <!--notificaton-->
                         @include('inc.admin.notification')
@@ -228,116 +235,67 @@
             </div>
         </nav>
         <!-- End Navbar -->
-        <div class="container-fluid py-4">
-            <div class="card card-frame">
-                <div class="card-body">
-                    <h4>Historique de flan lfoulani</h4>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid py-4">
+        <!---->
+        <div class="mx-6 card card-profile-bottom">
             <div class="row">
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-
-
-                    <div class="card">
-                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                            style="margin-bottom: 10px;">
-                            <h5 style="color: #525f7f;">Historique Paiement:</h5>
-
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="p-0 mx-3  position-relative z-index-1" style="margin-bottom: 5px;">
-                            <h6 style="color: #525f7f;">Montant resté: 100TND</h6>
-                            <h6 style="color: #525f7f;">Montant total transféré: 100TND</h6>
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            style="width: 40%;">Date</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 60%;">Montant transféré</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            27-09-2023
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            <div class="row gx-4">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-xl position-relative">
+                                        @if (auth()->user()->photo == null)
+                                            <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
+                                        @else
+                                            <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                                alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-auto my-auto">
+                                    <div class="h-100">
+                                        <h5 class="mb-1">
+                                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto my-auto">
+                                <a href="{{ route('modifier.profil') }}" class="btn btn-primary btn-sm">Modifier
+                                    profile</a>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                            style="margin-bottom: 10px;">
-                            <h5 style="color: #525f7f;">Historique de Ventes:</h5>
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 20%;">Date</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            style="width: 30%;">Designs</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 15%;">Quantité</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 15%;">Prix</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 20%;">Totale</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            27-09-2023
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
-                                        class="img-fluid border-radius-lg" style="width: 150px; height: auto;">
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">3 Pièce</h6>
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="card-body">
+                        <hr class="horizontal dark">
+                        <h5 class="text-secondary text-uppercase py-4">Email:</h5>
+                        <a href="" class="h6 text-default text-md">{{ auth()->user()->email }}</a>
+                        <h5 class="text-secondary text-uppercase py-4">Numéro téléphone:</h5>
+                        <h6 class="text-default text-md">{{ auth()->user()->phone }}</h6>
+                        <h5 class="text-secondary text-uppercase py-4">Réseaux sociaux:</h5>
+                        <button type="button" class="btn btn-facebook btn-icon">
+                            <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
+                            <span class="btn-inner--text">PrintUp</span>
+                        </button>
+                        <button type="button" class="btn btn-twitter btn-icon">
+                            <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
+                            <span class="btn-inner--text">PrintUp</span>
+                        </button>
+                        <button type="button" class="btn btn-instagram btn-icon">
+                            <span class="btn-inner--icon"><i class="fab fa-instagram"></i></span>
+                            <span class="btn-inner--text">Print_Up</span>
+                        </button>
+                        <button type="button" class="btn btn-youtube btn-icon">
+                            <span class="btn-inner--icon"><i class="fab fa-youtube"></i></span>
+                            <span class="btn-inner--text">PrintUp</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
         @include('inc.admin.footer')
-    </main>
-
-    <!-- Modal Procedure -->
-
-
-
-
+    </div>
+    </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

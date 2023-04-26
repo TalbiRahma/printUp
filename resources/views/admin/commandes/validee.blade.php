@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Designs Nom Validée
+        Commandes Validée
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                         aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -102,14 +102,14 @@
 
                             <span class="nav-link-text ms-4 text-dark">Validée</span>
                         </a>
-                        <a class="nav-link active" href="{{ route('verif.designs') }}">
+                        <a class="nav-link " href="{{ route('verif.designs') }}">
 
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
                     </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseThree"
                         aria-expanded="false" aria-controls="collapseThree">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -123,7 +123,7 @@
 
                             <span class="nav-link-text ms-4 text-dark">En Attente</span>
                         </a>
-                        <a class="nav-link " href="{{ route('commandes.validee') }}">
+                        <a class="nav-link active" href="{{ route('commandes.validee') }}">
 
                             <span class="nav-link-text ms-4 text-dark">Validée</span>
                         </a>
@@ -197,9 +197,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Designs</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Commandes</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Designs Non Validée</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Commandes Validée</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -231,7 +231,7 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Liste de Designs</h4>
+                    <h4>Liste de commandes validée</h4>
                 </div>
             </div>
         </div>
@@ -241,122 +241,316 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 5%;">Id
+                                </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                    style="width: 5%;">ID</th>
+                                    style="width: 20%;">
+                                    Produits
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                    style="width: 20%;">Clients
+                                </th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                    style="width: 20%;">Image</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                    style="width: 10%;">Designs</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                    style="width: 10%;">Designer</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                    style="width: 10%;">Categorie</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                    style="width: 15%;">Description</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
-                                    style="width: 10%;">Prix</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                    style="width: 10%;">Validation</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                    style="width: 10%;">Action</th>
+                                    style="width: 10%;">Total
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    style="width: 15%;">Etat
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                    style="width: 15%;">Paiement
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 "
+                                    style="width: 15%;">Plus
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($designs as $index => $design)
+                            @foreach ($commandes as $index => $commande)
                                 <tr>
-                                    <td class="align-middle text-sm">
+                                    <td class="align-middle">
                                         {{ $index + 1 }}
                                     </td>
                                     <td>
-                                        <div>
-                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}"
-                                                class="avatar me-3 " style="width: 150px; height: auto;">
-                                        </div>
+                                        <a href="" data-bs-toggle="modal"
+                                            data-bs-target="#products{{ $commande->id }}">
+
+                                            @foreach ($commande->lignecommandes as $lc)
+                                                <h6 class="mb-0 text-xs">{{ $lc->customproduct->name }}</h6>
+                                            @endforeach
+
+                                        </a>
                                     </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">{{ $design->name }}</h5>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                <img src="{{ asset('/uploads') }}/{{ $commande->member->photo }}"
+                                                    class="avatar avatar-sm me-3">
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div class="my-auto">
-
-                                                <h5 class="mb-0 text-sm">
-                                                    {{$design->user_name}}
-                                                </h5>
-
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-xs">{{ $commande->member->first_name }}
+                                                    {{ $commande->member->last_name }}</h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    {{ $commande->member->email }}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="javascript:;" class="text-default font-weight-bold text-sm p-2"
-                                            data-toggle="tooltip" data-original-title="afficher liste de categories">
-                                            {{ $design->categorie_designs->name }}
-                                        </a>
+                                        <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
                                     </td>
-                                    <td class="align-middle text-sm">
-                                        <p class="text-xs text-secondary mb-0 force-line-break">
-                                            {{ $design->description }}</p>
+                                    <td class="align-middle text-sm ">
+                                        <a href=""><span class="badge bg-gradient-secondary">En
+                                                Attente</span></a>
+                                        <!--<a><span class="badge bg-gradient-info">En Cours</span></a>
+                                    <a><span class="badge bg-gradient-success">Validée</span></a>-->
                                     </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="d-flex px-2">
-                                            <div class="my-auto">
-                                                <h5 class="mb-0 text-sm">{{ $design->price }} TND</h5>
-                                            </div>
-                                        </div>
+                                    <td class="align-middle text-sm ">
+                                        <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
+                                        <!--<span class="badge bg-gradient-success">Payé</span>-->
                                     </td>
-                                    <td class="align-middle ">
-                                        @if ($design->etat == 'en attente')
-                                            <span class="badge badge-warning">en attente</span>
-                                        @else
-                                            <span class="badge badge-success">Valide</span>
-                                        @endif
-                                    </td>
-                                    <td class="align-middle ">
-                                        <div class="d-flex flex-column">
-                                            @if ($design->etat == 'en attente')
-                                                <a href="{{ route('valider.designs', ['id' => $design->id]) }}"
-                                                    class="btn btn-success btn-sm">Valider</a>
-                                            @endif
-                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
-                                                href="{{ route('admin.delete.design', ['id' => $design->id]) }}"
-                                                class="btn btn-danger btn-sm">Supprimer</a>
-                                        </div>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn bg-gradient-primary btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#plus{{ $commande->id }}">Voir
+                                            Plus</button>
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         @include('inc.admin.footer')
-        </div>
+
     </main>
-    <style>
-        .badge-success {
-            color: #1aae6f;
-            background-color: #b0eed3;
 
-        }
+    <!-- Modal Voir Plus -->
+    @foreach ($commandes as $commande)
+        @php
+            $coordonnees = json_decode($commande->coordonnees, true);
+        @endphp
+        <div class="modal fade" id="plus{{ $commande->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center ">
+                                <tbody>
+                                    <tr>
 
-        .badge {
-            text-transform: uppercase;
-        }
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f;">Produits:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                @foreach ($commande->lignecommandes as $lc)
+                                                    <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}">
+                                                        <h5 style="color: #32325d; margin-left: 10px;">
+                                                            {{ $lc->customproduct->name }}</h5>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
 
-        .badge-warning {
-            color: #ff3709;
-            background-color: #fee6e0;
-        }
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Client:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
+                                                </h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Adresse Email:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['email'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:
+                                                </h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['phone'] }}
+                                                </h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['ville'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['ville'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['region'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Adresse De
+                                                    Livraison:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $coordonnees['adresse'] }}</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $commande->getTotal() + 8.0 }} DT</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:
+                                                </h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                                    {{ $commande->paiement }}</h6>
+                                                <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non
+                                                    Payé</span>
+                                                <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn bg-gradient-success" type="button">
+                            <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
+                            <span class="btn-inner--text">Validée</span>
+                        </button>
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
-        .badge {
-            text-transform: uppercase;
-        }
-    </style>
+
+    <!-- All products-->
+    @foreach ($commandes as $commande)
+        <div class="modal fade" id="products{{ $commande->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tout Les Produit Commandé</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            @foreach ($commande->lignecommandes as $lc)
+                                <div class="col-4">
+                                    <div class="card">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}"
+                                                class="d-block">
+                                                <img style="width: 100%; height: auto;"
+                                                    src="/{{ $lc->customproduct->photo }}" alt="">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body pt-2">
+                                            <a href="{{ route('commandes.detail', ['id' => $lc->id]) }}"
+                                                class="card-title h6 d-block text-darker">
+                                                {{ $lc->customproduct->name }}
+                                            </a>
+                                            <h6 class="text-xs">Taille: {{ $lc->selected_size }}</h6>
+                                            <h6 class="text-xs">Qte: {{ $lc->qte }} Pièce</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>
