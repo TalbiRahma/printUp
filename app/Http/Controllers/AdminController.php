@@ -118,17 +118,20 @@ class AdminController extends Controller
         return view('admin.compte.donnesprofil');
     }
 
-
+/*********************************  DESIGNS   *************************** */
     public function designs()
     {
         $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
             ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
+            ->where('designs.etat', '=', 'en attente')
             ->get();
         $category_design = CategoryDesign::all();
 
 
         return view('admin.designs.index', compact('designs'));
     }
+
+    
 
     public function validerDesign($id)
     {
@@ -143,6 +146,16 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('success', 'design valider');
+    }
+
+    public function designsvalidee()
+    {
+        $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
+            ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
+            ->where('designs.etat', '=', 'valide')
+            ->get();
+        $category_design = CategoryDesign::all();
+        return view('admin.designs.validee', compact('designs'));
     }
 
     public function AdminSupprimerDesign($id)
@@ -162,14 +175,7 @@ class AdminController extends Controller
         }
     }
 
-    public function validee()
-    {
-        $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
-            ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
-            ->get();
-        $category_design = CategoryDesign::all();
-        return view('admin.designs.validee', compact('designs'));
-    }
+    
 
     public function commandes()
     {

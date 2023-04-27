@@ -328,9 +328,10 @@
                                     </thead>
                                     <tbody>
                                         @if ($montants_transferts)
-                                        @foreach ($montants_transferts as $montant)
+                                            @foreach ($montants_transferts as $montant)
                                                 <tr>
-                                                    <td class="align-middle">{{ $montant->created_at->format('d-m-Y') }}
+                                                    <td class="align-middle">
+                                                        {{ $montant->created_at->format('d-m-Y') }}
                                                     </td>
                                                     <td class="align-middle text-sm ">
                                                         <h6 class="text-s font-weight-bold mb-0">
@@ -364,7 +365,8 @@
                                     <p class="mb-0">Modifier votre coordonnée de paiement</p>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form text-left" action="{{route('porte-monnaie.modif')}}" method="POST">
+                                    <form role="form text-left" action="{{ route('porte-monnaie.modif') }}"
+                                        method="POST">
                                         @csrf
                                         <label>Procedure:</label>
                                         <div class="input-group mb-3">
@@ -399,6 +401,8 @@
                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-body p-0">
+                        <form action="{{route('porte-monnaie.demande')}}" method="POST">
+                            @csrf
                             <div class="card card-plain">
                                 <div class="card-header pb-0 text-left">
                                     <h3 class="font-weight-bolder text-info text-gradient">Demande d'argent
@@ -408,16 +412,16 @@
                                     <form role="form text-left">
                                         <label>Saisir le montant:</label>
                                         <div class="input-group mb-3">
-                                            <input type="email" class="form-control" placeholder="000 DT"
-                                                aria-label="Email" aria-describedby="email-addon">
+                                            <input name="montant_demander" type="text" class="form-control" placeholder="000 DT">
                                         </div>
                                         <div class="text-center">
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Confirmer</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
