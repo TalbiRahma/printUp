@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('portmonnaies', function (Blueprint $table) {
             $table->id();
-            $table->float('montant_existe')->default(0);
-            $table->float('montant_transferts')->default(0);
+            $table->float('solde')->default(0);
             $table->string('Num_cart')->nullable();
             $table->string('Procedure')->nullable();
             $table->unsignedBigInteger('user_id');
