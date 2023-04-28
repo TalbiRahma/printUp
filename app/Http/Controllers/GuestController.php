@@ -55,6 +55,24 @@ class GuestController extends Controller
 
     public function filter(Request $request)
     {
+        $products = InitialProduct::all();
+
+        if(request()->has('category')) {
+            $products = $products->where('category_product_id', request()->input('category'));
+            //dd($products);
+        }
+
+        if(request()->has('size')) {
+            $products = $products->where('sizes', request()->input('size'));
+            dd($products);
+        }
+
+        if(request()->has('min_price') && request()->has('max_price')) {
+            $products = $products->whereBetween('price', [request()->input('min_price'), request()->input('max_price')]);
+        }
+        
+        return redirect()->back()->with('');
+        
     }
 
 

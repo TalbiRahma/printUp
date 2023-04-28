@@ -45,7 +45,7 @@ class ClientController extends Controller
             'password.confirmed' => 'Le mot de passe et sa confirmation doivent être identiques.',
         ]);
         // dd($request);
-        $user = Auth::user();
+        $user = Auth::user(); 
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;

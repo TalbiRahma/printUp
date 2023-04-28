@@ -53,12 +53,12 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Clients</span>
+                        <span class="nav-link-text ms-1">Members</span>
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-primary text-sm opacity-10"></i>
@@ -185,7 +185,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> 
     </aside>
     <!-- End Side bar -->
     <main class="main-content position-relative border-radius-lg ">
@@ -197,9 +197,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Clients</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Members</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Clients</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Members</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -231,7 +231,7 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Liste de clients</h4>
+                    <h4>Liste de Members</h4>
                 </div>
             </div>
         </div>
@@ -241,16 +241,16 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">Id
+                                <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7" style="width: 10%;">Id
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clients
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 30%;">Members
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"style="width: 20%;">
                                     Boutique
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Etat
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 20%;">Etat
                                 </th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"style="width: 20%;">Action
                                 </th>
                             </tr>
                         </thead>
@@ -260,15 +260,21 @@
                                 <tr>
                                     <td class="align-middle">
                                         {{ $index + 1 }}
-                                    </td> 
+                                    </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="{{ asset('uploads') }}/{{ $client->photo }}"
-                                                    class="avatar avatar-sm me-3">
+                                                @if ($client->photo)
+                                                    <img src="{{ asset('uploads') }}/{{ $client->photo }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @else
+                                                    <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @endif
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-xs">{{ $client->name }}</h6>
+                                                <h6 class="mb-0 text-xs">{{ $client->first_name }}
+                                                    {{ $client->last_name }}</h6>
                                                 <p class="text-xs text-secondary mb-0">{{ $client->email }}</p>
                                             </div>
                                         </div>
@@ -279,9 +285,9 @@
                                     </td>
                                     <td>
                                         @if ($client->is_active)
-                                            <span class="badge bg-gradient-info">Client Active</span>
+                                            <span class="badge badge-info"> Active</span>
                                         @else
-                                            <span class="badge bg-gradient-danger">Client Bloquee</span>
+                                            <span class="badge badge-danger"> Bloquee</span>
                                         @endif
                                     </td>
                                     <td class="align-middle text-sm ">
@@ -299,12 +305,13 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="pagination justify-content-center" >
-                        {{ $clients->links()}}
+                    <div class="pagination justify-content-center">
+                        {{ $clients->links() }}
                     </div>
                 </div>
             </div>
         </div>
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
         </div>
     </main>
@@ -411,6 +418,26 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('/dashassets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
+
+    <style>
+        .badge-info {
+            color: #03acca;
+            background-color: #aaedf9;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+
+        .badge-danger {
+            color: #f80031;
+            background-color: #fdd1da;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
 </body>
 
 </html>

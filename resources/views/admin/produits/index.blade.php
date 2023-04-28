@@ -53,7 +53,7 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Clients</span>
+                        <span class="nav-link-text ms-1">Members</span>
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
@@ -551,7 +551,7 @@
                                             </div>
                                         </div>
                                         <!--End modal ajout produit-->
-                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                        <a onclick="argon.showSwal('warning-message-and-cancel')" onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
                                             href="{{ route('delete.product', ['id' => $p->id]) }}"
                                             class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
@@ -568,6 +568,7 @@
                 </div>
             </div>
         </div>
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
     </main>
 
@@ -673,6 +674,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('/dashassets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
+    <script src="{{ asset('/dashassets/js/plugins/sweetalert.min.js') }}"></script>
 </body>
 
 </html>
