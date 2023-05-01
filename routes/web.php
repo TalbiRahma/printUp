@@ -68,6 +68,8 @@ Route::post('/upload', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('verified');
 
+Route::get('/personnalise/test', [AdminController::class, 'test']);
+
 
 /*********GUEST********** */
 
@@ -91,6 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
         Route::get('/account', [ClientController::class, 'account'])->name('account');
         Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update');
+        Route::get('/compte/update', [ClientController::class, 'update'])->name('compte.update');
         Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
         Route::get('/contact', [ClientController::class, 'contact'])->name('contact');
         Route::post('/contact/send', [ClientController::class, 'contactSend'])->name('contact.send');

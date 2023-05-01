@@ -72,10 +72,10 @@
                 <div class="header-navbar">
                     <div class="header-brand">
                         <a href="{{ route('home') }}" class="logo logo-dark">
-                            <img src="{{ asset('/mainassets/images/logo/logo.png') }}" alt="Site Logo">
+                            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="print-logo" alt="Site Logo">
                         </a>
                         <a href="{{ route('home') }}" class="logo logo-light">
-                            <img src="{{ asset('/mainassets/images/logo/logo-light.png') }}" alt="Site Logo">
+                            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="print-logo" alt="Site Logo">
                         </a>
                     </div>
                     <div class="header-main-nav">
@@ -847,7 +847,13 @@
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
     <!--size selected-->
-
+    <style>
+        .print-logo{
+            height: 45px;
+            width: auto;
+            
+        }
+    </style>
 
 </body>
 

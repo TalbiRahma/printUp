@@ -27,7 +27,7 @@ class ClientController extends Controller
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
 
-        return view('client.account', compact('designs', 'initial_products', 'category_product', 'category_design'));
+        return view('client.compte.account', compact('designs', 'initial_products', 'category_product', 'category_design'));
     }
 
 
@@ -82,6 +82,10 @@ class ClientController extends Controller
 
         $user->update();
         return view('client.account', compact('designs', 'initial_products', 'category_product', 'category_design'));
+    }
+
+    public function update(){
+        return view('client.compte.update');
     }
 
     public function cart()

@@ -39,12 +39,10 @@ class PortmonnaieController extends Controller
 
         //$portemonnaie = Portmonnaie::where('user_id', $user_id)->get(); 
 
-        $montants_transferts = User::with(['portmonnaie' => function ($query) {
-            $query->select('montant_transferts', 'created_at');
-        }])->findOrFail($user_id)->portmonnaie;
+        
 
 
-        return view('client.portemonnaie.index', compact('commandes', 'montants_transferts'));
+        return view('client.portemonnaie.index', compact('commandes'));
     }
 
     public function modifierCoordonnees(Request $request)
