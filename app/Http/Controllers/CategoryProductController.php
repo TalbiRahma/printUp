@@ -36,9 +36,10 @@ class CategoryProductController extends Controller
 
         $category_product->photo = $newname;
         if ($category_product->save()){
-            return redirect()->back();
+            
+            return redirect()->back()->with('success', 'Catégorie ajouté avec succès ');
         }else{
-            echo"error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
         
     }
@@ -52,9 +53,9 @@ class CategoryProductController extends Controller
 
         unlink($file_path);
         if ($category_product->delete()){
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Catégorie supprimé avec succès ');
         }else{
-            echo "error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
     }
 
@@ -82,9 +83,9 @@ class CategoryProductController extends Controller
         }
         
         if ($category_product->update()){
-            return redirect()->back();
+            return redirect()->back()->with('primary', 'Catégorie modifié avec succès ');
         }else{
-            echo"error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
     }
 

@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoryDesignController extends Controller
 {
-    //
-
+    // 
     public function index(){
         $category_design = CategoryDesign::latest()->paginate(10);
         return view('admin.categories.designs.index')->with('category_design' , $category_design);
@@ -36,9 +35,9 @@ class CategoryDesignController extends Controller
 
         $category_design->photo = $newname;
         if ($category_design->save()){
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Catégorie ajouté avec succès ');
         }else{
-            echo"error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
         
     }
@@ -51,9 +50,9 @@ class CategoryDesignController extends Controller
 
         unlink($file_path);
         if ($category_design->delete()){
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Catégorie supprimé avec succès ');
         }else{
-            echo "error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
     }
 
@@ -81,9 +80,9 @@ class CategoryDesignController extends Controller
         }
         
         if ($category_design->update()){
-            return redirect()->back();
+            return redirect()->back()->with('primary', 'Catégorie modifié avec succès ');
         }else{
-            echo"error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
     }
 

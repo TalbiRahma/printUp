@@ -67,7 +67,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3"> 
-                        <form action="" method="GET">
+                        <form action="{{route('products.filter')}}" method="POST" >
+                            @csrf
                             <div class="axil-shop-sidebar">
                                 <div class="d-lg-none">
                                     <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
@@ -92,10 +93,6 @@
                                     <div class="shop-submenu">
                                         <ul>
                                             <li>
-                                                <input type="radio" id="size_standard" name="size" value="standard">
-                                                <label for="size_standard">Standard</label>
-                                            </li>
-                                            <li>
                                                 <input type="radio" id="size_xs" name="size" value="xs">
                                                 <label for="size_xs">XS</label>
                                             </li>
@@ -113,20 +110,9 @@
                                         </ul>
                                     </div>
                                 </div>
-                            <div class="toggle-list product-price-range active">
-                                <h6 class="title">PRIX</h6>
-                                <div class="shop-submenu">
-                                    
-                                    <form action="#" class="mt--25">
-                                        <div id="slider-range"></div>
-                                        <div class="flex-center mt--20">
-                                            <span class="input-range">Prix: </span>
-                                            <input type="text" id="amount" class="amount-range" readonly>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            
                             <a href="{{ route('products.index') }}" class="axil-btn btn-bg-primary">Réinitialiser</a>
+                            <button type="submit"  class="axil-btn btn-bg-primary">filtrer</button>
                         </div>
 
                         </form>
@@ -247,6 +233,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
+    
 
 </body>
 

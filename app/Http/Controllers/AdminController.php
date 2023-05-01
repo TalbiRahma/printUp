@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     // 
-
+ 
     public function dashboard()
     {
         return view('admin.dashboard');
@@ -39,7 +39,7 @@ class AdminController extends Controller
         $client->is_active = false;
         $client->update();
 
-        return redirect()->back()->with('success', 'Client bloquee');
+        return redirect()->back()->with('warning', 'Member bloquee');
     }
 
     public function activerUser($iduser)
@@ -49,7 +49,7 @@ class AdminController extends Controller
         $client->is_active = true;
         $client->update();
 
-        return redirect()->back()->with('success', 'Client activee');
+        return redirect()->back()->with('info', 'Member activee');
     }
 
     public function modifProfil()

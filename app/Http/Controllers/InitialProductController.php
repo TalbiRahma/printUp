@@ -14,7 +14,7 @@ class InitialProductController extends Controller
         
         $product = InitialProduct::latest()->paginate(3);
         $category_product = CategoryProduct::all();
-        return view('admin.produits.index')->with('product' , $product)->with('category_product' , $category_product);
+        return view('admin.produits.index', compact('product', 'category_product'));
     }
 
     public function ajouterProduit(Request $request){
@@ -41,7 +41,7 @@ class InitialProductController extends Controller
             'M' => $request->input('M'),
             'L' => $request->input('L'), 
 
-        );
+        ); 
 
         $product->sizes = json_encode(array_keys($request->only(['XS', 'S', 'M', 'L'])));
         //$product->sizes = json_encode($sizes);
@@ -54,10 +54,11 @@ class InitialProductController extends Controller
         $image->move($destinationPath , $newname);
 
         $product->photo = $newname;
+
         if ($product->save()){
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Produit ajouté avec succès ');
         }else{
-            echo"error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
         
     }
@@ -70,9 +71,9 @@ class InitialProductController extends Controller
 
         unlink($file_path);
         if ($product->delete()){
-            return redirect()->back();
+            return redirect()->back()->with('warning', 'Produit supprimé avec succès ');
         }else{
-            echo "error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
     }
 
@@ -113,9 +114,9 @@ class InitialProductController extends Controller
         }
         
         if ($product->update()){
-            return redirect()->back();
+            return redirect()->back()->with('primary', 'Produit modifié avec succès ');
         }else{
-            echo"error";
+            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
         }
     }
 
