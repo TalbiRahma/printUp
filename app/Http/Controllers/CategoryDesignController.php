@@ -17,9 +17,9 @@ class CategoryDesignController extends Controller
  
        
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:category_designs',
             'description' => 'required',
-            'photo' => 'required',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $category_design = new CategoryDesign();
@@ -35,9 +35,9 @@ class CategoryDesignController extends Controller
 
         $category_design->photo = $newname;
         if ($category_design->save()){
-            return redirect()->back()->with('warning', 'Catégorie ajouté avec succès ');
+            return redirect()->back()->with('warning1', 'Catégorie ajouté avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
         
     }
@@ -50,9 +50,9 @@ class CategoryDesignController extends Controller
 
         unlink($file_path);
         if ($category_design->delete()){
-            return redirect()->back()->with('success', 'Catégorie supprimé avec succès ');
+            return redirect()->back()->with('success1', 'Catégorie supprimé avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 
@@ -80,9 +80,9 @@ class CategoryDesignController extends Controller
         }
         
         if ($category_design->update()){
-            return redirect()->back()->with('primary', 'Catégorie modifié avec succès ');
+            return redirect()->back()->with('primary1', 'Catégorie modifié avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 

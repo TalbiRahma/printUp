@@ -1,34 +1,34 @@
 
-@if ($message = Session::get('success'))
-    <div class="alert success-alert">
+@if ($message = Session::get('success1'))
+    <div class="alert1 success1-alert">
         <p class="mb-0 flex-1">{{ $message }}</p>
         <a class="close">&times;</a>
     </div>
 @endif
 
-@if ($message = Session::get('danger2'))
-    <div class="alert danger-alert">
+@if ($message = Session::get('danger1'))
+    <div class="alert1 danger1-alert">
         <p class="mb-0 flex-1">{{ $message }}</p>
         <a class="close">&times;</a>
     </div>
 @endif
 
-@if ($message = Session::get('info'))
-    <div class="alert info-alert">
+@if ($message = Session::get('info1'))
+    <div class="alert1 info1-alert">
         <p class="mb-0 flex-1">{{ $message }}</p>
         <a class="close">&times;</a>
     </div>
 @endif
 
-@if ($message = Session::get('warning'))
-    <div class="alert warning-alert">
+@if ($message = Session::get('warning1'))
+    <div class="alert1 warning1-alert">
         <p class="mb-0 flex-1">{{ $message }}</p>
         <a class="close">&times;</a>
     </div>
 @endif
 
-@if ($message = Session::get('primary'))
-    <div class="alert primary-alert">
+@if ($message = Session::get('primary1'))
+    <div class="alert1 primary1-alert">
         <p class="mb-0 flex-1">{{ $message }}</p>
         <a class="close">&times;</a>
     </div>
@@ -47,7 +47,7 @@
       font-family: Quicksand;
   }
 
-  .alert {
+  .alert1 {
       width: 20%;
       margin: 20px auto;
       padding: 30px;
@@ -73,62 +73,62 @@
       cursor: pointer;
   }
 
-  .simple-alert {
+  .simple1-alert {
       background-color: #ebebeb;
       border-left: 5px solid #9a9a9a;
   }
 
-  .simple-alert .close {
+  .simple1-alert .close {
       border-color: #9a9a9a;
       color: #9a9a9a;
   }
 
-  .success-alert {
+  .success1-alert {
       background-color: #a8f0c6;
       border-left: 5px solid #68c997;
   }
 
-  .success-alert .close {
+  .success1-alert .close {
       border-color: #68c997;
       color: #68c997;
   }
 
-  .danger-alert {
+  .danger1-alert {
       background-color: #fdd1da;
       border-left: 5px solid #f80031;
   }
 
-  .danger-alert .close {
+  .danger1-alert .close {
       border-color: #f80031;
       color: #f80031;
   }
 
-  .warning-alert {
+  .warning1-alert {
       background-color: #fee6e0;
       border-left: 5px solid #ff3709;
   }
 
-  .warning-alert .close {
+  .warning1-alert .close {
       border-color: #ff3709;
       color: #ff3709;
   }
 
-  .info-alert {
+  .info1-alert {
       background-color:#aaedf9;
       border-left: 5px solid #03acca;
   }
 
-  .info-alert .close {
+  .info1-alert .close {
       border-color: #03acca;
       color: #03acca;
   }
 
-  .primary-alert {
+  .primary1-alert {
       background-color:#eaecfb;
       border-left: 5px solid #2643e9;
   }
 
-  .primary-alert .close {
+  .primary1-alert .close {
       border-color: #2643e9
       color: #2643e9
   }
