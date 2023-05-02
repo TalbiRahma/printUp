@@ -51,14 +51,14 @@
                     <a class="nav-link " href="{{ route('users') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-single-02 text-sm opacity-10" style="color: #a307b1 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Members</span>
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
-                        aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,11 +88,11 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
-                        aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Designs</span>
                     </a>
@@ -106,6 +106,10 @@
 
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
+                        <a class="nav-link" href="{{ route('mes.designs') }}">
+                            
+                            <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
@@ -113,7 +117,7 @@
                         aria-expanded="false" aria-controls="collapseThree">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                            <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
@@ -130,11 +134,11 @@
                     </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>

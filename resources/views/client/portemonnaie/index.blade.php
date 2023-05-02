@@ -172,6 +172,10 @@
                                                 <img class="w-100 mt-2"
                                                     src="{{ asset('/dashassets/img/logod17bnk.png') }}"
                                                     alt="logo">
+                                                    <!--<img class="w-15 me-3 mb-0"
+                                            src="{{ asset('/dashassets/img/logo-bna.png') }}" alt="logo">
+                                        <img class="w-15 me-3 mb-0"
+                                            src="{{ asset('/dashassets/img/logobiat.png') }}" alt="logo">-->
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +186,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <div class="card-header mx-4 p-3 text-center">
+                                        <div class="card-header p-3 text-center">
                                             <div
                                                 class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
                                                 <i class="ni ni-money-coins opacity-10"></i>
@@ -198,7 +202,7 @@
                                 </div>
                                 <div class="col-md-6 mt-md-0 mt-4">
                                     <div class="card">
-                                        <div class="card-header mx-4 p-3 text-center">
+                                        <div class="card-header p-3 text-center">
                                             <div
                                                 class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
                                                 <i class="ni ni-chart-bar-32 opacity-10"></i>
@@ -235,8 +239,12 @@
                                 <div class="col-md-7 mb-md-0 mb-4">
                                     <div
                                         class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                        <img class="w-10 me-3 mb-0"
+                                        <img class="w-15 me-3 mb-0"
                                             src="{{ asset('/dashassets/img/logod17bnk.png') }}" alt="logo">
+                                        <!--<img class="w-15 me-3 mb-0"
+                                            src="{{ asset('/dashassets/img/logo-bna.png') }}" alt="logo">
+                                        <img class="w-15 me-3 mb-0"
+                                            src="{{ asset('/dashassets/img/logobiat.png') }}" alt="logo">-->
                                         <h6 class="mb-0">
                                             ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
                                         </h6>
@@ -295,7 +303,7 @@
                                                     </td>
                                                     <td class="align-middle text-sm ">
                                                         <h6 class="text-s font-weight-bold mb-0">
-                                                            {{ $lc->customproduct->design->price * $lc->qte }}
+                                                            {{ $lc->customproduct->design->price * $lc->qte }} DT
                                                         </h6>
                                                     </td>
                                                 </tr>
@@ -448,9 +456,11 @@
                                         @csrf
                                         <label>Procedure:</label>
                                         <div class="input-group mb-3">
-                                            <input name="procedure" type="text" class="form-control"
-                                                placeholder="Procedure de paiement" aria-label="Email"
-                                                aria-describedby="email-addon">
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option value="d17">D17</option>
+                                                <option value="bna">BNA</option>
+                                                <option value="biat">BIAT</option>
+                                            </select>
                                         </div>
                                         <label>Numéro de Cart:</label>
                                         <div class="input-group mb-3">
