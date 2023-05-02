@@ -150,7 +150,7 @@
 
         <div class="container-fluid py-4">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="row">
                         <div class="col-xl-6 mb-xl-0 mb-4">
                             <div class="card bg-transparent shadow-xl">
@@ -206,7 +206,7 @@
                                         </div>
                                         <div class="card-body pt-0 p-3 text-center">
                                             <h6 class="text-center mb-0">Transfert</h6>
-                                            <span class="text-xs">Total du Transfert</span>
+                                            <span class="text-xs">Total Transfert</span>
                                             <hr class="horizontal dark my-3">
                                             <h5 class="mb-0">455.00DT</h5>
                                         </div>
@@ -214,135 +214,41 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-lg-0 mb-4">
-                            <div class="card mt-4">
-                                <div class="card-header pb-0 p-3">
-                                    <div class="row">
-                                        <div class="col-6 d-flex align-items-center">
-                                            <h6 class="mb-0">Mode de paiement</h6>
-                                        </div>
-                                        <div class="col-6 text-end">
-                                            <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal"
-                                                data-bs-target="#modal-form-carte"><i
-                                                    class="fas fa-plus"></i>&nbsp;&nbsp;Ajouter une carte</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body p-3">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-md-0 mb-4">
-                                            <div
-                                                class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                                <img class="w-10 me-3 mb-0"
-                                                    src="{{ asset('/dashassets/img/logod17bnk.png') }}"
-                                                    alt="logo">
-                                                <h6 class="mb-0">
-                                                    ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
-                                                </h6>
-                                                <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
-                                                    data-bs-placement="top" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div
-                                                class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                                <img class="w-10 me-3 mb-0"
-                                                    src="{{ asset('/dashassets/img/Logos_flouci.png') }}"
-                                                    alt="logo">
-                                                <h6 class="mb-0">
-                                                    ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248
-                                                </h6>
-                                                <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Modifier la carte"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card h-100">
+                    <div class="card mt-4">
                         <div class="card-header pb-0 p-3">
-                            <div
-                                class="
-                          Historique de transfert de l'argent:d-flex align-items-center">
-                                <h6 class="mb-0">Factures</h6>
+                            <div class="row">
+                                <div class="col-6 d-flex align-items-center">
+                                    <h6 class="mb-0">Mode de paiement</h6>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal"
+                                        data-bs-target="#modal-form-demend"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                                            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                                            <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
+                                          </svg>&nbsp;&nbsp;Demande d'argent</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body p-3 pb-0">
-                            <ul class="list-group">
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
-                                        <span class="text-xs">#MS-415646</span>
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-md-7 mb-md-0 mb-4">
+                                    <div
+                                        class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                                        <img class="w-10 me-3 mb-0"
+                                            src="{{ asset('/dashassets/img/logod17bnk.png') }}" alt="logo">
+                                        <h6 class="mb-0">
+                                            ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
+                                        </h6>
+                                        <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
+                                            data-bs-placement="top" data-bs-toggle="modal"
+                                            data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
                                     </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        $180
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
-                                        <span class="text-xs">#RV-126749</span>
-                                    </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        $250
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
-                                        <span class="text-xs">#FB-212562</span>
-                                    </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        $560
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
-                                        <span class="text-xs">#QW-103578</span>
-                                    </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        $120
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                                    <div class="d-flex flex-column">
-                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                                        <span class="text-xs">#AR-803481</span>
-                                    </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        $300
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                                    </div>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7 mt-4">
-                    <div class="card ">
+                    <div class="card mt-4">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
                                 <h6 class="mb-2">Historique de Ventes:<h6>
@@ -379,7 +285,8 @@
                                                             style="width: 150px; height: auto;">
                                                     </td>
                                                     <td class="align-middle text-sm ">
-                                                        <h6 class="text-s font-weight-bold mb-0">{{ $lc->qte }}
+                                                        <h6 class="text-s font-weight-bold mb-0">
+                                                            {{ $lc->qte }}
                                                             Pièce(s)</h6>
                                                     </td>
                                                     <td class="align-middle text-sm ">
@@ -388,7 +295,8 @@
                                                     </td>
                                                     <td class="align-middle text-sm ">
                                                         <h6 class="text-s font-weight-bold mb-0">
-                                                            {{ $lc->customproduct->design->price * $lc->qte }}</h6>
+                                                            {{ $lc->customproduct->design->price * $lc->qte }}
+                                                        </h6>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -399,7 +307,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 mt-4">
+                <div class="col-lg-5">
                     <div class="card h-100 mb-4">
                         <div class="card-header pb-0 px-3">
                             <div class="row">
@@ -566,48 +474,6 @@
         </div>
         <!--End Modale modifier coordonnée-->
 
-        <!--Modale ajout coordonnée-->
-        <div class="col-md-4">
-            <div class="modal fade" id="modal-form-carte" tabindex="-1" role="dialog"
-                aria-labelledby="modal-form" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body p-0">
-                            <div class="card card-plain">
-                                <div class="card-header pb-0 text-left">
-                                    <h3 class="font-weight-bolder text-info text-gradient">Ajouter Coordonnée
-                                    </h3>
-                                    <p class="mb-0">Ajouter votre coordonnée de paiement</p>
-                                </div>
-                                <div class="card-body">
-                                    <form role="form text-left" action="{{ route('porte-monnaie.modif') }}"
-                                        method="POST">
-                                        @csrf
-                                        <label>Procedure:</label>
-                                        <div class="input-group mb-3">
-                                            <input name="procedure" type="text" class="form-control"
-                                                placeholder="Procedure de paiement" aria-label="Email"
-                                                aria-describedby="email-addon">
-                                        </div>
-                                        <label>Numéro de Cart:</label>
-                                        <div class="input-group mb-3">
-                                            <input name="Num_cart" type="text" class="form-control"
-                                                placeholder="0000 0000 0000 0000" aria-label="Password"
-                                                aria-describedby="password-addon">
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit"
-                                                class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Confirmer</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End Modale ajout coordonnée-->
 
         <!--Modale Demende Paiement-->
         <div class="col-md-4">
