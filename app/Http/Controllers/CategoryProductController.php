@@ -16,11 +16,11 @@ class CategoryProductController extends Controller
 
     public function ajouterCategroieProduit(Request $request){
  
-       
+        
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:category_products',
             'description' => 'required',
-            'photo' => 'required',
+            'photo' => 'required|image|mimes:jpeg,jpg,gif,svg|max:2048',
         ]);
 
         $category_product = new CategoryProduct();
@@ -37,9 +37,9 @@ class CategoryProductController extends Controller
         $category_product->photo = $newname;
         if ($category_product->save()){
             
-            return redirect()->back()->with('success', 'Catégorie ajouté avec succès ');
+            return redirect()->back()->with('success1', 'Catégorie ajouté avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
         
     }
@@ -53,9 +53,9 @@ class CategoryProductController extends Controller
 
         unlink($file_path);
         if ($category_product->delete()){
-            return redirect()->back()->with('warning', 'Catégorie supprimé avec succès ');
+            return redirect()->back()->with('warning1', 'Catégorie supprimé avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 
@@ -83,9 +83,9 @@ class CategoryProductController extends Controller
         }
         
         if ($category_product->update()){
-            return redirect()->back()->with('primary', 'Catégorie modifié avec succès ');
+            return redirect()->back()->with('primary1', 'Catégorie modifié avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 

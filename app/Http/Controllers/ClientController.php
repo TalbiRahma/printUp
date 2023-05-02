@@ -55,7 +55,7 @@ class ClientController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        //upload image
+        //upload image 
         if ($request->file('photo')) {
             if ($user->photo) {
                 //supprimer ancienne photo

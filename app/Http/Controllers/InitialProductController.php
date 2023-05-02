@@ -9,7 +9,6 @@ use App\Models\InitialProduct;
 class InitialProductController extends Controller
 {
     //
-
     public function index(){
         
         $product = InitialProduct::latest()->paginate(3);
@@ -20,13 +19,11 @@ class InitialProductController extends Controller
     public function ajouterProduit(Request $request){
  
        //dd($request);
-        $request->validate([
-            'name' => 'required',
+        $request->validate([ 
+            'name' => 'required|unique:initial_products',
             'description' => 'required',
             'price' => 'required',
-            'photo' => 'required',
-            
-
+            'photo' => 'required|image|mimes:jpeg,jpg,gif,svg|max:2048',
         ]); 
 
         $product = new InitialProduct();
@@ -35,15 +32,16 @@ class InitialProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $sizes = array(
-            
+            'STANDARD' => $request->input('STANDARD'),
             'XS' => $request->input('XS'),
             'S' => $request->input('S'),
             'M' => $request->input('M'),
             'L' => $request->input('L'), 
+            'XL' => $request->input('XL'),
 
         ); 
 
-        $product->sizes = json_encode(array_keys($request->only(['XS', 'S', 'M', 'L'])));
+        $product->sizes = json_encode(array_keys($request->only(['STANDARD', 'XS', 'S', 'M', 'L', 'XL'])));
         //$product->sizes = json_encode($sizes);
 
         //upload image
@@ -56,9 +54,9 @@ class InitialProductController extends Controller
         $product->photo = $newname;
 
         if ($product->save()){
-            return redirect()->back()->with('success', 'Produit ajouté avec succès ');
+            return redirect()->back()->with('success1', 'Produit ajouté avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
         
     }
@@ -71,9 +69,9 @@ class InitialProductController extends Controller
 
         unlink($file_path);
         if ($product->delete()){
-            return redirect()->back()->with('warning', 'Produit supprimé avec succès ');
+            return redirect()->back()->with('warning1', 'Produit supprimé avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 
@@ -87,15 +85,17 @@ class InitialProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $sizes = array(
-            
+            'STANDARD' => $request->input('STANDARD'),
             'XS' => $request->input('XS'),
             'S' => $request->input('S'),
             'M' => $request->input('M'),
-            'L' => $request->input('L'),
+            'L' => $request->input('L'), 
+            'XL' => $request->input('XL'),
 
-        );
+        ); 
 
-        $product->sizes = json_encode(array_keys($request->only(['XS', 'S', 'M', 'L'])));
+        $product->sizes = json_encode(array_keys($request->only(['STANDARD', 'XS', 'S', 'M', 'L', 'XL'])));
+        //$product->sizes = json_encode($sizes);
 
         //upload image
         if($request->file('photo')){
@@ -114,9 +114,9 @@ class InitialProductController extends Controller
         }
         
         if ($product->update()){
-            return redirect()->back()->with('primary', 'Produit modifié avec succès ');
+            return redirect()->back()->with('primary1', 'Produit modifié avec succès ');
         }else{
-            return redirect()->back()->with('danger2', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 

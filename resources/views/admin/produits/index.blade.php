@@ -57,8 +57,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-primary text-sm opacity-10"></i>
@@ -312,27 +312,24 @@
                                                 </div>
                                                 <label>Taille</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="checkbox" id="size1" name="XS"
-                                                        value="XS">
-                                                    <label class="col-sm-1 p-2" for="size1">XS</label>
-
-                                                    <input class="col-1 p-4" type="checkbox" id="size2"
+                                                    <input class="col-SM-1 p-2" type="checkbox" id="size0"
+                                                        name="STANDARD" value="STANDARD">
+                                                    <label class="col-SM-1 p-2" for="size0"> STANDARD</label><br>
+                                                    <input class="col-SM-1 p-2" type="checkbox" id="size1"
+                                                        name="XS" value="XS">
+                                                    <label class="col-SM-1 p-2" for="size1"> XS</label><br>
+                                                    <input class="col-SM-1 p-2" type="checkbox" id="size2"
                                                         name="S" value="S">
-                                                    <label class="col-sm-1 p-2" for="size2">S</label>
-
-                                                    <input class="col-1 p-4" type="checkbox" id="size3"
+                                                    <label class="col-SM-1 p-2" for="size2"> S</label><br>
+                                                    <input class="col-SM-1 p-2" type="checkbox" id="size3"
                                                         name="M" value="M">
-                                                    <label class="col-sm-1 p-2" for="size3">M</label>
-
-                                                    <input class="col-1 p-4" type="checkbox" id="size4"
+                                                    <label class="col-SM-1 p-2" for="size3"> M</label>
+                                                    <input class="col-SM-1 p-2" type="checkbox" id="size4"
                                                         name="L" value="L">
-                                                    <label class="col-sm-1 p-2" for="size4"> L</label>
-
-                                                    @error('sizes')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                                    <label class="col-SM-1 p-2" for="size4"> L</label>
+                                                    <input class="col-SM-1 p-2" type="checkbox" id="size5"
+                                                        name="XL" value="XL">
+                                                    <label class="col-SM-1 p-2" for="size5"> XL</label><br>
                                                 </div>
                                                 <label>Categorie</label>
                                                 <div class="input-group mb-3">
@@ -483,7 +480,7 @@
                                                                     <label>Nom Produit</label>
                                                                     <div class="input-group mb-3">
                                                                         <input name="name" type="text"
-                                                                            class="form-control"
+                                                                        class="form-control1 @error('name') is-invalid @enderror"
                                                                             placeholder="Nom de Produit"
                                                                             aria-label="Name"
                                                                             aria-describedby="name-addon"
@@ -491,31 +488,48 @@
                                                                     </div>
                                                                     <label>Description</label>
                                                                     <div class="input-group mb-3">
-                                                                        <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $p->description }}</textarea>
+                                                                        <textarea name="description" class="form-control1" type="text" placeholder="Description">{{ $p->description }}</textarea>
                                                                     </div>
                                                                     <label>Prix</label>
                                                                     <div class="input-group mb-3">
                                                                         <input name="price" type="text"
-                                                                            class="form-control"
+                                                                            class="form-control1"
                                                                             placeholder="Prix de produit"
                                                                             aria-label="Name"
                                                                             aria-describedby="name-addon"value="{{ $p->price }}">
                                                                     </div>
                                                                     <label>Taille</label>
                                                                     <div class="input-group mb-3">
-
-                                                                        <input type="checkbox" id="size1"
-                                                                            name="XS" value="XS">
-                                                                        <label for="size1"> XS</label><br>
-                                                                        <input type="checkbox" id="size2"
-                                                                            name="S" value="S">
-                                                                        <label for="size2"> S</label><br>
-                                                                        <input type="checkbox" id="size3"
-                                                                            name="M" value="M">
-                                                                        <label for="size3"> M</label>
-                                                                        <input type="checkbox" id="size4"
-                                                                            name="L" value="L">
-                                                                        <label for="size4"> L</label>
+                                                                        <input class="col-SM-1 p-2" type="checkbox"
+                                                                            id="size0" name="STANDARD"
+                                                                            value="STANDARD">
+                                                                        <label class="col-SM-1 p-2" for="size0">
+                                                                            STANDARD</label><br>
+                                                                        <input class="col-SM-1 p-2" type="checkbox"
+                                                                            id="size1" name="XS"
+                                                                            value="XS">
+                                                                        <label class="col-SM-1 p-2" for="size1">
+                                                                            XS</label><br>
+                                                                        <input class="col-SM-1 p-2" type="checkbox"
+                                                                            id="size2" name="S"
+                                                                            value="S">
+                                                                        <label class="col-SM-1 p-2" for="size2">
+                                                                            S</label><br>
+                                                                        <input class="col-SM-1 p-2" type="checkbox"
+                                                                            id="size3" name="M"
+                                                                            value="M">
+                                                                        <label class="col-SM-1 p-2" for="size3">
+                                                                            M</label>
+                                                                        <input class="col-SM-1 p-2" type="checkbox"
+                                                                            id="size4" name="L"
+                                                                            value="L">
+                                                                        <label class="col-SM-1 p-2" for="size4">
+                                                                            L</label>
+                                                                        <input class="col-SM-1 p-2" type="checkbox"
+                                                                            id="size5" name="XL"
+                                                                            value="XL">
+                                                                        <label class="col-SM-1 p-2" for="size5">
+                                                                            XL</label><br>
                                                                     </div>
                                                                     <label>Categorie</label>
                                                                     <div class="input-group mb-3">
@@ -551,7 +565,8 @@
                                             </div>
                                         </div>
                                         <!--End modal ajout produit-->
-                                        <a onclick="argon.showSwal('warning-message-and-cancel')" onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                        <a onclick="argon.showSwal('warning-message-and-cancel')"
+                                            onclick="return confirm('Voulez-vous vraiment supprimer ce produit?')"
                                             href="{{ route('delete.product', ['id' => $p->id]) }}"
                                             class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
@@ -675,6 +690,17 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('/dashassets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
     <script src="{{ asset('/dashassets/js/plugins/sweetalert.min.js') }}"></script>
+
+    <style>
+        .form-control1.is-invalid, .was-validated .form-control:invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+    </style>
 </body>
 
 </html>

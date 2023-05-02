@@ -39,7 +39,7 @@ class AdminController extends Controller
         $client->is_active = false;
         $client->update();
 
-        return redirect()->back()->with('warning', 'Member bloquee');
+        return redirect()->back()->with('warning1', 'Member bloquee');
     }
 
     public function activerUser($iduser)
@@ -49,7 +49,7 @@ class AdminController extends Controller
         $client->is_active = true;
         $client->update();
 
-        return redirect()->back()->with('info', 'Member activee');
+        return redirect()->back()->with('info1', 'Member activee');
     }
 
     public function modifProfil()
