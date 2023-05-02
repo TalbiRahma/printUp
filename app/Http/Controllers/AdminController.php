@@ -195,4 +195,8 @@ class AdminController extends Controller
         $commandes = Commande::where('etat', 'en attente')->get();
         return view('admin.commandes.validee', compact('commandes'));
     }
+
+    public function test(){
+        return view('testpersonnalise');
+    }
 }

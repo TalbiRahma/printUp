@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Ma Boutique
+        Compte
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -22,7 +22,10 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <div class="position-absolute w-100 min-height-300 top-0"
+        style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
+        <span class="mask bg-primary opacity-2"></span>
+    </div>
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -48,7 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('maboutique') }}">
+                    <a class="nav-link " href="{{ route('maboutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
@@ -91,7 +94,7 @@
                     <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('account') }}">
+                    <a class="nav-link active" href="{{ route('account') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
@@ -136,13 +139,11 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Ma Boutique</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Compte</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Ma Boutique</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Compte</h6>
                 </nav>
-                
                     @include('inc.client.navbar')
-                    
             </div>
         </nav>
         <!-- End Navbar -->
@@ -153,12 +154,37 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <div class="row gx-4">
-
+                                <div class="col-auto">
+                                    <div class="avatar avatar-xl position-relative">
+                                        @if (auth()->user()->photo == null)
+                                            <img
+                                                src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
+                                        @else
+                                            <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                                alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-auto my-auto">
+                                    <div class="h-100">
+                                        <h5 class="mb-1">
+                                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto my-auto">
+                                <a href="{{ route('compte.update') }}" class="btn btn-primary btn-sm">Modifier
+                                    profile</a>
                             </div>
                         </div>
-                        <div class="card-body">
-
-                        </div>
+                    </div>
+                    <div class="card-body">
+                        <hr class="horizontal dark">
+                        <h5 class="text-secondary text-uppercase py-4">Email:</h5>
+                        <a href="" class="h6 text-default text-md">{{ auth()->user()->email }}</a>
+                        <h5 class="text-secondary text-uppercase py-4">Numéro téléphone:</h5>
+                        <h6 class="text-default text-md">{{ auth()->user()->phone }}</h6>
                     </div>
                 </div>
             </div>

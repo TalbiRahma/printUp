@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Ma Boutique
+        PrintUp
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -21,8 +21,12 @@
     <link id="pagestyle" href="{{ asset('/dashassets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+<body class="g-sidenav-show bg-gray-100">
+    <div class="position-absolute w-100 min-height-300 top-0"
+        style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
+        <span class="mask bg-primary opacity-2"></span>
+    </div>
+    <!-- Side bar -->
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -48,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('maboutique') }}">
+                    <a class="nav-link " href="{{ route('maboutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
@@ -100,7 +104,7 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('compte.update') }}">
+                    <a class="nav-link active" href="{{ route('compte.update') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
@@ -113,12 +117,12 @@
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                        <path fill-rule="evenodd"
-                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                    </svg>
+                    class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                    <path fill-rule="evenodd"
+                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                </svg>
                         <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -127,7 +131,8 @@
             </ul>
         </div>
     </aside>
-    <main class="main-content position-relative border-radius-lg ">
+    <!-- End Side bar -->
+    <div class="main-content position-relative max-height-vh-100 h-100">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
@@ -136,38 +141,142 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Ma Boutique</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Modifier profil</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Ma Boutique</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Modifier compte</h6>
                 </nav>
-                
-                    @include('inc.client.navbar')
-                    
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        @include('inc.admin.globalsearch')
+                    </div>
+                    <ul class="navbar-nav  justify-content-end">
+                        <!--profile-->
+                        <li class="nav-item d-flex align-items-center">
+                            @include('inc.admin.profile')
+                        </li>
+
+                        <!--afficher le sidebar-->
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-2" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <!--parametre-->
+
+                        <!--notificaton-->
+                        @include('inc.admin.notification')
+                        <!--end notificaton-->
+                    </ul>
+                </div>
             </div>
         </nav>
         <!-- End Navbar -->
-
-        <div class="mx-6 card card-profile-bottom" id="nav-account" role="tabpanel">
-            <div class="row">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <div class="d-flex justify-content-between">
-                            <div class="row gx-4">
-
+        <!---->
+        <div class="card shadow-lg mx-8 card-profile-bottom">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between">
+                    <div class="row gx-4">
+                        <div class="col-auto">
+                            <div class="avatar avatar-xl position-relative">
+                                @if(auth()->user()->photo == null)
+                                    <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
+                                @else
+                                <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image"
+                                    class="w-100 border-radius-lg shadow-sm">
+                                @endif
                             </div>
                         </div>
-                        <div class="card-body">
-
+                        <div class="col-auto my-auto">
+                            <div class="h-100">
+                                <h5 class="mb-1">
+                                    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                </h5>
+                            </div>
                         </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <a href="{{ route('account') }}" class="btn btn-primary btn-sm">Voire profile</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!--footer-->
+
+
+        <div class="mx-8 card-profile-bottom py-4">
+            <div class="row">
+                <div class="card">
+                    <form action="{{ route('update.profil') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-header pb-0">
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0">Modifier le profile:</h6>
+                                <button type="submit" class="btn btn-primary btn-sm ms-auto">Enregistrer</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <hr class="horizontal dark">
+                            <p class="text-uppercase text-sm">Informations de l'utilisateur</p>
+                            <div class="row">
+
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Nom</label>
+                                    <input name="first_name"class="form-control" type="text"
+                                        value="{{ auth()->user()->first_name }}" id="example-text-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Prénom</label>
+                                    <input name="last_name" class="form-control" type="text"
+                                        value="{{ auth()->user()->last_name }}" id="example-text-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email-input" class="form-control-label">E-mail</label>
+                                    <input name="email" class="form-control" type="email"
+                                        value="{{ auth()->user()->email }}" id="example-email-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-password-input" class="form-control-label">Mot de
+                                        passe</label>
+                                    <input name="password" id=" password" class="form-control" type="password"
+                                        placeholder="Entrez un nouveau mot de passe...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-password-input" class="form-control-label">Confirmer Mot de
+                                        passe</label>
+                                    <input name="confpassword" id="confpassword" class="form-control" type="password"
+                                        placeholder="Confirmer votre mot de passe..." >
+                                        @error('confpassword')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="form-control-label">Photo de
+                                        profile</label>
+                                    <input name="photo" type="file" class="form-control" accept="image/*">
+                                </div>
+                                <hr class="horizontal dark">
+                                <p class="text-uppercase text-sm">Coordonnées</p>
+                                <div class="form-group">
+                                    <label for="example-tel-input" class="form-control-label">Téléphone</label>
+                                    <input name="phone" class="form-control" type="tel"
+                                        value="{{ auth()->user()->phone }}" id="example-tel-input">
+                                </div>
+
+
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         @include('inc.admin.footer')
+    </div>
 
-    </main>
-
+    </div>
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
@@ -267,6 +376,7 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

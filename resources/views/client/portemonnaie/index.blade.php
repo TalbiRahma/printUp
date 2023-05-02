@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('account.update') }}">
+                    <a class="nav-link " href="{{ route('compte.update') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
@@ -111,8 +111,14 @@
                     <a class="nav-link" href="{{ route('login') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                        <i class="ni ni-ui-04 text-warning text-sm opacity-10"></i>
-                        <span class="nav-link-text ms-1">Se déconnecter</span></a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -144,112 +150,198 @@
 
         <div class="container-fluid py-4">
             <div class="row">
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-xl-6 mb-xl-0 mb-4">
+                            <div class="card bg-transparent shadow-xl">
+                                <div class="overflow-hidden position-relative border-radius-xl"
+                                    style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/card-visa.jpg');">
+                                    <span class="mask bg-gradient-dark"></span>
+                                    <div class="card-body position-relative z-index-1 p-3">
+                                        <i class="fas fa-wifi text-white p-2"></i>
+                                        <h5 class="text-white mt-4 mb-5 pb-2">
+                                            4562&nbsp;&nbsp;&nbsp;1122&nbsp;&nbsp;&nbsp;4594&nbsp;&nbsp;&nbsp;7852</h5>
+                                        <div class="d-flex">
+                                            <div class="d-flex">
+                                                <div class="me-4">
+                                                    <p class="text-white text-sm opacity-8 mb-0">Propriétaire</p>
+                                                    <h6 class="text-white mb-0">Flan Lfoulani</h6>
+                                                </div>
+                                            </div>
+                                            <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
+                                                <img class="w-100 mt-2"
+                                                    src="{{ asset('/dashassets/img/logod17bnk.png') }}"
+                                                    alt="logo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
                             <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-1 text-uppercase font-weight-bold">Montant Existe</p>
-                                        <h5 class="font-weight-bolder">
-                                            {{ auth()->user()->portmonnaie->montant_existe }} DT
-                                        </h5>
-
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header mx-4 p-3 text-center">
+                                            <div
+                                                class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                                <i class="ni ni-money-coins opacity-10"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0 p-3 text-center">
+                                            <h6 class="text-center mb-0">Sold</h6>
+                                            <span class="text-xs">Vorte Sold</span>
+                                            <hr class="horizontal dark my-3">
+                                            <h5 class="mb-0">2000DT</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                                <div class="col-md-6 mt-md-0 mt-4">
+                                    <div class="card">
+                                        <div class="card-header mx-4 p-3 text-center">
+                                            <div
+                                                class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                                <i class="ni ni-chart-bar-32 opacity-10"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0 p-3 text-center">
+                                            <h6 class="text-center mb-0">Transfert</h6>
+                                            <span class="text-xs">Total du Transfert</span>
+                                            <hr class="horizontal dark my-3">
+                                            <h5 class="mb-0">455.00DT</h5>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="mb-0">
-                                    Solde après vente de votre design.
-                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-lg-0 mb-4">
+                            <div class="card mt-4">
+                                <div class="card-header pb-0 p-3">
+                                    <div class="row">
+                                        <div class="col-6 d-flex align-items-center">
+                                            <h6 class="mb-0">Mode de paiement</h6>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal"
+                                                data-bs-target="#modal-form-carte"><i
+                                                    class="fas fa-plus"></i>&nbsp;&nbsp;Ajouter une carte</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-3">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-md-0 mb-4">
+                                            <div
+                                                class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                                                <img class="w-10 me-3 mb-0"
+                                                    src="{{ asset('/dashassets/img/logod17bnk.png') }}"
+                                                    alt="logo">
+                                                <h6 class="mb-0">
+                                                    ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
+                                                </h6>
+                                                <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
+                                                    data-bs-placement="top" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                                                <img class="w-10 me-3 mb-0"
+                                                    src="{{ asset('/dashassets/img/Logos_flouci.png') }}"
+                                                    alt="logo">
+                                                <h6 class="mb-0">
+                                                    ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248
+                                                </h6>
+                                                <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Modifier la carte"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-1 text-uppercase font-weight-bold">Total des transferts
-                                        </p>
-                                        <h5 class="font-weight-bolder">
-                                            {{ auth()->user()->portmonnaie->montant_transferts }} DT
-                                        </h5>
-
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <p class="mb-0">
-                                    Votre solde total transféré.
-                                </p>
+                <div class="col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header pb-0 p-3">
+                            <div
+                                class="
+                          Historique de transfert de l'argent:d-flex align-items-center">
+                                <h6 class="mb-0">Factures</h6>
                             </div>
+                        </div>
+                        <div class="card-body p-3 pb-0">
+                            <ul class="list-group">
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
+                                        <span class="text-xs">#MS-415646</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $180
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
+                                        <span class="text-xs">#RV-126749</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $250
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
+                                        <span class="text-xs">#FB-212562</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $560
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
+                                        <span class="text-xs">#QW-103578</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $120
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
+                                        <span class="text-xs">#AR-803481</span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        $300
+                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                                                class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-9">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-3 text-uppercase font-weight-bold">Votre coordonné:</p>
-                                        <div>
-                                            <h5 style=" display: inline-block;">Nom et Prénom:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</h6>
-                                        </div>
-                                        <div>
-                                            <h5 style=" display: inline-block;">Email:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                                {{ auth()->user()->email }}</h6>
-                                        </div>
-                                        <div>
-                                            <h5 style=" display: inline-block;">Numéro Tél:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                                {{ auth()->user()->phone }}</h6>
-                                        </div>
-                                        <div>
-                                            <h5 style=" display: inline-block;">Proced:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                                {{ auth()->user()->portmonnaie->Procedure }}</h6>
-                                        </div>
-                                        <div>
-                                            <h5 style=" display: inline-block;">Numéro de Cart:</h5>
-                                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                                {{ auth()->user()->portmonnaie->Num_cart }}
-                                            </h6>
-                                        </div>
-                                        <div class="mt-4">
-                                            <button type="button" class="btn bg-gradient-success"
-                                                data-bs-toggle="modal" data-bs-target="#modal-form-demend">Demande
-                                                d'argent</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 text-end">
-                                    <button type="button" class="btn bg-gradient-secondary" data-bs-toggle="modal"
-                                        data-bs-target="#modal-form-modif">Modifier mes coordonné</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-lg-8 mb-lg-0 mb-4">
+            <div class="row">
+                <div class="col-md-7 mt-4">
                     <div class="card ">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
@@ -307,43 +399,121 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-lg-0 mb-4">
-                    <div class="card ">
-                        <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-2">Historique de transfert de l'argent:</h6>
+                <div class="col-md-5 mt-4">
+                    <div class="card h-100 mb-4">
+                        <div class="card-header pb-0 px-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="mb-0">Vos transactions</h6>
+                                </div>
+                                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                                    <i class="far fa-calendar-alt me-2"></i>
+                                    <small>23 - 30 March 2020</small>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body p-3">
-                            <hr class="horizontal dark mt-0">
-                            <div class="table-responsive">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                style="width: 40%;">Date</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                                style="width: 60%;">Montant transféré</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($montants_transferts)
-                                            @foreach ($montants_transferts as $montant)
-                                                <tr>
-                                                    <td class="align-middle">
-                                                        {{ $montant->created_at->format('d-m-Y') }}
-                                                    </td>
-                                                    <td class="align-middle text-sm ">
-                                                        <h6 class="text-s font-weight-bold mb-0">
-                                                            {{ $montant->montant_transferts }} TND</h6>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-
-                            </div>
+                        <div class="card-body pt-4 p-3">
+                            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
+                            <ul class="list-group">
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-arrow-down"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Netflix</h6>
+                                            <span class="text-xs">27 March 2020, at 12:30 PM</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                                        - $ 2,500
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Apple</h6>
+                                            <span class="text-xs">27 March 2020, at 04:30 AM</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 2,000
+                                    </div>
+                                </li>
+                            </ul>
+                            <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6>
+                            <ul class="list-group">
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Stripe</h6>
+                                            <span class="text-xs">26 March 2020, at 13:45 PM</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 750
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">HubSpot</h6>
+                                            <span class="text-xs">26 March 2020, at 12:30 PM</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 1,000
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-arrow-up"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Creative Tim</h6>
+                                            <span class="text-xs">26 March 2020, at 08:30 AM</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        + $ 2,500
+                                    </div>
+                                </li>
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-exclamation"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Webflow</h6>
+                                            <span class="text-xs">26 March 2020, at 05:00 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                                        Pending
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -380,9 +550,11 @@
                                                 placeholder="0000 0000 0000 0000" aria-label="Password"
                                                 aria-describedby="password-addon">
                                         </div>
-                                        <div class="text-center">
+                                        <div class="d-flex justify-content-center">
                                             <button type="submit"
-                                                class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Confirmer</button>
+                                                class="btn btn-round bg-gradient-danger btn-lg w-50 mt-4 mb-0">Supprimer</button>
+                                            <button type="submit"
+                                                class="btn btn-round bg-gradient-info btn-lg w-50 mt-4 mb-0">Confirmer</button>
                                         </div>
                                     </form>
                                 </div>
@@ -394,25 +566,34 @@
         </div>
         <!--End Modale modifier coordonnée-->
 
-        <!--Modale Demende Paiement-->
+        <!--Modale ajout coordonnée-->
         <div class="col-md-4">
-            <div class="modal fade" id="modal-form-demend" tabindex="-1" role="dialog"
+            <div class="modal fade" id="modal-form-carte" tabindex="-1" role="dialog"
                 aria-labelledby="modal-form" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-body p-0">
-                        <form action="{{route('porte-monnaie.demande')}}" method="POST">
-                            @csrf
                             <div class="card card-plain">
                                 <div class="card-header pb-0 text-left">
-                                    <h3 class="font-weight-bolder text-info text-gradient">Demande d'argent
+                                    <h3 class="font-weight-bolder text-info text-gradient">Ajouter Coordonnée
                                     </h3>
+                                    <p class="mb-0">Ajouter votre coordonnée de paiement</p>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form text-left">
-                                        <label>Saisir le montant:</label>
+                                    <form role="form text-left" action="{{ route('porte-monnaie.modif') }}"
+                                        method="POST">
+                                        @csrf
+                                        <label>Procedure:</label>
                                         <div class="input-group mb-3">
-                                            <input name="montant_demander" type="text" class="form-control" placeholder="000 DT">
+                                            <input name="procedure" type="text" class="form-control"
+                                                placeholder="Procedure de paiement" aria-label="Email"
+                                                aria-describedby="email-addon">
+                                        </div>
+                                        <label>Numéro de Cart:</label>
+                                        <div class="input-group mb-3">
+                                            <input name="Num_cart" type="text" class="form-control"
+                                                placeholder="0000 0000 0000 0000" aria-label="Password"
+                                                aria-describedby="password-addon">
                                         </div>
                                         <div class="text-center">
                                             <button type="submit"
@@ -421,7 +602,42 @@
                                     </form>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modale ajout coordonnée-->
+
+        <!--Modale Demende Paiement-->
+        <div class="col-md-4">
+            <div class="modal fade" id="modal-form-demend" tabindex="-1" role="dialog"
+                aria-labelledby="modal-form" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <form action="{{ route('porte-monnaie.demande') }}" method="POST">
+                                @csrf
+                                <div class="card card-plain">
+                                    <div class="card-header pb-0 text-left">
+                                        <h3 class="font-weight-bolder text-info text-gradient">Demande d'argent
+                                        </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form role="form text-left">
+                                            <label>Saisir le montant:</label>
+                                            <div class="input-group mb-3">
+                                                <input name="montant_demander" type="text" class="form-control"
+                                                    placeholder="000 DT">
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit"
+                                                    class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Confirmer</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -429,6 +645,7 @@
         </div>
         <!--End Modale Demende Paiement-->
 
+        </div>
         <!--footer-->
         @include('inc.admin.footer')
 
