@@ -141,7 +141,6 @@
                 </nav>
 
                 @include('inc.client.navbar')
-
             </div>
         </nav>
         <!-- End Navbar -->
@@ -160,22 +159,36 @@
                                     <div class="card-body position-relative z-index-1 p-3">
                                         <i class="fas fa-wifi text-white p-2"></i>
                                         <h5 class="text-white mt-4 mb-5 pb-2">
-                                            4562&nbsp;&nbsp;&nbsp;1122&nbsp;&nbsp;&nbsp;4594&nbsp;&nbsp;&nbsp;7852</h5>
+                                            @if (auth()->user()->portmonnaie)
+                                                @foreach (str_split(auth()->user()->portmonnaie->Num_cart, 4) as $chunk)
+                                                    {{ $chunk }}&nbsp;&nbsp;&nbsp;
+                                                @endforeach
+                                            @endif
+                                        </h5>
                                         <div class="d-flex">
                                             <div class="d-flex">
                                                 <div class="me-4">
                                                     <p class="text-white text-sm opacity-8 mb-0">Propriétaire</p>
-                                                    <h6 class="text-white mb-0">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h6>
+                                                    <h6 class="text-white mb-0">{{ auth()->user()->first_name }}
+                                                        {{ auth()->user()->last_name }}</h6>
                                                 </div>
                                             </div>
                                             <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
-                                                <img class="w-100 mt-2"
-                                                    src="{{ asset('/dashassets/img/logod17bnk.png') }}"
-                                                    alt="logo">
-                                                    <!--<img class="w-15 me-3 mb-0"
-                                            src="{{ asset('/dashassets/img/logo-bna.png') }}" alt="logo">
-                                        <img class="w-15 me-3 mb-0"
-                                            src="{{ asset('/dashassets/img/logobiat.png') }}" alt="logo">-->
+                                                @if (auth()->user()->portmonnaie)
+                                                    @if (auth()->user()->portmonnaie->Procedure == 'd17')
+                                                        <img class="w-100 mt-2"
+                                                            src="{{ asset('/dashassets/img/logod17bnk.png') }}"
+                                                            alt="logo">
+                                                    @elseif (auth()->user()->portmonnaie->Procedure == 'bna')
+                                                        <img class="w-15 me-3 mb-0"
+                                                            src="{{ asset('/dashassets/img/logo-bna.png') }}"
+                                                            alt="logo">
+                                                    @else
+                                                        <img class="w-15 me-3 mb-0"
+                                                            src="{{ asset('/dashassets/img/logobiat.png') }}"
+                                                            alt="logo">
+                                                    @endif
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +209,9 @@
                                             <h6 class="text-center mb-0">Sold</h6>
                                             <span class="text-xs">Vorte Sold</span>
                                             <hr class="horizontal dark my-3">
-                                            <h5 class="mb-0">{{ auth()->user()->portmonnaie->solde }} DT</h5>
+                                            @if (auth()->user()->portmonnaie)
+                                                <h5 class="mb-0">{{ auth()->user()->portmonnaie->solde }} DT</h5>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -212,7 +227,9 @@
                                             <h6 class="text-center mb-0">Transfert</h6>
                                             <span class="text-xs">Total Transfert</span>
                                             <hr class="horizontal dark my-3">
-                                            <h5 class="mb-0">455.00DT</h5>
+                                            @if (auth()->user()->portmonnaie)
+                                                <h5 class="mb-0">{{ auth()->user()->transactions }} DT</h5>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -227,10 +244,14 @@
                                 </div>
                                 <div class="col-6 text-end">
                                     <a class="btn bg-gradient-dark mb-0" data-bs-toggle="modal"
-                                        data-bs-target="#modal-form-demend"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
-                                            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                                            <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
-                                          </svg>&nbsp;&nbsp;Demande d'argent</a>
+                                        data-bs-target="#modal-form-demend"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="16" height="16" fill="currentColor"
+                                            class="bi bi-cash-stack" viewBox="0 0 16 16">
+                                            <path
+                                                d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                            <path
+                                                d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                                        </svg>&nbsp;&nbsp;Demande d'argent</a>
                                 </div>
                             </div>
                         </div>
@@ -239,18 +260,46 @@
                                 <div class="col-md-7 mb-md-0 mb-4">
                                     <div
                                         class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                        <img class="w-15 me-3 mb-0"
-                                            src="{{ asset('/dashassets/img/logod17bnk.png') }}" alt="logo">
-                                        <!--<img class="w-15 me-3 mb-0"
-                                            src="{{ asset('/dashassets/img/logo-bna.png') }}" alt="logo">
-                                        <img class="w-15 me-3 mb-0"
-                                            src="{{ asset('/dashassets/img/logobiat.png') }}" alt="logo">-->
-                                        <h6 class="mb-0">
-                                            ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
-                                        </h6>
-                                        <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
-                                            data-bs-placement="top" data-bs-toggle="modal"
-                                            data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
+                                        @if (auth()->user()->portmonnaie)
+                                            @if (auth()->user()->portmonnaie->Procedure == 'd17')
+                                                <img class="w-15 me-3 mb-0"
+                                                    src="{{ asset('/dashassets/img/logod17bnk.png') }}"
+                                                    alt="logo">
+                                            @elseif (auth()->user()->portmonnaie->Procedure == 'bna')
+                                                <img class="w-15 me-3 mb-0"
+                                                    src="{{ asset('/dashassets/img/logo-bna.png') }}" alt="logo">
+                                            @else
+                                                <img class="w-15 me-3 mb-0"
+                                                    src="{{ asset('/dashassets/img/logobiat.png') }}" alt="logo">
+                                            @endif
+                                        @endif
+                                        @if (auth()->user()->portmonnaie)
+                                            @if (auth()->user()->portmonnaie->Num_cart)
+                                                <h6 class="mb-0">
+                                                    @foreach (str_split(auth()->user()->portmonnaie->Num_cart, 4) as $chunk)
+                                                        {{ $chunk }}&nbsp;&nbsp;&nbsp;
+                                                    @endforeach
+                                                </h6>
+                                            @endif
+                                        @else
+                                            <h6 class="mb-0">
+                                                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
+                                            </h6>
+                                        @endif
+
+                                        @if (auth()->user()->portmonnaie)
+                                            @if (auth()->user()->portmonnaie->Num_cart)
+                                                <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
+                                                    data-bs-placement="top" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
+                                            @endif
+                                        @else
+                                            <i class="ni ni-fat-add ms-auto text-dark cursor-pointer"
+                                                data-bs-placement="top" data-bs-toggle="modal"
+                                                data-bs-target="#modal-form-ajout" title="Ajouter une carte"></i>
+                                        @endif
+
+
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +362,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="card h-100 mb-4">
@@ -324,111 +373,51 @@
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-end align-items-center">
                                     <i class="far fa-calendar-alt me-2"></i>
-                                    <small>23 - 30 March 2020</small>
+                                    <small>{{ Carbon\Carbon::now()->isoFormat('DD') }} -
+                                        {{ Carbon\Carbon::now()->endOfMonth()->isoFormat('DD MMMM YYYY') }}</small>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body pt-4 p-3">
                             <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
                             <ul class="list-group">
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                class="fas fa-arrow-down"></i></button>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Netflix</h6>
-                                            <span class="text-xs">27 March 2020, at 12:30 PM</span>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                                        - $ 2,500
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                class="fas fa-arrow-up"></i></button>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Apple</h6>
-                                            <span class="text-xs">27 March 2020, at 04:30 AM</span>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                        + $ 2,000
-                                    </div>
-                                </li>
-                            </ul>
-                            <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6>
-                            <ul class="list-group">
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                class="fas fa-arrow-up"></i></button>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Stripe</h6>
-                                            <span class="text-xs">26 March 2020, at 13:45 PM</span>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                        + $ 750
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                class="fas fa-arrow-up"></i></button>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">HubSpot</h6>
-                                            <span class="text-xs">26 March 2020, at 12:30 PM</span>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                        + $ 1,000
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                class="fas fa-arrow-up"></i></button>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Creative Tim</h6>
-                                            <span class="text-xs">26 March 2020, at 08:30 AM</span>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                        + $ 2,500
-                                    </div>
-                                </li>
-                                <li
-                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                class="fas fa-exclamation"></i></button>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Webflow</h6>
-                                            <span class="text-xs">26 March 2020, at 05:00 AM</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
-                                        Pending
-                                    </div>
-                                </li>
+                                @foreach ($tarnsactions as $tr)
+                                    @if ($tr->montant_demander && $tr->montant_transferts == null)
+                                        <li
+                                            class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                            <div class="d-flex align-items-center">
+                                                <button
+                                                    class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                        class="fas fa-arrow-down"></i></button>
+                                                <div class="d-flex flex-column">
+                                                    <h6 class="mb-1 text-dark text-sm">Demande</h6>
+                                                    <span class="text-xs">{{ $tr->created_at }}</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                                                - {{ $tr->montant_demander }} TD
+                                            </div>
+                                        </li>
+                                    @elseif($tr->montant_demander && $tr->montant_transferts)
+                                        <li
+                                            class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                            <div class="d-flex align-items-center">
+                                                <button
+                                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                        class="fas fa-arrow-up"></i></button>
+                                                <div class="d-flex flex-column">
+                                                    <h6 class="mb-1 text-dark text-sm">Transfert</h6>
+                                                    <span class="text-xs">{{ $tr->updated_at }}</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                                + {{ $tr->montant_transferts }} TD
+                                            </div>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -456,7 +445,8 @@
                                         @csrf
                                         <label>Procedure:</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-control" id="exampleFormControlSelect1">
+                                            <select name="procedure" class="form-control"
+                                                id="exampleFormControlSelect1">
                                                 <option value="d17">D17</option>
                                                 <option value="bna">BNA</option>
                                                 <option value="biat">BIAT</option>
@@ -483,6 +473,52 @@
             </div>
         </div>
         <!--End Modale modifier coordonnée-->
+
+        <!--Modale ajouter coordonnée-->
+        <div class="col-md-4">
+            <div class="modal fade" id="modal-form-ajout" tabindex="-1" role="dialog"
+                aria-labelledby="modal-form" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <div class="card card-plain">
+                                <div class="card-header pb-0 text-left">
+                                    <h3 class="font-weight-bolder text-info text-gradient">Modifier Coordonnée
+                                    </h3>
+                                    <p class="mb-0">Modifier votre coordonnée de paiement</p>
+                                </div>
+                                <div class="card-body">
+                                    <form role="form text-left" action="{{ route('porte-monnaie.ajout') }}"
+                                        method="POST">
+                                        @csrf
+                                        <label>Procedure:</label>
+                                        <div class="input-group mb-3">
+                                            <select name="procedure" class="form-control"
+                                                id="exampleFormControlSelect1">
+                                                <option value="d17">D17</option>
+                                                <option value="bna">BNA</option>
+                                                <option value="biat">BIAT</option>
+                                            </select>
+                                        </div>
+                                        <label>Numéro de Cart:</label>
+                                        <div class="input-group mb-3">
+                                            <input name="Num_cart" type="text" class="form-control"
+                                                placeholder="0000 0000 0000 0000" aria-label="Password"
+                                                aria-describedby="password-addon">
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit"
+                                                class="btn btn-round bg-gradient-info btn-lg w-50 mt-4 mb-0">Confirmer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modale ajouter coordonnée-->
 
 
         <!--Modale Demende Paiement-->
@@ -523,6 +559,7 @@
 
         </div>
         <!--footer-->
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
 
     </main>

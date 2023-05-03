@@ -100,7 +100,8 @@ Route::group(['middleware' => ['auth']], function () {
         
         Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
         Route::get('/porte-monnaie', [PortmonnaieController::class, 'portemonnaie'])->name('porte-monnaie');
-        Route::post('/porte-monnaie/modif', [PortmonnaieController::class, 'modifierCoordonnees'])->name('porte-monnaie.modif');
+        Route::post('/porte-monnaie/ajout', [PortmonnaieController::class, 'ajouterCarte'])->name('porte-monnaie.ajout');
+        Route::post('/porte-monnaie/modif', [PortmonnaieController::class, 'modifierCarte'])->name('porte-monnaie.modif');
         Route::post('/porte-monnaie/demande', [PortmonnaieController::class, 'demanderArgent'])->name('porte-monnaie.demande');
 
         
@@ -133,10 +134,11 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         /****PERSONNALISER****** */
-        Route::prefix('personnaliser')->group(function () {
-        Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
-        Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
-        Route::get('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct']);
+        Route::prefix('personnaliser')->group(function () 
+        {
+            Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
+            Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
+            Route::get('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct']);
         });
 
 
@@ -219,8 +221,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::post('/update', [InitialProductController::class, 'modifierProduit'])->name('edit.product');
             Route::post('/search', [InitialProductController::class, 'searchProduct'])->name('search.product');
         });
-        /**********admin DESIGN****** */
 
+        /**********admin DESIGN****** */
         Route::prefix('designs')->group(function () {
             Route::get('/', [AdminController::class, 'designs'])->name('verif.designs');
             Route::get('/validee', [AdminController::class, 'designsvalidee'])->name('validee');
@@ -240,9 +242,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
         
         Route::prefix('paiement')->group(function () {
-            Route::get('/', [PortmonnaieController::class, 'index'])->name('paiement');
-            Route::get('/historique', [PortmonnaieController::class, 'historiquePaiement'])->name('paiement.historique');
-            Route::get('/historiques', [PortmonnaieController::class, 'historiques'])->name('historiques');
+            Route::get('/', [AdminController::class, 'listePaiement'])->name('paiement');
+            Route::get('/historique', [AdminController::class, 'historiquePaiement'])->name('paiement.historique');
+            Route::get('/historiques', [AdminController::class, 'historiques'])->name('historiques');
         });
     });
 });

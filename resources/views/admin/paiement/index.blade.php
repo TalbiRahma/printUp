@@ -57,8 +57,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -107,7 +107,7 @@
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
                         <a class="nav-link" href="{{ route('mes.designs') }}">
-                            
+
                             <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
                         </a>
                     </div>
@@ -138,7 +138,8 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"
+                                style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -180,22 +181,22 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
                 </li>
             </ul>
         </div>
@@ -251,6 +252,7 @@
         <div class="container-fluid py-4">
             <div class="card">
                 <div class="table-responsive">
+
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
@@ -271,43 +273,54 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    #001
-                                </td>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                class="avatar avatar-sm me-3">
+                            @foreach ($transactions as $index => $tr)
+                                <tr>
+                                    <td class="align-middle">
+                                        #00{{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                @if ($tr->membre->photo)
+                                                    <img src="{{ assets('uploads') }}/{{ $tr->member->photo }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @else
+                                                    <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-xs">{{ $tr->membre->first_name }}
+                                                    {{ $tr->membre->last_name }}</h6>
+                                                <p class="text-xs text-secondary mb-0">{{ $tr->membre->email }}</p>
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-xs">name client</h6>
-                                            <p class="text-xs text-secondary mb-0">email@mail.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">150 TND</h6>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <button type="button" class="btn bg-gradient-primary btn-sm" 
-                                    data-bs-toggle="modal" data-bs-target="#procedure">Payé</button>
-                                </td>
-                                <td class="align-middle text-sm ">
-                                    <a href="{{ route('paiement.historique') }}" class="text-primary font-weight-bold ">
-                                        Voir
-                                    </a>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <h6 class="text-s font-weight-bold mb-0">{{ $tr->membre->portmonnaie->solde }}
+                                            DT</h6>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <h6 class="text-s font-weight-bold mb-0">{{ $tr->montant_demander }} DT</h6>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <button type="button" class="btn bg-gradient-primary btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#procedure">Payé</button>
+                                    </td>
+                                    <td class="align-middle text-sm ">
+                                        <a href="{{ route('paiement.historique') }}"
+                                            class="text-primary font-weight-bold ">
+                                            Voir
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
@@ -329,28 +342,31 @@
                 <div class="modal-body">
                     <div>
                         <h5 style=" display: inline-block;">Nom et Prénom:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">Foulen Fouleni</h6>
+                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->first_name }}
+                            {{ $tr->membre->last_name }}</h6>
                     </div>
                     <div>
                         <h5 style=" display: inline-block;">Email:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">flan@gmail.com</h6>
+                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->email }}</h6>
                     </div>
                     <div>
                         <h5 style=" display: inline-block;">Numéro Tél:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">+216 99 999 999</h6>
+                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->phone }}</h6>
                     </div>
                     <div>
                         <h5 style=" display: inline-block;">Proced:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">D17</h6>
+                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->portmonnaie->Procedure }}</h6>
                     </div>
                     <div>
                         <h5 style=" display: inline-block;">RIP:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">1111 1111 1111 1111</h6>
+                        <h6 style=" display: inline-block; margin-left: 10px;">@foreach (str_split( $tr->membre->portmonnaie->Num_cart, 4) as $chunk)
+                            {{ $chunk }}&nbsp;&nbsp;&nbsp;
+                        @endforeach</h6>
                     </div>
                     <div class="mt-4">
                         <button type="button" class="btn bg-gradient-primary">Transfert de l'argent</button>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>

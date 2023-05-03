@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Design;
 use App\Models\Commande;
 use App\Events\DeleteDesign;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 use App\Mail\DesignSupprimer;
 use App\Models\LigneCommande;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     // 
- 
+
     public function dashboard()
     {
         return view('admin.dashboard');
@@ -37,15 +38,13 @@ class AdminController extends Controller
 
         $client = User::find($iduser);
         $client->is_active = false;
-        
 
-        if ($client->update()){
+
+        if ($client->update()) {
             return redirect()->back()->with('warning1', 'Member bloquee');
-        }else{
+        } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
-        
-        
     }
 
     public function activerUser($iduser)
@@ -54,13 +53,11 @@ class AdminController extends Controller
         $client = User::find($iduser);
         $client->is_active = true;
 
-        if ($client->update()){
+        if ($client->update()) {
             return redirect()->back()->with('info1', 'Member activee');
-        }else{
+        } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
-
-        
     }
 
     public function modifProfil()
@@ -132,7 +129,7 @@ class AdminController extends Controller
         return view('admin.compte.donnesprofil');
     }
 
-/*********************************  DESIGNS   *************************** */
+    /*********************************  DESIGNS   *************************** */
     public function designs()
     {
         $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
@@ -145,13 +142,13 @@ class AdminController extends Controller
         return view('admin.designs.index', compact('designs'));
     }
 
-    
+
 
     public function validerDesign($id)
     {
         $design = Design::find($id);
         $design->etat = 'valide';
-        
+
         $custom_products = ProduitPersonnaliser::where('design_id', $id)->get();
 
         foreach ($custom_products as $custom_product) {
@@ -159,12 +156,11 @@ class AdminController extends Controller
             $custom_product->update();
         }
 
-        if ($design->update()){
+        if ($design->update()) {
             return redirect()->back()->with('success1', 'Le design a été validé');
-        }else{
+        } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
-        
     }
 
     public function designsvalidee()
@@ -190,15 +186,14 @@ class AdminController extends Controller
             $mailable = new DesignSupprimer($user_data->name, $user_data->email);
             Mail::to($user_data->email)->send($mailable);
 
-        
+
             return redirect()->back()->with('warning1', 'Le design a été supprimé et l\'email de suppression a été envoyé à la boîte mail de ce membre');
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 
-    
-
+    /****************************************** COMMANDES    **************************/
     public function commandes()
     {
         $commandes = Commande::where('etat', 'en attente')->get();
@@ -213,12 +208,40 @@ class AdminController extends Controller
     }
 
     public function commandesValidee()
-    { 
+    {
         $commandes = Commande::where('etat', 'en attente')->get();
         return view('admin.commandes.validee', compact('commandes'));
     }
 
-    public function test(){
+    public function test()
+    {
         return view('testpersonnalise');
+    }
+
+    /****************************************** PAIEMENT    **************************/
+    public function listePaiement()
+    {
+        $transactions = Transactions::with('membre')
+            ->where('etat', 'demandee')
+            ->get();
+
+        return view('admin.paiement.index', compact('transactions'));
+    }
+
+    public function payee(){
+
+        
+    }
+
+    public function historiquePaiement()
+    {
+
+        return view('admin.paiement.historiquepaiement');
+    }
+
+    public function historiques()
+    {
+
+        return view('admin.paiement.historiques');
     }
 }

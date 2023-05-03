@@ -7,27 +7,13 @@ use App\Models\Design;
 use App\Models\Commande;
 use App\Models\Portmonnaie;
 use App\Models\Transactions;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
 class PortmonnaieController extends Controller
 {
     //
-    public function index()
-    {
-
-        return view('admin.paiement.index');
-    }
-
-    public function historiquePaiement()
-    {
-
-        return view('admin.paiement.historiquepaiement');
-    }
-    public function historiques()
-    {
-
-        return view('admin.paiement.historiques');
-    }
+    
 
     public function portemonnaie()
     {
@@ -37,47 +23,80 @@ class PortmonnaieController extends Controller
             $query->where('users.id', $user_id); // Sélectionner les designs qui ont été ajoutés par l'utilisateur connecté
         })->with(['lignecommandes.customproduct.design', 'lignecommandes.customproduct.initialProduct'])->get(); // Charger les relations avec la commande
 
-        //$portemonnaie = Portmonnaie::where('user_id', $user_id)->get(); 
+        $tarnsactions = Transactions::where('member_id', $user_id)->get(); 
         //dd($portemonnaie->solde);
-        return view('client.portemonnaie.index', compact('commandes', ));
+        
+        return view('client.portemonnaie.index', compact('commandes', 'tarnsactions' ));
     }
 
-    public function modifierCoordonnees(Request $request)
+    public function ajouterCarte(Request $request)
+    {
+        // Récupère l'utilisateur connecté
+        $user = auth()->user();
+
+        if (!$user->portmonnaie) {
+            // Si l'utilisateur n'a pas de portefeuille, créer un nouveau portefeuille pour l'utilisateur
+            $portmonnaie = new Portmonnaie();
+            $portmonnaie->solde = 0;
+            $portmonnaie->user_id = $user->id;
+            $portmonnaie->save();
+        }
+
+        // Valide les données du formulaire
+        $validatedData = $request->validate([
+            'procedure' => 'required',
+            'Num_cart' => 'required',
+        ]);
+        // Met à jour les coordonnées de portefeuille de l'utilisateur
+        $user->portmonnaie->Procedure = $validatedData['procedure'];
+        $user->portmonnaie->Num_cart = $validatedData['Num_cart'];
+        //dd($user->portmonnaie);
+        if($user->portmonnaie->update()){
+            return redirect()->back()->with('success1', 'Votre carte est ajouter avec successé !');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+    }
+
+    public function modifierCarte(Request $request)
     {
         // Récupère l'utilisateur connecté
         $user = auth()->user();
         // Valide les données du formulaire
         $validatedData = $request->validate([
-            'procedure' => ['required', 'string'],
+            'procedure' => 'required',
             'Num_cart' => 'required',
         ]);
 
         // Met à jour les coordonnées de portefeuille de l'utilisateur
-        $user->portmonnaie->procedure = $validatedData['procedure'];
+        $user->portmonnaie->Procedure = $validatedData['procedure'];
         $user->portmonnaie->Num_cart = $validatedData['Num_cart'];
-        $user->portmonnaie->save();
-        return redirect()->back();
+        //dd($user->portmonnaie);
+        if($user->portmonnaie->update()){
+            return redirect()->back()->with('success1', 'Votre carte est modifier avec successé !');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
-
-
 
     public function demanderArgent(Request $request)
     {
         $montant = $request->input('montant_demander'); // Récupérer le montant de la demande d'argent
-        
+        //dd($montant);
         $user = auth()->user(); // Récupérer l'utilisateur connecté
         
         // Vérifier si l'utilisateur a un portefeuille actif
         if (!$user->portmonnaie) {
+            dd($user);
             // Si l'utilisateur n'a pas de portefeuille, créer un nouveau portefeuille pour l'utilisateur
             $portmonnaie = new Portmonnaie();
-            $portmonnaie->montant_existe = 0;
-            $portmonnaie->membre_id = $user->id;
+            $portmonnaie->solde = 0;
+            $portmonnaie->user_id = $user->id;
             $portmonnaie->save();
         } 
-
+ 
         // Vérifier si le montant est valide
-        if ($montant > $user->portmonnaie->montant_existe) {
+        if ($montant > $user->portmonnaie->solde) {
             // Si le montant est supérieur au solde du portefeuille, retourner une erreur
             return redirect()->back()->withErrors(['montant' => 'Le montant demandé est supérieur au solde de votre portefeuille.']);
         }
@@ -86,8 +105,9 @@ class PortmonnaieController extends Controller
         $transaction = new Transactions();
         $transaction->montant_demander = $montant;
         $transaction->member_id = $user->id;
+        //dd($transaction);
         $transaction->save();
-
-        return redirect()->back()->with('success', 'Votre demande d\'argent a été enregistrée avec succès.');
+        
+        return redirect()->back()->with('success1', 'Votre demande d\'argent a été enregistrée avec succès.');
     }
 }
