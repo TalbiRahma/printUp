@@ -520,14 +520,17 @@
                                                         <ul class="range-variant">
 
                                                             @foreach ($sizes as $size)
-                                                            <li class="size-btn" onclick="selectSize('{{ $size }}')">{{ $size }}</li>
+                                                                <li class="size-btn"
+                                                                    onclick="selectSize('{{ $size }}')">
+                                                                    {{ $size }}</li>
                                                             @endforeach
-                                                            <input type="hidden" name="selected_size" id="selected_size">
+                                                            <input type="hidden" name="selected_size"
+                                                                id="selected_size">
                                                         </ul>
                                                     </div>
-                                                    
+
                                                 @endif
-                                               
+
                                             </div>
 
                                             <!-- End Product Variation  -->
@@ -606,31 +609,31 @@
 
     <script>
         function selectSize(size) {
-          // Récupérer tous les boutons de taille
-          const sizeButtons = document.querySelectorAll('.size-btn');
-      
-          // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
-          sizeButtons.forEach((button) => {
-            if (button.textContent.trim() === size) {
-              button.classList.add('selected');
-            } else {
-              button.classList.remove('selected');
-            }
-          });
-      
-          // Mettre à jour la valeur de l'input caché "selected_size"
-          document.querySelector('#selected_size').value = size;
+            // Récupérer tous les boutons de taille
+            const sizeButtons = document.querySelectorAll('.size-btn');
+
+            // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+            sizeButtons.forEach((button) => {
+                if (button.textContent.trim() === size) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+
+            // Mettre à jour la valeur de l'input caché "selected_size"
+            document.querySelector('#selected_size').value = size;
         }
-      
+
         // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
         const sizeLinks = document.querySelectorAll('.size-btn');
         sizeLinks.forEach((link) => {
-          link.addEventListener('click', (event) => {
-            event.preventDefault();
-          });
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+            });
         });
-      </script>
-      
+    </script>
+
     <script>
         $(document).ready(function() {
             $('form#design-form').submit(function(event) {
@@ -678,10 +681,11 @@
 
     <style>
         .size-btn.selected {
-  border-color: var(--color-primary);
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
         .product-content1 img {
             width: 100% !important;
             height: auto !important;

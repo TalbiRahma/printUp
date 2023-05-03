@@ -37,9 +37,15 @@ class AdminController extends Controller
 
         $client = User::find($iduser);
         $client->is_active = false;
-        $client->update();
+        
 
-        return redirect()->back()->with('warning1', 'Member bloquee');
+        if ($client->update()){
+            return redirect()->back()->with('warning1', 'Member bloquee');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+        
+        
     }
 
     public function activerUser($iduser)
@@ -47,9 +53,14 @@ class AdminController extends Controller
 
         $client = User::find($iduser);
         $client->is_active = true;
-        $client->update();
 
-        return redirect()->back()->with('info1', 'Member activee');
+        if ($client->update()){
+            return redirect()->back()->with('info1', 'Member activee');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+
+        
     }
 
     public function modifProfil()
@@ -137,7 +148,7 @@ class AdminController extends Controller
     {
         $design = Design::find($id);
         $design->etat = 'valide';
-        $design->update();
+        
         $custom_products = ProduitPersonnaliser::where('design_id', $id)->get();
 
         foreach ($custom_products as $custom_product) {
@@ -145,7 +156,12 @@ class AdminController extends Controller
             $custom_product->update();
         }
 
-        return redirect()->back()->with('success', 'design valider');
+        if ($design->update()){
+            return redirect()->back()->with('success1', 'Le design a été validé');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+        
     }
 
     public function designsvalidee()
@@ -155,6 +171,7 @@ class AdminController extends Controller
             ->where('designs.etat', '=', 'valide')
             ->get();
         $category_design = CategoryDesign::all();
+
         return view('admin.designs.validee', compact('designs'));
     }
 
@@ -169,9 +186,11 @@ class AdminController extends Controller
         if ($design->delete()) {
             $mailable = new DesignSupprimer($user_data->name, $user_data->email);
             Mail::to($user_data->email)->send($mailable);
-            return redirect()->back();
+
+        
+            return redirect()->back()->with('warning1', 'Le design a été supprimé et l\'email de suppression a été envoyé à la boîte mail de ce membre');
         } else {
-            echo "error";
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 

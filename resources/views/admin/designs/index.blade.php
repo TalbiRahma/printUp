@@ -334,6 +334,7 @@
                 </div>
             </div>
         </div>
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
         </div>
     </main>

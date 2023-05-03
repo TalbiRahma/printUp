@@ -165,7 +165,7 @@
                                             <div class="d-flex">
                                                 <div class="me-4">
                                                     <p class="text-white text-sm opacity-8 mb-0">Propriétaire</p>
-                                                    <h6 class="text-white mb-0">Flan Lfoulani</h6>
+                                                    <h6 class="text-white mb-0">{{auth()->user()->first_name}} {{auth()->user()->last_name}}</h6>
                                                 </div>
                                             </div>
                                             <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
@@ -192,7 +192,7 @@
                                             <h6 class="text-center mb-0">Sold</h6>
                                             <span class="text-xs">Vorte Sold</span>
                                             <hr class="horizontal dark my-3">
-                                            <h5 class="mb-0">2000DT</h5>
+                                            <h5 class="mb-0">{{ auth()->user()->portmonnaie->solde }} DT</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -397,7 +397,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <div class="col-md-5 mt-4">
                     <div class="card h-100 mb-4">

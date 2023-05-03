@@ -38,11 +38,8 @@ class PortmonnaieController extends Controller
         })->with(['lignecommandes.customproduct.design', 'lignecommandes.customproduct.initialProduct'])->get(); // Charger les relations avec la commande
 
         //$portemonnaie = Portmonnaie::where('user_id', $user_id)->get(); 
-
-        
-
-
-        return view('client.portemonnaie.index', compact('commandes'));
+        //dd($portemonnaie->solde);
+        return view('client.portemonnaie.index', compact('commandes', ));
     }
 
     public function modifierCoordonnees(Request $request)
@@ -77,7 +74,7 @@ class PortmonnaieController extends Controller
             $portmonnaie->montant_existe = 0;
             $portmonnaie->membre_id = $user->id;
             $portmonnaie->save();
-        }
+        } 
 
         // Vérifier si le montant est valide
         if ($montant > $user->portmonnaie->montant_existe) {
