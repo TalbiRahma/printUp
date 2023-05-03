@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Compte
+        Designs
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -22,11 +22,7 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    <div class="position-absolute w-100 min-height-300 top-0"
-        style="background-image: url('/dashassets/img/couvert.png'); background-size: cover;">
-
-        <span class="mask bg-primary opacity-2"></span>
-    </div>
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <!-- Side bar -->
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
@@ -55,7 +51,7 @@
                     <a class="nav-link " href="{{ route('users') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-single-02 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-single-02 text-sm opacity-10" style="color: #a307b1 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Members</span>
                     </a>
@@ -92,11 +88,11 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                    <a class=" nav-link active" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                         aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-image text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Designs</span>
                     </a>
@@ -110,6 +106,10 @@
 
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
+                        <a class="nav-link active" href="{{ route('mes.designs') }}">
+                            
+                            <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item" id="accordionRental">
@@ -117,7 +117,7 @@
                         aria-expanded="false" aria-controls="collapseThree">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-secondary text-sm opacity-10"></i>
+                            <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
@@ -138,7 +138,7 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -176,17 +176,26 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Ma Boutique</span>
+                        <span class="nav-link-text ms-1">PrintUp Boutique</span>
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link active" href="{{ route('mes.designs') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Mes Designs</span>
-                    </a>
+                    <li class="nav-item ps-2">
+                        <a class="nav-link" href="{{ route('login') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
+                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
                 </li>
             </ul>
         </div>
@@ -201,9 +210,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Compte</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Mes Designs</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Compte</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Mes Designs</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -236,60 +245,83 @@
         </nav>
         <!-- End Navbar -->
         <!---->
-        <div class="mx-6 card card-profile-bottom">
-            <div class="row">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <div class="d-flex justify-content-between">
-                            <div class="row gx-4">
-                                <div class="col-auto">
-                                    <div class="avatar avatar-xl position-relative">
-                                        @if (auth()->user()->photo == null)
-                                            <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
-                                        @else
-                                            <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                                                alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-auto my-auto">
-                                    <div class="h-100">
-                                        <h5 class="mb-1">
-                                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto my-auto">
-                                <a href="{{ route('modifier.profil') }}" class="btn btn-primary btn-sm">Modifier
-                                    profile</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <hr class="horizontal dark">
-                        <h5 class="text-secondary text-uppercase py-4">Email:</h5>
-                        <a href="" class="h6 text-default text-md">{{ auth()->user()->email }}</a>
-                        <h5 class="text-secondary text-uppercase py-4">Numéro téléphone:</h5>
-                        <h6 class="text-default text-md">{{ auth()->user()->phone }}</h6>
-                        <h5 class="text-secondary text-uppercase py-4">Réseaux sociaux:</h5>
-                        <button type="button" class="btn btn-facebook btn-icon">
-                            <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
-                            <span class="btn-inner--text">PrintUp</span>
-                        </button>
-                        <button type="button" class="btn btn-twitter btn-icon">
-                            <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
-                            <span class="btn-inner--text">PrintUp</span>
-                        </button>
-                        <button type="button" class="btn btn-instagram btn-icon">
-                            <span class="btn-inner--icon"><i class="fab fa-instagram"></i></span>
-                            <span class="btn-inner--text">Print_Up</span>
-                        </button>
-                        <button type="button" class="btn btn-youtube btn-icon">
-                            <span class="btn-inner--icon"><i class="fab fa-youtube"></i></span>
-                            <span class="btn-inner--text">PrintUp</span>
-                        </button>
-                    </div>
+        <div class="container-fluid py-4">
+            <div class="card card-frame">
+                <div class="card-body">
+                    <h4>Mes Designs</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-4">
+            <div class="card">
+
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 5%;">ID</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 25%;">Image</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Design</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 20%;">Description</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3"
+                                    style="width: 10%;">Prix</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 10%;">Categorie</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($design as $index => $d)
+                                <tr>
+                                    <td class="align-middle text-sm">
+                                        {{ $index + 1 }}
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <img src="{{ asset('uploads') }}/{{ $d->photo }}"
+                                                class="avatar me-3 " style="width: 75%; height: auto;">
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $d->name }}</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <p class="text-xs text-secondary mb-0 force-line-break">
+                                            {{ $d->description }}</p>
+                                    </td>
+                                    <td class="align-middle text-sm">
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $d->price }} TND</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2">
+                                            <div class="my-auto">
+                                                <h5 class="mb-0 text-sm">{{ $d->categorie_designs->name }}</h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle ">
+
+                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
+                                            href="{{ route('delete.design', ['id' => $d->id]) }}"
+                                            class="btn bg-gradient-danger btn-sm">Supprimer</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

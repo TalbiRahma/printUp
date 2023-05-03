@@ -6,11 +6,11 @@
                     <div class="header-top-link">
  
                         @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                            <div class="hidden fixed top-0 right-0 px-6 sm:block">
                                 <ul class="quick-link">
                                     @auth
                                         <li><a href="{{ url('/home') }}"
-                                                class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>
+                                                class="text-sm text-gray-700 dark:text-gray-500 underline">Accueil</a></li>
                                     @else
                                         <li><a href="{{ route('login') }}"
                                                 class="text-sm text-gray-700 dark:text-gray-500 underline">Connexion</a>

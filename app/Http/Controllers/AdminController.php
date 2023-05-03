@@ -75,7 +75,10 @@ class AdminController extends Controller
 
     public function mesDesigns()
     {
-        return view('admin.compte.mesdesigns');
+        $user = auth()->user();
+        $design =  Design::where('user_id', $user->id)->latest()->paginate(3);
+        $category_design = CategoryDesign::all();
+        return view('admin.compte.mesdesigns')->with('design', $design)->with('category_design', $category_design);
     }
 
     public function updatetProfil(Request $request)
