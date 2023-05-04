@@ -228,7 +228,7 @@
                                             <span class="text-xs">Total Transfert</span>
                                             <hr class="horizontal dark my-3">
                                             @if (auth()->user()->portmonnaie)
-                                                <h5 class="mb-0">{{ auth()->user()->transactions }} DT</h5>
+                                                <h5 class="mb-0">{{ auth()->user()->tarnsactions }} DT</h5>
                                             @endif
                                         </div>
                                     </div>

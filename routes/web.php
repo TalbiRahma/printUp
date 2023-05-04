@@ -244,6 +244,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::prefix('paiement')->group(function () {
             Route::get('/', [AdminController::class, 'listePaiement'])->name('paiement');
             Route::get('/historique', [AdminController::class, 'historiquePaiement'])->name('paiement.historique');
+            Route::post('/payer', [AdminController::class, 'payer'])->name('transaction.payer');
             Route::get('/historiques', [AdminController::class, 'historiques'])->name('historiques');
         });
     });

@@ -339,43 +339,51 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div>
-                        <h5 style=" display: inline-block;">Nom et Prénom:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->first_name }}
-                            {{ $tr->membre->last_name }}</h6>
-                    </div>
-                    <div>
-                        <h5 style=" display: inline-block;">Email:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->email }}</h6>
-                    </div>
-                    <div>
-                        <h5 style=" display: inline-block;">Numéro Tél:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->phone }}</h6>
-                    </div>
-                    <div>
-                        <h5 style=" display: inline-block;">Proced:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->portmonnaie->Procedure }}</h6>
-                    </div>
-                    <div>
-                        <h5 style=" display: inline-block;">RIP:</h5>
-                        <h6 style=" display: inline-block; margin-left: 10px;">@foreach (str_split( $tr->membre->portmonnaie->Num_cart, 4) as $chunk)
-                            {{ $chunk }}&nbsp;&nbsp;&nbsp;
-                        @endforeach</h6>
-                    </div>
-                    <div class="mt-4">
-                        <button type="button" class="btn bg-gradient-primary">Transfert de l'argent</button>
-                    </div>
+                <form action="{{ route('transaction.payer') }}" method="POST" id="form-paiement">
+                    @csrf
+                    <input type="hidden" name="transaction_id" value="{{ $tr->id }}">
+                    <div class="modal-body">
+                        <div>
+                            <h5 style=" display: inline-block;">Nom et Prénom:</h5>
+                            <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->first_name }}
+                                {{ $tr->membre->last_name }}</h6>
+                        </div>
+                        <div>
+                            <h5 style=" display: inline-block;">Email:</h5>
+                            <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->email }}</h6>
+                        </div>
+                        <div>
+                            <h5 style=" display: inline-block;">Numéro Tél:</h5>
+                            <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->phone }}</h6>
+                        </div>
+                        <div>
+                            <h5 style=" display: inline-block;">Proced:</h5>
+                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                {{ $tr->membre->portmonnaie->Procedure }}</h6>
+                        </div>
+                        <div>
+                            <h5 style=" display: inline-block;">RIP:</h5>
+                            <h6 style=" display: inline-block; margin-left: 10px;">
+                                @foreach (str_split($tr->membre->portmonnaie->Num_cart, 4) as $chunk)
+                                    {{ $chunk }}&nbsp;&nbsp;&nbsp;
+                                @endforeach
+                            </h6>
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn bg-gradient-primary">Transfert de l'argent</button>
+                        </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-
+@include('inc.argon.flashmessage')
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

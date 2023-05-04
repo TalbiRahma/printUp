@@ -10,6 +10,7 @@ use App\Models\Transactions;
 use Illuminate\Http\Request;
 use App\Mail\DesignSupprimer;
 use App\Models\LigneCommande;
+use App\Mail\PaiementEffectue;
 use App\Models\CategoryDesign;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProduitPersonnaliser;
@@ -228,20 +229,52 @@ class AdminController extends Controller
         return view('admin.paiement.index', compact('transactions'));
     }
 
-    public function payee(){
-
+    public function payer(Request $request)
+    {
+        $transaction_id = $request->input('transaction_id');
+        $transaction = Transactions::find($transaction_id);
+        if (!$transaction) {
+            return redirect()->back()->with('danger1', 'Transaction non trouvée !');
+        }
         
+        $membre = $transaction->membre;
+        $montant_demander = $transaction->montant_demander;
+        $solde = $membre->portmonnaie->solde;
+        if ($solde < $montant_demander) {
+            return  redirect()->back()->with('danger1', 'Solde insuffisant !');
+        }
+
+        // Mettre à jour le solde du portefeuille du membre
+        $nouveau_solde = $solde - $montant_demander;
+        $portmonnaie = $membre->portmonnaie;
+        $portmonnaie->solde = $nouveau_solde;
+        $portmonnaie->save();
+        
+        // Mettre à jour la transaction
+        $transaction->montant_transferts = $montant_demander;
+        $transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
+        $transaction->etat = 'transferee';
+        //dd($transaction);
+        $transaction->save();
+        
+        // Envoyer un e-mail de confirmation de paiement
+        Mail::to($membre->email)->send(new PaiementEffectue($transaction));
+    
+        return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
     }
+    
 
     public function historiquePaiement()
     {
-
+        
         return view('admin.paiement.historiquepaiement');
     }
 
     public function historiques()
     {
-
-        return view('admin.paiement.historiques');
+        $transactions = Transactions::with('membre')
+            ->where('etat', 'transferee')
+            ->get();
+        return view('admin.paiement.historiques', compact('transactions'));
     }
 }

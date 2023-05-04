@@ -271,19 +271,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($transactions as $index => $tr)
                             <tr>
                                 <td class="align-middle">
-                                    #001
+                                    #00{{ $index + 1 }}
                                 </td>
                                 <td>
                                     <div class="d-flex px-2 py-1">
                                         <div>
-                                            <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                class="avatar avatar-sm me-3">
+                                            @if ($tr->membre->photo)
+                                                    <img src="{{ assets('uploads') }}/{{ $tr->member->photo }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @else
+                                                    <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @endif
                                         </div>
                                         <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-xs">name client</h6>
-                                            <p class="text-xs text-secondary mb-0">email@mail.com</p>
+                                            <h6 class="mb-0 text-xs">{{ $tr->membre->first_name }}
+                                                {{ $tr->membre->last_name }}</h6>
+                                            <p class="text-xs text-secondary mb-0">{{ $tr->membre->email }}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -291,13 +298,14 @@
                                     <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">150 TND</h6>
+                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->membre->portmonnaie->solde }}
+                                        DT</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
+                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->montant_transferts }} DT</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    12-09-2023
+                                    {{ $tr->updated_at}}
                                 </td>
                                 <td class="align-middle text-sm ">
                                     <a href="{{ route('paiement.historique') }}" class="text-primary font-weight-bold ">
@@ -305,6 +313,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
