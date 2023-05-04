@@ -37,7 +37,7 @@
 
     <main class="main-wrapper">
         <main class="main-wrapper">
-
+            @include('inc.flashmessage')
             <!-- Start Checkout Area  -->
 
             <div class="axil-checkout-area axil-section-gap">
@@ -167,8 +167,9 @@
                                     <div class="order-payment-method">
                                         <div class="single-payment">
                                             <div class="input-group">
-                                                <input type="radio" id="radio14" name="payment">
-                                                <label for="radio4">Virement bancaire direct</label>
+                                                <input type="radio" id="radio1" name="paiement" 
+                                                value="virment">
+                                                <label for="radio1">Virement bancaire direct</label>
                                             </div>
                                             <p>Effectuez votre paiement directement sur notre compte bancaire.
                                                 Veuillez utiliser votre ID de commande comme référence de paiement.
@@ -177,21 +178,11 @@
                                         </div>
                                         <div class="single-payment">
                                             <div class="input-group">
-                                                <input type="radio" id="radio5" name="livraison"
+                                                <input type="radio" id="radio2" name="paiement"
                                                     value="à la livraison">
-                                                <label for="radio5">Paiement à la livraison</label>
+                                                <label for="radio2">Paiement à la livraison</label>
                                             </div>
                                             <p>Payez en espèces à la livraison.</p>
-                                        </div>
-                                        <div class="single-payment">
-                                            <div class="input-group justify-content-between align-items-center">
-                                                <input type="radio" id="radio16" name="payment">
-                                                <label for="radio6">Paypal</label>
-                                                <img src="{{ asset('/mainssets/images/others/payment.png') }}"
-                                                    alt="Paypal payment">
-                                            </div>
-                                            <p>Payez via PayPal; vous pouvez payer avec votre carte de crédit si
-                                                vous n'avez pas de compte PayPal.</p>
                                         </div>
                                     </div>
                                     <button type="submit" class="axil-btn btn-bg-primary checkout-btn">Processus
@@ -239,6 +230,22 @@
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
+    <script>
+        var radio1 = document.getElementById("radio1");
+        var radio2 = document.getElementById("radio2");
+      
+        radio1.onclick = function() {
+          if (radio1.checked) {
+            radio2.checked = false;
+          }
+        };
+      
+        radio2.onclick = function() {
+          if (radio2.checked) {
+            radio1.checked = false;
+          }
+        };
+      </script>
 </body>
 
 </html>

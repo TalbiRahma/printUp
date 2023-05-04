@@ -260,8 +260,7 @@
                         <div class="col-8">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <h3 style="color: #525f7f; margin-bottom: 20px;">{{ $lc->customproduct->name }}</h3>
-                                <button type="button" class="btn btn-info"
-                                    style="margin-left: auto;">Télécharger</button>
+                                <a href="{{ route('telecharger.image', ['nomImage' => $lc->customproduct->photo]) }}" class="btn btn-info" style="margin-left: auto;">Télécharger</a>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Produit Initial:</h5>

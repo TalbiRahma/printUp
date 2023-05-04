@@ -113,12 +113,12 @@
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                        <path fill-rule="evenodd"
-                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                    </svg>
+                            class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
                         <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -201,18 +201,25 @@
                                         <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <span class="badge bg-gradient-secondary" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom"
-                                            title="Nous sommes en train de vérifier votre commande."
-                                            data-container="body" data-animation="true">{{$commande->etat}}</span>
-                                        <!--<span class="badge bg-gradient-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nous sommes en train de préparer votre commande.">En Cours</span>
-                                    <span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tu as déjà reçu cette commande.">Validée</span>-->
+                                        @if ($commande->etat == 'en attente')
+                                            <span class="badge bg-gradient-secondary" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom"
+                                                title="Nous sommes en train de vérifier votre commande."
+                                                data-container="body" data-animation="true"> en attente </span>
+                                        @else
+                                            <span class="badge bg-gradient-success" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom"
+                                                title="Tu as déjà reçu cette commande.">Validée</span>
+                                        @endif
                                     </td>
                                     <td class="align-middle text-sm ">
+                                        @if ($commande->paiement == 'payee')
+                                        <span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cette commande a été payée.">Payé</span>
+                                        @else
                                         <span class="badge bg-gradient-warning" data-bs-toggle="tooltip"
-                                            data-bs-placement="bottom"
-                                            title="Votre commande n'a pas encore été payée.">Non Payé</span>
-                                        <!--<span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cette commande a été payée.">Payé</span>-->
+                                        data-bs-placement="bottom"
+                                        title="Votre commande n'a pas encore été payée.">Non Payé</span>
+                                        @endif
                                     </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="btn bg-gradient-primary btn-sm"
@@ -244,7 +251,7 @@
                             <h5 class="modal-title" id="exampleModalLabel">Détails Commande</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button> 
+                            </button>
                         </div>
                         <div class="modal-body">
                             <div>
@@ -258,7 +265,8 @@
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Nom et Prénom:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $coordonnees['first_name'] }} {{ $coordonnees['last_name'] }}
                                 </h6>
                             </div>
                             <div>
@@ -268,22 +276,26 @@
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Numéro Téléphone:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['phone'] }}
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $coordonnees['phone'] }}
                                 </h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Ville:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['ville'] }}</h6>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $coordonnees['ville'] }}</h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Région:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['region'] }}
-                                    </h6>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $coordonnees['region'] }}
+                                </h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Adresse De Livraison:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{ $coordonnees['adresse'] }}
-                                   </h6>
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $coordonnees['adresse'] }}
+                                </h6>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Prix Total:</h5>
@@ -292,7 +304,8 @@
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Méthode Paiement:</h5>
-                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">{{$commande->paiement}}
+                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
+                                    {{ $commande->paiement }}
                                 </h6>
                                 <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non Payé</span>
                                 <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
@@ -326,7 +339,8 @@
                                     <div class="col-4">
                                         <div class="card">
                                             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                                <a href="{{ route('commande.historique.details', ['id' => $lc->id]) }}" class="d-block">
+                                                <a href="{{ route('commande.historique.details', ['id' => $lc->id]) }}"
+                                                    class="d-block">
                                                     <img style="width: 100%; height: auto;"
                                                         src="/{{ $lc->customproduct->photo }}" alt="">
                                                 </a>

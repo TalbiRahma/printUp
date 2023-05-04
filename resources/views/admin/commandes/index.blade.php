@@ -324,8 +324,11 @@
                                     <a><span class="badge bg-gradient-success">Validée</span></a>-->
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
-                                        <!--<span class="badge bg-gradient-success">Payé</span>-->
+                                        @if ($commande->paiement == 'payee')
+                                            <span class="badge bg-gradient-success">Payé</span>
+                                        @else
+                                            <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
+                                        @endif
                                     </td>
                                     <td style="text-align: center;">
                                         <button type="button" class="btn bg-gradient-primary btn-sm"

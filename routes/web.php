@@ -237,8 +237,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/', [AdminController::class, 'commandes'])->name('commandes');
             Route::post('/validée', [AdminController::class, 'validerCommande'])->name('valider.commande');
             Route::get('/validée/list', [AdminController::class, 'listCommandesValide'])->name('commandes.validee');
-            Route::get('{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
-            Route::post('/telecharger-image/{nomImage}', 'App\Http\Controllers\ImageController@telechargerImage')->name('telecharger.image');
+            Route::get('/validée/list/{id}/payer', [AdminController::class, 'marquerCommandePayer'])->name('commande.payer');
+            Route::get('/validée/list/{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
+            Route::post('/telecharger-image/{nomImage}',[AdminController::class, 'telechargerImage'])->name('telecharger.image');
         });
 
         

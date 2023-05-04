@@ -95,7 +95,7 @@ class CommandeController extends Controller
             'ville' => 'required',
             'phone' => 'required',
             'email' => 'required',
-            'livraison' => 'required',
+            'paiement' => 'required|max:255',
 
 
         ]);
@@ -109,8 +109,6 @@ class CommandeController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'notes' => $request->notes,
-
-
         ];
 
         // transformer les données en JSON
@@ -122,7 +120,9 @@ class CommandeController extends Controller
 
         $commandes->coordonnees = $commande_data;
         $commandes->etat = "en attente";
-        $commandes->update();
+        $commandes->paiement = $request->paiement;
+        
+        
 
 
         // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
@@ -146,7 +146,13 @@ class CommandeController extends Controller
                 $portemonnaie->save();
             }
         }
-        return redirect('client/commande/historique');
+        if ($commandes->update()){
+            //dd($commandes);
+            return redirect('client/commande/historique')->with('success', 'Votre commande');
+        }else{
+            return redirect('client/commande/historique')->with('danger', 'Votre commande');
+        }
+        
     }
 
     public function listCommande()
@@ -159,7 +165,7 @@ class CommandeController extends Controller
     { 
         $user = auth()->user();
         $commandes = Commande::where('member_id', '=', $user->id)
-            ->whereIn('etat', ['en attente'])
+            ->whereIn('etat', ['en attente' , 'valide' ])
             ->get();
         return view('client.commandes.historiquecommande', compact('commandes'));
     }

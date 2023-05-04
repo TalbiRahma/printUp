@@ -336,9 +336,11 @@
                                         <!--<a><span class="badge bg-gradient-info">En Cours</span></a>-->
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
-                                        <!--<span class="badge bg-gradient-success">Payé</span>-->
-                                    </td>
+                                        @if ($commande->paiement == 'payee')
+                                            <span class="badge bg-gradient-success"> Payé </span>
+                                        @else 
+                                            <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
+                                        @endif
                                     <td style="text-align: center;">
                                         <button type="button" class="btn bg-gradient-primary btn-sm"
                                             data-bs-toggle="modal" data-bs-target="#plus{{ $commande->id }}">Voir
@@ -523,10 +525,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn bg-gradient-success" type="button">
+                        <a href="{{route('commande.payer',  ['id' => $commande->id])}}" class="btn bg-gradient-success" type="button">
                             <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
-                            <span class="btn-inner--text">Validée</span>
-                        </button>
+                            <span class="btn-inner--text">a été payée</span>
+                        </a>
                         <button type="button" class="btn bg-gradient-secondary"
                             data-bs-dismiss="modal">Fermer</button>
                     </div>

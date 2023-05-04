@@ -227,10 +227,24 @@ class AdminController extends Controller
         }
     }
 
-    public function test()
+    public function marquerCommandePayer($id)
     {
-        return view('testpersonnalise');
+        $commande = Commande::findOrFail($id);
+        $commande->paiement = 'payee';
+
+        if ($commande->save()) {
+            return redirect()->back()->with('success1', 'La commande a été marquée comme payée.');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        };
     }
+
+    public function telechargerImage($nomImage)
+    {
+        $cheminImage = storage_path('app/public/uploads/' . $nomImage);
+        return response()->download($cheminImage);
+    }
+
 
     /****************************************** PAIEMENT    **************************/
     public function listePaiement()
