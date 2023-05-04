@@ -208,10 +208,23 @@ class AdminController extends Controller
         return view('admin.commandes.detail', compact('lc'));
     }
 
-    public function commandesValidee()
+    public function listCommandesValide()
     {
-        $commandes = Commande::where('etat', 'en attente')->get();
+        $commandes = Commande::where('etat', 'valide')->get();
         return view('admin.commandes.validee', compact('commandes'));
+    }
+
+    public function validerCommande(Request $request)
+    {
+        $commande_id = $request->input('commande_id');
+        $commande = Commande::find($commande_id);
+        $commande->etat = 'valide';
+        //dd($commande);
+        if ($commande->update()) {
+            return redirect()->back()->with('success1', 'La commande a été validé');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
     public function test()
@@ -236,7 +249,7 @@ class AdminController extends Controller
         if (!$transaction) {
             return redirect()->back()->with('danger1', 'Transaction non trouvée !');
         }
-        
+
         $membre = $transaction->membre;
         $montant_demander = $transaction->montant_demander;
         $solde = $membre->portmonnaie->solde;
@@ -249,24 +262,24 @@ class AdminController extends Controller
         $portmonnaie = $membre->portmonnaie;
         $portmonnaie->solde = $nouveau_solde;
         $portmonnaie->save();
-        
+
         // Mettre à jour la transaction
         $transaction->montant_transferts = $montant_demander;
         $transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
         $transaction->etat = 'transferee';
         //dd($transaction);
         $transaction->save();
-        
+
         // Envoyer un e-mail de confirmation de paiement
         Mail::to($membre->email)->send(new PaiementEffectue($transaction));
-    
+
         return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
     }
-    
+
 
     public function historiquePaiement()
     {
-        
+
         return view('admin.paiement.historiquepaiement');
     }
 

@@ -57,8 +57,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -107,7 +107,7 @@
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
                         <a class="nav-link" href="{{ route('mes.designs') }}">
-                            
+
                             <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
                         </a>
                     </div>
@@ -138,7 +138,8 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"
+                                style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -180,22 +181,22 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
                 </li>
             </ul>
         </div>
@@ -282,7 +283,7 @@
                             @foreach ($commandes as $index => $commande)
                                 <tr>
                                     <td class="align-middle">
-                                        {{ $index + 1 }}
+                                        #{{ $index + 1 }}
                                     </td>
                                     <td>
                                         <a href="" data-bs-toggle="modal"
@@ -297,8 +298,13 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="{{ asset('/uploads') }}/{{ $commande->member->photo }}"
-                                                    class="avatar avatar-sm me-3">
+                                                @if ($commande->member->photo)
+                                                    <img src="{{ asset('/uploads') }}/{{ $commande->member->photo }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @else
+                                                    <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @endif
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-xs">{{ $commande->member->first_name }}
@@ -312,7 +318,7 @@
                                         <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <a href=""><span class="badge bg-gradient-secondary">En
+                                        <a href=""><span class="badge badge-secondary">En
                                                 Attente</span></a>
                                         <!--<a><span class="badge bg-gradient-info">En Cours</span></a>
                                     <a><span class="badge bg-gradient-success">Validée</span></a>-->
@@ -333,6 +339,7 @@
                 </div>
             </div>
         </div>
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
 
     </main>
@@ -505,10 +512,14 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn bg-gradient-success" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
-                            <span class="btn-inner--text">Validée</span>
-                        </button>
+                        <form action="{{ route('valider.commande') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="commande_id" value="{{ $commande->id }}">
+                            <button class="btn bg-gradient-success" type="submit">
+                                <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
+                                <span class="btn-inner--text">Validée</span>
+                            </button>
+                        </form>
                         <button type="button" class="btn bg-gradient-secondary"
                             data-bs-dismiss="modal">Fermer</button>
                     </div>
@@ -564,6 +575,33 @@
             </div>
         </div>
     @endforeach
+
+    <style>
+        .badge-secondary {
+            color: #5974a2;
+            background-color: #e4e8ed;
+        }
+
+        .badge-success {
+            color: #1aae6f;
+            background-color: #b0eed3;
+
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+
+        .badge-warning {
+            color: #ff3709;
+            background-color: #fee6e0;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
+
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

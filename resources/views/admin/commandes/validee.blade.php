@@ -295,7 +295,7 @@
                             @foreach ($commandes as $index => $commande)
                                 <tr>
                                     <td class="align-middle">
-                                        {{ $index + 1 }}
+                                        #{{ $index + 1 }}
                                     </td>
                                     <td>
                                         <a href="" data-bs-toggle="modal"
@@ -310,8 +310,13 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="{{ asset('/uploads') }}/{{ $commande->member->photo }}"
-                                                    class="avatar avatar-sm me-3">
+                                                @if ($commande->member->photo)
+                                                    <img src="{{ asset('/uploads') }}/{{ $commande->member->photo }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @else
+                                                    <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                                        class="avatar avatar-sm me-3">
+                                                @endif
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-xs">{{ $commande->member->first_name }}
@@ -325,10 +330,10 @@
                                         <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <a href=""><span class="badge bg-gradient-secondary">En
-                                                Attente</span></a>
-                                        <!--<a><span class="badge bg-gradient-info">En Cours</span></a>
-                                    <a><span class="badge bg-gradient-success">Validée</span></a>-->
+                                        @if($commande->etat == 'valide')
+                                        <a><span class="badge badge-success">Validée</span></a>
+                                        @endif
+                                        <!--<a><span class="badge bg-gradient-info">En Cours</span></a>-->
                                     </td>
                                     <td class="align-middle text-sm ">
                                         <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
@@ -577,6 +582,27 @@
             </div>
         </div>
     @endforeach
+
+    <style>
+        .badge-success {
+            color: #1aae6f;
+            background-color: #b0eed3;
+
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+
+        .badge-warning {
+            color: #ff3709;
+            background-color: #fee6e0;
+        }
+
+        .badge {
+            text-transform: uppercase;
+        }
+    </style>
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

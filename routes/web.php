@@ -235,7 +235,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         /********admin COMMANDES****** */
         Route::prefix('commandes')->group(function () {
             Route::get('/', [AdminController::class, 'commandes'])->name('commandes');
-            Route::get('/validée', [AdminController::class, 'commandesValidee'])->name('commandes.validee');
+            Route::post('/validée', [AdminController::class, 'validerCommande'])->name('valider.commande');
+            Route::get('/validée/list', [AdminController::class, 'listCommandesValide'])->name('commandes.validee');
             Route::get('{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
             Route::post('/telecharger-image/{nomImage}', 'App\Http\Controllers\ImageController@telechargerImage')->name('telecharger.image');
         });
