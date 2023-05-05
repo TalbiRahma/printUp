@@ -121,31 +121,7 @@ class CommandeController extends Controller
         $commandes->coordonnees = $commande_data;
         $commandes->etat = "en attente";
         $commandes->paiement = $request->paiement;
-        
-        
-
-
-        // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
-        foreach ($commandes->lignecommandes as $ligne_commande) {
-            $montant = $ligne_commande->customproduct->design->price;
-            $montant_totale = $montant * $ligne_commande->qte;
-            $user = $ligne_commande->customproduct->design->user;
-            $user_id = $user->id;
-            $portemonnaie = Portmonnaie::where('user_id', $user_id)->first();
-            
-            if ($portemonnaie) {
-                // Mettre à jour la colonne "montant_existe"
-                $portemonnaie->solde += $montant_totale;
-                $portemonnaie->save();
-            } else {
-                // Le portefeuille n'existe pas encore pour cet utilisateur, créer un nouveau portefeuille avec le montant initial
-                $portemonnaie = new Portmonnaie;
-                $portemonnaie->user_id = $user_id;
-                $portemonnaie->solde = $montant_totale;
-                //dd($portemonnaie);
-                $portemonnaie->save();
-            }
-        }
+       
         if ($commandes->update()){
             //dd($commandes);
             return redirect('client/commande/historique')->with('success', 'Votre commande');

@@ -214,11 +214,13 @@
                                     </td>
                                     <td class="align-middle text-sm ">
                                         @if ($commande->paiement == 'payee')
-                                        <span class="badge bg-gradient-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cette commande a été payée.">Payé</span>
+                                            <span class="badge bg-gradient-success" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom"
+                                                title="Cette commande a été payée.">Payé</span>
                                         @else
-                                        <span class="badge bg-gradient-warning" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom"
-                                        title="Votre commande n'a pas encore été payée.">Non Payé</span>
+                                            <span class="badge bg-gradient-warning" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom"
+                                                title="Votre commande n'a pas encore été payée.">Non Payé</span>
                                         @endif
                                     </td>
                                     <td style="text-align: center;">

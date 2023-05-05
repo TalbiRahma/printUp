@@ -86,13 +86,8 @@ class PortmonnaieController extends Controller
         $user = auth()->user(); // Récupérer l'utilisateur connecté
         
         // Vérifier si l'utilisateur a un portefeuille actif
-        if (!$user->portmonnaie) {
-            dd($user);
-            // Si l'utilisateur n'a pas de portefeuille, créer un nouveau portefeuille pour l'utilisateur
-            $portmonnaie = new Portmonnaie();
-            $portmonnaie->solde = 0;
-            $portmonnaie->user_id = $user->id;
-            $portmonnaie->save();
+        if (!$user->portmonnaie->Num_cart) {
+            return redirect()->back()->with('danger1', 'Ajouter une carte  !');
         } 
  
         // Vérifier si le montant est valide
