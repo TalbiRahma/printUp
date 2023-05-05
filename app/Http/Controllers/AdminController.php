@@ -6,9 +6,11 @@ use App\Models\User;
 use App\Models\Design;
 use App\Models\Commande;
 use App\Events\DeleteDesign;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 use App\Mail\DesignSupprimer;
 use App\Models\LigneCommande;
+use App\Mail\PaiementEffectue;
 use App\Models\CategoryDesign;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProduitPersonnaliser;
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     // 
- 
+
     public function dashboard()
     {
         return view('admin.dashboard');
@@ -37,9 +39,13 @@ class AdminController extends Controller
 
         $client = User::find($iduser);
         $client->is_active = false;
-        $client->update();
 
-        return redirect()->back()->with('warning1', 'Member bloquee');
+
+        if ($client->update()) {
+            return redirect()->back()->with('warning1', 'Member bloquee');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
     public function activerUser($iduser)
@@ -47,9 +53,12 @@ class AdminController extends Controller
 
         $client = User::find($iduser);
         $client->is_active = true;
-        $client->update();
 
-        return redirect()->back()->with('info1', 'Member activee');
+        if ($client->update()) {
+            return redirect()->back()->with('info1', 'Member activee');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
     public function modifProfil()
@@ -121,7 +130,7 @@ class AdminController extends Controller
         return view('admin.compte.donnesprofil');
     }
 
-/*********************************  DESIGNS   *************************** */
+    /*********************************  DESIGNS   *************************** */
     public function designs()
     {
         $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
@@ -134,13 +143,13 @@ class AdminController extends Controller
         return view('admin.designs.index', compact('designs'));
     }
 
-    
+
 
     public function validerDesign($id)
     {
         $design = Design::find($id);
         $design->etat = 'valide';
-        $design->update();
+
         $custom_products = ProduitPersonnaliser::where('design_id', $id)->get();
 
         foreach ($custom_products as $custom_product) {
@@ -148,7 +157,11 @@ class AdminController extends Controller
             $custom_product->update();
         }
 
-        return redirect()->back()->with('success', 'design valider');
+        if ($design->update()) {
+            return redirect()->back()->with('success1', 'Le design a été validé');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
     public function designsvalidee()
@@ -158,6 +171,7 @@ class AdminController extends Controller
             ->where('designs.etat', '=', 'valide')
             ->get();
         $category_design = CategoryDesign::all();
+
         return view('admin.designs.validee', compact('designs'));
     }
 
@@ -172,14 +186,15 @@ class AdminController extends Controller
         if ($design->delete()) {
             $mailable = new DesignSupprimer($user_data->name, $user_data->email);
             Mail::to($user_data->email)->send($mailable);
-            return redirect()->back();
+
+
+            return redirect()->back()->with('warning1', 'Le design a été supprimé et l\'email de suppression a été envoyé à la boîte mail de ce membre');
         } else {
-            echo "error";
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 
-    
-
+    /****************************************** COMMANDES    **************************/
     public function commandes()
     {
         $commandes = Commande::where('etat', 'en attente')->get();
@@ -193,13 +208,100 @@ class AdminController extends Controller
         return view('admin.commandes.detail', compact('lc'));
     }
 
-    public function commandesValidee()
-    { 
-        $commandes = Commande::where('etat', 'en attente')->get();
+    public function listCommandesValide()
+    {
+        $commandes = Commande::where('etat', 'valide')->get();
         return view('admin.commandes.validee', compact('commandes'));
     }
 
-    public function test(){
-        return view('testpersonnalise');
+    public function validerCommande(Request $request)
+    {
+        $commande_id = $request->input('commande_id');
+        $commande = Commande::find($commande_id);
+        $commande->etat = 'valide';
+        //dd($commande);
+        if ($commande->update()) {
+            return redirect()->back()->with('success1', 'La commande a été validé');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+    }
+
+    public function marquerCommandePayer($id)
+    {
+        $commande = Commande::findOrFail($id);
+        $commande->paiement = 'payee';
+
+        if ($commande->save()) {
+            return redirect()->back()->with('success1', 'La commande a été marquée comme payée.');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        };
+    }
+
+    public function telechargerImage($nomImage)
+    {
+        $cheminImage = storage_path('app/public/uploads/' . $nomImage);
+        return response()->download($cheminImage);
+    }
+
+
+    /****************************************** PAIEMENT    **************************/
+    public function listePaiement()
+    {
+        $transactions = Transactions::with('membre')
+            ->where('etat', 'demandee')
+            ->get();
+
+        return view('admin.paiement.index', compact('transactions'));
+    }
+
+    public function payer(Request $request)
+    {
+        $transaction_id = $request->input('transaction_id');
+        $transaction = Transactions::find($transaction_id);
+        if (!$transaction) {
+            return redirect()->back()->with('danger1', 'Transaction non trouvée !');
+        }
+
+        $membre = $transaction->membre;
+        $montant_demander = $transaction->montant_demander;
+        $solde = $membre->portmonnaie->solde;
+        if ($solde < $montant_demander) {
+            return  redirect()->back()->with('danger1', 'Solde insuffisant !');
+        }
+
+        // Mettre à jour le solde du portefeuille du membre
+        $nouveau_solde = $solde - $montant_demander;
+        $portmonnaie = $membre->portmonnaie;
+        $portmonnaie->solde = $nouveau_solde;
+        $portmonnaie->save();
+
+        // Mettre à jour la transaction
+        $transaction->montant_transferts = $montant_demander;
+        $transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
+        $transaction->etat = 'transferee';
+        //dd($transaction);
+        $transaction->save();
+
+        // Envoyer un e-mail de confirmation de paiement
+        Mail::to($membre->email)->send(new PaiementEffectue($transaction));
+
+        return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
+    }
+
+
+    public function historiquePaiement()
+    {
+
+        return view('admin.paiement.historiquepaiement');
+    }
+
+    public function historiques()
+    {
+        $transactions = Transactions::with('membre')
+            ->where('etat', 'transferee')
+            ->get();
+        return view('admin.paiement.historiques', compact('transactions'));
     }
 }
