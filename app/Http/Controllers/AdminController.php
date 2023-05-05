@@ -316,7 +316,6 @@ class AdminController extends Controller
 
     public function historiquePaiement()
     {
-
         return view('admin.paiement.historiquepaiement');
     }
 
