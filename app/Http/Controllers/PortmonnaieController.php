@@ -21,7 +21,9 @@ class PortmonnaieController extends Controller
 
         $commandes = Commande::whereHas('lignecommandes.customproduct.design.user', function ($query) use ($user_id) {
             $query->where('users.id', $user_id); // Sélectionner les designs qui ont été ajoutés par l'utilisateur connecté
-        })->with(['lignecommandes.customproduct.design', 'lignecommandes.customproduct.initialProduct'])->get(); // Charger les relations avec la commande
+        })
+        ->where('paiement', 'payee')
+        ->with(['lignecommandes.customproduct.design', 'lignecommandes.customproduct.initialProduct'])->get(); // Charger les relations avec la commande
 
         $tarnsactions = Transactions::where('member_id', $user_id)->get(); 
         //dd($portemonnaie->solde);

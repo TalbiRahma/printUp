@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Commande;
 use App\Mail\MailVerification;
 use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
@@ -237,7 +238,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/', [AdminController::class, 'commandes'])->name('commandes');
             Route::post('/validée', [AdminController::class, 'validerCommande'])->name('valider.commande');
             Route::get('/validée/list', [AdminController::class, 'listCommandesValide'])->name('commandes.validee');
-            Route::get('/validée/list/{id}/payer', [AdminController::class, 'marquerCommandePayer'])->name('commande.payer');
+            /*Route::get('/validée/list/{id}/payer', [AdminController::class, 'marquerCommandePayer'])->name('commande.payer');*/
+            Route::get('/validée/list/{id}/payer', function ($id) {
+                $commande = Commande::findOrFail($id);
+
+                if ($commande->paiement === 'payee') {
+                    return redirect()->back()->with('warning1', 'Cette commande a déjà été payée.');
+                } else {
+                    app(AdminController::class)->marquerCommandePayer($id);
+                }
+            })->name('commande.payer');
             Route::get('/validée/list/{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
             Route::post('/telecharger-image/{nomImage}',[AdminController::class, 'telechargerImage'])->name('telecharger.image');
         });
@@ -245,7 +255,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         
         Route::prefix('paiement')->group(function () {
             Route::get('/', [AdminController::class, 'listePaiement'])->name('paiement');
-            Route::get('/historique', [AdminController::class, 'historiquePaiement'])->name('paiement.historique');
+            Route::get('member/{id}/historique', [AdminController::class, 'historiquePaiement'])->name('paiement.historique');
             Route::post('/payer', [AdminController::class, 'payer'])->name('transaction.payer');
             Route::get('/historiques', [AdminController::class, 'historiques'])->name('historiques');
         });

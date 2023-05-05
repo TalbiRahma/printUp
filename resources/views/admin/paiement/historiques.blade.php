@@ -308,7 +308,7 @@
                                     {{ $tr->updated_at}}
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <a href="{{ route('paiement.historique') }}" class="text-primary font-weight-bold ">
+                                    <a href="{{ route('paiement.historique', ['id' => $tr->membre->id]) }}" class="text-primary font-weight-bold ">
                                         Voir
                                     </a>
                                 </td>

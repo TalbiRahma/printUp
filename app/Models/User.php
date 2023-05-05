@@ -79,7 +79,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Transactions::class , 'member_id', 'id');
     }
-    
+
+    public function getTotaltransactions(){
+
+        $total = 0;
+        //liste des lignes de commande
+        foreach($this->transactions as $tr){
+           $total += $tr->montant_transferts;
+        }
+        return $total;
+    }
 
     public function produits_personnalises()
     {

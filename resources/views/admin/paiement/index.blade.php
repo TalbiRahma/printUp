@@ -282,7 +282,7 @@
                                         <div class="d-flex px-2 py-1">
                                             <div>
                                                 @if ($tr->membre->photo)
-                                                    <img src="{{ assets('uploads') }}/{{ $tr->member->photo }}"
+                                                    <img src="{{ assets('uploads') }}/{{ $tr->membre->photo }}"
                                                         class="avatar avatar-sm me-3">
                                                 @else
                                                     <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
@@ -311,7 +311,7 @@
                                             data-bs-toggle="modal" data-bs-target="#procedure">Payé</button>
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <a href="{{ route('paiement.historique') }}"
+                                        <a href="{{ route('paiement.historique', ['id' => $tr->membre->id]) }}"
                                             class="text-primary font-weight-bold ">
                                             Voir
                                         </a>
@@ -329,61 +329,64 @@
     </main>
 
     <!-- Modal Procedure -->
-    <div class="modal fade" id="procedure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Procédure de paiement</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('transaction.payer') }}" method="POST" id="form-paiement">
-                    @csrf
-                    <input type="hidden" name="transaction_id" value="{{ $tr->id }}">
-                    <div class="modal-body">
-                        <div>
-                            <h5 style=" display: inline-block;">Nom et Prénom:</h5>
-                            <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->first_name }}
-                                {{ $tr->membre->last_name }}</h6>
-                        </div>
-                        <div>
-                            <h5 style=" display: inline-block;">Email:</h5>
-                            <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->email }}</h6>
-                        </div>
-                        <div>
-                            <h5 style=" display: inline-block;">Numéro Tél:</h5>
-                            <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->phone }}</h6>
-                        </div>
-                        <div>
-                            <h5 style=" display: inline-block;">Proced:</h5>
-                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                {{ $tr->membre->portmonnaie->Procedure }}</h6>
-                        </div>
-                        <div>
-                            <h5 style=" display: inline-block;">RIP:</h5>
-                            <h6 style=" display: inline-block; margin-left: 10px;">
-                                @foreach (str_split($tr->membre->portmonnaie->Num_cart, 4) as $chunk)
-                                    {{ $chunk }}&nbsp;&nbsp;&nbsp;
-                                @endforeach
-                            </h6>
-                        </div>
-                        <div class="mt-4">
-                            <button type="submit" class="btn bg-gradient-primary">Transfert de l'argent</button>
-                        </div>
+    @foreach ($transactions as $index => $tr)
+        <div class="modal fade" id="procedure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Procédure de paiement</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('transaction.payer') }}" method="POST" id="form-paiement">
+                        @csrf
+                        <input type="hidden" name="transaction_id" value="{{ $tr->id }}">
+                        <div class="modal-body">
+                            <div>
+                                <h5 style=" display: inline-block;">Nom et Prénom:</h5>
+                                <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->first_name }}
+                                    {{ $tr->membre->last_name }}</h6>
+                            </div>
+                            <div>
+                                <h5 style=" display: inline-block;">Email:</h5>
+                                <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->email }}</h6>
+                            </div>
+                            <div>
+                                <h5 style=" display: inline-block;">Numéro Tél:</h5>
+                                <h6 style=" display: inline-block; margin-left: 10px;">{{ $tr->membre->phone }}</h6>
+                            </div>
+                            <div>
+                                <h5 style=" display: inline-block;">Proced:</h5>
+                                <h6 style=" display: inline-block; margin-left: 10px;">
+                                    {{ $tr->membre->portmonnaie->Procedure }}</h6>
+                            </div>
+                            <div>
+                                <h5 style=" display: inline-block;">RIP:</h5>
+                                <h6 style=" display: inline-block; margin-left: 10px;">
+                                    @foreach (str_split($tr->membre->portmonnaie->Num_cart, 4) as $chunk)
+                                        {{ $chunk }}&nbsp;&nbsp;&nbsp;
+                                    @endforeach
+                                </h6>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn bg-gradient-primary">Transfert de l'argent</button>
+                            </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary"
-                            data-bs-dismiss="modal">Fermer</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn bg-gradient-secondary"
+                                data-bs-dismiss="modal">Fermer</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endforeach
 
-@include('inc.argon.flashmessage')
+
+    @include('inc.argon.flashmessage')
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>

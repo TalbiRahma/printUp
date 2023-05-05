@@ -124,9 +124,9 @@ class CommandeController extends Controller
        
         if ($commandes->update()){
             //dd($commandes);
-            return redirect('client/commande/historique')->with('success', 'Votre commande');
+            return redirect('client/commande/historique')->with('success1', 'Votre commande a été envoyée avec succès');
         }else{
-            return redirect('client/commande/historique')->with('danger', 'Votre commande');
+            return redirect('client/commande/historique')->with('danger', 'Une erreur s\'est produite !');
         }
         
     }

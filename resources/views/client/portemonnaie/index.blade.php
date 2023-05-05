@@ -180,12 +180,16 @@
                                                             src="{{ asset('/dashassets/img/logod17bnk.png') }}"
                                                             alt="logo">
                                                     @elseif (auth()->user()->portmonnaie->Procedure == 'bna')
-                                                        <img class="w-15 me-3 mb-0"
+                                                        <img class="w-100 mt-2"
                                                             src="{{ asset('/dashassets/img/logo-bna.png') }}"
                                                             alt="logo">
-                                                    @else
-                                                        <img class="w-15 me-3 mb-0"
+                                                    @elseif (auth()->user()->portmonnaie->Procedure == 'biat')
+                                                        <img class="w-100 mt-2"
                                                             src="{{ asset('/dashassets/img/logobiat.png') }}"
+                                                            alt="logo">
+                                                    @else
+                                                        <img class="w-100 mt-2"
+                                                            src="{{ asset('/dashassets/img/logod17bnk.png') }}"
                                                             alt="logo">
                                                     @endif
                                                 @endif
@@ -228,7 +232,8 @@
                                             <span class="text-xs">Total Transfert</span>
                                             <hr class="horizontal dark my-3">
                                             @if (auth()->user()->portmonnaie)
-                                                <h5 class="mb-0">{{ auth()->user()->tarnsactions }} DT</h5>
+                                                <h5 class="mb-0">{{ auth()->user()->getTotaltransactions() }} DT
+                                                </h5>
                                             @endif
                                         </div>
                                     </div>
@@ -268,38 +273,33 @@
                                             @elseif (auth()->user()->portmonnaie->Procedure == 'bna')
                                                 <img class="w-15 me-3 mb-0"
                                                     src="{{ asset('/dashassets/img/logo-bna.png') }}" alt="logo">
-                                            @else
+                                            @elseif (auth()->user()->portmonnaie->Procedure == 'biat')
                                                 <img class="w-15 me-3 mb-0"
                                                     src="{{ asset('/dashassets/img/logobiat.png') }}" alt="logo">
+                                            @else
+                                                <img class="w-15 me-3 mb-0"
+                                                    src="{{ asset('/dashassets/img/logod17bnk.png') }}"
+                                                    alt="logo">
                                             @endif
-                                        @endif
-                                        @if (auth()->user()->portmonnaie)
                                             @if (auth()->user()->portmonnaie->Num_cart)
                                                 <h6 class="mb-0">
                                                     @foreach (str_split(auth()->user()->portmonnaie->Num_cart, 4) as $chunk)
                                                         {{ $chunk }}&nbsp;&nbsp;&nbsp;
                                                     @endforeach
                                                 </h6>
-                                            @endif
-                                        @else
-                                            <h6 class="mb-0">
-                                                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
-                                            </h6>
-                                        @endif
-
-                                        @if (auth()->user()->portmonnaie)
-                                            @if (auth()->user()->portmonnaie->Num_cart)
                                                 <i class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
                                                     data-bs-placement="top" data-bs-toggle="modal"
                                                     data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
                                             @endif
-                                        @else
+                                        @endif
+                                        @if (!auth()->user()->portmonnaie->Num_cart)
+                                            <h6 class="mb-0">
+                                                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
+                                            </h6>
                                             <i class="ni ni-fat-add ms-auto text-dark cursor-pointer"
                                                 data-bs-placement="top" data-bs-toggle="modal"
                                                 data-bs-target="#modal-form-ajout" title="Ajouter une carte"></i>
                                         @endif
-
-
                                     </div>
                                 </div>
                             </div>
@@ -398,8 +398,9 @@
                                                 {{ $tr->montant_demander }} TD
                                             </div>
                                         </li>
-                                    @elseif( $tr->montant_transferts != null)
-                                    <li
+                                    @endif
+                                    @if ($tr->montant_transferts != null)
+                                        <li
                                             class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                             <div class="d-flex align-items-center">
                                                 <button
@@ -415,22 +416,28 @@
                                                 - {{ $tr->montant_transferts }} TD
                                             </div>
                                         </li>
-                                        <li
-                                            class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                            <div class="d-flex align-items-center">
-                                                <button
-                                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                        class="fas fa-arrow-up"></i></button>
-                                                <div class="d-flex flex-column">
-                                                    <h6 class="mb-1 text-dark text-sm">Revenu</h6>
-                                                    <span class="text-xs">{{ $tr->updated_at }}</span>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                                + {{ $tr->montant_transferts }} TD
-                                            </div>
-                                        </li>
+                                    @endif
+                                    @if ($commandes)
+                                        @foreach ($commandes as $commande)
+                                            @foreach ($commande->lignecommandes as $lc)
+                                                <li
+                                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                                    <div class="d-flex align-items-center">
+                                                        <button
+                                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                                class="fas fa-arrow-up"></i></button>
+                                                        <div class="d-flex flex-column">
+                                                            <h6 class="mb-1 text-dark text-sm">Revenu</h6>
+                                                            <span class="text-xs">{{ $tr->updated_at }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                                        + {{ $lc->customproduct->design->price * $lc->qte }} TD
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        @endforeach
                                     @endif
                                 @endforeach
                             </ul>

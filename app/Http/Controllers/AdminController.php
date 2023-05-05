@@ -233,15 +233,15 @@ class AdminController extends Controller
         $commande = Commande::findOrFail($id);
         $commande->paiement = 'payee';
 
-         // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
-         foreach ($commande->lignecommandes as $ligne_commande) {
-            
+        // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
+        foreach ($commande->lignecommandes as $ligne_commande) {
+
             $montant = $ligne_commande->customproduct->design->price;
             $montant_totale = $montant * $ligne_commande->qte;
             $user = $ligne_commande->customproduct->design->user;
             $user_id = $user->id;
             $portemonnaie = Portmonnaie::where('user_id', $user_id)->first();
-            
+
             if ($portemonnaie) {
                 // Mettre à jour la colonne "montant_existe"
                 $portemonnaie->solde += $montant_totale;
@@ -261,6 +261,9 @@ class AdminController extends Controller
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         };
     }
+
+
+
 
     public function telechargerImage($nomImage)
     {
@@ -287,6 +290,7 @@ class AdminController extends Controller
             return redirect()->back()->with('danger1', 'Transaction non trouvée !');
         }
 
+
         $membre = $transaction->membre;
         $montant_demander = $transaction->montant_demander;
         $solde = $membre->portmonnaie->solde;
@@ -302,7 +306,7 @@ class AdminController extends Controller
 
         // Mettre à jour la transaction
         $transaction->montant_transferts = $montant_demander;
-        $transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
+        //$transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
         $transaction->etat = 'transferee';
         //dd($transaction);
         $transaction->save();
@@ -314,9 +318,14 @@ class AdminController extends Controller
     }
 
 
-    public function historiquePaiement()
+    public function historiquePaiement($id)
     {
-        return view('admin.paiement.historiquepaiement');
+        $membre = User::find($id);
+        //dd($membre);
+        $transactions = Transactions::with('membre')
+            ->where('member_id', $id)
+            ->get();
+        return view('admin.paiement.historiquepaiement', compact('transactions', 'membre'));
     }
 
     public function historiques()

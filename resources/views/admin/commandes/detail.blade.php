@@ -367,8 +367,7 @@
 
                                 <div>
                                     <h5 style="color: #525f7f; display: inline-block;">Désigner:</h5>
-                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Foulan El
-                                        Foulani
+                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">{{ $lc->customproduct->design->user->first_name }} {{ $lc->customproduct->design->user->last_name }}
                                     </h6> 
                                 </div>
                                 <div>

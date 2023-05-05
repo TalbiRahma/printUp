@@ -13,5 +13,5 @@ class Transactions extends Model
     {
         return $this->belongsTo(User::class, 'member_id', 'id');
     }
-
+    
 }

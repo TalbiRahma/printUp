@@ -57,8 +57,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -107,7 +107,7 @@
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
                         <a class="nav-link" href="{{ route('mes.designs') }}">
-                            
+
                             <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
                         </a>
                     </div>
@@ -138,7 +138,8 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"
+                                style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -180,22 +181,22 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
                 </li>
             </ul>
         </div>
@@ -330,15 +331,15 @@
                                         <h6 class="text-xs">{{ $commande->getTotal() + 8.0 }} DT</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        @if($commande->etat == 'valide')
-                                        <a><span class="badge badge-success">Validée</span></a>
+                                        @if ($commande->etat == 'valide')
+                                            <a><span class="badge badge-success">Validée</span></a>
                                         @endif
                                         <!--<a><span class="badge bg-gradient-info">En Cours</span></a>-->
                                     </td>
                                     <td class="align-middle text-sm ">
                                         @if ($commande->paiement == 'payee')
                                             <span class="badge bg-gradient-success"> Payé </span>
-                                        @else 
+                                        @else
                                             <span class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
                                         @endif
                                     <td style="text-align: center;">
@@ -353,6 +354,7 @@
                 </div>
             </div>
         </div>
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
 
     </main>
@@ -512,11 +514,12 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <h6 style="color: #8898aa; display: inline-block; margin-left: 10px;">
-                                                    {{ $commande->paiement }}</h6>
-                                                <span style="margin-left: 10px;" class="badge bg-gradient-warning">Non
-                                                    Payé</span>
-                                                <!--<span style="margin-left: 10px;" class="badge bg-gradient-success">Payé</span>-->
+                                                @if ($commande->paiement == 'payee')
+                                                    <span class="badge bg-gradient-success"> Payé </span>
+                                                @else
+                                                    <span
+                                                        class="badge bg-gradient-warning">{{ $commande->paiement }}</span>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -525,7 +528,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{route('commande.payer',  ['id' => $commande->id])}}" class="btn bg-gradient-success" type="button">
+                        <a href="{{ route('commande.payer', ['id' => $commande->id]) }}"
+                            class="btn bg-gradient-success" type="button">
                             <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
                             <span class="btn-inner--text">a été payée</span>
                         </a>
