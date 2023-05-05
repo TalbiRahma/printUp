@@ -57,8 +57,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -107,7 +107,7 @@
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
                         <a class="nav-link" href="{{ route('mes.designs') }}">
-                            
+
                             <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
                         </a>
                     </div>
@@ -138,7 +138,8 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"
+                                style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -180,22 +181,22 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
                 </li>
             </ul>
         </div>
@@ -250,99 +251,120 @@
         </div>
 
         <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-
-
-                    <div class="card">
-                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                            style="margin-bottom: 10px;">
-                            <h5 style="color: #525f7f;">Historique Paiement:</h5>
-
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="p-0 mx-3  position-relative z-index-1" style="margin-bottom: 5px;">
-                            <h6 style="color: #525f7f;">Montant resté: 100TND</h6>
-                            <h6 style="color: #525f7f;">Montant total transféré: 100TND</h6>
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            style="width: 40%;">Date</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 60%;">Montant transféré</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            27-09-2023
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
-                            style="margin-bottom: 10px;">
-                            <h5 style="color: #525f7f;">Historique de Ventes:</h5>
-                        </div>
-                        <hr class="horizontal dark mt-0">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 20%;">Date</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            style="width: 30%;">Designs</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 15%;">Quantité</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 15%;">Prix</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                            style="width: 20%;">Totale</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            27-09-2023
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <img src="{{ asset('/uploads/6431ec57b2855.png') }}"
-                                        class="img-fluid border-radius-lg" style="width: 150px; height: auto;">
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">3 Pièce</h6>
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                        <td class="align-middle text-sm ">
-                                            <h6 class="text-s font-weight-bold mb-0">50 TND</h6>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1" style="margin-bottom: 10px;">
+                    <h6 style="color: #525f7f;">Montant resté: 100TND</h6>
+                    <h6 style="color: #525f7f;">Montant total transféré: 100TND</h6>
                 </div>
             </div>
         </div>
-
-
-
+        <div class="container-fluid py-2">
+            <div class="card h-100 mb-4">
+                <div class="card-header pb-0 px-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="mb-0">Transferts</h6>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-end align-items-center">
+                            <i class="far fa-calendar-alt me-2"></i>
+                            <small>23 - 30 March 2020</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-4 p-3">
+                    <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button
+                                    class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                        class="fas fa-arrow-down"></i></button>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark text-sm">Netflix</h6>
+                                    <span class="text-xs">27 March 2020, at 12:30 PM</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                                - $ 2,500
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button
+                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                        class="fas fa-arrow-up"></i></button>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark text-sm">Apple</h6>
+                                    <span class="text-xs">27 March 2020, at 04:30 AM</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                + $ 2,000
+                            </div>
+                        </li>
+                    </ul>
+                    <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button
+                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                        class="fas fa-arrow-up"></i></button>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark text-sm">Stripe</h6>
+                                    <span class="text-xs">26 March 2020, at 13:45 PM</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                + $ 750
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button
+                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                        class="fas fa-arrow-up"></i></button>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark text-sm">HubSpot</h6>
+                                    <span class="text-xs">26 March 2020, at 12:30 PM</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                + $ 1,000
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button
+                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                        class="fas fa-arrow-up"></i></button>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark text-sm">Creative Tim</h6>
+                                    <span class="text-xs">26 March 2020, at 08:30 AM</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                + $ 2,500
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button
+                                    class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                        class="fas fa-exclamation"></i></button>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark text-sm">Webflow</h6>
+                                    <span class="text-xs">26 March 2020, at 05:00 AM</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                                Pending
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         @include('inc.admin.footer')
     </main>
 
