@@ -21,8 +21,8 @@
     <link id="pagestyle" href="{{ asset('/dashassets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+<body class="g-sidenav-show bg-gray-100">
+    <div class=" bg-primary position-absolute w-100" style="height: 75px;"></div>
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -113,12 +113,12 @@
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                        <path fill-rule="evenodd"
-                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                    </svg>
+                            class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
                         <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -140,24 +140,111 @@
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Ma Boutique</h6>
                 </nav>
-                
-                    @include('inc.client.navbar')
-                    
+
+                @include('inc.client.navbar')
+
             </div>
         </nav>
         <!-- End Navbar -->
-
-        <div class="mx-6 card card-profile-bottom" id="nav-account" role="tabpanel">
-            <div class="row">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <div class="d-flex justify-content-between">
-                            <div class="row gx-4">
-
+        <div class="container-fluid py-3">
+            <div class="mx-4 card ">
+                <div class="card card-profile">
+                    <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
+                        class="card-img-top">
+                    <div class="row ">
+                        <div class="col-3 col-lg-3 order-lg-1">
+                            <div class="mt-n6 mt-lg-n6 mb-4 mb-lg-0" style="margin-left: 30px;">
+                                <a href="javascript:;">
+                                    <img src="{{ asset('/dashassets/img/team-2.jpg') }}"
+                                        class="rounded-circle img-fluid border border-2 border-white">
+                                </a>
                             </div>
                         </div>
-                        <div class="card-body">
-
+                        <div class="col-5 col-lg-5 order-lg-1">
+                            <div class="mt-3">
+                                <div class="ps-3">
+                                    <h4>Best Creation</h4>
+                                    <span class="text-sm ps-">Je vais vous montrer la meilleure
+                                        création que vous verrez dans votre vie</span>
+                                </div>
+                                <div class="d-flex justify-content-start mt-n2">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <span class="text-lg mt-2 opacity-8">(10)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-lg-4 order-lg-1">
+                            <div class="mt-5" style="margin-right: 50px;">
+                                <div class="d-flex justify-content-end">
+                                    <div class="d-grid text-center mx-2">
+                                        <span class="text-lg font-weight-bolder">50</span>
+                                        <span class="text-sm opacity-8">Designs</span>
+                                    </div>
+                                    <div class="d-grid text-center mx-2">
+                                        <span class="text-lg font-weight-bolder">50</span>
+                                        <span class="text-sm opacity-8">Followers</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body mt-5">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="nav-wrapper position-relative w-70">
+                                    <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                                        <li class="nav-item w-50">
+                                            <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab"
+                                                href="#profile-tabs-icons" role="tab" aria-controls="preview"
+                                                aria-selected="true">
+                                                <i class="ni ni-ruler-pencil text-sm me-2"></i>Produit Personnalisé
+                                            </a>
+                                        </li>
+                                        <li class="nav-item w-50">
+                                            <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab"
+                                                href="#dashboard-tabs-icons" role="tab" aria-controls="code"
+                                                aria-selected="false">
+                                                <i class="ni ni-album-2 text-sm me-2"></i>Designs
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="end-0">
+                                    <a href="javascript:;"
+                                        class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Modifier</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="container-fluid py-3">
+                    <div class="card">
+                        <div class="card card-profile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="container-fluid py-3">
+                    <div class="card">
+                        <div class="card card-profile">
                         </div>
                     </div>
                 </div>

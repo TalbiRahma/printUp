@@ -21,7 +21,7 @@
     <link id="pagestyle" href="{{ asset('/dashassets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show  bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
@@ -156,7 +156,6 @@
         </div>
         <div class="container-fluid py-4">
             <div class="card">
-
                 <div class="table-responsive">
                     <table class="table align-items-center mb-0">
                         <thead>

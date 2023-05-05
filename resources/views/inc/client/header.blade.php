@@ -169,7 +169,7 @@
                                         @if(auth()->user())
                                         <a href="#">Mon Boutique</a>
                                         @else
-                                        <a href="{{route('register')}}">Mon Boutique</a>
+                                        <a href="{{route('register')}}">Ma Boutique</a>
                                         @endif
                                     </li>
                                     <li>

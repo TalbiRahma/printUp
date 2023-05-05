@@ -27,8 +27,7 @@
         <span class="mask bg-primary opacity-2"></span>
     </div>
     <!-- Side bar -->
-    <aside
-        class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
@@ -117,12 +116,12 @@
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                    <path fill-rule="evenodd"
-                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                </svg>
+                            class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                        </svg>
                         <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -182,11 +181,11 @@
                     <div class="row gx-4">
                         <div class="col-auto">
                             <div class="avatar avatar-xl position-relative">
-                                @if(auth()->user()->photo == null)
+                                @if (auth()->user()->photo == null)
                                     <img src="/uploads/userphoto.jpg"class="avatar avatar-md rounded-circle me-2">
                                 @else
-                                <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" alt="profile_image"
-                                    class="w-100 border-radius-lg shadow-sm">
+                                    <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                        alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                                 @endif
                             </div>
                         </div>
@@ -246,13 +245,13 @@
                                 <div class="form-group">
                                     <label for="example-password-input" class="form-control-label">Confirmer Mot de
                                         passe</label>
-                                    <input name="confpassword" id="confpassword" class="form-control" type="password"
-                                        placeholder="Confirmer votre mot de passe..." >
-                                        @error('confpassword')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <input name="confpassword" id="confpassword" class="form-control"
+                                        type="password" placeholder="Confirmer votre mot de passe...">
+                                    @error('confpassword')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Photo de
@@ -276,7 +275,7 @@
         @include('inc.admin.footer')
     </div>
 
-    </div>
+    
 
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
@@ -376,7 +375,7 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    
+
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
