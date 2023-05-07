@@ -140,7 +140,8 @@ class ProduitPersonnaliserController extends Controller
 
         // enregistrer les données du produit personnalisé dans la base de données
         $custom_product->photo = $img_path;
-        //dd($custom_product);
+        // dd($custom_product);
+        $custom_product->addMedia($img_path)->toMediaCollection('custom_products');
         $custom_product->save();
 
 

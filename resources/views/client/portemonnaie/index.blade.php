@@ -292,7 +292,7 @@
                                                     data-bs-target="#modal-form-modif" title="Modifier la carte"></i>
                                             @endif
                                         @endif
-                                        @if (!auth()->user()->portmonnaie->Num_cart)
+                                        @if (!auth()->user()->portmonnaie || auth()->user()->portmonnaie->Num_cart == null)
                                             <h6 class="mb-0">
                                                 ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
                                             </h6>
@@ -379,27 +379,26 @@
                             </div>
                         </div>
                         <div class="card-body pt-4 p-3">
-                            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Le plus récent</h6>
+                            <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Vos demandes</h6>
                             <ul class="list-group">
                                 @foreach ($tarnsactions as $tr)
-                                    @if ($tr->montant_demander && $tr->montant_transferts == null)
-                                        <li
-                                            class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                            <div class="d-flex align-items-center">
-                                                <button
-                                                    class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                        class="fas fa-exclamation"></i></button>
-                                                <div class="d-flex flex-column">
-                                                    <h6 class="mb-1 text-dark text-sm">Demande</h6>
-                                                    <span class="text-xs">{{ $tr->created_at }}</span>
-                                                </div>
+                                    <li
+                                        class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                        <div class="d-flex align-items-center">
+                                            <button
+                                                class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-exclamation"></i>
+                                            </button>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-dark text-sm">Demande</h6>
+                                                <span class="text-xs">{{ $tr->created_at }}</span>
                                             </div>
-                                            <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
-                                                {{ $tr->montant_demander }} TD
-                                            </div>
-                                        </li>
-                                    @endif
-                                    @if ($tr->montant_transferts != null)
+                                        </div>
+                                        <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                                            {{ $tr->montant_demander }} TD
+                                        </div>
+                                    </li>
+                                    @if ($tr->montant_transferts != 0)
                                         <li
                                             class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                             <div class="d-flex align-items-center">
@@ -417,31 +416,33 @@
                                             </div>
                                         </li>
                                     @endif
-                                    @if ($commandes)
-                                        @foreach ($commandes as $commande)
-                                            @foreach ($commande->lignecommandes as $lc)
-                                                <li
-                                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                                    <div class="d-flex align-items-center">
-                                                        <button
-                                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                                                class="fas fa-arrow-up"></i></button>
-                                                        <div class="d-flex flex-column">
-                                                            <h6 class="mb-1 text-dark text-sm">Revenu</h6>
-                                                            <span class="text-xs">{{ $tr->updated_at }}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                                        + {{ $lc->customproduct->design->price * $lc->qte }} TD
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        @endforeach
-                                    @endif
+                                @endforeach
+                                <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">vos revenus</h6>
+                                @foreach ($commandes as $commande)
+                                    @foreach ($commande->lignecommandes as $lc)
+                                        <li
+                                            class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                            <div class="d-flex align-items-center">
+                                                <button
+                                                    class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center">
+                                                    <i class="fas fa-arrow-up"></i>
+                                                </button>
+                                                <div class="d-flex flex-column">
+                                                    <h6 class="mb-1 text-dark text-sm">Revenu</h6>
+                                                    <span
+                                                        class="text-xs">{{ auth()->user()->portmonnaie->updated_at }}</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                                + {{ $lc->customproduct->design->price * $lc->qte }} TD
+                                            </div>
+                                        </li>
+                                    @endforeach
                                 @endforeach
                             </ul>
                         </div>
+
                     </div>
                 </div>
             </div>

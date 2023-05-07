@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 
-class ProduitPersonnaliser extends Model
-{
-    use HasFactory;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+class ProduitPersonnaliser extends Model implements HasMedia
+{
+    use HasFactory , InteractsWithMedia;
+    
     public function initialProduct()
     {
         return $this->belongsTo(InitialProduct::class, 'initial_product_id', 'id');

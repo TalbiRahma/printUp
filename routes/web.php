@@ -246,10 +246,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
                     return redirect()->back()->with('warning1', 'Cette commande a déjà été payée.');
                 } else {
                     app(AdminController::class)->marquerCommandePayer($id);
+                    return redirect()->route('commandes.validee')->with('success1', 'La commande a été marquée comme payée.');
                 }
             })->name('commande.payer');
             Route::get('/validée/list/{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
-            Route::post('/telecharger-image/{nomImage}',[AdminController::class, 'telechargerImage'])->name('telecharger.image');
+            Route::post('/filtrer-commandes', [AdminController::class, 'filtrerCommandes'])->name('filtrer.commandes');
+            Route::get('/telecharger-image/{id}',[AdminController::class, 'telechargerImage'])->name('telecharger.image');
         });
 
         

@@ -250,13 +250,20 @@
                             <h4>Liste de commandes en attente</h4>
                         </div>
                         <div class="col-3">
-                            <div class="form-group">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option value="tous" selected>Tous</option>
-                                    <option value="paye">Payé</option>
-                                    <option value="non paye">Non Payé</option>
-                                </select>
-                            </div>
+                            <form action="{{ route('filtrer.commandes') }}" method="POST">
+                                @csrf
+                                <div class="input-group">
+                                    <button type="submit" class="input-group-text text-body"><i
+                                            class="fas fa-search" aria-hidden="true"></i></button>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                        name="payment_status">
+                                        <option value="tous" selected>Tous</option>
+                                        <option value="payee">Payé</option>
+                                        <option value="à la livraison">à la livraison</option>
+                                        <option value="virment">Virment</option>
+                                    </select>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

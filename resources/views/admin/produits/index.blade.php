@@ -263,7 +263,7 @@
                         <div class="col-3">
                             <form action="{{ route('search.product') }}" method="POST">
                                 @csrf
-                                <div class="input-group">
+                                <div class="input-group"> 
 
                                     <button type="submit" class="input-group-text text-body"><i
                                             class="fas fa-search" aria-hidden="true"></i></button>

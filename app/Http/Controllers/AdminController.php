@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 class AdminController extends Controller
 {
     // 
@@ -256,20 +258,61 @@ class AdminController extends Controller
             }
         }
         if ($commande->save()) {
-            return redirect()->back()->with('success1', 'La commande a été marquée comme payée.');
+            return redirect()->route('commandes.validee')->with('success1', 'La commande a été marquée comme payée.');
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         };
     }
 
 
+    public function filtrerCommandes(Request $request)
+    {
+        $paymentStatus = $request->input('payment_status');
 
+        // Récupérer les commandes en fonction du statut de paiement
+        if ($paymentStatus == 'tous') {
+            $commandes = Commande::all();
+        } else {
+            $commandes = Commande::where('paiement', $paymentStatus)->get();
+        }
 
-    public function telechargerImage($nomImage)
+        // Faire quelque chose avec les commandes filtrées (par exemple, les afficher dans une vue)
+        return view('admin.commandes.validee', compact('commandes'));
+    }
+
+    /*public function telechargerImage($nomImage)
     {
         $cheminImage = storage_path('app/public/uploads/' . $nomImage);
         return response()->download($cheminImage);
+    }*/
+
+    /*public function telechargerImage($id)
+    {
+        $custom_product = ProduitPersonnaliser::find($id);
+        $image = $custom_product->getFirstMedia('uploads/custom_products');
+        return $image;
+    }*/
+
+
+
+    public function telechargerImage($id)
+    {
+        $custom_product = ProduitPersonnaliser::find($id);
+        $media = $custom_product->getFirstMediaUrl('custom_products');
+        dd($media);
+        if (!$media) {
+            // Gérer le cas où il n'y a pas de fichier multimédia associé
+            // Par exemple, afficher un message d'erreur ou rediriger l'utilisateur
+            return redirect()->back()->with('error', 'Aucune image trouvée pour ce produit personnalisé.');
+        }
+
+        // Obtenir le chemin de stockage du fichier multimédia
+        $cheminFichier = $media->getPath();
+        //dd($cheminFichier);
+        // Télécharger le fichier multimédia
+        return Storage::download($cheminFichier);
     }
+
 
 
     /****************************************** PAIEMENT    **************************/
