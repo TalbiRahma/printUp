@@ -23,27 +23,7 @@ class ProduitPersonnaliserController extends Controller
 {
     //
 
-    /*public function personnaliser(){
-        $design = Design::all();
-        $category_product = CategoryProduct::all();
-        $category_design = CategoryDesign::all();
-        $user = auth()->user();
-        $mes_design =  Design::where('user_id', $user->id)->get();
-        $favorite_designs = Auth::user()->designs;
-        $favorite_products = Auth::user()->initialProducts;
-        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
-
-        return view('client.personaliser', compact(
-            'design',
-            'category_product',
-            'category_design',
-            'favorite_designs',
-            'favorite_products',
-            'mes_design',
-            'commande'
-        ));
-
-    }
+    
 
     public function sendToPersonnaliser(Request $request)
     {
