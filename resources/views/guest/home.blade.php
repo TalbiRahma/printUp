@@ -352,9 +352,10 @@
                                                             href="{{ route('products.details', ['id' => $p->id ]) }}"><i
                                                                 class="far fa-eye"></i></a></li>
                                                     <li class="select-option">
-                                                        <a href="{{route('personnaliser.produit', ['id' => $p->id])}}">
+                                                        <a href="{{route('personnaliser.produit', ['id' => $p->id ])}}" >
                                                             Personnalisé
                                                         </a>
+                                                    </form>
                                                     </li>
                                                     <li class="wishlist">
                                                         <form method="post"

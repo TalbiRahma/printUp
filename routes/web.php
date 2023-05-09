@@ -1,12 +1,18 @@
 <?php
 
 
+use App\Models\Design;
 use App\Models\Commande;
 use App\Mail\MailVerification;
+use App\Models\CategoryDesign;
+use App\Models\InitialProduct;
+use App\Models\CategoryProduct;
+
 use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
@@ -137,9 +143,44 @@ Route::group(['middleware' => ['auth']], function () {
         /****PERSONNALISER****** */
         Route::prefix('personnaliser')->group(function () 
         {
+            //Route::get('', [ProduitPersonnaliserController::class, 'personnaliser'])->name('personnaliser');
+            /*Route::post('/produit', function (Request $request) {
+                if (session()->has('design_data')) {
+                    return redirect()->route('create_custom_product');
+                }
+                app(ProduitPersonnaliserController::class)->sendToPersonnaliser($request);
+                
+                return redirect()->route('personnaliser')->compact('custom_product_data');
+                
+            })->name('personnaliser.produit');*/
+            
             Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
+            /*Route::post('/modifier_design', function (Request $request) {
+                app(ProduitPersonnaliserController::class)->addDesign($request);
+                return redirect()->route('create_custom_product');
+            })->name('modifier.design');*/
             Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
-            Route::get('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct']);
+
+            /*Route::get('/create_custom_product', function () {
+                if (session()->has('custom_product_data')) {
+                    session()->forget('custom_product_data');
+                    app(ProduitPersonnaliserController::class)->createCustomProduct();
+                    return redirect()->back()->with('success1', 'La commande a été marquée comme payée.');
+                } else {
+                    app(ProduitPersonnaliserController::class)->createCustomProduct();
+                    return redirect()->back()->with('success1', 'La commande a été marquée comme payée.');
+                }
+            });*/
+
+            /*Route::get('/create_custom_product', function () {
+                if (session()->has('custom_product_data')) {
+                    session()->forget('custom_product_data');
+                }
+                app(ProduitPersonnaliserController::class)->createCustomProduct();
+                return redirect()->back()->with('success1', 'La commande a été marquée comme payée.');
+            });*/
+            
+            Route::post('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct'])->name('create_custom_product');
         });
 
 
