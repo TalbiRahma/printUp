@@ -25,7 +25,7 @@ class ProduitPersonnaliserController extends Controller
 
     
 
-    public function sendToPersonnaliser(Request $request)
+    /*public function sendToPersonnaliser(Request $request)
     {
         if (session()->has('custom_product_data')) {
             session()->forget('custom_product_data');
