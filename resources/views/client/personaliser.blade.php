@@ -102,7 +102,7 @@
                                                 <div class="single-product-thumb">
                                                     <form class="singin-form" method="POST"
                                                         action="{{ route('add.design') }}"
-                                                        enctype="multipart/form-data" id="form">
+                                                        enctype="multipart/form-data" >
                                                         @csrf
                                                         <input type="hidden" name="user_id"
                                                             value="{{ auth()->user()->id }}">
@@ -211,7 +211,7 @@
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
                                                                                 enctype="multipart/form-data"
-                                                                                id="form">
+                                                                                >
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $fd->id }}">
@@ -277,7 +277,7 @@
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
                                                                                 enctype="multipart/form-data"
-                                                                                id="form">
+                                                                                >
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $md->id }}">
@@ -342,9 +342,9 @@
                                                                     <div class="col-3">
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="get"
-                                                                                action="{{ route('personnaliser.produit', ['id' => $fp->id ]) }}"
+                                                                                action="{{ route('personnaliser.produit', ['id' => $fp->id]) }}"
                                                                                 enctype="multipart/form-data"
-                                                                                id="product_form">
+                                                                                >
                                                                                 @csrf
                                                                                 <input type="hidden" name="idproduit"
                                                                                     value="{{ $fp->id }}">
@@ -370,7 +370,7 @@
                                                                                         class="justify-content-center mb-4 mt-2">
                                                                                         <button type="submit"
                                                                                             class="axil-btn-custom "
-                                                                                            id="custom-button">Personnalisé</button>
+                                                                                            >Personnalisé</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>
@@ -408,8 +408,11 @@
         @endphp
         @if ($product_data)
             <!-- Custom Product Slider Area -->
-            <form action="{{ route('command.add') }}" method="POST">
+            <form action="{{ route('save_custom_product') }}" method="POST">
                 @csrf
+                <input type="hidden" name="idproduit" value="{{ $product_data['id'] }}">
+                <input type="hidden" id="image-clone-position" name="image_clone_position">
+
                 <div class="axil-main-slider-area main-slider-style-2">
                     <div class="container">
                         <div class="slider-offset-left">
@@ -420,10 +423,15 @@
 
                                             <div class="product-content1">
                                                 @if ($custom_product_data)
-                                                    <img src="{{ $custom_product_data['photo'] }}" alt="Product">
+                                                    <img src="{{ $custom_product_data['photo'] }}">
                                                 @else
-                                                    <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
-                                                        alt="Product">
+                                                    <div style="position: relative;">
+                                                        <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
+                                                            alt="Product" id="drop-image" />
+                                                        <div id="div1" ondrop="drop(event)"
+                                                            ondragover="allowDrop(event)"
+                                                            style="position: absolute; top: 175px; left: 160px;"></div>
+                                                    </div>
                                                 @endif
                                             </div>
                                         </div>
@@ -431,6 +439,7 @@
                                 </div>
                                 <div class="col-6">
                                     @if ($design_data)
+                                        <input type="hidden" name="iddesign" value="{{ $design_data['id'] }}">
                                         <div class="row">
                                             <div class="col-5">
                                                 <div class="row row-cols-xl row-cols-1">
@@ -438,7 +447,9 @@
                                                         <div class="axil-product-list">
                                                             <div class="product-content2">
                                                                 <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
-                                                                    alt="Product">
+                                                                    alt="Product" id="drag1" draggable="true"
+                                                                    ondragstart="drag(event)" width="336"
+                                                                    height="69">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -461,7 +472,9 @@
                                                         <div class="axil-product-list">
                                                             <div id="design-image" class="product-content2">
                                                                 <img src="{{ asset('mainassets/images/product/design.png') }}"
-                                                                    alt="Product">
+                                                                    alt="Product" id="drag1"draggable="true"
+                                                                    ondragstart="drag(event)" width="336"
+                                                                    height="69">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -480,6 +493,8 @@
                                         <div class="">
                                             @if ($custom_product_data)
                                                 <h3>{{ $custom_product_data['name'] }}</h3>
+                                                <input type="hidden" value="{{ $custom_product_data['id'] }}"
+                                                    name="custom_product_id">
                                             @else
                                                 <h3>Nom produit personanlisé</h3>
                                             @endif
@@ -523,7 +538,7 @@
                                         @if ($custom_product_data)
                                             <h5>Total: {{ $custom_product_data['price'] }} TND</h5>
                                         @else
-                                            <h5>Total: 0 TND</h5>
+                                            <h5>Total: 45 TND</h5>
                                         @endif
 
 
@@ -535,8 +550,8 @@
                                         </div>
 
                                         <div class="group-btn" style="margin-top: 15px;">
-                                            <button type="submit"
-                                                class="axil-btn axil-btn-custom2 btn-bg-primary">Sauvegarder</button>
+                                            <button type="submit" class="axil-btn axil-btn-custom2 btn-bg-primary"
+                                                onclick="mergeImages()">Sauvegarder</button>
                                             <!--<button href=""
                                                 class="axil-btn axil-btn-custom1 btn-bg-primary">Ajouter au
                                                 boutique</button>
@@ -589,9 +604,45 @@
     <script src="{{ asset('/mainassets/js/vendor/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('/mainassets/js/vendor/counterup.js') }}"></script>
     <script src="{{ asset('/mainassets/js/vendor/waypoints.min.js') }}"></script>
+    <script src="{{ asset('/mainassets/js/vendor/interact.min.js') }}"></script>
+    <script src="{{ asset('/mainassets/js/vendor/interact.js') }}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
+
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var clone = document.getElementById(data).cloneNode(true);
+            clone.removeAttribute("id");
+            ev.target.appendChild(clone);
+
+            // Récupérer les coordonnées du clone d'image
+            var imageClonePosition = {
+                x: ev.clientX,
+                y: ev.clientY
+            };
+
+            // Mettre à jour la valeur du champ caché
+            document.getElementById("image-clone-position").value = JSON.stringify(imageClonePosition);
+        }
+    </script>
+
+
+
+
+
 
     <script>
         function selectSize(size) {
@@ -620,51 +671,7 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('form#product_form').submit(function(event) {
-                //event.preventDefault(); // empêche la soumission du formulaire
-
-                // vérifie si le tableau custom_product existe dans la session et le vide s'il existe
-                /*if (typeof sessionStorage.custom_product !== 'undefined') {
-                    sessionStorage.removeItem('custom_product');
-                }*/
-
-                // récupère les données du formulaire
-                var form_data = new FormData(this);
-
-                // soumet le formulaire via AJAX vers la première route
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    data: form_data,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        // soumet le formulaire via AJAX vers la deuxième route
-                        $.ajax({
-                            url: '/client/personnaliser/create_custom_product',
-                            type: 'post',
-                            success: function(response) {
-                                // redirige l'utilisateur vers la page de personnalisation de produit
-                                window.location.href =
-                                    '/client/personnaliser/create_custom_product';
-                            },
-                            error: function(xhr, status, error) {
-                                // gère les erreurs
-                                console.log(error);
-                            }
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        // gère les erreurs
-                        console.log(error);
-                    }
-                });
-            });
-        });
-    </script>
-
+    
     <style>
         .size-btn.selected {
             border-color: var(--color-primary);
@@ -772,6 +779,15 @@
 
         .form-telechargerF .modal-body {
             padding: 30px;
+        }
+    </style>
+
+    <style>
+        #div1 {
+            width: 125px;
+            height: 160px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
         }
     </style>
 
