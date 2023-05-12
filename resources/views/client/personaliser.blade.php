@@ -66,11 +66,13 @@
 
 
         <!-- Start Mainmenu Area  -->
+
         <div class="axil-mainmenu aside-category-menu">
             <div class="container">
                 <div class="header-navbar">
                     <div class="header-main-nav">
                         <!-- Start Mainmanu Nav -->
+
                         <nav class="mainmenu-nav">
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
@@ -102,7 +104,7 @@
                                                 <div class="single-product-thumb">
                                                     <form class="singin-form" method="POST"
                                                         action="{{ route('add.design') }}"
-                                                        enctype="multipart/form-data" >
+                                                        enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" name="user_id"
                                                             value="{{ auth()->user()->id }}">
@@ -210,8 +212,7 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
-                                                                                enctype="multipart/form-data"
-                                                                                >
+                                                                                enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $fd->id }}">
@@ -276,8 +277,7 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="POST"
                                                                                 action="{{ route('modifier.design') }}"
-                                                                                enctype="multipart/form-data"
-                                                                                >
+                                                                                enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id"
                                                                                     value="{{ $md->id }}">
@@ -343,8 +343,7 @@
                                                                         <div class="axil-product-list">
                                                                             <form class="singin-form" method="get"
                                                                                 action="{{ route('personnaliser.produit', ['id' => $fp->id]) }}"
-                                                                                enctype="multipart/form-data"
-                                                                                >
+                                                                                enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 <input type="hidden" name="idproduit"
                                                                                     value="{{ $fp->id }}">
@@ -369,8 +368,7 @@
                                                                                     <div
                                                                                         class="justify-content-center mb-4 mt-2">
                                                                                         <button type="submit"
-                                                                                            class="axil-btn-custom "
-                                                                                            >Personnalisé</button>
+                                                                                            class="axil-btn-custom ">Personnalisé</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>
@@ -397,175 +395,221 @@
     </header>
 
     <main class="main-wrapper">
+        @include('inc.flashmessage')
         @php
             $product_data_json = session('product_data');
             $design_data_json = session('design_data');
-            $custom_product_data_json = session('custom_product_data');
+            //$custom_product_data_json = session('custom_product_data');
             $product_data = json_decode($product_data_json, true);
             $design_data = json_decode($design_data_json, true);
-            $custom_product_data = json_decode($custom_product_data_json, true);
+            //$custom_product_data = json_decode($custom_product_data_json, true);
             //dd($product_data)
         @endphp
         @if ($product_data)
             <!-- Custom Product Slider Area -->
-            <form action="{{ route('save_custom_product') }}" method="POST">
-                @csrf
-                <input type="hidden" name="idproduit" value="{{ $product_data['id'] }}">
-                <input type="hidden" id="image-clone-position" name="image_clone_position">
 
-                <div class="axil-main-slider-area main-slider-style-2">
-                    <div class="container">
-                        <div class="slider-offset-left">
-                            <div class="row row-20">
-                                <div class="row row-cols-xl row-cols-1 col-lg-6">
-                                    <div class="col">
-                                        <div class="axil-product-list">
 
-                                            <div class="product-content1">
-                                                @if ($custom_product_data)
-                                                    <img src="{{ $custom_product_data['photo'] }}">
-                                                @else
-                                                    <div style="position: relative;">
-                                                        <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
-                                                            alt="Product" id="drop-image" />
-                                                        <div id="div1" ondrop="drop(event)"
-                                                            ondragover="allowDrop(event)"
-                                                            style="position: absolute; top: 175px; left: 160px;"></div>
-                                                    </div>
-                                                @endif
+            <div class="axil-main-slider-area main-slider-style-2">
+                <div class="container">
+                    <div class="slider-offset-left">
+                        <div class="row row-20">
+                            <div class="row row-cols-xl row-cols-1 col-lg-6">
+                                <div class="col">
+                                    <div class="axil-product-list">
+
+                                        <div class="product-content1">
+
+                                            <div style="position: relative;">
+                                                <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
+                                                    alt="Product" id="drop-image" />
+                                                <div id="div1" ondrop="drop(event)"
+                                                    ondragover="allowDrop(event)"
+                                                    style="position: absolute; top: 175px; left: 160px;"></div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    @if ($design_data)
-                                        <input type="hidden" name="iddesign" value="{{ $design_data['id'] }}">
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <div class="row row-cols-xl row-cols-1">
-                                                    <div class="col">
-                                                        <div class="axil-product-list">
-                                                            <div class="product-content2">
-                                                                <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
-                                                                    alt="Product" id="drag1" draggable="true"
-                                                                    ondragstart="drag(event)" width="336"
-                                                                    height="69">
-                                                            </div>
+                            </div>
+                            <div class="col-6">
+                                @if ($design_data)
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="row row-cols-xl row-cols-1">
+                                                <div class="col">
+                                                    <div class="axil-product-list">
+                                                        <div class="product-content2">
+                                                            <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
+                                                                alt="Product" id="drag1" draggable="true"
+                                                                ondragstart="drag(event)" width="336"
+                                                                height="69">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-7">
-                                                <div>
-                                                    <h4 class="mb-3">{{ $design_data['name'] }}</h4>
-                                                    <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
-
-                                                    <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
-                                                </div>
-                                            </div>
                                         </div>
-                                    @else
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <div class="row row-cols-xl row-cols-1">
-                                                    <div class="col">
-                                                        <div class="axil-product-list">
-                                                            <div id="design-image" class="product-content2">
-                                                                <img src="{{ asset('mainassets/images/product/design.png') }}"
-                                                                    alt="Product" id="drag1"draggable="true"
-                                                                    ondragstart="drag(event)" width="336"
-                                                                    height="69">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="col-7">
+                                            <div>
+                                                <h4 class="mb-3">{{ $design_data['name'] }}</h4>
+                                                <h5 class="text-secondary mb-3 mt-3">nom boutique</h5>
+
+                                                <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
                                             </div>
-                                            <div class="col-7">
-                                                <div>
-                                                    <h4 id="design-name" class="mb-3">Nom Design</h4>
-                                                    <h5 class="text-secondary mb-3 mt-3">Nom Boutique</h5>
-                                                    <h3 id="design-price" class="mt-3">00 TND</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    <div class="row col-12 ps-4">
-                                        <div class="">
-                                            @if ($custom_product_data)
-                                                <h3>{{ $custom_product_data['name'] }}</h3>
-                                                <input type="hidden" value="{{ $custom_product_data['id'] }}"
-                                                    name="custom_product_id">
-                                            @else
-                                                <h3>Nom produit personanlisé</h3>
-                                            @endif
-                                        </div>
-
-                                        <h5 class="text-secondary" style="margin-top: -20px;">Prix
-                                            {{ $product_data['name'] }}:
-                                            {{ $product_data['price'] }} TND</h5>
-                                        <div class="product-variations-wrapper">
-
-                                            <!-- Start Product Variation  -->
-                                            <div class="product-variation product-size-variation">
-
-                                                @if ($product_data['sizes'])
-                                                    @php $sizes = json_decode($product_data['sizes'], true); @endphp
-                                                    <div class="product-variation" style="display: inline-block;">
-                                                        @if (!empty($sizes))
-                                                            <h6 class="title "
-                                                                style="display: inline-block; margin-right: 10px;">
-                                                                Taille:</h6>
-                                                        @endif
-                                                        <ul class="range-variant" style="display: inline-block;">
-
-                                                            @foreach ($sizes as $size)
-                                                                <li class="size-btn"
-                                                                    onclick="selectSize('{{ $size }}')">
-                                                                    {{ $size }}</li>
-                                                            @endforeach
-                                                            <input type="hidden" name="selected_size"
-                                                                id="selected_size">
-                                                        </ul>
-                                                    </div>
-
+                                            <form action="{{ route('save_custom_product') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="idproduit"
+                                                    value="{{ $product_data['id'] }}">
+                                                <input type="hidden" id="image-clone-position"
+                                                    name="image_clone_position">
+                                                @if (session('design_data'))
+                                                    @php
+                                                        $design_data = json_decode(session('design_data'), true);
+                                                        $design_id = $design_data['id'];
+                                                    @endphp
+                                                    <input type="hidden" name="iddesign"
+                                                        value="{{ $design_id }}">
                                                 @endif
-
-                                            </div>
-
-                                            <!-- End Product Variation  -->
-
+                                                <button type="submit"
+                                                    class="axil-btn axil-btn-custom2 btn-bg-primary">Sauvegarder</button>
+                                            </form>
                                         </div>
-                                        @if ($custom_product_data)
-                                            <h5>Total: {{ $custom_product_data['price'] }} TND</h5>
+                                    </div>
+                                @else
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="row row-cols-xl row-cols-1">
+                                                <div class="col">
+                                                    <div class="axil-product-list">
+                                                        <div id="design-image" class="product-content2">
+                                                            <img src="{{ asset('mainassets/images/product/design.png') }}"
+                                                                alt="Product" id="drag1"draggable="true"
+                                                                ondragstart="drag(event)" width="336"
+                                                                height="69">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div>
+                                                <h4 id="design-name" class="mb-3">Nom Design</h4>
+                                                <h5 class="text-secondary mb-3 mt-3">Nom Boutique</h5>
+                                                <h3 id="design-price" class="mt-3">00 TND</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                <div class="row col-12 ps-4">
+                                    <div class="">
+                                        @if ($design_data)
+                                            <h3>{{ $product_data['name'] }} {{ $design_data['name'] }}</h3>
                                         @else
-                                            <h5>Total: 45 TND</h5>
+                                            <h3>{{ $product_data['name'] }}</h3>
                                         @endif
+                                    </div>
 
+                                    <h5 class="text-secondary" style="margin-top: -20px;">Prix
+                                        {{ $product_data['name'] }}:
+                                        {{ $product_data['price'] }} TND</h5>
+                                    <div class="product-variations-wrapper">
 
-                                        <div class="product-quantity" data-title="Qty">
-                                            <div class="pro-qty" style="margin-top: -10px;">
-                                                <input name="qte" type="number" class="quantity-input"
-                                                    value="1">
-                                            </div>
+                                        <!-- Start Product Variation  -->
+                                        <div class="product-variation product-size-variation">
+
+                                            @if ($product_data['sizes'])
+                                                @php $sizes = json_decode($product_data['sizes'], true); @endphp
+                                                <div class="product-variation" style="display: inline-block;">
+                                                    @if (!empty($sizes))
+                                                        <h6 class="title "
+                                                            style="display: inline-block; margin-right: 10px;">
+                                                            Taille:</h6>
+                                                    @endif
+                                                    <ul class="range-variant" style="display: inline-block;">
+
+                                                        @foreach ($sizes as $size)
+                                                            <li class="size-btn"
+                                                                onclick="selectSize('{{ $size }}')">
+                                                                {{ $size }}</li>
+                                                        @endforeach
+                                                        <input type="hidden" name="selected_size"
+                                                            id="selected_size">
+                                                    </ul>
+                                                </div>
+
+                                            @endif
+
                                         </div>
 
-                                        <div class="group-btn" style="margin-top: 15px;">
-                                            <button type="submit" class="axil-btn axil-btn-custom2 btn-bg-primary"
-                                                onclick="mergeImages()">Sauvegarder</button>
-                                            <!--<button href=""
-                                                class="axil-btn axil-btn-custom1 btn-bg-primary">Ajouter au
-                                                boutique</button>
-                                            <button type="submit"
-                                                class="axil-btn axil-btn-custom2 btn-bg-secondary">Ajouter au
-                                                panier</button>-->
+                                        <!-- End Product Variation  -->
+
+                                    </div>
+                                    @if ($design_data)
+                                        <h5>Total: {{ $design_data['price'] + $product_data['price'] }} TND</h5>
+                                    @else
+                                        <h5>Total: {{ $product_data['price'] }} TND</h5>
+                                    @endif
+
+
+                                    <div class="product-quantity" data-title="Qty">
+                                        <div class="pro-qty" style="margin-top: -10px;"><span
+                                                class="dec qtybtn">-</span>
+                                            <input name="qte" type="number" id="quantityInput"
+                                                class="quantity-input" value="0"><span
+                                                class="inc qtybtn">+</span>
                                         </div>
+                                    </div>
+
+                                    <div class="group-btn" style="margin-top: 15px;">
+
+
+                                        <form action="{{ route('command.add') }}" method="POST">
+                                            @csrf
+                                            @if (session('custom_product_data'))
+                                                @php
+                                                    $custom_product_data = json_decode(session('custom_product_data'), true);
+                                                    $custom_product_id = $custom_product_data['id'];
+                                                @endphp
+                                                <input type="hidden" name="custom_product_id"
+                                                    value="{{ $custom_product_id }}">
+                                                <input type="hidden" name="selected_size" id="sizesInput"
+                                                    value="">
+
+                                                <input type="hidden" name="qte" id="qteInput" value="">
+                                                <button type="submit"
+                                                    class="axil-btn axil-btn-custom2 btn-bg-secondary">Ajouter au
+                                                    panier</button>
+                                            @endif
+                                        </form>
+                                        @if (session('design_data'))
+                                            @php
+                                                $design_data = json_decode(session('design_data'), true);
+                                                $design_user_id = $design_data['user_id'];
+                                            @endphp
+                                            @if (auth()->check() && auth()->user()->id === $design_user_id)
+                                                <form action="{{ route('addto.boutique') }}" method="POST">
+                                                    @csrf
+                                                    @if (session('custom_product_data'))
+                                                        @php
+                                                            $custom_product_data = json_decode(session('custom_product_data'), true);
+                                                            $custom_product_id = $custom_product_data['id'];
+                                                        @endphp
+                                                        <input type="hidden" name="custom_product_id"
+                                                            value="{{ $custom_product_id }}">
+                                                        <button type="submit"
+                                                            class="axil-btn axil-btn-custom1 btn-bg-primary">Ajouter au
+                                                            boutique</button>
+                                                    @endif
+                                                </form>
+                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+
             <!-- End Custom Product Slider Area -->
 
         @endif
@@ -640,38 +684,110 @@
     </script>
 
 
-
-
-
-
+    <!--
+============================================ -->
+<script>
+   function incrementQuantity() {
+      var currentValue = parseInt(quantityInput.value);
+      if (isNaN(currentValue)) {
+        quantityInput.value = 1;
+      } else {
+        quantityInput.value = currentValue + 1;
+      }
+      document.getElementById('qteInput').value = quantityInput.value;
+    }
+  
+    function decrementQuantity() {
+      var currentValue = parseInt(quantityInput.value);
+      if (isNaN(currentValue) || currentValue <= 1) {
+        quantityInput.value = 1;
+      } else {
+        quantityInput.value = currentValue - 1;
+      }
+      document.getElementById('qteInput').value = quantityInput.value;
+    }
+  
+    var incButton = document.querySelector('.inc');
+    var decButton = document.querySelector('.dec');
+    var quantityInput = document.getElementById('quantityInput');
+    incButton.addEventListener('click', incrementQuantity);
+    decButton.addEventListener('click', decrementQuantity);
+  </script>
+  
     <script>
-        function selectSize(size) {
-            // Récupérer tous les boutons de taille
-            const sizeButtons = document.querySelectorAll('.size-btn');
+        /*function incrementQuantity() {
+                var currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+                document.getElementById('qteInput').value = quantityInput.value;
+            }
 
-            // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
-            sizeButtons.forEach((button) => {
-                if (button.textContent.trim() === size) {
-                    button.classList.add('selected');
-                } else {
-                    button.classList.remove('selected');
+            function decrementQuantity() {
+                var currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                    document.getElementById('qteInput').value = quantityInput.value;
                 }
-            });
+            }
 
-            // Mettre à jour la valeur de l'input caché "selected_size"
-            document.querySelector('#selected_size').value = size;
-        }
+            var incButton = document.querySelector('.inc');
+            var decButton = document.querySelector('.dec');
+            incButton.addEventListener('click', incrementQuantity);
+            decButton.addEventListener('click', decrementQuantity);*/
+        </script>
 
-        // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
-        const sizeLinks = document.querySelectorAll('.size-btn');
-        sizeLinks.forEach((link) => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-            });
-        });
+
+
+
+
+
+
+        <script >
+            function selectSize(size) {
+                // Récupérer tous les boutons de taille
+                const sizeButtons = document.querySelectorAll('.size-btn');
+
+                // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+                sizeButtons.forEach((button) => {
+                    if (button.textContent.trim() === size) {
+                        button.classList.add('selected');
+                    } else {
+                        button.classList.remove('selected');
+                    }
+                });
+
+                // Mettre à jour la valeur de l'input caché "selected_size"
+                document.querySelector('#selected_size').value = size;
+
+                // Mettre à jour la valeur de l'input caché "sizes"
+                const sizesInput = document.querySelector('#sizesInput');
+                sizesInput.value = size;
+            }
+
+        /* function selectSize(size) {
+             // Récupérer tous les boutons de taille
+             const sizeButtons = document.querySelectorAll('.size-btn');
+
+             // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+             sizeButtons.forEach((button) => {
+                 if (button.textContent.trim() === size) {
+                     button.classList.add('selected');
+                 } else {
+                     button.classList.remove('selected');
+                 }
+             });
+
+             // Mettre à jour la valeur de l'input caché "selected_size"
+             document.querySelector('#selected_size').value = size;
+
+             // Mettre à jour la valeur de l'input caché "sizes"
+             const sizesInput = document.querySelector('input[name="sizes"]');
+             sizesInput.value = size;
+         }*/
     </script>
 
-    
+
+
+
     <style>
         .size-btn.selected {
             border-color: var(--color-primary);

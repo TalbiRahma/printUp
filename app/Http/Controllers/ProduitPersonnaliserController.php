@@ -35,6 +35,7 @@ class ProduitPersonnaliserController extends Controller
         $mes_design =  Design::where('user_id', $user->id)->get();
         $favorite_designs = Auth::user()->designs;
         $favorite_products = Auth::user()->initialProducts;
+        
         $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
 
         $product_data = [
@@ -168,13 +169,13 @@ class ProduitPersonnaliserController extends Controller
 
 
 
-    
+
 
     public function sauvegarder(Request $request)
     {
         $initial_product_id = $request->input('idproduit');
         $design_id = $request->input('iddesign');
-
+        //dd($design_id);
         $initial_product = InitialProduct::find($initial_product_id);
         $design = Design::find($design_id);
 
@@ -192,21 +193,43 @@ class ProduitPersonnaliserController extends Controller
 
         $position = $request->input('image_clone_position');
         $position = json_decode($position, true);
-        $x = $position['x'];
-        $y = $position['y'];
-        // Superposer le design sur le produit initial
-        $img = ImageManagerStatic::make(public_path('uploads/' . $initial_product->photo));
-        $design_img = ImageManagerStatic::make(public_path('uploads/' . $design->photo));
-        $img->insert($design_img, strval($x), strval($y));
+        if ($position === null || ($position['x'] === null && $position['y'] === null)) {
+            return redirect()->back()->with('danger', 'Glisser votre design dans le rectangle du produit');
+        } else {
+            $x = $position['x'];
+            $y = $position['y'];
+            // Superposer le design sur le produit initial
+            $img = ImageManagerStatic::make(public_path('uploads/' . $initial_product->photo));
+            $design_img = ImageManagerStatic::make(public_path('uploads/' . $design->photo));
+            $img->insert($design_img, strval($x), strval($y));
 
-        // Enregistrer l'image fusionnée dans le stockage
-        $img_path = 'uploads/custom_products/' . time() . '-' . Str::random(10) . '.jpg';
-        $img->save(public_path($img_path));
-        $custom_product->addMedia($img_path)->toMediaCollection('custom_products');
-        $custom_product->photo = $img_path; // Enregistrer le chemin de l'image dans la base de données
-        $custom_product->save();
-        
+            // Enregistrer l'image fusionnée dans le stockage
+            $img_path = 'uploads/custom_products/' . time() . '-' . Str::random(10) . '.jpg';
+            $img->save(public_path($img_path));
+            //$custom_product->addMedia($img_path)->toMediaCollection('custom_products');
+            $custom_product->photo = $img_path; // Enregistrer le chemin de l'image dans la base de données
+        }
+
+        if ($custom_product->save()) {
+            // créer un tableau JSON pour les informations de produit personnalisé
+            $custom_product_data = [
+                'id' => $custom_product->id,
+                'name' => $custom_product->name,
+                'description' => $custom_product->description,
+                'price' => $custom_product->price,
+                'photo' => asset($custom_product->photo),
+                'sizes' => $custom_product->sizes
+            ];
+    
+            // stocker les données JSON dans un cookie ou dans la session
+            $custom_product_data_json = json_encode($custom_product_data);
+            $request->session()->put('custom_product_data', $custom_product_data_json);
+            return redirect()->back()->with('success', 'Votre produit a été sauvegardé avec succès');
+        } else {
+            return redirect()->back()->with('danger', 'dfrsvsdfvs');
+        }
+
         //dd($custom_product);
-        return redirect()->back();
+
     }
 }

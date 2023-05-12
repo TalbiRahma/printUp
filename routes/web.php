@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/contact/send', [ClientController::class, 'contactSend'])->name('contact.send');
         
         Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
+        Route::post('/add/toboutique', [BoutiqueController::class, 'aadToBoutique'])->name('addto.boutique');
+
         Route::get('/porte-monnaie', [PortmonnaieController::class, 'portemonnaie'])->name('porte-monnaie');
         Route::post('/porte-monnaie/ajout', [PortmonnaieController::class, 'ajouterCarte'])->name('porte-monnaie.ajout');
         Route::post('/porte-monnaie/modif', [PortmonnaieController::class, 'modifierCarte'])->name('porte-monnaie.modif');

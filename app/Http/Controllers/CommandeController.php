@@ -14,6 +14,57 @@ class CommandeController extends Controller
     //
 
     public function addCommande(Request $request)
+{
+    $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+
+    // Vérification de l'existence de la commande
+    if ($commande) {
+        $existe = false;
+        foreach ($commande->lignecommandes as $lignec) {
+            if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
+                $existe = true;
+                $lignec->qte += $request->qte;
+                $lignec->update();
+            }
+        }
+
+        if (!$existe) {
+            // Création de la ligne de commande
+            $lc = new LigneCommande();
+            if ($request->qte) {
+                $lc->qte = $request->qte;
+            } else {
+                return redirect()->back()->with('danger', 'La quantité est nulle.');
+            }
+            $lc->custom_product_id = $request->custom_product_id;
+            $lc->selected_size = $request->input('selected_size');
+            $lc->commande_id = $commande->id;
+            $lc->save();
+        }
+        return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
+    } else {
+        $commande = new Commande();
+        $commande->member_id = Auth::user()->id;
+        if ($commande->save()) {
+            // Création de la ligne de commande
+            $lc = new LigneCommande();
+            if ($request->qte) {
+                $lc->qte = $request->qte;
+            } else {
+                return redirect()->back()->with('danger', 'La quantité est nulle.');
+            }
+            $lc->custom_product_id = $request->custom_product_id;
+            $lc->selected_size = $request->input('selected_size');
+            $lc->commande_id = $commande->id;
+            $lc->save();
+            return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
+        } else {
+            return redirect()->back()->with('danger', 'Impossible de commander le produit');
+        }
+    }
+}
+
+   /* public function addCommande(Request $request)
     {
 
         $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
@@ -61,7 +112,7 @@ class CommandeController extends Controller
                 return redirect()->back()->with('error', 'impossible de commander le produit');
             }
         }
-    }
+    }*/
 
     public function ligneCommandeDestroy($idlc)
     {
