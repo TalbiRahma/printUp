@@ -94,77 +94,58 @@ class ProduitPersonnaliserController extends Controller
         return redirect()->back();
     }
 
-    /*public function createCustomProduct(Request $request)
+    public function ajouterDesign(Request  $request)
     {
+        
+        //dd($request);
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photo' => 'required',
+        ]);
 
-        // récupérer les données du produit initial et du design depuis la session ou le cookie
-        $product_data = json_decode($request->session()->get('product_data'), true);
-        $design_data = json_decode($request->session()->get('design_data'), true);
+        $id = mt_rand(100000, 999999);
+        $design = new Design();
+        $design->id = $id;
+        $design->name = $request->name;
+        $design->category_design_id = $request->category_design;
+        $design->description = $request->description;
+        $design->price = $request->price;
+        $design->user_id = $request->user_id;
 
+        //upload image
+        $newname = uniqid();
+        $image = $request->file('photo');
+        $newname .= "." . $image->getClientOriginalExtension();
+        $destinationPath = 'uploads';
+        $image->move($destinationPath, $newname);
 
-
-        // récupérer les identifiants du produit initial et du design sélectionné
-        $initial_product_id = $product_data['id'];
-        $sizes = $product_data['sizes'];
-        $design_id = $design_data['id'];
-
-        // récupérer les données du produit initial
-        $initial_product = InitialProduct::find($initial_product_id);
-
-        // récupérer les données du design sélectionné
-        $design = Design::find($design_id);
-
-
-        // créer une instance de produit_personnaliser
-        $custom_product = new ProduitPersonnaliser();
-        $custom_product->initial_product_id = $initial_product_id;
-        $custom_product->design_id = $design_id;
-        $custom_product->member_id = auth()->user()->id;
-        $custom_product->name = $initial_product->name . ' ' . $design->name;
-        $custom_product->description = $initial_product->description;
-        $custom_product->price = $initial_product->price + $design->price;
-        $custom_product->sizes = $sizes;
-
-        $custom_product->etat = $design->etat;
-
-        $x = 100;
-        $y = 100;
-        // superposer le design sur le produit initial
-        $img = ImageManagerStatic::make(public_path('uploads/' . $initial_product->photo));
-        $design_img = ImageManagerStatic::make(public_path('uploads/' . $design->photo));
-        $img->insert($design_img, 'top-left', $x, $y);
-        $img_path = 'uploads/custom_products/' . time() . '-' . Str::random(10) . '.jpg';
-        $img->save(public_path($img_path));
-
-        // enregistrer les données du produit personnalisé dans la base de données
-        $custom_product->photo = $img_path;
-        // dd($custom_product);
-        $custom_product->addMedia($img_path)->toMediaCollection('custom_products');
-        $custom_product->save();
+        $design->photo = $newname;
 
 
-        // créer un tableau JSON pour les informations de produit personnalisé
-        $custom_product_data = [
-            'id' => $custom_product->id,
-            'name' => $custom_product->name,
-            'description' => $custom_product->description,
-            'price' => $custom_product->price,
-            'photo' => asset($custom_product->photo),
-            'sizes' => $sizes
+        // Ajouter les données du design dans le tableau JSON dans la session
+        $design_data = $request->session()->get('design_data', []); 
+        $design_data = [
+            'id' => $design->id,
+            'name' => $design->name,
+            'description' => $design->description,
+            'photo' => $design->photo,
+            'price' => $design->price,
+            'user_id' => $design->user_id,
+            'category_design_id' => $design->category_design_id,
         ];
 
-        // transformer les données en JSON
-        $custom_product_data_json = json_encode($custom_product_data);
-        // Si le tableau custom_product_data existe dans la session, le supprimer
-        if ($request->session()->has('custom_product_data')) {
-            $request->session()->forget('custom_product_data');
-        }
-        // stocker les données JSON dans un cookie ou dans la session
-        $request->session()->put('custom_product_data', $custom_product_data_json);
+        $design_data_json = json_encode($design_data);
+        $request->session()->put('design_data', $design_data_json);
 
-        // renvoyer les informations du produit personnalisé en tant que réponse JSON
-        return redirect()->back();
-    }*/
+
+        if ($design->save()) {
+            return redirect()->back()->with('design', $design)->with('success1', 'Votre design a été ajouté avec succès !');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+    }
 
 
 
@@ -190,7 +171,7 @@ class ProduitPersonnaliserController extends Controller
         $custom_product->price = $initial_product->price + $design->price;
         $custom_product->sizes = $initial_product->sizes;
         $custom_product->etat = $design->etat;
-
+ 
         $position = $request->input('image_clone_position');
         $position = json_decode($position, true);
         if ($position === null || ($position['x'] === null && $position['y'] === null)) {

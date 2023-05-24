@@ -288,7 +288,7 @@
                                     <td>
                                         <a href="" data-bs-toggle="modal"
                                             data-bs-target="#products{{ $commande->id }}">
-
+                                        
                                             @foreach ($commande->lignecommandes as $lc)
                                                 <h6 class="mb-0 text-xs">{{ $lc->customproduct->name }}</h6>
                                             @endforeach

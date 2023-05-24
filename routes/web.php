@@ -137,7 +137,6 @@ Route::group(['middleware' => ['auth']], function () {
         /***********client DESIGN***** */
         Route::prefix('designs')->group(function () {
             Route::get('', [DesignController::class, 'index'])->name('designs');
-            Route::post('/add', [DesignController::class, 'ajouterDesign'])->name('add.design');
             Route::get('/{id}/delete', [DesignController::class, 'supprimerDesign'])->name('delete.design');
             Route::post('/search', [DesignController::class, 'searchDesign'])->name('search.design');
         });
@@ -147,6 +146,7 @@ Route::group(['middleware' => ['auth']], function () {
         {
             Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
             Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
+            Route::post('/add', [ProduitPersonnaliserController::class, 'ajouterDesign'])->name('add.design');
             Route::post('/create_custom_product/save', [ProduitPersonnaliserController::class, 'sauvegarder'])->name('save_custom_product');
             //Route::post('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct'])->name('create_custom_product');
             
@@ -189,8 +189,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         /************admin CLIENT****** */
         Route::prefix('user')->group(function () {
             Route::get('', [AdminController::class, 'clients'])->name('users');
-            Route::get('/user/{id}/bloquer', [AdminController::class, 'bloquerUser'])->name('user.bloquer');
-            Route::get('/user/{id}/activer', [AdminController::class, 'activerUser'])->name('user.activer');
+            Route::get('/{id}/bloquer', [AdminController::class, 'bloquerUser'])->name('user.bloquer');
+            Route::get('/{id}/activer', [AdminController::class, 'activerUser'])->name('user.activer');
+            Route::post('/filtrer', [AdminController::class, 'filtrerUser'])->name('filtrer.members');
         });
 
 

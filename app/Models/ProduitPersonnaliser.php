@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProduitPersonnaliser extends Model implements HasMedia
+class ProduitPersonnaliser extends Model 
 {
-    use HasFactory , InteractsWithMedia;
+    use HasFactory ;
     
     public function initialProduct()
     {

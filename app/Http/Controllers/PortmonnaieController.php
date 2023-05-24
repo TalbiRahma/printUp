@@ -100,8 +100,9 @@ class PortmonnaieController extends Controller
 
         // Créer une nouvelle transaction
         $transaction = new Transactions();
-        $transaction->montant_demander = $montant;
         $transaction->member_id = $user->id;
+        $transaction->montant_demander = $montant;
+        $transaction->solde = $transaction->membre->portmonnaie->solde;
         //dd($transaction);
         $transaction->save();
         

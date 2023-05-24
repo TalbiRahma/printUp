@@ -416,7 +416,7 @@
                                             </div>
                                         </li>
                                     @endif
-                                @endforeach
+                                @endforeach 
                                 <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">vos revenus</h6>
                                 @foreach ($commandes as $commande)
                                     @foreach ($commande->lignecommandes as $lc)

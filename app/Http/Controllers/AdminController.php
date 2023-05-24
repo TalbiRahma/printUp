@@ -64,6 +64,23 @@ class AdminController extends Controller
         }
     }
 
+    public function filtrerUser(Request $request)
+    {
+        $memberStatus = $request->input('member_status');
+
+        // Récupérer les commandes en fonction du statut de paiement
+        if ($memberStatus == 'tous') {
+            $clients = User::where('role', 'user')->latest()->paginate(10);
+        } else {
+            $clients = User::where('is_active', $memberStatus)
+            ->where('role', 'user')->latest()
+            ->paginate(10);
+        }
+
+        // Faire quelque chose avec les commandes filtrées (par exemple, les afficher dans une vue)
+        return view('admin.clients.index')->with('clients', $clients);
+    }
+
     public function modifProfil()
     {
         return view('admin.compte.editprofil');
@@ -189,13 +206,12 @@ class AdminController extends Controller
         if ($design->delete()) {
             $mailable = new DesignSupprimer($user_data->name, $user_data->email);
             Mail::to($user_data->email)->send($mailable);
-
-
             return redirect()->back()->with('warning1', 'Le design a été supprimé et l\'email de suppression a été envoyé à la boîte mail de ce membre');
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
+
 
     /****************************************** COMMANDES    **************************/
     public function commandes()
@@ -214,6 +230,15 @@ class AdminController extends Controller
     public function listCommandesValide()
     {
         $commandes = Commande::where('etat', 'valide')->get();
+        /*foreach ($commandes as $commande) {
+            $lignesCommande = $commande->lignecommandes;
+            //dd($lignesCommande);
+
+            foreach ($lignesCommande as $ligneCommande) {
+                $produitsPersonnalises = $ligneCommande->customproduct;
+                //dd($produitsPersonnalises);
+            }
+        }*/
         return view('admin.commandes.validee', compact('commandes'));
     }
 
@@ -223,6 +248,23 @@ class AdminController extends Controller
         $commande = Commande::find($commande_id);
         $commande->etat = 'valide';
         //dd($commande);
+
+        // Récupérer les produits personnalisés pour chaque ligne de commande
+        /*$produitsPersonnalises = [];
+        foreach ($commande->lignecommandes as $lc) {
+            $produitsPersonnalises[] = $lc->customproduct;
+            //dd($produitsPersonnalises);
+        }
+        // Récupérer les produits personnalisés
+        /*$produitsPersonnalises = [];
+        foreach ($commande->lignecommandes as $lc) {
+            
+            $customproduct[] = $lc->customproduct;
+            d
+            }
+        //$produitsPersonnalises[] = $lignecommandes->custom_product;
+        // Convertir en JSON
+        $produitsPersonnalisesJson = json_encode($produitsPersonnalises);*/
         if ($commande->update()) {
             return redirect()->back()->with('success1', 'La commande a été validé');
         } else {
@@ -257,11 +299,12 @@ class AdminController extends Controller
                 $portemonnaie->save();
             }
         }
+        
         if ($commande->save()) {
             return redirect()->route('commandes.validee')->with('success1', 'La commande a été marquée comme payée.');
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
-        };
+        }
     }
 
 
@@ -271,9 +314,11 @@ class AdminController extends Controller
 
         // Récupérer les commandes en fonction du statut de paiement
         if ($paymentStatus == 'tous') {
-            $commandes = Commande::all();
+            $commandes = Commande::where('etat', 'valide')->get();
         } else {
-            $commandes = Commande::where('paiement', $paymentStatus)->get();
+            $commandes = Commande::where('paiement', $paymentStatus)
+                ->where('etat', 'valide')
+                ->get();
         }
 
         // Faire quelque chose avec les commandes filtrées (par exemple, les afficher dans une vue)
@@ -329,6 +374,7 @@ class AdminController extends Controller
     {
         $transaction_id = $request->input('transaction_id');
         $transaction = Transactions::find($transaction_id);
+        
         if (!$transaction) {
             return redirect()->back()->with('danger1', 'Transaction non trouvée !');
         }
@@ -347,17 +393,24 @@ class AdminController extends Controller
         $portmonnaie->solde = $nouveau_solde;
         $portmonnaie->save();
 
+        if (!$portmonnaie->save()) {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+
         // Mettre à jour la transaction
         $transaction->montant_transferts = $montant_demander;
         //$transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
         $transaction->etat = 'transferee';
+        $transaction->solde = $nouveau_solde;
         //dd($transaction);
-        $transaction->save();
 
-        // Envoyer un e-mail de confirmation de paiement
+        if($transaction->save()){
+            // Envoyer un e-mail de confirmation de paiement
         Mail::to($membre->email)->send(new PaiementEffectue($transaction));
-
-        return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
+            return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
 

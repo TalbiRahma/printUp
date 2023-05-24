@@ -183,7 +183,7 @@
                         </thead>
                         <tbody>
                             @foreach ($commandes as $commande)
-                                <tr>
+                                <tr> 
                                     <td class="align-middle">
                                         {{ $commande->created_at }}
                                     </td>

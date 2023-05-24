@@ -244,7 +244,26 @@
         <div class="container-fluid py-4">
             <div class="card card-frame">
                 <div class="card-body">
-                    <h4>Liste de Members</h4>
+                    <div class="row">
+                        <div class="col-9">
+                            <h4>Liste de Members</h4>
+                        </div>
+                        <div class="col-3">
+                            <form action="{{ route('filtrer.members') }}" method="POST">
+                                @csrf
+                                <div class="input-group">
+                                    <button type="submit" class="input-group-text text-body"><i
+                                            class="fas fa-search" aria-hidden="true"></i></button>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                        name="member_status">
+                                        <option value="tous" selected>Tous</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Bloquee</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -228,9 +228,6 @@
                                         </div>
                                     </td>
 
-
-
-
                                     <td class="align-middle ">
 
                                         <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
@@ -250,6 +247,7 @@
 
 
         <!--footer-->
+        @include('inc.argon.flashmessage')
         @include('inc.admin.footer')
 
     </main>

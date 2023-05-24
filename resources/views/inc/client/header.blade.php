@@ -58,7 +58,7 @@
                         </div>
                         <ul class="mainmenu">
                             <li class="menu-item-has-children">
-                                <a href="#">Magasin</a>
+                                <a href="#">Magasin</a> 
                                 <ul class="axil-submenu">
                                     <li><a href="{{ route('products.index') }}">Produits</a></li>
                                     <li><a href="{{ route('designs.index') }}">Designs</a></li>

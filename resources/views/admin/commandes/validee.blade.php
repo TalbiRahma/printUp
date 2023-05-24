@@ -247,7 +247,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-9">
-                            <h4>Liste de commandes en attente</h4>
+                            <h4>Liste de commandes Validée</h4>
                         </div>
                         <div class="col-3">
                             <form action="{{ route('filtrer.commandes') }}" method="POST">

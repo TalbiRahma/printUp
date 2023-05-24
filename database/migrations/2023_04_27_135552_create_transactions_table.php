@@ -15,12 +15,24 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->float('montant_demander')->nullable();
+            $table->float('montant');
+            $table->id('membre_id');
+            
+            /*/*$table->float('montant_demander')->nullable();
             $table->float('montant_transferts')->default(0)->nullable();
+            $table->float('solde')->default(0)->nullable();
             $table->enum('etat', ['demandee', 'transferee'])->default('demandee');
             $table->unsignedBigInteger('member_id');
             $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamps();*/
+            /*$table->id();
+            $table->float('montant_demander')->nullable();
+            $table->float('montant_transferts')->default(0)->nullable();
+            $table->float('solde ')->default(0)->nullable();
+            $table->enum('etat', ['demandee', 'transferee'])->default('demandee');
+            $table->unsignedBigInteger('member_id');
+            $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();*/
         });
     }
 
