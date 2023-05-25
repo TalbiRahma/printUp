@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Ma Boutique
+        PrintUp Boutique
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -19,8 +19,6 @@
     <link href="{{ asset('/dashassets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('/dashassets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
-
-
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -35,65 +33,135 @@
                 <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="navbar-brand-img h-100"
                     alt="main_logo">
             </a>
-
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link " href="/">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-sm opacity-10" style="color: #2b6cf7 !important;"></i>
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Accueil</span>
+                        <span class="nav-link-text ms-1">Tableau de bord</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('maboutique') }}">
+                    <a class="nav-link " href="{{ route('users') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
+                            <i class="ni ni-single-02 text-sm opacity-10" style="color: #a307b1 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Ma Boutique</span>
+                        <span class="nav-link-text ms-1">Members</span>
                     </a>
                 </li>
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Categories</span>
+                    </a>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('category_product') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Categories Produits</span>
+                        </a>
+                        <a class="nav-link " href="{{ route('category_design') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Categories Designs</span>
+                        </a>
+                    </div>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('designs') }}">
+                    <a class="nav-link " href="{{ route('products') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Mes Designs</span>
+                        <span class="nav-link-text ms-1">Designs</span>
                     </a>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('validee') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Validée</span>
+                        </a>
+                        <a class="nav-link " href="{{ route('verif.designs') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Non Validée</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('mes.designs') }}">
+                            
+                            <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('commande.historique') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Commandes</span>
                     </a>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('commandes') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">En Attente</span>
+                        </a>
+                        <a class="nav-link " href="{{ route('commandes.validee') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Validée</span>
+                        </a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('porte-monnaie') }}">
+                <li class="nav-item" id="accordionRental">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTow"
+                        aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Porte-monnaie</span>
+                        <span class="nav-link-text ms-1">Paiement</span>
                     </a>
+                    <div id="collapseTow" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionRental" style="">
+                        <a class="nav-link " href="{{ route('paiement') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Demandes</span>
+                        </a>
+                        <a class="nav-link" href="{{ route('historiques') }}">
+
+                            <span class="nav-link-text ms-4 text-dark">Historiques</span>
+                        </a>
+                    </div>
                 </li>
             </ul>
         </div>
-        <div class="sidenav-footer  ">
+        <div class="sidenav-footer">
             <ul class="navbar-nav">
                 <li class="nav-item mt-3">
                     <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('account') }}">
+                    <a class="nav-link" href="{{ route('donnes.profil') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
@@ -102,29 +170,31 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('compte.update') }}">
+                    <a class="nav-link active" href="{{ route('ma.boutique') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
+                            <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Modifier Compte</span>
+                        <span class="nav-link-text ms-1">PrintUp Boutique</span>
                     </a>
                 </li>
-                <li class="nav-item ps-2">
-                    <a class="nav-link" href="{{ route('login') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                <li class="nav-item ps--3">
+                    <li class="nav-item ps-2">
+                        <a class="nav-link" href="{{ route('login') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
                 </li>
             </ul>
         </div>
@@ -137,10 +207,10 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Ma Boutique</li>
+                                href="/">Accueil</a></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">PrintUp Boutique</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Ma Boutique</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">PrintUp Boutique</h6>
                 </nav>
 
                 @include('inc.client.navbar')
@@ -165,7 +235,7 @@
                         <div class="col-5 col-lg-5 order-lg-1">
                             <div class="mt-3">
                                 <div class="ps-3">
-                                    <h4>Best Creation</h4>
+                                    <h4>PrintUp</h4>
                                     <span class="text-sm">Je vais vous montrer la meilleure
                                         création que vous verrez dans votre vie</span>
                                 </div>
@@ -530,7 +600,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button type="button" class="btn bg-gradient-primary">
-                        <span class="btn-inner--text">Voir plus</span> 
+                        <span class="btn-inner--text">Voir plus</span>
                         <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                     </button>
                 </div>
@@ -611,62 +681,67 @@
 
 
     <!-- Button trigger modal -->
-  
-  <!-- Modal followe -->
-  <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="card">
-                <div class="table-responsive">
-                  <table class="table align-items-center mb-0">
-                    <thead>
-                      <tr>
-                        <th class="text-secondary opacity-7 w-5"></th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-75">Boutiques</th>
-                        <th class="text-secondary opacity-7 w-20"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="align-middle">
-                            <button class="btn btn-link text-secondary mb-0">
-                              <i class="ni ni-fat-remove"></i>
-                            </button>
-                          </td>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-xs">Best Creation</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Voir
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+
+    <!-- Modal followe -->
+    <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-secondary opacity-7 w-5"></th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-75">
+                                            Boutiques</th>
+                                        <th class="text-secondary opacity-7 w-20"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link text-secondary mb-0">
+                                                <i class="ni ni-fat-remove"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
+                                                        class="avatar avatar-sm me-3">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-xs">Best Creation</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Edit user">
+                                                Voir
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-        </div>
-      </div>
     </div>
-  </div>
 
     <!-- Modal modif profil -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -1061,5 +1136,6 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('/dashassets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
 </body>
+
 
 </html>

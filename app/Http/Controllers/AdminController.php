@@ -88,7 +88,7 @@ class AdminController extends Controller
 
     public function maBoutique()
     {
-        return view('admin.compte.maboutiques');
+        return view('admin.compte.pUboutique');
     }
 
     public function mesDesigns()

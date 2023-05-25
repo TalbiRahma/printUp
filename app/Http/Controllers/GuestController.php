@@ -152,4 +152,33 @@ class GuestController extends Controller
         }
         return view('guest.shoppersonaliser', compact('designs','initial_products', 'category_product', 'category_design'));
     }
+
+
+    public function allBoutique(){
+
+        $initial_products = InitialProduct::all();
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        $sizes = ['S', 'M', 'L', 'XL'];
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.boutiques', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design','commande'));
+        }
+        return view('guest.boutiques',compact('designs', 'initial_products', 'category_product', 'category_design'));
+    }
+
+    public function oneBoutique(){
+
+        $initial_products = InitialProduct::all();
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        $sizes = ['S', 'M', 'L', 'XL'];
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.boutique', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design','commande'));
+        }
+        return view('guest.boutique',compact('designs', 'initial_products', 'category_product', 'category_design'));
+    }
 }
