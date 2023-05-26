@@ -308,7 +308,7 @@
                                 </div>
                                 <div
                                     class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                    + {{ $tr->montant_demander }} TD
+                                    + {{ $tr->montant }} TD
                                 </div>
                             </li>
                         @endforeach

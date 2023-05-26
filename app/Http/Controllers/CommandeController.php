@@ -79,6 +79,7 @@ class CommandeController extends Controller
 
 public function addCommande(Request $request)
 {
+        //dd($request);
     $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
 
     // Vérification de l'existence de la commande
@@ -87,7 +88,11 @@ public function addCommande(Request $request)
         foreach ($commande->lignecommandes as $lignec) {
             if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
                 $existe = true;
-                $lignec->qte += $request->qte;
+                if ($request->qte) {
+                    $lignec->qte = $request->qte;
+                } else {
+                    return redirect()->back()->with('danger', 'La quantité est nulle.');
+                }
                 $lignec->update();
             }
         }
@@ -103,7 +108,12 @@ public function addCommande(Request $request)
 
             // Vérification de la sélection de la taille si le produit personnalisé a des tailles
             $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
-            if ($customProduct->sizes !== null && $request->selected_size === null) {
+            /*if (!empty($customProduct->sizes) && $request->selected_size === null) {
+                //dd($customProduct->sizes);
+                return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
+            }*/
+            
+            if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
                 return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
             }
 
@@ -127,7 +137,11 @@ public function addCommande(Request $request)
 
             // Vérification de la sélection de la taille si le produit personnalisé a des tailles
             $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
-            if ($customProduct->sizes !== null && $request->selected_size === null) {
+            /*if (!empty($customProduct->sizes) && $request->selected_size === null) {
+                //dd($customProduct->sizes);
+                return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
+            }*/
+            if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
                 return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
             }
 

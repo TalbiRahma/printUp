@@ -18,7 +18,7 @@ class InitialProductController extends Controller
 
     public function ajouterProduit(Request $request){
  
-       //dd($request);
+       dd($request);
         $request->validate([ 
             'name' => 'required|unique:initial_products',
             'description' => 'required',
@@ -32,6 +32,7 @@ class InitialProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $sizes = array(
+            //'null' => $request->input('null'),
             'STANDARD' => $request->input('STANDARD'),
             'XS' => $request->input('XS'),
             'S' => $request->input('S'),

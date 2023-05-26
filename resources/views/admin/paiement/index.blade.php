@@ -304,7 +304,7 @@
                                             DT</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
-                                        <h6 class="text-s font-weight-bold mb-0">{{ $tr->montant_demander }} DT</h6>
+                                        <h6 class="text-s font-weight-bold mb-0">{{ $tr->montant}} DT</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
                                         <button type="button" class="btn bg-gradient-primary btn-sm"

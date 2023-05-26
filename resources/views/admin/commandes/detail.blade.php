@@ -260,7 +260,7 @@
                         <div class="col-8">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <h3 style="color: #525f7f; margin-bottom: 20px;">{{ $lc->customproduct->name }}</h3>
-                                <a href="{{ route('telecharger.image', ['id' => $lc->customproduct->id]) }}" class="btn btn-info" style="margin-left: auto;">Télécharger</a>
+                                <a href="{{ asset('/' . $lc->customproduct->photo) }}" class="btn btn-info" style="margin-left: auto;" download="">Télécharger</a>
                             </div>
                             <div>
                                 <h5 style="color: #525f7f; display: inline-block;">Produit Initial:</h5>
@@ -338,12 +338,7 @@
                             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1"
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                                 <h4 style="color: #525f7f;">Détails Design:</h4>
-                                <form action="" method="post">
-                                @csrf
-                                <input type="hidden" name="cutsomproduct_id" value="{{$lc->customproduct->id}}" >
-                                <button type="submit" class="btn btn-info"
-                                    style="margin-left: auto;">Télécharger</button>
-                                </form>
+                                <a href="{{ asset('uploads/' . $lc->customproduct->design->photo) }}" class="btn btn-info" style="margin-left: auto;" download="">Télécharger</a>
                             </div>
 
                             <div class="row">

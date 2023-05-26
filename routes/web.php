@@ -68,7 +68,7 @@ Route::post('/upload', function () {
 });
 
 /*Route::get('/send', function(){
-    Mail::to('talbirahma73@gmail.com')->send(new MailVerification());
+    Mail::to('talbirahma73@gmail.com')->send(new² MailVerification());
     return response('sending');
 });*/
 
@@ -137,6 +137,7 @@ Route::group(['middleware' => ['auth']], function () {
         /***********client DESIGN***** */
         Route::prefix('designs')->group(function () {
             Route::get('', [DesignController::class, 'index'])->name('designs');
+            Route::post('/add', [DesignController::class, 'ajouterDesign'])->name('ajouter.design');
             Route::get('/{id}/delete', [DesignController::class, 'supprimerDesign'])->name('delete.design');
             Route::post('/search', [DesignController::class, 'searchDesign'])->name('search.design');
         });
@@ -146,8 +147,11 @@ Route::group(['middleware' => ['auth']], function () {
         {
             Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
             Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
-            Route::post('/add', [ProduitPersonnaliserController::class, 'ajouterDesign'])->name('add.design');
+            Route::post('/upload', [ProduitPersonnaliserController::class, 'uploadDesign'])->name('upload.design');
             Route::post('/create_custom_product/save', [ProduitPersonnaliserController::class, 'sauvegarder'])->name('save_custom_product');
+            Route::get('', [ProduitPersonnaliserController::class, 'index'])->name('produit.personnaliser');
+            Route::post('/addToCart', [ProduitPersonnaliserController::class, 'addToCart'])->name('produit.addToCart');
+            Route::post('/search', [ProduitPersonnaliserController::class, 'search'])->name('search.');
             //Route::post('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct'])->name('create_custom_product');
             
         });

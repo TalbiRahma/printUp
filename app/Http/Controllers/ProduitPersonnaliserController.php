@@ -7,16 +7,17 @@ use App\Models\Design;
 
 use App\Models\Commande;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\LigneCommande;
 use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
 use App\Models\CategoryProduct;
 use App\Models\ProduitPersonnaliser;
+
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
-
 use Intervention\Image\ImageManagerStatic;
 use Symfony\Component\Console\Input\Input;
-use Illuminate\Http\Request;
 
 
 class ProduitPersonnaliserController extends Controller
@@ -94,7 +95,7 @@ class ProduitPersonnaliserController extends Controller
         return redirect()->back();
     }
 
-    public function ajouterDesign(Request  $request)
+    public function uploadDesign(Request  $request)
     {
         
         //dd($request);
@@ -213,4 +214,78 @@ class ProduitPersonnaliserController extends Controller
         //dd($custom_product);
 
     }
+
+    public function index()
+    {
+        $user = auth()->user();
+        $produits_personnaliser =  ProduitPersonnaliser::where('member_id', $user->id)->latest()->paginate(3);
+        return view('client.produit_personnaliser.index', compact('produits_personnaliser'));
+    }
+
+    public function addToCart(Request $request)
+{
+    $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+    //dd($request);
+    // Vérification de l'existence de la commande
+    if ($commande) {
+        $existe = false;
+        foreach ($commande->lignecommandes as $lignec) {
+            if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
+                $existe = true;
+                $lignec->qte += $request->qte;
+                $lignec->update();
+            }
+        } 
+
+        if (!$existe) {
+            // Création de la ligne de commande
+            $lc = new LigneCommande();
+            if ($request->qte) {
+                $lc->qte = $request->qte;
+            } else {
+                return redirect()->back()->with('danger1', 'La quantité est nulle.');
+            }
+
+            // Vérification de la sélection de la taille si le produit personnalisé a des tailles
+            $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
+            if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
+                return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
+            }
+
+            $lc->custom_product_id = $request->custom_product_id;
+            $lc->selected_size = $request->input('selected_size');
+            $lc->commande_id = $commande->id;
+            $lc->save();
+        }
+        return redirect()->back()->with('success1', 'Le produit est ajouter au panier');
+    } else {
+        $commande = new Commande();
+        $commande->member_id = Auth::user()->id;
+        if ($commande->save()) {
+            // Création de la ligne de commande
+            $lc = new LigneCommande();
+            if ($request->qte) {
+                $lc->qte = $request->qte;
+            } else {
+                return redirect()->back()->with('danger1', 'La quantité est nulle.');
+            }
+
+            // Vérification de la sélection de la taille si le produit personnalisé a des tailles
+            $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
+            if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
+                return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
+            }
+
+            $lc->custom_product_id = $request->custom_product_id;
+            $lc->selected_size = $request->input('selected_size');
+            $lc->commande_id = $commande->id;
+            $lc->save();
+            return redirect()->back()->with('success1', 'Le produit est ajouter au panier');
+        } else {
+            return redirect()->back()->with('danger1', 'Impossible de commander le produit');
+        }
+    }
+
+    
+}
 }

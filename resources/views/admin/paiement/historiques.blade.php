@@ -298,11 +298,11 @@
                                     <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->solde }}
+                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->membre->portmonnaie->solde + $tr->montant}}
                                         DT</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->montant_transferts }} DT</h6>
+                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->montant }} DT</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
                                     {{ $tr->updated_at}}

@@ -276,30 +276,36 @@ class AdminController extends Controller
     {
         $commande = Commande::findOrFail($id);
         $commande->paiement = 'payee';
-
+       
         // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
         foreach ($commande->lignecommandes as $ligne_commande) {
 
             $montant = $ligne_commande->customproduct->design->price;
-            $montant_totale = $montant * $ligne_commande->qte;
+            $montant_total = $montant * $ligne_commande->qte;
             $user = $ligne_commande->customproduct->design->user;
             $user_id = $user->id;
+            $transaction = new Transactions();
+            $transaction->member_id = $user_id;
+            $transaction->montant = $montant_total;
+            $transaction->type = 'revenu';
+            $transaction->save();
             $portemonnaie = Portmonnaie::where('user_id', $user_id)->first();
+            
 
             if ($portemonnaie) {
                 // Mettre à jour la colonne "montant_existe"
-                $portemonnaie->solde += $montant_totale;
+                $portemonnaie->solde += $montant_total;
                 $portemonnaie->save();
             } else {
                 // Le portefeuille n'existe pas encore pour cet utilisateur, créer un nouveau portefeuille avec le montant initial
                 $portemonnaie = new Portmonnaie;
                 $portemonnaie->user_id = $user_id;
-                $portemonnaie->solde = $montant_totale;
+                $portemonnaie->solde = $montant_total;
                 //dd($portemonnaie);
                 $portemonnaie->save();
             }
         }
-        
+
         if ($commande->save()) {
             return redirect()->route('commandes.validee')->with('success1', 'La commande a été marquée comme payée.');
         } else {
@@ -364,9 +370,9 @@ class AdminController extends Controller
     public function listePaiement()
     {
         $transactions = Transactions::with('membre')
-            ->where('etat', 'demandee')
+            ->where('type', 'demande')
+            ->where('etat', '0')
             ->get();
-
         return view('admin.paiement.index', compact('transactions'));
     }
 
@@ -379,32 +385,36 @@ class AdminController extends Controller
             return redirect()->back()->with('danger1', 'Transaction non trouvée !');
         }
 
-
         $membre = $transaction->membre;
-        $montant_demander = $transaction->montant_demander;
+        $montant_demander = $transaction->montant;
         $solde = $membre->portmonnaie->solde;
+        
         if ($solde < $montant_demander) {
             return  redirect()->back()->with('danger1', 'Solde insuffisant !');
         }
 
         // Mettre à jour le solde du portefeuille du membre
-        $nouveau_solde = $solde - $montant_demander;
         $portmonnaie = $membre->portmonnaie;
-        $portmonnaie->solde = $nouveau_solde;
+        $portmonnaie->solde = $solde - $montant_demander;
         $portmonnaie->save();
 
+        
         if (!$portmonnaie->save()) {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
 
         // Mettre à jour la transaction
-        $transaction->montant_transferts = $montant_demander;
-        //$transaction->montant_demander = $transaction->montant_demander - $transaction->montant_transferts;
-        $transaction->etat = 'transferee';
-        $transaction->solde = $nouveau_solde;
+        $transaction->etat = '1';
+        $transaction->update();
+
+        $new_transaction = new Transactions();
+        $new_transaction->member_id = $membre->id;
+        $new_transaction->montant = $montant_demander;
+        $new_transaction->type = 'remboursé';
+        //$transaction->solde = $nouveau_solde;
         //dd($transaction);
 
-        if($transaction->save()){
+        if($new_transaction->save()){
             // Envoyer un e-mail de confirmation de paiement
         Mail::to($membre->email)->send(new PaiementEffectue($transaction));
             return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
@@ -427,7 +437,7 @@ class AdminController extends Controller
     public function historiques()
     {
         $transactions = Transactions::with('membre')
-            ->where('etat', 'transferee')
+            ->where('type', 'remboursé')
             ->get();
         return view('admin.paiement.historiques', compact('transactions'));
     }

@@ -66,13 +66,11 @@
 
 
         <!-- Start Mainmenu Area  -->
-
         <div class="axil-mainmenu aside-category-menu">
             <div class="container">
                 <div class="header-navbar">
                     <div class="header-main-nav">
                         <!-- Start Mainmanu Nav -->
-
                         <nav class="mainmenu-nav">
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
@@ -103,7 +101,7 @@
                                             <div class="modal-body">
                                                 <div class="single-product-thumb">
                                                     <form class="singin-form" method="POST"
-                                                        action="{{ route('add.design') }}"
+                                                        action="{{ route('upload.design') }}"
                                                         enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" name="user_id"
@@ -407,8 +405,6 @@
         @endphp
         @if ($product_data)
             <!-- Custom Product Slider Area -->
-
-
             <div class="axil-main-slider-area main-slider-style-2">
                 <div class="container">
                     <div class="slider-offset-left">
@@ -420,6 +416,7 @@
                                         <div class="product-content1">
 
                                             <div style="position: relative;">
+
                                                 <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
                                                     alt="Product" id="drop-image" />
                                                 <div id="div1" ondrop="drop(event)"
@@ -442,7 +439,7 @@
                                                             <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
                                                                 alt="Product" id="drag1" draggable="true"
                                                                 ondragstart="drag(event)" width="336"
-                                                                height="69">
+                                                                height="69" id="resizable-image">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -466,8 +463,7 @@
                                                         $design_data = json_decode(session('design_data'), true);
                                                         $design_id = $design_data['id'];
                                                     @endphp
-                                                    <input type="hidden" name="iddesign"
-                                                        value="{{ $design_id }}">
+                                                    <input type="hidden" name="iddesign" value="{{ $design_id }}">
                                                 @endif
                                                 <button type="submit"
                                                     class="axil-btn axil-btn-custom2 btn-bg-primary">Sauvegarder</button>
@@ -537,7 +533,6 @@
                                                 </div>
 
                                             @endif
-
                                         </div>
 
                                         <!-- End Product Variation  -->
@@ -549,21 +544,15 @@
                                         <h5>Total: {{ $product_data['price'] }} TND</h5>
                                     @endif
 
-
-                                    <div class="product-quantity" data-title="Qty">
-                                        <div class="pro-qty" style="margin-top: -10px;"><span
-                                                class="dec qtybtn">-</span>
-                                            <input name="qte" type="number" id="quantityInput"
-                                                class="quantity-input" value="0"><span
-                                                class="inc qtybtn">+</span>
-                                        </div>
-                                    </div>
-
                                     <div class="group-btn" style="margin-top: 15px;">
-
-
                                         <form action="{{ route('command.add') }}" method="POST">
                                             @csrf
+                                            <div class="product-quantity" data-title="Qty">
+                                                <div class="pro-qty" style="margin-top: -10px;">
+                                                    <input name="qte" id="quantityInput" type="number"
+                                                        class="quantity-input" value="1">
+                                                </div>
+                                            </div>
                                             @if (session('custom_product_data'))
                                                 @php
                                                     $custom_product_data = json_decode(session('custom_product_data'), true);
@@ -573,35 +562,12 @@
                                                     value="{{ $custom_product_id }}">
                                                 <input type="hidden" name="selected_size" id="sizesInput"
                                                     value="">
-
-                                                <input type="hidden" name="qte" id="qteInput" value="">
+                                               <!-- <input type="hidden" name="qte" id="qteInput" value="">-->
                                                 <button type="submit"
                                                     class="axil-btn axil-btn-custom2 btn-bg-secondary">Ajouter au
                                                     panier</button>
                                             @endif
                                         </form>
-                                        @if (session('design_data'))
-                                            @php
-                                                $design_data = json_decode(session('design_data'), true);
-                                                $design_user_id = $design_data['user_id'];
-                                            @endphp
-                                            @if (auth()->check() && auth()->user()->id === $design_user_id)
-                                                <form action="{{ route('addto.boutique') }}" method="POST">
-                                                    @csrf
-                                                    @if (session('custom_product_data'))
-                                                        @php
-                                                            $custom_product_data = json_decode(session('custom_product_data'), true);
-                                                            $custom_product_id = $custom_product_data['id'];
-                                                        @endphp
-                                                        <input type="hidden" name="custom_product_id"
-                                                            value="{{ $custom_product_id }}">
-                                                        <button type="submit"
-                                                            class="axil-btn axil-btn-custom1 btn-bg-primary">Ajouter au
-                                                            boutique</button>
-                                                    @endif
-                                                </form>
-                                            @endif
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -609,7 +575,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- End Custom Product Slider Area -->
 
         @endif
@@ -648,13 +613,10 @@
     <script src="{{ asset('/mainassets/js/vendor/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('/mainassets/js/vendor/counterup.js') }}"></script>
     <script src="{{ asset('/mainassets/js/vendor/waypoints.min.js') }}"></script>
-    <script src="{{ asset('/mainassets/js/vendor/interact.min.js') }}"></script>
-    <script src="{{ asset('/mainassets/js/vendor/interact.js') }}"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
         function allowDrop(ev) {
@@ -681,87 +643,191 @@
             // Mettre à jour la valeur du champ caché
             document.getElementById("image-clone-position").value = JSON.stringify(imageClonePosition);
         }
+        /*var isResizing = false;
+        var initialMouseX, initialMouseY;
+        var initialWidth, initialHeight;
+        var resizableImage;
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function startResize(event) {
+            isResizing = true;
+            resizableImage = event.target.parentNode.parentNode;
+            initialMouseX = event.clientX;
+            initialMouseY = event.clientY;
+            initialWidth = resizableImage.offsetWidth;
+            initialHeight = resizableImage.offsetHeight;
+            document.addEventListener("mousemove", resizeImage);
+            document.addEventListener("mouseup", stopResize);
+        }
+
+        function resizeImage(event) {
+            if (!isResizing) return;
+
+            var offsetX = event.clientX - initialMouseX;
+            var offsetY = event.clientY - initialMouseY;
+            var newWidth = initialWidth + offsetX;
+            var newHeight = initialHeight + offsetY;
+
+            resizableImage.style.width = newWidth + "px";
+            resizableImage.style.height = newHeight + "px";
+        }
+
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener("mousemove", resizeImage);
+            document.removeEventListener("mouseup", stopResize);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var clone = document.getElementById(data).cloneNode(true);
+            clone.removeAttribute("id");
+
+            // Créer un cadre pour l'image clonée
+            var frame = document.createElement("div");
+            frame.className = "frame";
+
+            // Ajouter les boutons de redimensionnement
+            var resizeButtons = document.createElement("div");
+            resizeButtons.className = "resize-buttons";
+
+            var resizeButtonTop = document.createElement("button");
+            resizeButtonTop.className = "resize-button top";
+            resizeButtonTop.addEventListener("mousedown", startResize);
+            resizeButtons.appendChild(resizeButtonTop);
+
+            var resizeButtonBottom = document.createElement("button");
+            resizeButtonBottom.className = "resize-button bottom";
+            resizeButtonBottom.addEventListener("mousedown", startResize);
+            resizeButtons.appendChild(resizeButtonBottom);
+
+            var resizeButtonLeft = document.createElement("button");
+            resizeButtonLeft.className = "resize-button left";
+            resizeButtonLeft.addEventListener("mousedown", startResize);
+            resizeButtons.appendChild(resizeButtonLeft);
+
+            var resizeButtonRight = document.createElement("button");
+            resizeButtonRight.className = "resize-button right";
+            resizeButtonRight.addEventListener("mousedown", startResize);
+            resizeButtons.appendChild(resizeButtonRight);
+
+            var resizeButtonTopLeft = document.createElement("button");
+            resizeButtonTopLeft.className = "resize-button top-left";
+            resizeButtonTopLeft.addEventListener("mousedown", startResize);
+            resizeButtons.appendChild(resizeButtonTopLeft);
+
+            var resizeButtonBottomRight = document.createElement("button");
+            resizeButtonBottomRight.className = "resize-button bottom-right";
+            resizeButtonBottomRight.addEventListener("mousedown", startResize);
+            resizeButtons.appendChild(resizeButtonBottomRight);
+
+            frame.appendChild(resizeButtons);
+            frame.appendChild(clone);
+            ev.target.appendChild(frame);
+        }*/
+        /*function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var clone = document.getElementById(data).cloneNode(true);
+            clone.removeAttribute("id");
+            ev.target.appendChild(clone);
+
+            // Récupérer les coordonnées du clone d'image
+            var imageClonePosition = {
+                x: ev.clientX,
+                y: ev.clientY
+            };
+
+            // Mettre à jour la valeur du champ caché
+            document.getElementById("image-clone-position").value = JSON.stringify(imageClonePosition);
+
+            // Redimensionner l'image clone lors du clic sur le bouton "+"
+            document.getElementById("increaseButton").addEventListener("click", function() {
+                var currentWidth = parseInt(clone.style.width) || clone.offsetWidth;
+                var currentHeight = parseInt(clone.style.height) || clone.offsetHeight;
+                var newWidth = currentWidth + 10;
+                var newHeight = currentHeight + 10;
+                clone.style.width = newWidth + "px";
+                clone.style.height = newHeight + "px";
+            });
+
+            // Redimensionner l'image clone lors du clic sur le bouton "-"
+            document.getElementById("decreaseButton").addEventListener("click", function() {
+                var currentWidth = parseInt(clone.style.width) || clone.offsetWidth;
+                var currentHeight = parseInt(clone.style.height) || clone.offsetHeight;
+                var newWidth = currentWidth - 10;
+                var newHeight = currentHeight - 10;
+                clone.style.width = newWidth + "px";
+                clone.style.height = newHeight + "px";
+            });
+        }*/
     </script>
 
-
-    <!--
-============================================ -->
-<script>
-   function incrementQuantity() {
-      var currentValue = parseInt(quantityInput.value);
-      if (isNaN(currentValue)) {
-        quantityInput.value = 1;
-      } else {
-        quantityInput.value = currentValue + 1;
-      }
-      document.getElementById('qteInput').value = quantityInput.value;
-    }
-  
-    function decrementQuantity() {
-      var currentValue = parseInt(quantityInput.value);
-      if (isNaN(currentValue) || currentValue <= 1) {
-        quantityInput.value = 1;
-      } else {
-        quantityInput.value = currentValue - 1;
-      }
-      document.getElementById('qteInput').value = quantityInput.value;
-    }
-  
-    var incButton = document.querySelector('.inc');
-    var decButton = document.querySelector('.dec');
-    var quantityInput = document.getElementById('quantityInput');
-    incButton.addEventListener('click', incrementQuantity);
-    decButton.addEventListener('click', decrementQuantity);
-  </script>
-  
     <script>
         /*function incrementQuantity() {
-                var currentValue = parseInt(quantityInput.value);
-                quantityInput.value = currentValue + 1;
-                document.getElementById('qteInput').value = quantityInput.value;
-            }
+                                var currentValue = parseInt(quantityInput.value);
+                                if (isNaN(currentValue)) {
+                                    quantityInput.value = 1;
+                                } else {
+                                    quantityInput.value = currentValue + 1;
+                                }
+                                document.getElementById('qteInput').value = quantityInput.value;
+                            }
 
-            function decrementQuantity() {
-                var currentValue = parseInt(quantityInput.value);
-                if (currentValue > 1) {
-                    quantityInput.value = currentValue - 1;
-                    document.getElementById('qteInput').value = quantityInput.value;
+                            function decrementQuantity() {
+                                var currentValue = parseInt(quantityInput.value);
+                                if (isNaN(currentValue) || currentValue <= 1) {
+                                    quantityInput.value = 1;
+                                } else {
+                                    quantityInput.value = currentValue - 1;
+                                }
+                                document.getElementById('qteInput').value = quantityInput.value;
+                            }
+
+                            var incButton = document.querySelector('.inc');
+                            var decButton = document.querySelector('.dec');
+                            var quantityInput = document.getElementById('quantityInput');
+                            incButton.addEventListener('click', incrementQuantity);
+                            decButton.addEventListener('click', decrementQuantity);*/
+    </script>
+
+    <script>
+        function selectSize(size) {
+            // Récupérer tous les boutons de taille
+            const sizeButtons = document.querySelectorAll('.size-btn');
+
+            // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+            sizeButtons.forEach((button) => {
+                if (button.textContent.trim() === size) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
                 }
-            }
+            });
 
-            var incButton = document.querySelector('.inc');
-            var decButton = document.querySelector('.dec');
-            incButton.addEventListener('click', incrementQuantity);
-            decButton.addEventListener('click', decrementQuantity);*/
-        </script>
+            // Mettre à jour la valeur de l'input caché "selected_size"
+            document.querySelector('#selected_size').value = size;
 
-
-
-
-
-
-
-        <script >
-            function selectSize(size) {
-                // Récupérer tous les boutons de taille
-                const sizeButtons = document.querySelectorAll('.size-btn');
-
-                // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
-                sizeButtons.forEach((button) => {
-                    if (button.textContent.trim() === size) {
-                        button.classList.add('selected');
-                    } else {
-                        button.classList.remove('selected');
-                    }
-                });
-
-                // Mettre à jour la valeur de l'input caché "selected_size"
-                document.querySelector('#selected_size').value = size;
-
-                // Mettre à jour la valeur de l'input caché "sizes"
-                const sizesInput = document.querySelector('#sizesInput');
-                sizesInput.value = size;
-            }
+            // Mettre à jour la valeur de l'input caché "sizes"
+            const sizesInput = document.querySelector('#sizesInput');
+            sizesInput.value = size;
+        }
 
         /* function selectSize(size) {
              // Récupérer tous les boutons de taille
@@ -787,6 +853,134 @@
 
 
 
+
+
+
+
+
+
+    <script>
+        /*function selectSize(size) {
+                                                // Récupérer tous les boutons de taille
+                                                const sizeButtons = document.querySelectorAll('.size-btn');
+
+                                                // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+                                                sizeButtons.forEach((button) => {
+                                                    if (button.textContent.trim() === size) {
+                                                        button.classList.add('selected');
+                                                    } else {
+                                                        button.classList.remove('selected');
+                                                    }
+                                                });
+
+                                                // Mettre à jour la valeur de l'input caché "selected_size"
+                                                document.querySelector('#selected_size').value = size;
+                                            }
+
+                                            // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
+                                            const sizeLinks = document.querySelectorAll('.size-btn');
+                                            sizeLinks.forEach((link) => {
+                                                link.addEventListener('click', (event) => {
+                                                    event.preventDefault();
+                                                });
+                                            });*/
+    </script>
+
+    <script>
+        /*$(document).ready(function() {
+                                                $('form#product_form').submit(function(event) {
+                                                    //event.preventDefault(); // empêche la soumission du formulaire
+
+                                                    // vérifie si le tableau custom_product existe dans la session et le vide s'il existe
+                                                    /*if (typeof sessionStorage.custom_product !== 'undefined') {
+                                                        sessionStorage.removeItem('custom_product');
+                                                    }*/
+
+        // récupère les données du formulaire
+        /*var form_data = new FormData(this);
+
+                    // soumet le formulaire via AJAX vers la première route
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: $(this).attr('method'),
+                        data: form_data,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // soumet le formulaire via AJAX vers la deuxième route
+                            $.ajax({
+                                url: '/client/personnaliser/create_custom_product',
+                                type: 'post',
+                                success: function(response) {
+                                    // redirige l'utilisateur vers la page de personnalisation de produit
+                                    window.location.href =
+                                        '/client/personnaliser/create_custom_product';
+                                },
+                                error: function(xhr, status, error) {
+                                    // gère les erreurs
+                                    console.log(error);
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // gère les erreurs
+                            console.log(error);
+                        }
+                    });
+                });
+            });*/
+    </script>
+
+    <style>
+        .pro-resize {
+            margin-top: -10px;
+        }
+
+        .pro-resize {
+            width: 130px;
+            border-radius: 50px;
+        }
+
+        .pro-resize .qtybtn {
+            width: 32px;
+            display: block;
+            float: left;
+            line-height: 26px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 300;
+            color: #000;
+            height: 32px;
+            background: #f6f7fb;
+            border-radius: 50%;
+            transition: .3s;
+            border: 2px solid rgba(0, 0, 0, 0);
+        }
+
+        .pro-resize input {
+            width: 28px;
+            float: left;
+            border: none;
+            height: 32px;
+            line-height: 30px;
+            padding: 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 12px;
+            color: #27272e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            display: block;
+        }
+    </style>
 
     <style>
         .size-btn.selected {
@@ -900,13 +1094,12 @@
 
     <style>
         #div1 {
-            width: 125px;
-            height: 160px;
+            width: 300px;
+            height: 300px;
             padding: 10px;
             border: 1px solid #aaaaaa;
         }
     </style>
-
 
 </body>
 

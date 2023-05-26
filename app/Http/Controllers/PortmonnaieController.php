@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 class PortmonnaieController extends Controller
 {
     //
-    
-
     public function portemonnaie()
     {
         $user_id = auth()->user()->id; // Récupérer l'id de l'utilisateur connecté
@@ -25,10 +23,15 @@ class PortmonnaieController extends Controller
         ->where('paiement', 'payee')
         ->with(['lignecommandes.customproduct.design', 'lignecommandes.customproduct.initialProduct'])->get(); // Charger les relations avec la commande
 
-        $tarnsactions = Transactions::where('member_id', $user_id)->get(); 
+        $tarnsactions = Transactions::where('member_id', $user_id)->get();
+        /*$demande = Transactions::where('member_id', $user_id)
+        ->where('etat', '=', 'demande')
+        ->get(); 
         //dd($portemonnaie->solde);
-        
-        return view('client.portemonnaie.index', compact('commandes', 'tarnsactions' ));
+        $rembourse = Transactions::where('member_id', $user_id)
+        ->where('etat', '=', 'remboursé')
+        ->get();*/ 
+        return view('client.portemonnaie.index', compact('commandes', 'tarnsactions'));
     }
 
     public function ajouterCarte(Request $request)
@@ -101,8 +104,10 @@ class PortmonnaieController extends Controller
         // Créer une nouvelle transaction
         $transaction = new Transactions();
         $transaction->member_id = $user->id;
-        $transaction->montant_demander = $montant;
-        $transaction->solde = $transaction->membre->portmonnaie->solde;
+        $transaction->montant = $montant;
+        $transaction->type = 'demande';
+        $transaction->etat = '0';
+        //$transaction->solde = $transaction->membre->portmonnaie->solde;
         //dd($transaction);
         $transaction->save();
         
