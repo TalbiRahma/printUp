@@ -117,7 +117,7 @@
                                         </ul>
                                     </ul>
                                 </li>
-                                <li><a href="#">Boutiques</a></li>
+                                <li><a href="{{ route('boutiques') }}">Boutiques</a></li>
                                 <li><a href="#">A propos</a></li>
                                 <li><a href="{{route('contact')}}">Contact</a></li>
                             </ul>

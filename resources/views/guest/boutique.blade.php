@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/dashassets/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/dashassets/img/logo.png') }}">
     <title>
-        Ma Boutique
+        Best Creation
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -38,96 +38,122 @@
 
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " href="/">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-sm opacity-10" style="color: #2b6cf7 !important;"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Accueil</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('maboutique') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Ma Boutique</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('designs') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Mes Designs</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('commande.historique') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Commandes</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('porte-monnaie') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-sm opacity-10" style="color: #f1c037 !important;"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Porte-monnaie</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="sidenav-footer  ">
-            <ul class="navbar-nav">
-                <li class="nav-item mt-3">
-                    <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
-                </li>
-                <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('account') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Compte</span>
-                    </a>
-                </li>
-                <li class="nav-item ps--3">
-                    <a class="nav-link " href="{{ route('compte.update') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Modifier Compte</span>
-                    </a>
-                </li>
-                <li class="nav-item ps-2">
-                    <a class="nav-link" href="{{ route('login') }}"
-                        onclick="event.preventDefault();
+        @if (auth()->user())
+            <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-shop text-sm opacity-10" style="color: #2b6cf7 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Accueil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('maboutique') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Ma Boutique</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('designs') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Mes Designs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('commande.historique') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Commandes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('porte-monnaie') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-money-coins text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Porte-monnaie</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidenav-footer  ">
+                <ul class="navbar-nav">
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
+                    </li>
+                    <li class="nav-item ps--3">
+                        <a class="nav-link " href="{{ route('account') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Compte</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ps--3">
+                        <a class="nav-link " href="{{ route('compte.update') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-settings text-sm opacity-10" style="color: #606d80 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Modifier Compte</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ps-2">
+                        <a class="nav-link" href="{{ route('login') }}"
+                            onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                            <path fill-rule="evenodd"
-                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                        </svg>
-                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
-        </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd"
+                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg>
+                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        @else
+            <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-shop text-sm opacity-10" style="color: #2b6cf7 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Accueil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-copy-04 text-sm opacity-10"
+                                    style="color: #ff497c !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">S'inscrire</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        @endif
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
@@ -137,10 +163,10 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Ma Boutique</li>
+                                href="javascript:;">Accueil</a></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Best Creation</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Ma Boutique</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Best Creation</h6>
                 </nav>
 
                 @include('inc.client.navbar')
@@ -202,8 +228,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end mt-n4" style="margin-right: 25px;">
-                        <button class="btn btn-sm btn-dark " type="button" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Modifier</button>
+                        <button class="btn btn-sm btn-pink" type="button">Suivre</button>
                     </div>
                 </div>
             </div>
@@ -530,7 +555,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button type="button" class="btn bg-gradient-primary">
-                        <span class="btn-inner--text">Voir plus</span> 
+                        <span class="btn-inner--text">Voir plus</span>
                         <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                     </button>
                 </div>
@@ -611,97 +636,63 @@
 
 
     <!-- Button trigger modal -->
-  
-  <!-- Modal followe -->
-  <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="card">
-                <div class="table-responsive">
-                  <table class="table align-items-center mb-0">
-                    <thead>
-                      <tr>
-                        <th class="text-secondary opacity-7 w-5"></th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-75">Boutiques</th>
-                        <th class="text-secondary opacity-7 w-20"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="align-middle">
-                            <button class="btn btn-link text-secondary mb-0">
-                              <i class="ni ni-fat-remove"></i>
-                            </button>
-                          </td>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-xs">Best Creation</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Voir
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-    <!-- Modal modif profil -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Modal followe -->
+    <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <div class="form-group">
-                            <img id="photoPreview" src="#" alt="Aperçu de la photo"
-                                style="display: none; max-width: 100%; height: auto;">
-                            <label for="example-text-input" class="form-control-label mt-3">Ajouter votre couverture
-                                de boutique</label>
-                            <input class="form-control" type="file" id="photoInput">
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-secondary opacity-7 w-5"></th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-75">
+                                            Boutiques</th>
+                                        <th class="text-secondary opacity-7 w-20"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link text-secondary mb-0">
+                                                <i class="ni ni-fat-remove"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
+                                                        class="avatar avatar-sm me-3">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-xs">Best Creation</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Edit user">
+                                                Voir
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="form-group">
-                            <label for="example-text-input" class="form-control-label">Nom Boutique</label>
-                            <input class="form-control" type="text" value="Best Creation"
-                                id="example-text-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Biographie</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn bg-gradient-primary">Enregistrer les modifications</button>
                 </div>
             </div>
         </div>
@@ -915,6 +906,12 @@
             height: 4px;
             background: var(--color-extra01);
             border-radius: 100%;
+        }
+
+        .btn-pink {
+            background-color: #ff497c;
+            /* Couleur de fond */
+            color: #ffffff;
         }
     </style>
 
