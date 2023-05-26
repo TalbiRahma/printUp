@@ -105,6 +105,7 @@ class PortmonnaieController extends Controller
         $transaction = new Transactions();
         $transaction->member_id = $user->id;
         $transaction->montant = $montant;
+        $transaction->solde = $user->portmonnaie->solde;
         $transaction->type = 'demande';
         $transaction->etat = '0';
         //$transaction->solde = $transaction->membre->portmonnaie->solde;

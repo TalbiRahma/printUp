@@ -284,18 +284,18 @@ class AdminController extends Controller
             $montant_total = $montant * $ligne_commande->qte;
             $user = $ligne_commande->customproduct->design->user;
             $user_id = $user->id;
+            $portemonnaie = Portmonnaie::where('user_id', $user_id)->first();
             $transaction = new Transactions();
             $transaction->member_id = $user_id;
             $transaction->montant = $montant_total;
             $transaction->type = 'revenu';
-            $transaction->save();
-            $portemonnaie = Portmonnaie::where('user_id', $user_id)->first();
             
 
             if ($portemonnaie) {
                 // Mettre à jour la colonne "montant_existe"
                 $portemonnaie->solde += $montant_total;
                 $portemonnaie->save();
+                
             } else {
                 // Le portefeuille n'existe pas encore pour cet utilisateur, créer un nouveau portefeuille avec le montant initial
                 $portemonnaie = new Portmonnaie;
@@ -304,6 +304,8 @@ class AdminController extends Controller
                 //dd($portemonnaie);
                 $portemonnaie->save();
             }
+            $transaction->solde = $portemonnaie->solde;
+            $transaction->save();
         }
 
         if ($commande->save()) {
@@ -410,6 +412,7 @@ class AdminController extends Controller
         $new_transaction = new Transactions();
         $new_transaction->member_id = $membre->id;
         $new_transaction->montant = $montant_demander;
+        $new_transaction->solde = $portmonnaie->solde + $montant_demander;
         $new_transaction->type = 'remboursé';
         //$transaction->solde = $nouveau_solde;
         //dd($transaction);

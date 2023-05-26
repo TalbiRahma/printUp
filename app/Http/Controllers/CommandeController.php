@@ -108,11 +108,6 @@ public function addCommande(Request $request)
 
             // Vérification de la sélection de la taille si le produit personnalisé a des tailles
             $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
-            /*if (!empty($customProduct->sizes) && $request->selected_size === null) {
-                //dd($customProduct->sizes);
-                return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
-            }*/
-            
             if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
                 return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
             }
@@ -121,7 +116,7 @@ public function addCommande(Request $request)
             $lc->selected_size = $request->input('selected_size');
             $lc->commande_id = $commande->id;
             $lc->save();
-        }
+        } 
         return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
     } else {
         $commande = new Commande();
@@ -137,10 +132,6 @@ public function addCommande(Request $request)
 
             // Vérification de la sélection de la taille si le produit personnalisé a des tailles
             $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
-            /*if (!empty($customProduct->sizes) && $request->selected_size === null) {
-                //dd($customProduct->sizes);
-                return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
-            }*/
             if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
                 return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
             }

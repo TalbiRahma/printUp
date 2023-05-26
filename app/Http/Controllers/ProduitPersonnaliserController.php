@@ -169,7 +169,12 @@ class ProduitPersonnaliserController extends Controller
         $custom_product->member_id = auth()->user()->id;
         $custom_product->name = $initial_product->name . ' ' . $design->name;
         $custom_product->description = $initial_product->description;
-        $custom_product->price = $initial_product->price + $design->price;
+        if (Auth::user()->id == $design->user_id) {
+            $custom_product->price = $initial_product->price + 0;
+        } else {
+            $custom_product->price = $initial_product->price + $design->price;
+        }
+        //$custom_product->price = $initial_product->price + $design->price;
         $custom_product->sizes = $initial_product->sizes;
         $custom_product->etat = $design->etat;
  
@@ -223,7 +228,7 @@ class ProduitPersonnaliserController extends Controller
     }
 
     public function addToCart(Request $request)
-{
+{   //dd($request);
     $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
     //dd($request);
     // Vérification de l'existence de la commande
@@ -232,7 +237,11 @@ class ProduitPersonnaliserController extends Controller
         foreach ($commande->lignecommandes as $lignec) {
             if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
                 $existe = true;
-                $lignec->qte += $request->qte;
+                if ($request->qte) {
+                    $lignec->qte += $request->qte;
+                } else {
+                    return redirect()->back()->with('danger1', 'La quantité est nulle.');
+                }
                 $lignec->update();
             }
         } 
@@ -286,6 +295,6 @@ class ProduitPersonnaliserController extends Controller
         }
     }
 
-    
+
 }
 }

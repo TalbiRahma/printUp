@@ -298,7 +298,7 @@
                                     <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
                                 </td>
                                 <td class="align-middle text-sm ">
-                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->membre->portmonnaie->solde + $tr->montant}}
+                                    <h6 class="text-s font-weight-bold mb-0">{{ $tr->solde + $tr->montant}}
                                         DT</h6>
                                 </td>
                                 <td class="align-middle text-sm ">

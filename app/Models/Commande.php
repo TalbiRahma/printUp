@@ -19,7 +19,6 @@ class Commande extends Model
      }
 
     public function getTotal(){
-
         $total = 0;
         //liste des lignes de commande
         foreach($this->lignecommandes as $lc){
