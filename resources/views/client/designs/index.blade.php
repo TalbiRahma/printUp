@@ -190,6 +190,8 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="boutique_id"
+                                        value="{{ auth()->user()->boutique->id }}">
                                     <input type="hidden" name="id" value="{{ mt_rand(100000, 999999) }}">
                                     <div class="modal-body p-0">
                                         <div class="card card-plain">
@@ -290,6 +292,8 @@
                                     style="width: 10%;">Etat</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                     style="width: 15%;">Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                    style="width: 15%;">Visibilité dans la boutique</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -347,12 +351,21 @@
                                         <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
                                             href="{{ route('delete.design', ['id' => $d->id]) }}"
                                             class="btn bg-gradient-danger btn-sm">Supprimer</a>
+                                    </td>
+                                    <td class="align-middle ">
+                                        <form action="{{ route('addto.boutique') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="design_id" value="{{ $d->id }}">
+                                            <button class="btn bg-gradient-danger btn-sm">visible</button>
+                                        </form>
 
-                                            <td class="align-middle ">
-                                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce design?')"
-                                                    href="{{ route('delete.design', ['id' => $d->id]) }}"
-                                                    class="btn bg-gradient-danger btn-sm">Ajouter au boutique</a>
-                                            </td>
+
+                                        <form action="{{ route('removefrom.boutique') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="design_id" value="{{ $d->id }}">
+                                            <button class="btn bg-gradient-danger btn-sm">unvisible</button>
+                                        </form>
+                                    </td>
                                     </td>
                                 </tr>
                             @endforeach

@@ -192,7 +192,7 @@
                                         </li>
                                         <li>
                                             @if (auth()->user())
-                                                <a href="#">Ma Boutique</a>
+                                                <a href="{{ route('maboutique') }}">Ma Boutique</a>
                                             @else
                                                 <a href="{{ route('register') }}">Ma Boutique</a>
                                             @endif

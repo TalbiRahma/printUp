@@ -36,6 +36,7 @@ class DesignController extends Controller
         $design->description = $request->description;
         $design->price = $request->price;
         $design->user_id = $request->user_id;
+        $design->boutique_id = $request->boutique_id;
 
         //upload image
         $newname = uniqid();

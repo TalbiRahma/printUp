@@ -151,23 +151,37 @@
         <div class="container-fluid py-3">
             <div class="mx-4 card ">
                 <div class="card card-profile">
-                    <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
-                        class="card-img-top">
+                    @if (auth()->user()->boutique->photo)
+                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" class="avatar avatar-sm me-3">
+                    @else
+                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
+                            class="card-img-top">
+                    @endif
+                    <img src="">
                     <div class="row ">
                         <div class="col-3 col-lg-3 order-lg-1">
                             <div class="mt-n6 mt-lg-n6 mb-4 mb-lg-0" style="margin-left: 30px;">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('/dashassets/img/team-2.jpg') }}"
-                                        class="rounded-circle img-fluid border border-2 border-white">
+                                    @if (auth()->user()->photo)
+                                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                            class="avatar avatar-sm me-3">
+                                    @else
+                                        <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                             class="rounded-circle img-fluid border border-2 border-white">
+                                    @endif
                                 </a>
                             </div>
                         </div>
                         <div class="col-5 col-lg-5 order-lg-1">
                             <div class="mt-3">
                                 <div class="ps-3">
-                                    <h4>Best Creation</h4>
-                                    <span class="text-sm">Je vais vous montrer la meilleure
-                                        création que vous verrez dans votre vie</span>
+                                    <h4>{{ auth()->user()->boutique->name }}</h4>
+                                    @if (auth()->user()->boutique->biographie)
+                                        <span class="text-sm">{{ auth()->user()->boutique->biographie }}</span>
+                                    @else
+                                        <span class="text-sm">Je vais vous montrer la meilleure
+                                            création que vous verrez dans votre vie</span>
+                                    @endif
                                 </div>
                                 <div class="d-flex justify-content-start mt-n2">
                                     <div class="rate">
@@ -212,17 +226,18 @@
             <div class="mx-4">
                 <div class="row">
                     <div class="col-8">
+                        @foreach ($designs as $design)
                         <div class="card card-frame">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6">
-                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
+                                        <img src="{{ asset('uploads') }}/{{$design->photo}}"
                                             class="rounded w-100 bg-gray-100">
                                     </div>
                                     <div class="col-6">
                                         <div class="row">
                                             <div class="col-9">
-                                                <h3>Nom Designs</h3>
+                                                <h3>{{$design->name}}</h3>
                                             </div>
                                             <div class="col-3">
                                                 <div class="text-end">
@@ -233,7 +248,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h4 class="mt-3">15 TND</h4>
+                                        <h4 class="mt-3">{{$design->price}} DT</h4>
                                         <div class="d-flex justify-content-start mt-n2" style="margin-left: -10px;">
                                             <div class="rate">
                                                 <input type="radio" id="star5" name="rate"
@@ -256,8 +271,7 @@
                                         </div>
                                         <hr class="horizontal dark mt-2">
                                         <h6>Description:</h6>
-                                        <span class="text-sm">Je vais vous montrer la meilleure création que vous
-                                            verrez dans votre vie</span>
+                                        <span class="text-sm">{{$design->description}}</span>
                                     </div>
                                     <div class="accordion-item mt-4">
                                         <h5 class="accordion-header" id="headingOne">
@@ -427,6 +441,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="col-4">
                         <div class="card card-frame">
@@ -530,7 +545,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button type="button" class="btn bg-gradient-primary">
-                        <span class="btn-inner--text">Voir plus</span> 
+                        <span class="btn-inner--text">Voir plus</span>
                         <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
                     </button>
                 </div>
@@ -611,62 +626,67 @@
 
 
     <!-- Button trigger modal -->
-  
-  <!-- Modal followe -->
-  <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="card">
-                <div class="table-responsive">
-                  <table class="table align-items-center mb-0">
-                    <thead>
-                      <tr>
-                        <th class="text-secondary opacity-7 w-5"></th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-75">Boutiques</th>
-                        <th class="text-secondary opacity-7 w-20"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="align-middle">
-                            <button class="btn btn-link text-secondary mb-0">
-                              <i class="ni ni-fat-remove"></i>
-                            </button>
-                          </td>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-xs">Best Creation</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td class="align-middle">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Voir
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+
+    <!-- Modal followe -->
+    <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-secondary opacity-7 w-5"></th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 w-75">
+                                            Boutiques</th>
+                                        <th class="text-secondary opacity-7 w-20"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-middle">
+                                            <button class="btn btn-link text-secondary mb-0">
+                                                <i class="ni ni-fat-remove"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
+                                                        class="avatar avatar-sm me-3">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-xs">Best Creation</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Edit user">
+                                                Voir
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-        </div>
-      </div>
     </div>
-  </div>
 
     <!-- Modal modif profil -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

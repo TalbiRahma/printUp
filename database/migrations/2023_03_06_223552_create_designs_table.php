@@ -24,6 +24,9 @@ return new class extends Migration
             $table->unsignedBigInteger('category_design_id');
             $table->foreign('category_design_id')->references('id')->on('category_designs')->onDelete('cascade');
             $table->enum('etat', ['en attente', 'valide'])->default('en attente');
+            $table->unsignedBigInteger('boutique_id')->nullable();
+            $table->foreign('boutique_id')->references('id')->on('boutiques')->onDelete('cascade');
+            $table->boolean('visibility')->default(false);
             $table->timestamps();
         });
     }

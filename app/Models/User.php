@@ -69,23 +69,24 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Commande::class, 'member_id', 'id');
     }
 
-  
+
     public function portmonnaie()
     {
-        return $this->hasOne(Portmonnaie::class, 'user_id' , 'id');
+        return $this->hasOne(Portmonnaie::class, 'user_id', 'id');
     }
 
     public function transactions()
     {
-        return $this->hasMany(Transactions::class , 'member_id', 'id');
+        return $this->hasMany(Transactions::class, 'member_id', 'id');
     }
 
-    public function getTotaltransactions(){
+    public function getTotaltransactions()
+    {
 
         $total = 0;
         //liste des lignes de commande
-        foreach($this->transactions as $tr){
-           $total += $tr->montant_transferts;
+        foreach ($this->transactions as $tr) {
+            $total += $tr->montant_transferts;
         }
         return $total;
     }
@@ -93,5 +94,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function produits_personnalises()
     {
         return $this->hasMany(ProduitPersonnaliser::class, 'membre_id', 'id');
+    }
+
+    public function boutique()
+    {
+        return $this->hasOne(Boutique::class,'user_id', 'id');
     }
 }

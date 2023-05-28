@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Boutique;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,12 +66,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        /*return*/ $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $boutique = new Boutique([
+            'name' => $data['first_name'].' '.$data['last_name'],
+            'photo' => null,
+            'biographie' => null,
+            'user_id' => null,
+        ]);
+    
+        $user->boutique()->save($boutique);
+    
+        return $user;
     }
 
    

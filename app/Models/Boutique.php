@@ -8,20 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Boutique extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'photo', 'biographie'];
 
     public function produitsPersonnalises()
     {
         return $this->belongsToMany(ProduitPersonnaliser::class, 'produit_personnalisers', 'boutique_id', 'produit_personnaliser_id');
     }
 
-
-
-
-
-    
     public function user()
     {
-        return $this->belongsTo(User::class, 'boutique_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function designs()

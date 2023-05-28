@@ -94,7 +94,7 @@ Route::prefix('geust/shop')->group(function () {
 });
 
 
- 
+
 /*************CLIENT******** */
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('client')->group(function () {
@@ -106,16 +106,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
         Route::get('/contact', [ClientController::class, 'contact'])->name('contact');
         Route::post('/contact/send', [ClientController::class, 'contactSend'])->name('contact.send');
-        
-        Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
-        Route::post('/add/toboutique', [BoutiqueController::class, 'aadToBoutique'])->name('addto.boutique');
 
         Route::get('/porte-monnaie', [PortmonnaieController::class, 'portemonnaie'])->name('porte-monnaie');
         Route::post('/porte-monnaie/ajout', [PortmonnaieController::class, 'ajouterCarte'])->name('porte-monnaie.ajout');
         Route::post('/porte-monnaie/modif', [PortmonnaieController::class, 'modifierCarte'])->name('porte-monnaie.modif');
         Route::post('/porte-monnaie/demande', [PortmonnaieController::class, 'demanderArgent'])->name('porte-monnaie.demande');
 
-        
+
 
 
 
@@ -145,8 +142,7 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         /****PERSONNALISER****** */
-        Route::prefix('personnaliser')->group(function () 
-        {
+        Route::prefix('personnaliser')->group(function () {
             Route::get('/produit/{id}', [ProduitPersonnaliserController::class, 'sendToPersonnaliser'])->name('personnaliser.produit');
             Route::post('/modifier_design', [ProduitPersonnaliserController::class, 'addDesign'])->name('modifier.design');
             Route::post('/upload', [ProduitPersonnaliserController::class, 'uploadDesign'])->name('upload.design');
@@ -155,13 +151,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/addToCart', [ProduitPersonnaliserController::class, 'addToCart'])->name('produit.addToCart');
             Route::post('/search', [ProduitPersonnaliserController::class, 'search'])->name('search.');
             //Route::post('/create_custom_product', [ProduitPersonnaliserController::class, 'createCustomProduct'])->name('create_custom_product');
-            
+
         });
 
 
         /*****COMMANDE *****/
-        Route::prefix('commande')->group(function () 
-        {
+        Route::prefix('commande')->group(function () {
             Route::post('/store', [CommandeController::class, 'addCommande'])->name('command.add');
             Route::get('/lc/{idlc}/destroy', [CommandeController::class, 'ligneCommandeDestroy'])->name('command.delete');
             Route::post('/update', [CommandeController::class, 'updateLigne'])->name('commande.update');
@@ -169,6 +164,13 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/list', [CommandeController::class, 'listCommande'])->name('commande.list');
             Route::get('/historique', [CommandeController::class, 'historiqueCommande'])->name('commande.historique');
             Route::get('{id}/historique/details', [CommandeController::class, 'detailCommande'])->name('commande.historique.details');
+        });
+
+        /*****BOUTIQUE *****/
+        Route::prefix('boutique')->group(function () {
+            Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
+            Route::post('/add/toboutique', [BoutiqueController::class, 'aadToBoutique'])->name('addto.boutique');
+            Route::post('/remove/fromboutique', [BoutiqueController::class, 'removeFromBoutique'])->name('removefrom.boutique');
         });
     });
 });
@@ -246,7 +248,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/validee', [AdminController::class, 'designsvalidee'])->name('validee');
             Route::get('/{id}/valider', [AdminController::class, 'validerDesign'])->name('valider.designs');
             Route::get('/{id}/delete', [AdminController::class, 'AdminSupprimerDesign'])->name('admin.delete.design');
-            
         });
 
 
@@ -268,10 +269,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             })->name('commande.payer');
             Route::get('/validée/list/{id}/detail', [AdminController::class, 'commandeDetail'])->name('commandes.detail');
             Route::post('/filtrer-commandes', [AdminController::class, 'filtrerCommandes'])->name('filtrer.commandes');
-            Route::get('/telecharger-image/{id}',[AdminController::class, 'telechargerImage'])->name('telecharger.image');
+            Route::get('/telecharger-image/{id}', [AdminController::class, 'telechargerImage'])->name('telecharger.image');
         });
 
-        
+
         Route::prefix('paiement')->group(function () {
             Route::get('/', [AdminController::class, 'listePaiement'])->name('paiement');
             Route::get('member/{id}/historique', [AdminController::class, 'historiquePaiement'])->name('paiement.historique');

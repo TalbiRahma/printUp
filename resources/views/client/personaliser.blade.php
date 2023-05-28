@@ -106,6 +106,8 @@
                                                         @csrf
                                                         <input type="hidden" name="user_id"
                                                             value="{{ auth()->user()->id }}">
+                                                        <input type="hidden" name="boutique_id"
+                                                            value="{{ auth()->user()->boutique->id }}">
                                                         <input type="hidden" name="id"
                                                             value="{{ mt_rand(100000, 999999) }}">
                                                         <label class="ps-5">Ajouter votre design</label>
@@ -786,30 +788,30 @@
 
     <script>
         /*function incrementQuantity() {
-                                    var currentValue = parseInt(quantityInput.value);
-                                    if (isNaN(currentValue)) {
-                                        quantityInput.value = 1;
-                                    } else {
-                                        quantityInput.value = currentValue + 1;
+                                        var currentValue = parseInt(quantityInput.value);
+                                        if (isNaN(currentValue)) {
+                                            quantityInput.value = 1;
+                                        } else {
+                                            quantityInput.value = currentValue + 1;
+                                        }
+                                        document.getElementById('qteInput').value = quantityInput.value;
                                     }
-                                    document.getElementById('qteInput').value = quantityInput.value;
-                                }
 
-                                function decrementQuantity() {
-                                    var currentValue = parseInt(quantityInput.value);
-                                    if (isNaN(currentValue) || currentValue <= 1) {
-                                        quantityInput.value = 1;
-                                    } else {
-                                        quantityInput.value = currentValue - 1;
+                                    function decrementQuantity() {
+                                        var currentValue = parseInt(quantityInput.value);
+                                        if (isNaN(currentValue) || currentValue <= 1) {
+                                            quantityInput.value = 1;
+                                        } else {
+                                            quantityInput.value = currentValue - 1;
+                                        }
+                                        document.getElementById('qteInput').value = quantityInput.value;
                                     }
-                                    document.getElementById('qteInput').value = quantityInput.value;
-                                }
 
-                                var incButton = document.querySelector('.inc');
-                                var decButton = document.querySelector('.dec');
-                                var quantityInput = document.getElementById('quantityInput');
-                                incButton.addEventListener('click', incrementQuantity);
-                                decButton.addEventListener('click', decrementQuantity);*/
+                                    var incButton = document.querySelector('.inc');
+                                    var decButton = document.querySelector('.dec');
+                                    var quantityInput = document.getElementById('quantityInput');
+                                    incButton.addEventListener('click', incrementQuantity);
+                                    decButton.addEventListener('click', decrementQuantity);*/
     </script>
 
     <script>
@@ -866,40 +868,40 @@
 
     <script>
         /*function selectSize(size) {
-                                                    // Récupérer tous les boutons de taille
-                                                    const sizeButtons = document.querySelectorAll('.size-btn');
+                                                        // Récupérer tous les boutons de taille
+                                                        const sizeButtons = document.querySelectorAll('.size-btn');
 
-                                                    // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
-                                                    sizeButtons.forEach((button) => {
-                                                        if (button.textContent.trim() === size) {
-                                                            button.classList.add('selected');
-                                                        } else {
-                                                            button.classList.remove('selected');
-                                                        }
-                                                    });
+                                                        // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
+                                                        sizeButtons.forEach((button) => {
+                                                            if (button.textContent.trim() === size) {
+                                                                button.classList.add('selected');
+                                                            } else {
+                                                                button.classList.remove('selected');
+                                                            }
+                                                        });
 
-                                                    // Mettre à jour la valeur de l'input caché "selected_size"
-                                                    document.querySelector('#selected_size').value = size;
-                                                }
+                                                        // Mettre à jour la valeur de l'input caché "selected_size"
+                                                        document.querySelector('#selected_size').value = size;
+                                                    }
 
-                                                // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
-                                                const sizeLinks = document.querySelectorAll('.size-btn');
-                                                sizeLinks.forEach((link) => {
-                                                    link.addEventListener('click', (event) => {
-                                                        event.preventDefault();
-                                                    });
-                                                });*/
+                                                    // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
+                                                    const sizeLinks = document.querySelectorAll('.size-btn');
+                                                    sizeLinks.forEach((link) => {
+                                                        link.addEventListener('click', (event) => {
+                                                            event.preventDefault();
+                                                        });
+                                                    });*/
     </script>
 
     <script>
         /*$(document).ready(function() {
-                                                    $('form#product_form').submit(function(event) {
-                                                        //event.preventDefault(); // empêche la soumission du formulaire
+                                                        $('form#product_form').submit(function(event) {
+                                                            //event.preventDefault(); // empêche la soumission du formulaire
 
-                                                        // vérifie si le tableau custom_product existe dans la session et le vide s'il existe
-                                                        /*if (typeof sessionStorage.custom_product !== 'undefined') {
-                                                            sessionStorage.removeItem('custom_product');
-                                                        }*/
+                                                            // vérifie si le tableau custom_product existe dans la session et le vide s'il existe
+                                                            /*if (typeof sessionStorage.custom_product !== 'undefined') {
+                                                                sessionStorage.removeItem('custom_product');
+                                                            }*/
 
         // récupère les données du formulaire
         /*var form_data = new FormData(this);
