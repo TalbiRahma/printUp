@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('maboutique') }}">
+                        <a class="nav-link " href="{{ route('maboutique') }}" id="boutique">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-badge text-sm opacity-10" style="color: #f1a037 !important;"></i>
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('designs') }}">
+                        <a class="nav-link " href="{{ route('designs') }}" id="design">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -69,7 +69,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('commande.historique') }}">
+                        <a class="nav-link " href="{{ route('produit.personnaliser') }}" id="pp">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-ruler-pencil text-sm opacity-10" style="color: #3772f1 !important;"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Mes Produits Personnalisés</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('commande.historique') }}" id="hcommande">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-bag-17 text-success text-sm opacity-10"></i>
@@ -78,7 +87,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('porte-monnaie') }}">
+                        <a class="nav-link " href="{{ route('porte-monnaie') }}" id="pmonnaie">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-money-coins text-sm opacity-10" style="color: #f1c037 !important;"></i>
@@ -115,8 +124,8 @@
                         <a class="nav-link" href="{{ route('login') }}"
                             onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                                 <path fill-rule="evenodd"
@@ -286,13 +295,29 @@
                                     </div>
                                     <div class="accordion-item mt-4">
                                         <h5 class="accordion-header" id="headingOne">
-                                            <button
-                                                class="accordion-button ni ni-chat-round font-weight-bold collapsed"
-                                                type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="false"
-                                                aria-controls="collapseOne">
-                                                <span class="ps-3" style="font-size: 20px;">13 Avis</span>
-                                            </button>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <button
+                                                        class="accordion-button ni ni-chat-round font-weight-bold collapsed"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne" aria-expanded="false"
+                                                        aria-controls="collapseOne">
+                                                        <span class="ps-3" style="font-size: 20px;">13 Avis</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-4 d-flex">
+                                                    <div class="mt-n2 ms-auto">
+                                                        <button class="btn btn-icon btn-3 btn-block btn-default mb-3"
+                                                            type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalMessage">
+                                                            <span class="btn-inner--icon"><i
+                                                                    class="ni ni-fat-add"></i></span>
+                                                            <span class="btn-inner--text">Commentaire</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </h5>
                                         <div id="collapseOne" class="accordion-collapse collapse mt-4 "
                                             aria-labelledby="headingOne" data-bs-parent="#accordionRental"
@@ -305,6 +330,40 @@
                                                     <li class="comment">
                                                         <div class="comment-body">
                                                             <div class="single-comment">
+                                                                <div class="dropdown">
+                                                                    <a href="#"data-bs-toggle="dropdown"
+                                                                        id="navbarDropdownMenuLink2">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16" height="16"
+                                                                            fill="currentColor"
+                                                                            class="bi bi-three-dots-vertical"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                                                        </svg>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu"
+                                                                        aria-labelledby="navbarDropdownMenuLink2">
+                                                                        <li>
+                                                                            <a class="dropdown-item" href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                                                  </svg>
+                                                                                Supprimer
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item" href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                                                                  </svg>
+                                                                                Modifier
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                                 <div class="comment-img">
                                                                     <img src="{{ asset('/dashassets/img/Mickey.png') }}"
                                                                         alt="Author Images">
@@ -637,6 +696,68 @@
 
     <!-- Button trigger modal -->
 
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal"
+        data-bs-target="#exampleModalMessage">
+        Message Modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un commentaire</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="recipient-name" class="col-form-label">Votre note:</label>
+                                </div>
+                                <div class="col-9">
+                                    <span class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5" />
+                                        <label for="star5" title="text">5
+                                            stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4
+                                            stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3
+                                            stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2
+                                            stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1
+                                            star</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Commentaire:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn bg-gradient-primary">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
     <!-- Modal followe -->
     <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -715,6 +836,7 @@
             reader.readAsDataURL(file);
         });
     </script>
+
     <style>
         .modal-dialog.modal-large {
             max-width: 50%;
