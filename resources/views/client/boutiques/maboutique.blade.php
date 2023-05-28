@@ -51,7 +51,7 @@
             <div class="mx-4 card ">
                 <div class="card card-profile">
                     @if (auth()->user()->boutique->photo)
-                    <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}" alt="Image placeholder"
+                        <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}" alt="Image placeholder"
                             class="card-img-top">
                     @else
                         <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
@@ -67,7 +67,7 @@
                                             class="avatar avatar-sm me-3">
                                     @else
                                         <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
-                                             class="rounded-circle img-fluid border border-2 border-white">
+                                            class="rounded-circle img-fluid border border-2 border-white">
                                     @endif
                                 </a>
                             </div>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-n4" style="margin-right: 25px;">
                         <button class="btn btn-sm btn-dark " type="button" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Modifier</button>
+                            data-bs-target="#exampleModal{{ $boutique->id }}">Modifier</button>
                     </div>
                 </div>
             </div>
@@ -127,220 +127,231 @@
                 <div class="row">
                     <div class="col-8">
                         @foreach ($designs as $design)
-                        <div class="card card-frame">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <img src="{{ asset('uploads') }}/{{$design->photo}}"
-                                            class="rounded w-100 bg-gray-100">
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <h3>{{$design->name}}</h3>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="text-end">
-                                                    <button class="fav-btn ps-2" type="button">
-                                                        <i id="fav-icon" class="ni ni-favourite-28 end-0 mt-2"
-                                                            style="font-size: 25px; display: inline-block;"></i>
-                                                    </button>
+                            <div class="card card-frame">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}"
+                                                class="rounded w-100 bg-gray-100">
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <h3>{{ $design->name }}</h3>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="text-end">
+                                                        <button class="fav-btn ps-2" type="button">
+                                                            <i id="fav-icon" class="ni ni-favourite-28 end-0 mt-2"
+                                                                style="font-size: 25px; display: inline-block;"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <h4 class="mt-3">{{$design->price}} DT</h4>
-                                        <div class="d-flex justify-content-start mt-n2" style="margin-left: -10px;">
-                                            <div class="rate">
-                                                <input type="radio" id="star5" name="rate"
-                                                    value="5" />
-                                                <label for="star5" title="text">5 stars</label>
-                                                <input type="radio" id="star4" name="rate"
-                                                    value="4" />
-                                                <label for="star4" title="text">4 stars</label>
-                                                <input type="radio" id="star3" name="rate"
-                                                    value="3" />
-                                                <label for="star3" title="text">3 stars</label>
-                                                <input type="radio" id="star2" name="rate"
-                                                    value="2" />
-                                                <label for="star2" title="text">2 stars</label>
-                                                <input type="radio" id="star1" name="rate"
-                                                    value="1" />
-                                                <label for="star1" title="text">1 star</label>
+                                            <h4 class="mt-3">{{ $design->price }} DT</h4>
+                                            <div class="d-flex justify-content-start mt-n2"
+                                                style="margin-left: -10px;">
+                                                <div class="rate">
+                                                    <input type="radio" id="star5" name="rate"
+                                                        value="5" />
+                                                    <label for="star5" title="text">5 stars</label>
+                                                    <input type="radio" id="star4" name="rate"
+                                                        value="4" />
+                                                    <label for="star4" title="text">4 stars</label>
+                                                    <input type="radio" id="star3" name="rate"
+                                                        value="3" />
+                                                    <label for="star3" title="text">3 stars</label>
+                                                    <input type="radio" id="star2" name="rate"
+                                                        value="2" />
+                                                    <label for="star2" title="text">2 stars</label>
+                                                    <input type="radio" id="star1" name="rate"
+                                                        value="1" />
+                                                    <label for="star1" title="text">1 star</label>
+                                                </div>
+                                                <span class="text-lg mt-2 opacity-8">(10)</span>
                                             </div>
-                                            <span class="text-lg mt-2 opacity-8">(10)</span>
+                                            <hr class="horizontal dark mt-2">
+                                            <h6>Description:</h6>
+                                            <span class="text-sm">{{ $design->description }}</span>
                                         </div>
-                                        <hr class="horizontal dark mt-2">
-                                        <h6>Description:</h6>
-                                        <span class="text-sm">{{$design->description}}</span>
-                                    </div>
-                                    <div class="accordion-item mt-4">
-                                        <h5 class="accordion-header" id="headingOne">
-                                            <button
-                                                class="accordion-button ni ni-chat-round font-weight-bold collapsed"
-                                                type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="false"
-                                                aria-controls="collapseOne">
-                                                <span class="ps-3" style="font-size: 20px;">13 Avis</span>
-                                            </button>
-                                        </h5>
-                                        <div id="collapseOne" class="accordion-collapse collapse mt-4 "
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionRental"
-                                            style="">
-                                            <div class="axil-comment-area pro-desc-commnet-area">
-                                                <h5 class="title">01 Avis pour ce design</h5>
-                                                <ul class="comment-list" style="list-style-type: none;">
+                                        <div class="accordion-item mt-4">
+                                            <h5 class="accordion-header" id="headingOne">
+                                                <button
+                                                    class="accordion-button ni ni-chat-round font-weight-bold collapsed"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                    aria-controls="collapseOne">
+                                                    <span class="ps-3" style="font-size: 20px;">13 Avis</span>
+                                                </button>
+                                            </h5>
+                                            <div id="collapseOne" class="accordion-collapse collapse mt-4 "
+                                                aria-labelledby="headingOne" data-bs-parent="#accordionRental"
+                                                style="">
+                                                <div class="axil-comment-area pro-desc-commnet-area">
+                                                    <h5 class="title">01 Avis pour ce design</h5>
+                                                    <ul class="comment-list" style="list-style-type: none;">
 
-                                                    <!-- Start Single Comment  -->
-                                                    <li class="comment">
-                                                        <div class="comment-body">
-                                                            <div class="single-comment">
-                                                                <div class="comment-img">
-                                                                    <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                                                        alt="Author Images">
-                                                                </div>
-                                                                <div class="comment-inner">
-                                                                    <h6 class="commenter">
-                                                                        <div class="row">
-                                                                            <div class="col-5">
-                                                                                <a class="hover-flip-item-wrapper"
-                                                                                    href="#">
-                                                                                    <span class="hover-flip-item">
-                                                                                        <span
-                                                                                            data-text="Rahabi Khan">Courtney
-                                                                                            Henry</span>
+                                                        <!-- Start Single Comment  -->
+                                                        <li class="comment">
+                                                            <div class="comment-body">
+                                                                <div class="single-comment">
+                                                                    <div class="comment-img">
+                                                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
+                                                                            alt="Author Images">
+                                                                    </div>
+                                                                    <div class="comment-inner">
+                                                                        <h6 class="commenter">
+                                                                            <div class="row">
+                                                                                <div class="col-5">
+                                                                                    <a class="hover-flip-item-wrapper"
+                                                                                        href="#">
+                                                                                        <span class="hover-flip-item">
+                                                                                            <span
+                                                                                                data-text="Rahabi Khan">Courtney
+                                                                                                Henry</span>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="col-7">
+                                                                                    <span class="rate">
+                                                                                        <input type="radio"
+                                                                                            id="star5"
+                                                                                            name="rate"
+                                                                                            value="5" />
+                                                                                        <label for="star5"
+                                                                                            title="text">5
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star4"
+                                                                                            name="rate"
+                                                                                            value="4" />
+                                                                                        <label for="star4"
+                                                                                            title="text">4
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star3"
+                                                                                            name="rate"
+                                                                                            value="3" />
+                                                                                        <label for="star3"
+                                                                                            title="text">3
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star2"
+                                                                                            name="rate"
+                                                                                            value="2" />
+                                                                                        <label for="star2"
+                                                                                            title="text">2
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star1"
+                                                                                            name="rate"
+                                                                                            value="1" />
+                                                                                        <label for="star1"
+                                                                                            title="text">1
+                                                                                            star</label>
                                                                                     </span>
-                                                                                </a>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-7">
-                                                                                <span class="rate">
-                                                                                    <input type="radio"
-                                                                                        id="star5" name="rate"
-                                                                                        value="5" />
-                                                                                    <label for="star5"
-                                                                                        title="text">5
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star4" name="rate"
-                                                                                        value="4" />
-                                                                                    <label for="star4"
-                                                                                        title="text">4
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star3" name="rate"
-                                                                                        value="3" />
-                                                                                    <label for="star3"
-                                                                                        title="text">3
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star2" name="rate"
-                                                                                        value="2" /> 
-                                                                                    <label for="star2"
-                                                                                        title="text">2
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star1" name="rate"
-                                                                                        value="1" />
-                                                                                    <label for="star1"
-                                                                                        title="text">1
-                                                                                        star</label>
-                                                                                </span>
-                                                                            </div>
+                                                                        </h6>
+                                                                        <div class="comment-text">
+                                                                            <p>“We’ve created a full-stack structure
+                                                                                for our
+                                                                                working workflow processes, were
+                                                                                from the
+                                                                                funny the century initial all the
+                                                                                made, have
+                                                                                spare to negatives. ”</p>
                                                                         </div>
-                                                                    </h6>
-                                                                    <div class="comment-text">
-                                                                        <p>“We’ve created a full-stack structure
-                                                                            for our
-                                                                            working workflow processes, were
-                                                                            from the
-                                                                            funny the century initial all the
-                                                                            made, have
-                                                                            spare to negatives. ”</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                    <!-- End Single Comment  -->
+                                                        </li>
+                                                        <!-- End Single Comment  -->
 
-                                                    <!-- Start Single Comment  -->
-                                                    <li class="comment">
-                                                        <div class="comment-body">
-                                                            <div class="single-comment">
-                                                                <div class="comment-img">
-                                                                    <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                                                        alt="Author Images">
-                                                                </div>
-                                                                <div class="comment-inner">
-                                                                    <h6 class="commenter">
-                                                                        <div class="row">
-                                                                            <div class="col-5">
-                                                                                <a class="hover-flip-item-wrapper"
-                                                                                    href="#">
-                                                                                    <span class="hover-flip-item">
-                                                                                        <span
-                                                                                            data-text="Rahabi Khan">Courtney
-                                                                                            Henry</span>
+                                                        <!-- Start Single Comment  -->
+                                                        <li class="comment">
+                                                            <div class="comment-body">
+                                                                <div class="single-comment">
+                                                                    <div class="comment-img">
+                                                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
+                                                                            alt="Author Images">
+                                                                    </div>
+                                                                    <div class="comment-inner">
+                                                                        <h6 class="commenter">
+                                                                            <div class="row">
+                                                                                <div class="col-5">
+                                                                                    <a class="hover-flip-item-wrapper"
+                                                                                        href="#">
+                                                                                        <span class="hover-flip-item">
+                                                                                            <span
+                                                                                                data-text="Rahabi Khan">Courtney
+                                                                                                Henry</span>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="col-7">
+                                                                                    <span class="rate">
+                                                                                        <input type="radio"
+                                                                                            id="star5"
+                                                                                            name="rate"
+                                                                                            value="5" />
+                                                                                        <label for="star5"
+                                                                                            title="text">5
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star4"
+                                                                                            name="rate"
+                                                                                            value="4" />
+                                                                                        <label for="star4"
+                                                                                            title="text">4
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star3"
+                                                                                            name="rate"
+                                                                                            value="3" />
+                                                                                        <label for="star3"
+                                                                                            title="text">3
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star2"
+                                                                                            name="rate"
+                                                                                            value="2" />
+                                                                                        <label for="star2"
+                                                                                            title="text">2
+                                                                                            stars</label>
+                                                                                        <input type="radio"
+                                                                                            id="star1"
+                                                                                            name="rate"
+                                                                                            value="1" />
+                                                                                        <label for="star1"
+                                                                                            title="text">1
+                                                                                            star</label>
                                                                                     </span>
-                                                                                </a>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-7">
-                                                                                <span class="rate">
-                                                                                    <input type="radio"
-                                                                                        id="star5" name="rate"
-                                                                                        value="5" />
-                                                                                    <label for="star5"
-                                                                                        title="text">5
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star4" name="rate"
-                                                                                        value="4" />
-                                                                                    <label for="star4"
-                                                                                        title="text">4
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star3" name="rate"
-                                                                                        value="3" />
-                                                                                    <label for="star3"
-                                                                                        title="text">3
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star2" name="rate"
-                                                                                        value="2" />
-                                                                                    <label for="star2"
-                                                                                        title="text">2
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star1" name="rate"
-                                                                                        value="1" />
-                                                                                    <label for="star1"
-                                                                                        title="text">1
-                                                                                        star</label>
-                                                                                </span>
-                                                                            </div>
+                                                                        </h6>
+                                                                        <div class="comment-text">
+                                                                            <p>“We’ve created a full-stack structure
+                                                                                for our
+                                                                                working workflow processes, were
+                                                                                from the
+                                                                                funny the century initial all the
+                                                                                made, have
+                                                                                spare to negatives. ”</p>
                                                                         </div>
-                                                                    </h6>
-                                                                    <div class="comment-text">
-                                                                        <p>“We’ve created a full-stack structure
-                                                                            for our
-                                                                            working workflow processes, were
-                                                                            from the
-                                                                            funny the century initial all the
-                                                                            made, have
-                                                                            spare to negatives. ”</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                    <!-- End Single Comment  -->
-                                                </ul>
+                                                        </li>
+                                                        <!-- End Single Comment  -->
+                                                    </ul>
+                                                </div>
+                                                <!-- End .axil-commnet-area -->
                                             </div>
-                                            <!-- End .axil-commnet-area -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                     <div class="col-4">
@@ -589,40 +600,43 @@
     </div>
 
     <!-- Modal modif profil -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal{{ $boutique->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
+                <form action="{{ route('edit.boutique') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="boutique_id" value="{{ $boutique->id }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
                             <img id="photoPreview" src="#" alt="Aperçu de la photo"
                                 style="display: none; max-width: 100%; height: auto;">
                             <label for="example-text-input" class="form-control-label mt-3">Ajouter votre couverture
                                 de boutique</label>
-                            <input class="form-control" type="file" id="photoInput">
+                            <input name="photo" class="form-control" type="file" id="photoInput">
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Nom Boutique</label>
-                            <input class="form-control" type="text" value="Best Creation"
+                            <input name="name" class="form-control" type="text" value="Best Creation"
                                 id="example-text-input">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Biographie</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="bio" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn bg-gradient-primary">Enregistrer les modifications</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn bg-gradient-primary">Enregistrer les modifications</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

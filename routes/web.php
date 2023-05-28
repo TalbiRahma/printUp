@@ -171,6 +171,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/maboutique', [BoutiqueController::class, 'maboutique'])->name('maboutique');
             Route::post('/add/toboutique', [BoutiqueController::class, 'aadToBoutique'])->name('addto.boutique');
             Route::post('/remove/fromboutique', [BoutiqueController::class, 'removeFromBoutique'])->name('removefrom.boutique');
+            Route::post('/edit/boutique', [BoutiqueController::class, 'editBoutique'])->name('edit.boutique');
         });
     });
 });
