@@ -57,8 +57,8 @@
                     <div class="row">
                         <div class="col-9">
                             <h5>Ajouter un Design:</h5>
-                            <button class="btn btn-icon btn-3 bg-gradient-success" type="button"
-                                data-bs-toggle="modal" data-bs-target="#produitAjout">
+                            <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
+                                data-bs-target="#produitAjout">
                                 <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
                                 <span class="btn-inner--text">Ajouter</span>
                             </button>
@@ -68,8 +68,8 @@
                                 @csrf
                                 <div class="input-group">
 
-                                    <button type="submit" class="input-group-text text-body"><i
-                                            class="fas fa-search" aria-hidden="true"></i></button>
+                                    <button type="submit" class="input-group-text text-body"><i class="fas fa-search"
+                                            aria-hidden="true"></i></button>
                                     <input name="design_name" type="text" class="form-control"
                                         placeholder="Tapez ici...">
 
@@ -87,8 +87,7 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                    <input type="hidden" name="boutique_id"
-                                        value="{{ auth()->user()->boutique->id }}">
+                                    <input type="hidden" name="boutique_id" value="{{ auth()->user()->boutique->id }}">
                                     <input type="hidden" name="id" value="{{ mt_rand(100000, 999999) }}">
                                     <div class="modal-body p-0">
                                         <div class="card card-plain">
@@ -189,7 +188,7 @@
                                     style="width: 10%;">Etat</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                     style="width: 15%;">Action</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                                     style="width: 15%;">Visibilité dans la boutique</th>
                             </tr>
                         </thead>
@@ -253,16 +252,33 @@
                                         <form action="{{ route('addto.boutique') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="design_id" value="{{ $d->id }}">
-                                            <button class="btn bg-gradient-danger btn-sm">visible</button>
+                                            <button type="button" class="btn bg-gradient-default btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                    <path
+                                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                </svg>
+                                                Visible
+                                            </button>
                                         </form>
 
 
                                         <form action="{{ route('removefrom.boutique') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="design_id" value="{{ $d->id }}">
-                                            <button class="btn bg-gradient-danger btn-sm">unvisible</button>
+                                            <button type="button" class="btn bg-gradient-default btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-eye-slash-fill"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                                                    <path
+                                                        d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                                                </svg>
+                                                Invisible
+                                            </button>
                                         </form>
-                                    </td>
                                     </td>
                                 </tr>
                             @endforeach
