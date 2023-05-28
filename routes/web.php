@@ -90,7 +90,7 @@ Route::prefix('geust/shop')->group(function () {
     Route::get('/designs/{id}/details', [GuestController::class, 'designDetails'])->name('designs.details');
     Route::get('/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products.index');
     Route::get('/boutiques', [GuestController::class, 'allBoutique'])->name('boutiques');
-    Route::get('/boutique', [GuestController::class, 'oneBoutique'])->name('boutique');
+    Route::get('/boutique/{id}', [GuestController::class, 'oneBoutique'])->name('boutique');
 });
 
 

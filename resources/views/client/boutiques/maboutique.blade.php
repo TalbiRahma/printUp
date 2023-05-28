@@ -51,7 +51,8 @@
             <div class="mx-4 card ">
                 <div class="card card-profile">
                     @if (auth()->user()->boutique->photo)
-                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}" class="avatar avatar-sm me-3">
+                    <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}" alt="Image placeholder"
+                            class="card-img-top">
                     @else
                         <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
                             class="card-img-top">
@@ -232,7 +233,7 @@
                                                                                         stars</label>
                                                                                     <input type="radio"
                                                                                         id="star2" name="rate"
-                                                                                        value="2" />
+                                                                                        value="2" /> 
                                                                                     <label for="star2"
                                                                                         title="text">2
                                                                                         stars</label>
