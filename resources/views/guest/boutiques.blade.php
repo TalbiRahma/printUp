@@ -67,105 +67,53 @@
         <div class="axil-blog-area axil-section-gap">
             <div class="container">
                 <div class="row g-5">
-                    <div class="col-md-4">
-                        <div class="content-blog blog-grid">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Blog Images">
-                                    </a>
-                                    <div class="blog-category">
-                                        <a href="#">Suivre</a>
+                    @foreach ($boutiques as $boutique)
+                        <div class="col-md-4">
+                            <div class="content-blog blog-grid">
+                                <div class="inner">
+                                    <div class="thumbnail">
+                                        @if ($boutique->photo)
+                                            <a href="#">
+                                                <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
+                                                    alt="Blog Images">
+                                            </a>
+                                        @else
+                                            <a href="#">
+                                                <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}"
+                                                    alt="Blog Images">
+                                            </a>
+                                        @endif
+                                        <div class="blog-category">
+                                            <a href="#">Suivre</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="content">
-                                    <h5><a href="">Best Creation</a></h5>
-                                    <div class="product-rating">
-                                        <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                        <span class="rating-number"><span>100+</span> Reviews</span>
-                                    </div>
-                                    <span>Je vais vous montrer la meilleure
-                                        création que vous verrez dans votre vie</span>
-                                    <div class="read-more-btn mt-4">
-                                        <a class="axil-btn right-icon" href="blog-details.html">Voir plus <i
-                                                class="fal fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="content-blog blog-grid">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Blog Images">
-                                    </a>
-                                    <div class="blog-category">
-                                        <a href="#">Suivre</a>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h5><a href="">Best Creation</a></h5>
-                                    <div class="product-rating">
-                                        <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                        <span class="rating-number"><span>100+</span> Reviews</span>
-                                    </div>
-                                    <span>Je vais vous montrer la meilleure
-                                        création que vous verrez dans votre vie</span>
-                                    <div class="read-more-btn mt-4">
-                                        <a class="axil-btn right-icon" href="blog-details.html">Voir plus <i
-                                                class="fal fa-long-arrow-right"></i></a>
+                                    <div class="content">
+                                        <h5><a href="{{route('boutique', ['id' => $boutique->id])}}">{{ $boutique->name }}</a></h5>
+                                        <div class="product-rating">
+                                            <span class="rating-icon">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fal fa-star"></i>
+                                            </span>
+                                            <span class="rating-number"><span>100+</span> Reviews</span>
+                                        </div>
+                                        @if ($boutique->biographie)
+                                            <span class="text-sm">{{ $boutique->biographie }}</span>
+                                        @else
+                                            <span class="text-sm">Je vais vous montrer la meilleure
+                                                création que vous verrez dans votre vie</span>
+                                        @endif
+                                        <div class="read-more-btn mt-4">
+                                            <a class="axil-btn right-icon" href="blog-details.html">Voir plus <i
+                                                    class="fal fa-long-arrow-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="content-blog blog-grid">
-                            <div class="inner">
-                                <div class="thumbnail">
-                                    <a href="#">
-                                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Blog Images">
-                                    </a>
-                                    <div class="blog-category">
-                                        <a href="#">Suivre</a>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h5><a href="">Best Creation</a></h5>
-                                    <div class="product-rating">
-                                        <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                        <span class="rating-number"><span>100+</span> Reviews</span>
-                                    </div>
-                                    <span>Je vais vous montrer la meilleure
-                                        création que vous verrez dans votre vie</span>
-                                    <div class="read-more-btn mt-4">
-                                        <a class="axil-btn right-icon" href="blog-details.html">Voir plus <i
-                                                class="fal fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="post-pagination">
                     <nav class="navigation pagination" aria-label="Products">

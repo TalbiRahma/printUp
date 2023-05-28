@@ -165,6 +165,7 @@
         @endif
     </aside>
     <main class="main-content position-relative border-radius-lg ">
+
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
@@ -173,9 +174,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Accueil</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Best Creation</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">{{$boutique->name}}</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Best Creation</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">{{$boutique->name}}</h6>
                 </nav>
 
                 @include('inc.client.navbar')
@@ -192,17 +193,26 @@
                         <div class="col-3 col-lg-3 order-lg-1">
                             <div class="mt-n6 mt-lg-n6 mb-4 mb-lg-0" style="margin-left: 30px;">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('/dashassets/img/team-2.jpg') }}"
+                                    @if ($boutique->user->photo)
+                                    <img src="{{ asset('uploads') }}/{{ $boutique->user->photo }}"
                                         class="rounded-circle img-fluid border border-2 border-white">
+                                    @else
+                                    <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                        class="rounded-circle img-fluid border border-2 border-white">
+                                    @endif
                                 </a>
                             </div>
                         </div>
                         <div class="col-5 col-lg-5 order-lg-1">
                             <div class="mt-3">
                                 <div class="ps-3">
-                                    <h4>Best Creation</h4>
-                                    <span class="text-sm">Je vais vous montrer la meilleure
-                                        création que vous verrez dans votre vie</span>
+                                    <h4>{{$boutique->name}}</h4>
+                                    @if ($boutique->biographie)
+                                        <span class="text-sm">{{$boutique->biographie }}</span>
+                                    @else
+                                        <span class="text-sm">Je vais vous montrer la meilleure
+                                            création que vous verrez dans votre vie</span>
+                                    @endif
                                 </div>
                                 <div class="d-flex justify-content-start mt-n2">
                                     <div class="rate">
@@ -245,18 +255,19 @@
         <div class="container-fluid py-1">
             <div class="mx-4">
                 <div class="row">
+                    @foreach ($boutique->designs as $design)
                     <div class="col-8">
                         <div class="card card-frame">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6">
-                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
+                                        <img src="{{ asset('uploads') }}/{{$design->photo}}"
                                             class="rounded w-100 bg-gray-100">
                                     </div>
                                     <div class="col-6">
                                         <div class="row">
                                             <div class="col-9">
-                                                <h3>Nom Designs</h3>
+                                                <h3>{{$design->name}}</h3>
                                             </div>
                                             <div class="col-3">
                                                 <div class="text-end">
@@ -267,7 +278,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h4 class="mt-3">15 TND</h4>
+                                        <h4 class="mt-3">{{$design->price}} DT</h4>
                                         <div class="d-flex justify-content-start mt-n2" style="margin-left: -10px;">
                                             <div class="rate">
                                                 <input type="radio" id="star5" name="rate"
@@ -290,8 +301,7 @@
                                         </div>
                                         <hr class="horizontal dark mt-2">
                                         <h6>Description:</h6>
-                                        <span class="text-sm">Je vais vous montrer la meilleure création que vous
-                                            verrez dans votre vie</span>
+                                        <span class="text-sm">{{$design->description}}</span>
                                     </div>
                                     <div class="accordion-item mt-4">
                                         <h5 class="accordion-header" id="headingOne">
@@ -512,6 +522,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <div class="col-4">
                         <div class="card card-frame">
                             <div class="card-body">
