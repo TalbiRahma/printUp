@@ -345,6 +345,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination justify-content-center">
+                    {{ $designs->links() }}
+                </div>
             </div>
         </div>
         @include('inc.argon.flashmessage')

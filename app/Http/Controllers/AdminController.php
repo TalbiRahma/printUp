@@ -156,7 +156,7 @@ class AdminController extends Controller
         $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
             ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
             ->where('designs.etat', '=', 'en attente')
-            ->get();
+            ->latest()->paginate(3);
         $category_design = CategoryDesign::all();
 
 
@@ -189,7 +189,7 @@ class AdminController extends Controller
         $designs = Design::join('users', 'users.id', '=', 'designs.user_id')
             ->select('designs.*', DB::raw("CONCAT(users.first_name, ' ', users.last_name) as user_name"))
             ->where('designs.etat', '=', 'valide')
-            ->get();
+            ->latest()->paginate(3);
         $category_design = CategoryDesign::all();
 
         return view('admin.designs.validee', compact('designs'));

@@ -13,7 +13,7 @@ class DesignController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $design =  Design::where('user_id', $user->id)->latest()->paginate(3);
+        $design =  Design::where('user_id', $user->id)->get();
         $category_design = CategoryDesign::all();
         return view('client.designs.index')->with('design', $design)->with('category_design', $category_design);
     }
