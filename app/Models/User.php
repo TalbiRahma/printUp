@@ -100,4 +100,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Boutique::class,'user_id', 'id');
     }
+
+    public function boutiques()
+    {
+        return $this->belongsToMany(Boutique::class, 'suivis', 'member_id', 'boutique_id');
+    }
 }

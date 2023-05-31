@@ -269,7 +269,6 @@
                                             class="fas fa-search" aria-hidden="true"></i></button>
                                     <input name="product_name" type="text" class="form-control"
                                         placeholder="Tapez ici...">
-
                                 </div>
                             </form>
                         </div>

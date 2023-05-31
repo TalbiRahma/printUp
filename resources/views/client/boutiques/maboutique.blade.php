@@ -394,71 +394,40 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
+                        @php $count = 0 @endphp
+                        @foreach ($initial_products as $ip)
+                            @if ($count < 3)
+                                <div class="col-4">
+                                    <div class="card">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{{ route('products.details', ['id' => $ip->id]) }}"
+                                                class="d-block">
+                                                <img style="width: 100%; height: auto;"
+                                                    src="{{ asset('uploads') }}/{{ $ip->photo }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="card-body ">
+                                            <a href="{{ route('products.details', ['id' => $ip->id]) }}"
+                                                class="card-title h6 d-block text-darker">
+                                                {{ $ip->name }}
+                                            </a>
+                                            <h6>Prix: {{ $ip->price }} DT</h6>
+                                            <a href="{{ route('personnaliser.produit', ['id' => $ip->id]) }}"
+                                                class="btn bg-gradient-primary w-100 mt-2">Personnaliser</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                    <h6>Taille: S,L</h6>
-                                    <button type="button"
-                                        class="btn bg-gradient-primary w-100 mt-2">Personnaliser</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                    <h6>Taille: S,L</h6>
-                                    <button type="button"
-                                        class="btn bg-gradient-primary w-100 mt-2">Personnaliser</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                    <h6>Taille: S,L</h6>
-                                    <button type="button"
-                                        class="btn bg-gradient-primary w-100 mt-2">Personnaliser</button>
-                                </div>
-                            </div>
-                        </div>
+                                @php $count++ @endphp
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn bg-gradient-primary">
+                    <a href="{{ route('product.wishlist') }}" class="btn bg-gradient-primary">
                         <span class="btn-inner--text">Voir plus</span>
                         <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -478,58 +447,38 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
+                        @php $count = 0 @endphp
+                        @foreach ($faivorite_designs as $d)
+                            @if ($count < 8)
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{{ route('designs.details', ['id' => $d->id]) }}"
+                                                class="d-block">
+                                                <img style="width: 100%; height: auto;"
+                                                    src="{{ asset('uploads') }}/{{ $d->photo }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="card-body ">
+                                            <a href="{{ route('designs.details', ['id' => $d->id]) }}"
+                                                class="card-title h6 d-block text-darker">
+                                                {{ $d->name }}
+                                            </a>
+                                            <h6>Prix: {{ $d->price }} DT</h6>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 5 DT</h6>
-                                </div>
-                            </div>
-                        </div>
+                                @php $count++ @endphp
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="{{ route('design.wishlist') }}" class="btn bg-gradient-primary">
+                        <span class="btn-inner--text">Voir plus</span>
+                        <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -563,30 +512,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0">
-                                                <i class="ni ni-fat-remove"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex px-2 py-1">
-                                                <div>
-                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                        class="avatar avatar-sm me-3">
+                                    @foreach ($suivis as $suivi)
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="{{ route('delete.suivi', ['id' => $suivi->id]) }}"
+                                                    class="btn btn-link text-secondary mb-0">
+                                                    <i class="ni ni-fat-remove"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
+                                                            class="avatar avatar-sm me-3">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-xs">{{ $suivi->name }}</h6>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-xs">Best Creation</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Edit user">
-                                                Voir
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="{{ route('boutique', ['id' => $suivi->id]) }}"
+                                                    class="text-secondary font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Edit user">
+                                                    Voir
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

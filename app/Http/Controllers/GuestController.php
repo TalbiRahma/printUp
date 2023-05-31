@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Boutique;
+use App\Models\Suivi;
 use App\Models\Design;
+use App\Models\Boutique;
 use App\Models\Commande;
 use Illuminate\Http\Request;
 use App\Models\CategoryDesign;
+use App\Models\FavoriteDesign;
 use App\Models\InitialProduct;
 use App\Models\CategoryProduct;
+use App\Models\FavoriteProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -165,7 +168,7 @@ class GuestController extends Controller
         $boutiques = Boutique::all();
         if (auth()->check()) {
             $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
-            return view('guest.boutiques', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design', 'commande'));
+            return view('guest.boutiques', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design', 'commande', 'boutiques'));
         }
         return view('guest.boutiques', compact('designs', 'initial_products', 'category_product', 'category_design', 'boutiques'));
     }
@@ -176,10 +179,50 @@ class GuestController extends Controller
             $query->where('visibility', true)->where('etat', 'valide');
         }])->find($id);
 
-        if ($boutique) {
-            return view('guest.boutique', compact('boutique'));
+        if (auth()->check() && $boutique) {
+            // Récupère la liste des suivis de l'utilisateur
+            $list_suivis = Suivi::where('member_id', auth()->user()->id)->get();
+            $suivis = [];
+
+            // Récupère les détails des suivis
+            foreach ($list_suivis as $item) {
+                $suivi = Boutique::find($item->boutique_id);
+                if ($suivi) {
+                    $suivis[] = $suivi;
+                }
+            }
+
+            // Récupère la liste des produits favoris de l'utilisateur
+            $product_wishlist = FavoriteProduct::where('user_id', auth()->user()->id)->get();
+            $initial_products = [];
+
+            // Récupère les détails des produits favoris
+            foreach ($product_wishlist as $item) {
+                $product = InitialProduct::find($item->initial_product_id);
+                if ($product) {
+                    $initial_products[] = $product;
+                }
+            }
+
+            // Récupère la liste des designs favoris de l'utilisateur
+            $design_wishlist = FavoriteDesign::where('user_id', auth()->user()->id)->get();
+            $designs = [];
+
+            // Récupère les détails des designs favoris
+            foreach ($design_wishlist as $item) {
+                $design = Design::find($item->design_id);
+                if ($design) {
+                    $designs[] = $design;
+                }
+            }
+
+            return view('guest.boutique', compact('boutique', 'suivis', 'initial_products', 'designs'));
         } else {
-            return redirect()->back()->with('danger', 'Une erreur s\'est produite !');
+            if ($boutique) {
+                return view('guest.boutique', compact('boutique'));
+            } else {
+                return redirect()->back()->with('danger', 'Une erreur s\'est produite !');
+            }
         }
     }
 }

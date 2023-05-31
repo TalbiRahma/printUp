@@ -24,4 +24,9 @@ class Boutique extends Model
     {
         return $this->hasMany(Design::class, 'boutique_id', 'id');
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'suivis', 'member_id', 'boutique_id');
+    }
 }
