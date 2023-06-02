@@ -3,19 +3,20 @@
 
 use App\Models\Design;
 use App\Models\Commande;
+use Illuminate\Http\Request;
 use App\Mail\MailVerification;
 use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
-use App\Models\CategoryProduct;
 
+use App\Models\CategoryProduct;
 use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\SuiviController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\BoutiqueController;
@@ -120,7 +121,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('wishlist')->group(function () {
             /***********PRODUCT WISHLIST******** */
             Route::prefix('products')->group(function () {
-                Route::get('', [FavoriteProductController::class, 'productWishlist'])->name('product.wishlist');
+                Route::get('/all', [FavoriteProductController::class, 'productWishlist'])->name('product.wishlist');
                 Route::post('/add', [FavoriteProductController::class, 'addToWishlist'])->name('wishlist.add.product');
                 Route::get('/delete/{id}', [FavoriteProductController::class, 'deleteWishlist'])->name('product.wishlist.delete');
             });
@@ -172,6 +173,13 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/add/toboutique', [BoutiqueController::class, 'aadToBoutique'])->name('addto.boutique');
             Route::post('/remove/fromboutique', [BoutiqueController::class, 'removeFromBoutique'])->name('removefrom.boutique');
             Route::post('/edit/boutique', [BoutiqueController::class, 'editBoutique'])->name('edit.boutique');
+            /***********BOUTIQUE WISHLIST******** */
+            Route::prefix('suivi')->group(function () {
+                Route::get('/all', [SuiviController::class, 'listSuivi'])->name('all.suivi');
+                Route::post('/add', [SuiviController::class, 'suivire'])->name('add.suivi');
+                Route::get('/delete/{id}', [SuiviController::class, 'nePlusSuivire'])->name('delete.suivi');
+                Route::post('/search', [SuiviController::class, 'search'])->name('search.suivi');
+            });
         });
     });
 });

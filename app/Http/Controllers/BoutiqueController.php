@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Boutique;
+use App\Models\Suivi;
 use App\Models\Design;
+use App\Models\Boutique;
+use App\Models\FavoriteDesign;
 use Illuminate\Http\Request;
+use App\Models\InitialProduct;
+use App\Models\FavoriteProduct;
 use Illuminate\Support\Facades\Auth;
 
 class BoutiqueController extends Controller
 {
-    //
+    // 
     public function maboutique()
     {
         $boutique_id = Auth::user()->boutique->id;
@@ -18,7 +22,43 @@ class BoutiqueController extends Controller
             ->where('visibility', true)
             ->where('etat', 'valide')
             ->get();
-        return view("client.boutiques.maboutique", compact('designs', 'boutique'));
+
+        $list_suivis = Suivi::where('member_id', auth()->user()->id)->get();
+        $suivis = [];
+
+        // Récupère les détails des suivis
+        foreach ($list_suivis as $item) {
+            $suivi = Boutique::find($item->boutique_id);
+            if ($suivi) {
+                $suivis[] = $suivi;
+            }
+        }
+
+        // Récupère la liste des produits favoris de l'utilisateur
+        $product_wishlist = FavoriteProduct::where('user_id', auth()->user()->id)->get();
+        $initial_products = [];
+
+        // Récupère les détails des produits favoris
+        foreach ($product_wishlist as $item) {
+            $product = InitialProduct::find($item->initial_product_id);
+            if ($product) {
+                $initial_products[] = $product;
+            }
+        }
+
+        // Récupère la liste des designs favoris de l'utilisateur
+        $design_wishlist = FavoriteDesign::where('user_id', auth()->user()->id)->get();
+        $faivorite_designs = [];
+
+        // Récupère les détails des designs favoris
+        foreach ($design_wishlist as $item) {
+            $fdesign = Design::find($item->design_id);
+            if ($fdesign) {
+                $faivorite_designs[] = $fdesign;
+            }
+        }
+        //dd($initial_products);
+        return view("client.boutiques.maboutique", compact('designs', 'boutique', 'suivis', 'initial_products', 'faivorite_designs'));
     }
 
     public function aadToBoutique(Request $request)

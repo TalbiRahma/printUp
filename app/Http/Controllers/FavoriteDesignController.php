@@ -44,7 +44,7 @@ class FavoriteDesignController extends Controller
 
         if ($wishlist) {
             return redirect()->back()->with('error', 'Le design que vous avez essayé d\'ajouter à votre liste de favoris est déjà présent.');
-        }
+        } 
 
         // Ajoute le produit à la liste des favoris de l'utilisateur
         $wishlist = new FavoriteDesign();
@@ -66,7 +66,7 @@ class FavoriteDesignController extends Controller
         if ($wishlist->delete()){
             return redirect()->back();
         }else{
-            echo "error";
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 }
