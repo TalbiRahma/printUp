@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Sign Up</title>
+    <title>S'inscrire</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/dashassets/img/logo.png') }}">
 
     <!-- CSS
     ============================================ -->
@@ -55,44 +55,37 @@
                 </div>
             </div>
             <div class="col-lg-6 offset-xl-2">
-                <div class="axil-signin-form">
+                <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
                         <h3 class="title">Je suis nouveau ici</h3>
                         <p class="b2 mb--55">Entrez vos coordonnées ci-dessous</p>
                         <form class="singin-form" method="POST" action="{{ route('register') }}">
-                            @csrf <div class="row mb-5">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Prénom</label>
-                                        <input id="first_name" type="text"
-                                            class="form-control @error('first_name') is-invalid @enderror"
-                                            name="first_name" value="{{ old('first_name') }}" required
-                                            autocomplete="first_name" autofocus>
+                            @csrf
+                            <div class="form-group">
+                                <label>Prénom</label>
+                                <input id="first_name" type="text"
+                                    class="form-control @error('first_name') is-invalid @enderror" name="first_name"
+                                    value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
 
-                                        @error('first_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label>Nom</label>
-                                        <input id="last_name" type="text"
-                                            class="form-control @error('last_name') is-invalid @enderror"
-                                            name="last_name" value="{{ old('last_name') }}" required
-                                            autocomplete="last_name" autofocus>
-
-                                        @error('last_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                @error('first_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="form-group mb-5">
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <input id="last_name" type="text"
+                                    class="form-control @error('last_name') is-invalid @enderror" name="last_name"
+                                    value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>Email</label>
                                 <input id="email" type="email"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
@@ -104,7 +97,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group mb-5">
+                            <div class="form-group">
                                 <label>Mot de passe</label>
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
@@ -116,12 +109,12 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group mb-5">
+                            <div class="form-group">
                                 <label>Confirmer le mot de passe</label>
                                 <input id="password-confirm" type="password" class="form-control"
                                     name="password_confirmation" required autocomplete="new-password">
                             </div>
-                            <div class="form-group mb-5">
+                            <div class="form-group">
                                 <button type="submit" class="axil-btn btn-bg-primary submit-btn">Créer un
                                     compte</button>
                             </div>

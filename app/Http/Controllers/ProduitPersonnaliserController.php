@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Image;
 use App\Models\Design;
 
 use App\Models\Commande;
@@ -18,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic;
 use Symfony\Component\Console\Input\Input;
+use Intervention\Image\Facades\Image;
 
 
 class ProduitPersonnaliserController extends Controller
@@ -36,7 +36,7 @@ class ProduitPersonnaliserController extends Controller
         $mes_design =  Design::where('user_id', $user->id)->get();
         $favorite_designs = Auth::user()->designs;
         $favorite_products = Auth::user()->initialProducts;
-        
+
         $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
 
         $product_data = [
@@ -97,7 +97,7 @@ class ProduitPersonnaliserController extends Controller
 
     public function uploadDesign(Request  $request)
     {
-        
+
         //dd($request);
         $request->validate([
             'name' => 'required',
@@ -115,7 +115,7 @@ class ProduitPersonnaliserController extends Controller
         $design->price = $request->price;
         $design->user_id = $request->user_id;
         $design->boutique_id = $request->boutique_id;
-        
+
         //upload image
         $newname = uniqid();
         $image = $request->file('photo');
@@ -127,7 +127,7 @@ class ProduitPersonnaliserController extends Controller
 
 
         // Ajouter les données du design dans le tableau JSON dans la session
-        $design_data = $request->session()->get('design_data', []); 
+        $design_data = $request->session()->get('design_data', []);
         $design_data = [
             'id' => $design->id,
             'name' => $design->name,
@@ -178,18 +178,27 @@ class ProduitPersonnaliserController extends Controller
         //$custom_product->price = $initial_product->price + $design->price;
         $custom_product->sizes = $initial_product->sizes;
         $custom_product->etat = $design->etat;
- 
+
         $position = $request->input('image_clone_position');
         $position = json_decode($position, true);
+        
         if ($position === null || ($position['x'] === null && $position['y'] === null)) {
             return redirect()->back()->with('danger', 'Glisser votre design dans le rectangle du produit');
         } else {
             $x = $position['x'];
             $y = $position['y'];
+            
             // Superposer le design sur le produit initial
             $img = ImageManagerStatic::make(public_path('uploads/' . $initial_product->photo));
             $design_img = ImageManagerStatic::make(public_path('uploads/' . $design->photo));
-            $img->insert($design_img, strval($x), strval($y));
+            // Charger l'image du produit initial
+            //$img = Image::make(public_path('uploads/' . $initial_product->photo));
+
+            // Charger l'image du design
+            //$design_img = Image::make(public_path('uploads/' . $design->photo));
+            
+            $img->insert($design_img, strval($x), intval($y));
+            //dd($img);
 
             // Enregistrer l'image fusionnée dans le stockage
             $img_path = 'uploads/custom_products/' . time() . '-' . Str::random(10) . '.jpg';
@@ -208,7 +217,7 @@ class ProduitPersonnaliserController extends Controller
                 'photo' => asset($custom_product->photo),
                 'sizes' => $custom_product->sizes
             ];
-    
+
             // stocker les données JSON dans un cookie ou dans la session
             $custom_product_data_json = json_encode($custom_product_data);
             $request->session()->put('custom_product_data', $custom_product_data_json);
@@ -229,73 +238,71 @@ class ProduitPersonnaliserController extends Controller
     }
 
     public function addToCart(Request $request)
-{   //dd($request);
-    $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
-    //dd($request);
-    // Vérification de l'existence de la commande
-    if ($commande) {
-        $existe = false;
-        foreach ($commande->lignecommandes as $lignec) {
-            if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
-                $existe = true;
+    {   //dd($request);
+        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        //dd($request);
+        // Vérification de l'existence de la commande
+        if ($commande) {
+            $existe = false;
+            foreach ($commande->lignecommandes as $lignec) {
+                if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
+                    $existe = true;
+                    if ($request->qte) {
+                        $lignec->qte += $request->qte;
+                    } else {
+                        return redirect()->back()->with('danger1', 'La quantité est nulle.');
+                    }
+                    $lignec->update();
+                }
+            }
+
+            if (!$existe) {
+                // Création de la ligne de commande
+                $lc = new LigneCommande();
                 if ($request->qte) {
-                    $lignec->qte += $request->qte;
+                    $lc->qte = $request->qte;
                 } else {
                     return redirect()->back()->with('danger1', 'La quantité est nulle.');
                 }
-                $lignec->update();
-            }
-        } 
 
-        if (!$existe) {
-            // Création de la ligne de commande
-            $lc = new LigneCommande();
-            if ($request->qte) {
-                $lc->qte = $request->qte;
-            } else {
-                return redirect()->back()->with('danger1', 'La quantité est nulle.');
-            }
+                // Vérification de la sélection de la taille si le produit personnalisé a des tailles
+                $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
+                if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
+                    return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
+                }
 
-            // Vérification de la sélection de la taille si le produit personnalisé a des tailles
-            $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
-            if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
-                return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
+                $lc->custom_product_id = $request->custom_product_id;
+                $lc->selected_size = $request->input('selected_size');
+                $lc->commande_id = $commande->id;
+                $lc->save();
             }
-
-            $lc->custom_product_id = $request->custom_product_id;
-            $lc->selected_size = $request->input('selected_size');
-            $lc->commande_id = $commande->id;
-            $lc->save();
-        }
-        return redirect()->back()->with('success1', 'Le produit est ajouter au panier');
-    } else {
-        $commande = new Commande();
-        $commande->member_id = Auth::user()->id;
-        if ($commande->save()) {
-            // Création de la ligne de commande
-            $lc = new LigneCommande();
-            if ($request->qte) {
-                $lc->qte = $request->qte;
-            } else {
-                return redirect()->back()->with('danger1', 'La quantité est nulle.');
-            }
-
-            // Vérification de la sélection de la taille si le produit personnalisé a des tailles
-            $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
-            if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
-                return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
-            }
-
-            $lc->custom_product_id = $request->custom_product_id;
-            $lc->selected_size = $request->input('selected_size');
-            $lc->commande_id = $commande->id;
-            $lc->save();
             return redirect()->back()->with('success1', 'Le produit est ajouter au panier');
         } else {
-            return redirect()->back()->with('danger1', 'Impossible de commander le produit');
+            $commande = new Commande();
+            $commande->member_id = Auth::user()->id;
+            if ($commande->save()) {
+                // Création de la ligne de commande
+                $lc = new LigneCommande();
+                if ($request->qte) {
+                    $lc->qte = $request->qte;
+                } else {
+                    return redirect()->back()->with('danger1', 'La quantité est nulle.');
+                }
+
+                // Vérification de la sélection de la taille si le produit personnalisé a des tailles
+                $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
+                if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
+                    return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
+                }
+
+                $lc->custom_product_id = $request->custom_product_id;
+                $lc->selected_size = $request->input('selected_size');
+                $lc->commande_id = $commande->id;
+                $lc->save();
+                return redirect()->back()->with('success1', 'Le produit est ajouter au panier');
+            } else {
+                return redirect()->back()->with('danger1', 'Impossible de commander le produit');
+            }
         }
     }
-
-
-}
 }

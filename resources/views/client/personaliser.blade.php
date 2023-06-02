@@ -417,13 +417,13 @@
 
                                         <div class="product-content1">
 
-                                            <div style="position: relative;">
+                                            <div id="product-container" style="position: relative;">
 
                                                 <img src="{{ asset('uploads/') }}/{{ $product_data['photo'] }}"
-                                                    alt="Product" id="drop-image" />
-                                                <div id="div1" ondrop="drop(event)"
-                                                    ondragover="allowDrop(event)"
-                                                    style="position: absolute; top: 175px; left: 160px;"></div>
+                                                    alt="Product" />
+                                                <div id="div1"
+                                                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                                </div>
                                             </div>
 
                                         </div>
@@ -439,9 +439,9 @@
                                                     <div class="axil-product-list">
                                                         <div class="product-content2">
                                                             <img src="{{ asset('uploads') }}/{{ $design_data['photo'] }}"
-                                                                alt="Product" id="drag1" draggable="true"
-                                                                ondragstart="drag(event)" width="336"
-                                                                height="69" id="resizable-image">
+                                                                alt="Product" id="design-image" draggable="true"
+                                                                ondragstart="drag(event)" width="75"
+                                                                height="90">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -454,7 +454,8 @@
 
                                                 <h3 class="mt-3">{{ $design_data['price'] }} TND</h3>
                                             </div>
-                                            <form action="{{ route('save_custom_product') }}" method="POST">
+                                            <form id="your-form-id" action="{{ route('save_custom_product') }}"
+                                                method="POST">
                                                 @csrf
                                                 <input type="hidden" name="idproduit"
                                                     value="{{ $product_data['id'] }}">
@@ -468,7 +469,7 @@
                                                     <input type="hidden" name="iddesign"
                                                         value="{{ $design_id }}">
                                                 @endif
-                                                <button type="submit"
+                                                <button id="save-button" type="submit"
                                                     class="axil-btn axil-btn-custom2 btn-bg-primary">Sauvegarder</button>
                                             </form>
                                         </div>
@@ -481,9 +482,9 @@
                                                     <div class="axil-product-list">
                                                         <div id="design-image" class="product-content2">
                                                             <img src="{{ asset('mainassets/images/product/design.png') }}"
-                                                                alt="Product" id="drag1"draggable="true"
-                                                                ondragstart="drag(event)" width="336"
-                                                                height="69">
+                                                                alt="Product" id="design-image"draggable="true"
+                                                                ondragstart="drag(event)" width="75"
+                                                                height="75">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -517,13 +518,13 @@
 
                                             @if ($product_data['sizes'])
                                                 @php $sizes = json_decode($product_data['sizes'], true); @endphp
-                                                <div class="product-variation" style="display: inline-block;">
+                                                <div class="product-variation" style="display: flex;">
                                                     @if (!empty($sizes))
-                                                        <h6 class="title "
-                                                            style="display: inline-block; margin-right: 10px;">
+                                                        <h6 class="title " style="display: margin-right: 10px;">
                                                             Taille:</h6>
                                                     @endif
-                                                    <ul class="range-variant" style="display: inline-block;">
+                                                    <ul class="range-variant"
+                                                        style="display: flex; margin-left: 20px;">
 
                                                         @foreach ($sizes as $size)
                                                             <li class="size-btn"
@@ -603,6 +604,8 @@
 
     <!-- JS
 ============================================ -->
+
+    <script src="https://unpkg.com/konva@9.0.2/konva.min.js"></script>
     <!-- Modernizer JS -->
     <script src="{{ asset('/mainassets/js/vendor/modernizr.min.js') }}"></script>
     <!-- jQuery JS -->
@@ -625,193 +628,167 @@
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
 
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var clone = document.getElementById(data).cloneNode(true);
-            clone.removeAttribute("id");
-            ev.target.appendChild(clone);
-
-            // Récupérer les coordonnées du clone d'image
-            var imageClonePosition = {
-                x: ev.clientX,
-                y: ev.clientY
-            };
-
-            // Mettre à jour la valeur du champ caché
-            document.getElementById("image-clone-position").value = JSON.stringify(imageClonePosition);
-        }
-        /*var isResizing = false;
-        var initialMouseX, initialMouseY;
-        var initialWidth, initialHeight;
-        var resizableImage;
-
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-
-        function startResize(event) {
-            isResizing = true;
-            resizableImage = event.target.parentNode.parentNode;
-            initialMouseX = event.clientX;
-            initialMouseY = event.clientY;
-            initialWidth = resizableImage.offsetWidth;
-            initialHeight = resizableImage.offsetHeight;
-            document.addEventListener("mousemove", resizeImage);
-            document.addEventListener("mouseup", stopResize);
-        }
-
-        function resizeImage(event) {
-            if (!isResizing) return;
-
-            var offsetX = event.clientX - initialMouseX;
-            var offsetY = event.clientY - initialMouseY;
-            var newWidth = initialWidth + offsetX;
-            var newHeight = initialHeight + offsetY;
-
-            resizableImage.style.width = newWidth + "px";
-            resizableImage.style.height = newHeight + "px";
-        }
-
-        function stopResize() {
-            isResizing = false;
-            document.removeEventListener("mousemove", resizeImage);
-            document.removeEventListener("mouseup", stopResize);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var clone = document.getElementById(data).cloneNode(true);
-            clone.removeAttribute("id");
-
-            // Créer un cadre pour l'image clonée
-            var frame = document.createElement("div");
-            frame.className = "frame";
-
-            // Ajouter les boutons de redimensionnement
-            var resizeButtons = document.createElement("div");
-            resizeButtons.className = "resize-buttons";
-
-            var resizeButtonTop = document.createElement("button");
-            resizeButtonTop.className = "resize-button top";
-            resizeButtonTop.addEventListener("mousedown", startResize);
-            resizeButtons.appendChild(resizeButtonTop);
-
-            var resizeButtonBottom = document.createElement("button");
-            resizeButtonBottom.className = "resize-button bottom";
-            resizeButtonBottom.addEventListener("mousedown", startResize);
-            resizeButtons.appendChild(resizeButtonBottom);
-
-            var resizeButtonLeft = document.createElement("button");
-            resizeButtonLeft.className = "resize-button left";
-            resizeButtonLeft.addEventListener("mousedown", startResize);
-            resizeButtons.appendChild(resizeButtonLeft);
-
-            var resizeButtonRight = document.createElement("button");
-            resizeButtonRight.className = "resize-button right";
-            resizeButtonRight.addEventListener("mousedown", startResize);
-            resizeButtons.appendChild(resizeButtonRight);
-
-            var resizeButtonTopLeft = document.createElement("button");
-            resizeButtonTopLeft.className = "resize-button top-left";
-            resizeButtonTopLeft.addEventListener("mousedown", startResize);
-            resizeButtons.appendChild(resizeButtonTopLeft);
-
-            var resizeButtonBottomRight = document.createElement("button");
-            resizeButtonBottomRight.className = "resize-button bottom-right";
-            resizeButtonBottomRight.addEventListener("mousedown", startResize);
-            resizeButtons.appendChild(resizeButtonBottomRight);
-
-            frame.appendChild(resizeButtons);
-            frame.appendChild(clone);
-            ev.target.appendChild(frame);
-        }*/
-        /*function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var clone = document.getElementById(data).cloneNode(true);
-            clone.removeAttribute("id");
-            ev.target.appendChild(clone);
-
-            // Récupérer les coordonnées du clone d'image
-            var imageClonePosition = {
-                x: ev.clientX,
-                y: ev.clientY
-            };
-
-            // Mettre à jour la valeur du champ caché
-            document.getElementById("image-clone-position").value = JSON.stringify(imageClonePosition);
-
-            // Redimensionner l'image clone lors du clic sur le bouton "+"
-            document.getElementById("increaseButton").addEventListener("click", function() {
-                var currentWidth = parseInt(clone.style.width) || clone.offsetWidth;
-                var currentHeight = parseInt(clone.style.height) || clone.offsetHeight;
-                var newWidth = currentWidth + 10;
-                var newHeight = currentHeight + 10;
-                clone.style.width = newWidth + "px";
-                clone.style.height = newHeight + "px";
-            });
-
-            // Redimensionner l'image clone lors du clic sur le bouton "-"
-            document.getElementById("decreaseButton").addEventListener("click", function() {
-                var currentWidth = parseInt(clone.style.width) || clone.offsetWidth;
-                var currentHeight = parseInt(clone.style.height) || clone.offsetHeight;
-                var newWidth = currentWidth - 10;
-                var newHeight = currentHeight - 10;
-                clone.style.width = newWidth + "px";
-                clone.style.height = newHeight + "px";
-            });
-        }*/
-    </script>
 
     <script>
-        /*function incrementQuantity() {
-                                        var currentValue = parseInt(quantityInput.value);
-                                        if (isNaN(currentValue)) {
-                                            quantityInput.value = 1;
-                                        } else {
-                                            quantityInput.value = currentValue + 1;
-                                        }
-                                        document.getElementById('qteInput').value = quantityInput.value;
-                                    }
+        var width = window.innerWidth;
+        var height = window.innerHeight;
 
-                                    function decrementQuantity() {
-                                        var currentValue = parseInt(quantityInput.value);
-                                        if (isNaN(currentValue) || currentValue <= 1) {
-                                            quantityInput.value = 1;
-                                        } else {
-                                            quantityInput.value = currentValue - 1;
-                                        }
-                                        document.getElementById('qteInput').value = quantityInput.value;
-                                    }
+        var stage = new Konva.Stage({
+            container: 'div1',
+            width: 135,
+            height: 160,
+        });
+        const layer = new Konva.Layer();
+        stage.add(layer);
 
-                                    var incButton = document.querySelector('.inc');
-                                    var decButton = document.querySelector('.dec');
-                                    var quantityInput = document.getElementById('quantityInput');
-                                    incButton.addEventListener('click', incrementQuantity);
-                                    decButton.addEventListener('click', decrementQuantity);*/
+
+
+        // Récupérez l'élément image à partir de son ID
+        var imageElement = document.getElementById('design-image');
+
+        // Créez une instance de Konva.Image en utilisant l'élément image
+        const image = new Konva.Image({
+            x: 90,
+            y: 90,
+            image: imageElement,
+            width: imageElement.width,
+            height: imageElement.height,
+            draggable: true,
+        });
+        layer.add(image);
+
+        const tr = new Konva.Transformer({
+            nodes: [image],
+            anchorDragBoundFunc: function(oldPos, newPos, event) {
+                // oldPos - is old absolute position of the anchor
+                // newPos - is a new (possible) absolute position of the anchor based on pointer position
+                // it is possible that anchor will have a different absolute position after this function
+                // because every anchor has its own limits on position, based on resizing logic
+
+                // do not snap rotating point
+                if (tr.getActiveAnchor() === 'rotater') {
+                    return newPos;
+                }
+
+                const dist = Math.sqrt(
+                    Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
+                );
+
+                // do not do any snapping with new absolute position (pointer position)
+                // is too far away from old position
+                if (dist > 10) {
+                    return newPos;
+                }
+
+                const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
+                const diffX = Math.abs(newPos.x - closestX);
+
+                const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
+                const diffY = Math.abs(newPos.y - closestY);
+
+                const snappedX = diffX < 10;
+                const snappedY = diffY < 10;
+
+                // a bit different snap strategies based on snap direction
+                // we need to reuse old position for better UX
+                if (snappedX && !snappedY) {
+                    return {
+                        x: closestX,
+                        y: oldPos.y,
+                    };
+                } else if (snappedY && !snappedX) {
+                    return {
+                        x: oldPos.x,
+                        y: closestY,
+                    };
+                } else if (snappedX && snappedY) {
+                    return {
+                        x: closestX,
+                        y: closestY,
+                    };
+                }
+                return newPos;
+            },
+        });
+        layer.add(tr);
+
+        image.on('dragmove', updateImageClonePosition);
+        image.on('transform', updateImageClonePosition);
+
+        // Ajoutez cette fonction de fusion d'images
+        function mergeImages() {
+            // Obtenez les références des deux images à fusionner
+            var productImage = document.getElementById('product-image');
+            var designImage = document.getElementById('design-image');
+
+            // Récupérez les coordonnées de positionnement de l'image de design par rapport à la scène Konva
+            var position = image.position();
+
+            // Créez un nouveau canevas pour fusionner les images
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+
+            // Définissez la taille du canevas en fonction de la taille de l'image du produit
+            canvas.width = productImage.width;
+            canvas.height = productImage.height;
+
+            // Dessinez l'image du produit sur le canevas
+            context.drawImage(productImage, 0, 0);
+
+            // Dessinez l'image du design sur le canevas aux coordonnées spécifiées
+            context.drawImage(designImage, position.x, position.y);
+
+            // Convertissez le canevas en une URL de données
+            var mergedImageURL = canvas.toDataURL('image/jpeg');
+
+            // Récupérez les coordonnées de positionnement de l'image de design
+            var designPosition = {
+                x: position.x,
+                y: position.y
+            };
+
+            // Mettez à jour l'élément d'entrée caché avec les coordonnées de positionnement
+            var imageClonePositionInput = document.getElementById('image-clone-position');
+            imageClonePositionInput.value = JSON.stringify(designPosition);
+
+            // Utilisez l'URL de l'image fusionnée comme source pour l'élément d'image
+            var mergedImage = document.getElementById('merged-image');
+            mergedImage.src = mergedImageURL;
+        }
+
+
+
+        function updateImageClonePosition() {
+            var imageClone = stage.findOne('Image');
+            var position = imageClone.position();
+
+            // Obtenez les coordonnées du conteneur de l'image
+            var container = document.getElementById('div1');
+            var containerRect = container.getBoundingClientRect();
+            var containerX = containerRect.left;
+            var containerY = containerRect.top;
+
+            // Ajoutez les coordonnées du conteneur à la position de l'image
+            var offsetX = containerX + position.x;
+            var offsetY = containerY + position.y;
+
+            var imageClonePositionInput = document.getElementById('image-clone-position');
+            imageClonePositionInput.value = JSON.stringify({
+                x: offsetX,
+                y: offsetY
+            });
+        }
+
+
+        // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
+        document.getElementById('save-button').addEventListener('click', function(e) {
+            e.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
+            updateImageClonePosition(); // Met à jour les coordonnées de positionnement avant de soumettre le formulaire
+            document.getElementById('your-form-id').submit(); // Soumettez le formulaire
+        });
+
+        
     </script>
 
     <script>
@@ -835,107 +812,6 @@
             const sizesInput = document.querySelector('#sizesInput');
             sizesInput.value = size;
         }
-
-        /* function selectSize(size) {
-             // Récupérer tous les boutons de taille
-             const sizeButtons = document.querySelectorAll('.size-btn');
-
-             // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
-             sizeButtons.forEach((button) => {
-                 if (button.textContent.trim() === size) {
-                     button.classList.add('selected');
-                 } else {
-                     button.classList.remove('selected');
-                 }
-             });
-
-             // Mettre à jour la valeur de l'input caché "selected_size"
-             document.querySelector('#selected_size').value = size;
-
-             // Mettre à jour la valeur de l'input caché "sizes"
-             const sizesInput = document.querySelector('input[name="sizes"]');
-             sizesInput.value = size;
-         }*/
-    </script>
-
-
-
-
-
-
-
-
-
-    <script>
-        /*function selectSize(size) {
-                                                        // Récupérer tous les boutons de taille
-                                                        const sizeButtons = document.querySelectorAll('.size-btn');
-
-                                                        // Parcourir tous les boutons de taille et ajouter/supprimer la classe "selected"
-                                                        sizeButtons.forEach((button) => {
-                                                            if (button.textContent.trim() === size) {
-                                                                button.classList.add('selected');
-                                                            } else {
-                                                                button.classList.remove('selected');
-                                                            }
-                                                        });
-
-                                                        // Mettre à jour la valeur de l'input caché "selected_size"
-                                                        document.querySelector('#selected_size').value = size;
-                                                    }
-
-                                                    // Empêcher les liens des tailles de retourner en haut de la page lorsqu'ils sont cliqués
-                                                    const sizeLinks = document.querySelectorAll('.size-btn');
-                                                    sizeLinks.forEach((link) => {
-                                                        link.addEventListener('click', (event) => {
-                                                            event.preventDefault();
-                                                        });
-                                                    });*/
-    </script>
-
-    <script>
-        /*$(document).ready(function() {
-                                                        $('form#product_form').submit(function(event) {
-                                                            //event.preventDefault(); // empêche la soumission du formulaire
-
-                                                            // vérifie si le tableau custom_product existe dans la session et le vide s'il existe
-                                                            /*if (typeof sessionStorage.custom_product !== 'undefined') {
-                                                                sessionStorage.removeItem('custom_product');
-                                                            }*/
-
-        // récupère les données du formulaire
-        /*var form_data = new FormData(this);
-
-                    // soumet le formulaire via AJAX vers la première route
-                    $.ajax({
-                        url: $(this).attr('action'),
-                        type: $(this).attr('method'),
-                        data: form_data,
-                        processData: false,
-                        contentType: false,
-                        success: function(response) {
-                            // soumet le formulaire via AJAX vers la deuxième route
-                            $.ajax({
-                                url: '/client/personnaliser/create_custom_product',
-                                type: 'post',
-                                success: function(response) {
-                                    // redirige l'utilisateur vers la page de personnalisation de produit
-                                    window.location.href =
-                                        '/client/personnaliser/create_custom_product';
-                                },
-                                error: function(xhr, status, error) {
-                                    // gère les erreurs
-                                    console.log(error);
-                                }
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            // gère les erreurs
-                            console.log(error);
-                        }
-                    });
-                });
-            });*/
     </script>
 
     <style>
@@ -1101,9 +977,8 @@
 
     <style>
         #div1 {
-            width: 300px;
-            height: 300px;
-            padding: 10px;
+            width: 135px;
+            height: 160px;
             border: 1px solid #aaaaaa;
         }
     </style>

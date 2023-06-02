@@ -240,7 +240,7 @@
         <div class="axil-main-slider-area main-slider-style-1">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-5 col-sm-6">
+                    <div class="col-lg-7 col-sm-6">
                         <div class="main-slider-content">
                             <div class="slider-content-activation-one">
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="400"
@@ -251,26 +251,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-sm-6">
+                    <div class="col-lg-5 col-sm-6">
                         <div class="main-slider-large-thumb">
-                            <div class="slider-thumb-activation-one axil-slick-dots">
+                            <div class="slider-content-activation-one">
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600"
                                     data-sal-duration="1500">
-                                    <img src="{{ asset('/mainassets/images/product/product-38.png') }}"
+                                    <img src="{{ asset('/dashassets/img/home.png') }}"
                                         alt="Product">
-                                    <div class="product-price">
-                                        <span class="text">From</span>
-                                        <span class="price-amount">$49.00</span>
-                                    </div>
-                                </div>
-
-                                <div class="single-slide slick-slide">
-                                    <img src="{{ asset('/mainassets/images/product/product-39.png') }}"
-                                        alt="Product">
-                                    <div class="product-price">
-                                        <span class="text">From</span>
-                                        <span class="price-amount">$49.00</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
