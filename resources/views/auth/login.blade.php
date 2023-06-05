@@ -37,7 +37,7 @@
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-sm-4">
-                    <a href="index.html" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                    <a href="/" class="site-logo"><img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" style="width: 150px" alt="logo"></a>
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-xl-4 col-lg-6">
                 <div class="axil-signin-banner bg_image bg_image--9">
-                    <h3 class="title">Print Your Passion</h3>
+                    <h3 class="title">Créez votre design et imprimez votre passion</h3>
                 </div>
             </div>
             <div class="col-lg-6 offset-xl-2">
