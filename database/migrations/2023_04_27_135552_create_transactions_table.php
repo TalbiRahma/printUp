@@ -22,21 +22,6 @@ return new class extends Migration
             $table->enum('type', ['demande', 'remboursé', 'revenu'])->default('demande');
             $table->enum('etat', ['null','0', '1'])->default('null');
             $table->timestamps();
-            /*/*$table->float('montant_demander')->nullable();
-            $table->float('montant_transferts')->default(0)->nullable();
-            $table->float('solde')->default(0)->nullable();
-            $table->enum('etat', ['demandee', 'transferee'])->default('demandee');
-            $table->unsignedBigInteger('member_id');
-            $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
-            /*$table->id();
-            $table->float('montant_demander')->nullable();
-            $table->float('montant_transferts')->default(0)->nullable();
-            $table->float('solde ')->default(0)->nullable();
-            $table->enum('etat', ['demandee', 'transferee'])->default('demandee');
-            $table->unsignedBigInteger('member_id');
-            $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();*/
         });
     }
 

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->longtext('description');
             $table->string('photo');
             $table->float('price');
             $table->unsignedBigInteger('user_id')->nullable();

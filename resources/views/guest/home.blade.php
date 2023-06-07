@@ -490,7 +490,7 @@
                                         <div class="thumbnail">
                                             @if ($boutique->photo)
                                                 <a href="#">
-                                                    <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
+                                                    <img src="{{ asset('uploads') }}/{{ $boutique->photo }}"
                                                         alt="Blog Images">
                                                 </a>
                                             @else

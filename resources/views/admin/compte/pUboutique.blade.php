@@ -804,7 +804,6 @@
                                                 <p class="mb-0">Ajouter un nouveau design</p>
                                             </div>
                                             <div class="card-body pb-3">
-
                                                 <label>Nom design</label>
                                                 <div class="input-group mb-3">
                                                     <input name="name" type="text" class="form-control"

@@ -102,7 +102,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
         Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
         Route::get('/account', [ClientController::class, 'account'])->name('account');
-        Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update');
+        Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update'); 
         Route::get('/compte/update', [ClientController::class, 'update'])->name('compte.update');
         Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
         Route::get('/contact', [ClientController::class, 'contact'])->name('contact');
