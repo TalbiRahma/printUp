@@ -74,11 +74,17 @@
                                     <span class="price-amount">{{ $product->price }} TND</span>
                                     <div class="product-rating">
                                         <div class="star-rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                            @if ($product->moyReviews() == 0)
+                                                <i class="fal fa-star"></i>
+                                                <i class="fal fa-star"></i>
+                                                <i class="fal fa-star"></i>
+                                                <i class="fal fa-star"></i>
+                                                <i class="fal fa-star"></i>
+                                            @else
+                                                @for ($i = 0; $i < $product->moyReviews(); $i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
+                                            @endif
                                         </div>
                                         <div class="review-link">
                                             <a href="#">(<span>{{ count($product->Reviews) }}</span> Avis des
@@ -325,7 +331,7 @@
     <!-- Start Footer Area  -->
     @include('inc.client.footer')
     <!-- End Footer Area  -->
-     @include('inc.client.dropcart')
+    @include('inc.client.dropcart')
 
     <!-- JS
 ============================================ -->
