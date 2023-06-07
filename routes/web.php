@@ -23,6 +23,7 @@ use App\Http\Controllers\BoutiqueController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PortmonnaieController;
+use App\Http\Controllers\ReviwDesignController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryDesignController;
 use App\Http\Controllers\FavoriteDesignController;
@@ -105,6 +106,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/account/update', [ClientController::class, 'updateAccount'])->name('account.update'); 
         Route::get('/compte/update', [ClientController::class, 'update'])->name('compte.update');
         Route::post('/review/store', [ClientController::class, 'addReview'])->name('add.review');
+        Route::post('/review/design', [ReviwDesignController::class, 'addReview'])->name('add.review.design');
         Route::get('/contact', [ClientController::class, 'contact'])->name('contact');
         Route::post('/contact/send', [ClientController::class, 'contactSend'])->name('contact.send');
 
