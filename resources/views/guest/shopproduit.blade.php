@@ -78,6 +78,39 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <div class="toggle-list product-size active">
+                                    <h6 class="title">SIZE</h6>
+                                    <div class="shop-submenu">
+                                        <ul>
+                                            <li class="chosen"><a href="#">XS</a></li>
+                                            <li><a href="#">S</a></li>
+                                            <li><a href="#">M</a></li>
+                                            <li><a href="#">L</a></li>
+                                            <li><a href="#">XL</a></li>
+                                            <li><a href="#">XXL</a></li>
+                                            <li><a href="#">3XL</a></li>
+                                            <li><a href="#">4XL</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="toggle-list product-price-range active">
+                                    <h6 class="title">PRICE</h6>
+                                    <div class="shop-submenu">
+                                        <ul>
+                                            <li class="chosen"><a href="#">30</a></li>
+                                            <li><a href="#">5000</a></li>
+                                        </ul>
+                                        <form action="#" class="mt--25">
+                                            <div class="mt-5">
+                                            <div id="slider-range"></div>
+                                            <div class="flex-center mt--20">
+                                                <span class="input-range">Price: </span>
+                                                <input type="text" id="amount" class="amount-range" readonly>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <button type="submit" class="axil-btn">filtrer
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">

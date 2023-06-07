@@ -512,6 +512,10 @@
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#followers">
                                     <h6>Followers</h6>
                                 </a>
+                                <hr class="horizontal dark mt-3">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#designAjout">
+                                    <h6>Ajouter Design</h6>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -782,7 +786,91 @@
         </div>
     </div>
 
+    <div class="modal fade" id="designAjout" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('ajouter.design') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="boutique_id" value="{{ auth()->user()->boutique->id }}">
+                                    <input type="hidden" name="id" value="{{ mt_rand(100000, 999999) }}">
+                                    <div class="modal-body p-0">
+                                        <div class="card card-plain">
+                                            <div class="card-header pb-0 text-left">
+                                                <h3 class="font-weight-bolder text-primary text-gradient">
+                                                    Ajouter Design</h3>
+                                                <p class="mb-0">Ajouter un nouveau design</p>
+                                            </div>
+                                            <div class="card-body pb-3">
 
+                                                <label>Nom design</label>
+                                                <div class="input-group mb-3">
+                                                    <input name="name" type="text" class="form-control"
+                                                        placeholder="Nom de Design" aria-label="Name"
+                                                        aria-describedby="name-addon">
+                                                    @error('name')
+                                                        <div class="class alert alert-danger">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <label>Description</label>
+                                                <div class="input-group mb-3">
+                                                    <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
+                                                    @error('description')
+                                                        <div class="class alert alert-danger">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <label>Prix</label>
+                                                <div class="input-group mb-3">
+                                                    <input name="price" type="text" class="form-control"
+                                                        placeholder="Prix de design" aria-label="Name"
+                                                        aria-describedby="name-addon">
+                                                    @error('price')
+                                                        <div class="class alert alert-danger">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <label>Categorie</label>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control" name="category_design"
+                                                        id="choices-button" placeholder="categorie design">
+                                                        @foreach ($category_design as $cd)
+                                                            <option value="{{ $cd->id }}">{{ $cd->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <label>Photo</label>
+                                                <div class="input-group mb-3">
+                                                    <input name="photo" type="file" class="form-control"
+                                                        accept="image/*">
+                                                    @error('photo')
+                                                        <div class="class alert alert-danger">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="text-center" style="display:flex; flex-direction: row;">
+                                                    <button type="submit"
+                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
+                                                        Ajouter</button>
+                                                    <button type="button"
+                                                        class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
+                                                        data-bs-dismiss="modal">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
 
 

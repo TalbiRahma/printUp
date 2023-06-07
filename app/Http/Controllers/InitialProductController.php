@@ -23,7 +23,7 @@ class InitialProductController extends Controller
             'name' => 'required|unique:initial_products',
             'description' => 'required',
             'price' => 'required',
-            'photo' => 'required|image|mimes:jpeg,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,jpg,gif,svg,png|max:2048',
         ]); 
 
         $product = new InitialProduct();
