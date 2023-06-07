@@ -276,7 +276,7 @@
                             @foreach ($transactions as $index => $tr)
                                 <tr>
                                     <td class="align-middle">
-                                        #00{{ $index + 1 }}
+                                        #{{ $index + 1 }}
                                     </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
@@ -297,7 +297,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h6 class="text-s font-weight-bold mb-0">name Boutique</h6>
+                                        <h6 class="text-s font-weight-bold mb-0">{{$tr->membre->boutique->name}}</h6>
                                     </td>
                                     <td class="align-middle text-sm ">
                                         <h6 class="text-s font-weight-bold mb-0">{{ $tr->membre->portmonnaie->solde }}

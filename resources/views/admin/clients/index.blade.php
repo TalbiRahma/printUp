@@ -312,8 +312,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">name Boutique</p>
-                                        <p class="text-xs text-secondary mb-0">nbr design</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{$client->boutique->name}}</p>
+                                        <p class="text-xs text-secondary mb-0">{{$client->nbrDesign()}} Design(s)</p>
                                     </td>
                                     <td>
                                         @if ($client->is_active)

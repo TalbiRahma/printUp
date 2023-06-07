@@ -105,4 +105,26 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Boutique::class, 'suivis', 'member_id', 'boutique_id');
     }
+
+    public function nbrDesign()
+    {
+
+        $nbr = 0;
+        //liste des lignes de commande
+        foreach ($this->designs as $design) {
+            $nbr += 1;
+        }
+        return $nbr;
+    }
+
+    public function nbrSuivis()
+    {
+
+        $nbr = 0;
+        //liste des lignes de commande
+        foreach ($this->boutiques as $boutique) {
+            $nbr += 1;
+        }
+        return $nbr;
+    }
 }

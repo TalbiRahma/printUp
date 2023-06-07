@@ -367,7 +367,7 @@
                                 </div>
                                 <div>
                                     <h5 style="color: #525f7f; display: inline-block;">Boutique:</h5>
-                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">Best Creation
+                                    <h6 style="color: #47516c; display: inline-block; margin-left: 10px;">{{$lc->customproduct->design->boutique->name}}
                                     </h6>
 
                                 </div>

@@ -234,16 +234,20 @@
                         </div>
                         <div class="col-4 col-lg-4 order-lg-1">
                             <div class="mt-3" style="margin-right: 25px;">
+
                                 <div class="d-flex justify-content-end ">
                                     <div class="d-grid text-center mx-2">
-                                        <span class="text-lg font-weight-bolder">50</span>
-                                        <span class="text-sm opacity-8">Designs</span>
+                                        <span
+                                            class="text-lg font-weight-bolder">{{ $boutique->user->nbrDesign() }}</span>
+                                        <span class="text-sm opacity-8">Design(s)</span>
                                     </div>
                                     <div class="d-grid text-center mx-2">
-                                        <span class="text-lg font-weight-bolder">50</span>
-                                        <span class="text-sm opacity-8">Followers</span>
+                                        <span
+                                            class="text-lg font-weight-bolder">{{ $boutique->user->nbrSuivis() }}</span>
+                                        <span class="text-sm opacity-8">Follower(s)</span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
