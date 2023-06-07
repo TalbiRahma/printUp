@@ -12,7 +12,6 @@ use App\Models\CategoryDesign;
 use App\Models\InitialProduct;
 use App\Models\CategoryProduct;
 use App\Models\ProduitPersonnaliser;
-
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic;
@@ -150,12 +149,89 @@ class ProduitPersonnaliserController extends Controller
     }
 
 
-
-
-
-
     public function sauvegarder(Request $request)
-    {
+    {   //dd($request);
+        $mergedImage = $request->file('merged_image_data');
+
+        $initial_product_id = $request->input('idproduit');
+        $design_id = $request->input('iddesign');
+        //dd($design_id);
+        $initial_product = InitialProduct::find($initial_product_id);
+        $design = Design::find($design_id);
+
+
+        // Créer une instance de ProduitPersonnaliser
+        $custom_product = new ProduitPersonnaliser();
+        $custom_product->initial_product_id = $initial_product_id;
+        $custom_product->design_id = $design_id;
+        $custom_product->member_id = auth()->user()->id;
+        $custom_product->name = $initial_product->name . ' ' . $design->name;
+        $custom_product->description = $initial_product->description;
+        if (Auth::user()->id == $design->user_id) {
+            $custom_product->price = $initial_product->price + 0;
+        } else {
+            $custom_product->price = $initial_product->price + $design->price;
+        }
+        //$custom_product->price = $initial_product->price + $design->price;
+        $custom_product->sizes = $initial_product->sizes;
+        $custom_product->etat = $design->etat;
+
+        $x = $request->input('image_clone_x');
+        $y = $request->input('image_clone_y');
+        dd($x);
+        if ( $x === null || $y === null) {
+            return redirect()->back()->with('danger', 'Glisser votre design dans le rectangle du produit');
+        } else {
+            $x = $x;
+            $y = $x;
+            
+            // Superposer le design sur le produit initial
+            $img = ImageManagerStatic::make(public_path('uploads/' . $initial_product->photo));
+            $design_img = ImageManagerStatic::make(public_path('uploads/' . $design->photo));
+            // Charger l'image du produit initial
+            //$img = Image::make(public_path('uploads/' . $initial_product->photo));
+
+            // Charger l'image du design
+            //$design_img = Image::make(public_path('uploads/' . $design->photo));
+            
+            $img->insert($design_img, strval($x), intval($y));
+            //dd($img);
+
+            // Enregistrer l'image fusionnée dans le stockage
+            $img_path = 'uploads/custom_products/' . time() . '-' . Str::random(10) . '.jpg';
+            $img->save(public_path($img_path));
+            //$custom_product->addMedia($img_path)->toMediaCollection('custom_products');
+            $custom_product->photo = $img_path; // Enregistrer le chemin de l'image dans la base de données
+        }
+
+        if ($custom_product->save()) {
+            // créer un tableau JSON pour les informations de produit personnalisé
+            $custom_product_data = [
+                'id' => $custom_product->id,
+                'name' => $custom_product->name,
+                'description' => $custom_product->description,
+                'price' => $custom_product->price,
+                'photo' => asset($custom_product->photo),
+                'sizes' => $custom_product->sizes
+            ];
+
+            // stocker les données JSON dans un cookie ou dans la session
+            $custom_product_data_json = json_encode($custom_product_data);
+            $request->session()->put('custom_product_data', $custom_product_data_json);
+            return redirect()->back()->with('success', 'Votre produit a été sauvegardé avec succès');
+        } else {
+            return redirect()->back()->with('danger', 'dfrsvsdfvs');
+        }
+
+        //dd($custom_product);
+
+    }
+
+
+
+
+    /*public function sauvegarder(Request $request)
+    {   dd($request);
         $initial_product_id = $request->input('idproduit');
         $design_id = $request->input('iddesign');
         //dd($design_id);
@@ -228,7 +304,7 @@ class ProduitPersonnaliserController extends Controller
 
         //dd($custom_product);
 
-    }
+    }*/
 
     public function index()
     {
