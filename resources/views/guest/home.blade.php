@@ -517,6 +517,12 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center mt--20 mt_sm--0">
+                            <a href="{{ Route('boutiques') }}" class="axil-btn btn-bg-lighter btn-load-more">Voir
+                                Tous Les Boutiques</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -143,7 +143,11 @@
                                 </a>
                             @else
                                 <a href="#" class="cart-dropdown-btn">
+<<<<<<< HEAD
                                     <span class="cart-count">3</span>
+=======
+                                    <span class="cart-count">0</span>
+>>>>>>> 527336796aea80a24a6ff7f2531e4afaeb205b63
                                     <i class="flaticon-shopping-cart"></i>
                                 </a>
                             @endif
