@@ -69,7 +69,23 @@
                                             <div class="price-amount price-offer-amount">
                                                 <span class="price current-price">{{ $design->price }} TND</span>
                                             </div>
-
+                                            <div class="product-rating">
+                                                <div class="star-rating">
+                                                    
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                    
+                                                            <i class="fas fa-star"></i>
+                                                       
+                                                </div>
+                                                <div class="review-link">
+                                                    <a href="#">(<span></span> Avis des
+                                                        clients)</a>
+                                                </div>
+                                            </div>
                                             <div class="nft-short-meta">
                                                 <div class="nft-category">
                                                     <label>Category :</label>

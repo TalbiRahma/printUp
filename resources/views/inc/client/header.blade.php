@@ -142,10 +142,10 @@
                                     <i class="flaticon-shopping-cart"></i>
                                 </a>
                             @else
-                                <div href="#" class="cart-dropdown-btn">
+                                <a href="#" class="cart-dropdown-btn">
                                     <span class="cart-count">3</span>
                                     <i class="flaticon-shopping-cart"></i>
-                                </div>
+                                </a>
                             @endif
                         </li>
                         <li class="my-account">

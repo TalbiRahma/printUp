@@ -107,7 +107,7 @@
                                                     </ul>
                                                 </div>
                                             @endif
-                                        </div>
+                                        </div> 
                                     </div>
                                     <div class="product-action-wrapper d-flex-center">
                                         <div class="pro-qty"><input type="text" value="1"></div>
