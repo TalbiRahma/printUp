@@ -39,25 +39,14 @@
         <!-- Start Breadcrumb Area  -->
         <div class="axil-breadcrumb-area">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="axil-breadcrumb-item"><a href="index.html">Acceuil</a></li>
                                 <li class="separator"></li>
                                 <li class="axil-breadcrumb-item active" aria-current="page">Magasin</li>
                             </ul>
                             <h1 class="title">Explorer tous les produits</h1>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="inner">
-                            <div class="bradcrumb-thumb">
-                                <img src="{{ asset('/mainassets/images/product/product-45.png') }}" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- End Breadcrumb Area  -->
@@ -83,19 +72,17 @@
                                 </div>
                             </div>
                             
-                            <div class="toggle-list product-price-range active">
-                                <h6 class="title">PRIX</h6>
-                                <div class="shop-submenu">
-                                    <form action="#" class="mt--25">
-                                        <div id="slider-range"></div>
-                                        <div class="flex-center mt--20">
-                                            <span class="input-range">Prix: </span>
-                                            <input type="text" id="amount" class="amount-range" readonly>
-                                        </div>
-                                    </form>
-                                </div>
+                            <button type="submit" class="axil-btn">filtrer
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+                                </svg>
+                            </button>
+                            <div class="mt-4 ">
+                                <a href="{{ route('products.index') }}"
+                                    class="axil-btn btn-bg-primary w-100 text-center">Réinitialiser</a>
                             </div>
-                            <button class="axil-btn btn-bg-primary">All Reset</button>
                         </div>
                         <!-- End .axil-shop-sidebar -->
                     </div>
@@ -106,17 +93,16 @@
                                     <div
                                         class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
-                                        <span class="filter-results">Showing 1-12 of 84 results</span>
+                                        <span class="filter-results">Affichage 1-12 de 84 résultats</span>
                                         <select class="single-select">
                                             <option>Produits</option>
                                             <option>Designs</option>
-                                            <option>Prodits personalises</option>
                                         </select>
                                         <!-- End Single Select  -->
                                     </div>
                                     <div class="d-lg-none">
                                         <button class="product-filter-mobile filter-toggle"><i
-                                                class="fas fa-filter"></i> FILTER</button>
+                                                class="fas fa-filter"></i> FILTRE</button>
                                     </div>
                                 </div>
                             </div>
@@ -177,12 +163,7 @@
                 <!-- End .container -->
             </div>
             <!-- End Shop Area  -->
-
-            <!-- Start Axil Newsletter Area  -->
-            @include('inc.client.newsletter')
-            <!-- End .container -->
         </div>
-        <!-- End Axil Newsletter Area  -->
     </main>
 
 

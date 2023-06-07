@@ -31,13 +31,15 @@ class GuestController extends Controller
         $designs = Design::where('etat', 'valide')->get();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
+        $boutiques = Boutique::all();
         if (auth()->check()) {
             $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
-            return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
+            return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande', 'boutiques'));
         }
 
         $this->clearSessionData($request);
-        return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design'));
+        return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design', 'boutiques'));
+
     }
 
 

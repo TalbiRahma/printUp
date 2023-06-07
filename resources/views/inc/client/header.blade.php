@@ -160,7 +160,7 @@
                                             @if (Auth::user()->role == 'admin')
                                                 <a href="{{ route('donnes.profil') }}">Profile</a>
                                             @else
-                                                <a href="{{ route('account') }}">Profile</a>
+                                                <a href="{{ route('account') }}" id="compte">Profile</a>
                                             @endif
                                         @else
                                             <a href="{{ route('register') }}">Profile</a>
@@ -168,15 +168,15 @@
                                     </li>
                                     <li>
                                         @if (auth()->user())
-                                            <a href="#">Mon Boutique</a>
+                                            <a href="{{ route('maboutique') }}" id="boutique">Ma Boutique</a>
                                         @else
-                                            <a href="{{ route('register') }}">Ma Boutique</a>
+                                            <a href="{{ route('register') }}" >Ma Boutique</a>
                                         @endif
                                     </li>
                                     <li>
                                         @if (auth()->user())
                                             @if (Auth::user()->role == 'admin')
-                                                <a href="{{ route('dashboard') }}">Dashboard</a>
+                                                <a href="{{ route('dashboard') }}">Tableau de bord</a>
                                             @else
                                                 <a href="">Modifier Profile</a>
                                             @endif
@@ -217,12 +217,12 @@
                     <div class="header-campaign-activation axil-slick-arrow arrow-both-side header-campaign-arrow">
                         <div class="slick-slide">
                             <div class="campaign-content">
-                                <p>STUDENT NOW GET 10% OFF : <a href="#">GET OFFER</a></p>
+                                <p>ÉTUDIANT OBTENEZ 10 %: <a href="#">OBTENIR L'OFFRE</a></p>
                             </div>
                         </div>
                         <div class="slick-slide">
                             <div class="campaign-content">
-                                <p>STUDENT NOW GET 10% OFF : <a href="#">GET OFFER</a></p>
+                                <p>ÉTUDIANT OBTENEZ 10 %: <a href="#">OBTENIR L'OFFRE</a></p>
                             </div>
                         </div>
                     </div>

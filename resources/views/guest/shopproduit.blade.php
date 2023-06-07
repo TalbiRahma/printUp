@@ -39,8 +39,6 @@
         <!-- Start Breadcrumb Area  -->
         <div class="axil-breadcrumb-area">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
                                 <li class="axil-breadcrumb-item"><a href="/">Acceuil</a></li>
@@ -49,15 +47,6 @@
                             </ul>
                             <h1 class="title">Explorer tous les produits</h1>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="inner">
-                            <div class="bradcrumb-thumb">
-                                <img src="{{ asset('/mainassets/images/product/product-45.png') }}" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- End Breadcrumb Area  -->
@@ -89,9 +78,6 @@
                                         </ul>
                                     </div>
                                 </div>
-
-
-
                                 <button type="submit" class="axil-btn">filtrer
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
@@ -124,7 +110,7 @@
                                     </div>
                                     <div class="d-lg-none">
                                         <button class="product-filter-mobile filter-toggle"><i
-                                                class="fas fa-filter"></i> FILTER</button>
+                                                class="fas fa-filter"></i> FILTRE</button>
                                     </div>
                                 </div>
                             </div>
@@ -183,10 +169,6 @@
                 <!-- End .container -->
             </div>
             <!-- End Shop Area  -->
-
-            <!-- Start Axil Newsletter Area  -->
-            @include('inc.client.newsletter')
-            <!-- End .container -->
         </div>
         <!-- End Axil Newsletter Area  -->
     </main>

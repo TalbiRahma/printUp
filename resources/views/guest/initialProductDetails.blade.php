@@ -4,32 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    
-        <title>IProduct Details</title>
-        
-        <meta name="robots" content="noindex, follow" />
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Favicon -->
-         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/logo.png') }}">
-    
-            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/favicon.png') }}">
-            
 
-            <!-- CSS
+    <title>Détails du produit</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/mainassets/images/logo.png') }}">
+
+    <!-- CSS
     ============================================ -->
 
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/bootstrap.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/font-awesome.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/flaticon/flaticon.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick-theme.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/jquery-ui.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/sal.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/magnific-popup.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/base.css') }}">
-            <link rel="stylesheet" href="{{ asset('/mainassets/css/style.min.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/flaticon/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/sal.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/vendor/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('/mainassets/css/style.min.css') }}">
 
 </head>
 
@@ -85,21 +81,12 @@
                                             <i class="far fa-star"></i>
                                         </div>
                                         <div class="review-link">
-                                            <a href="#">(<span>{{ count($product->Reviews) }}</span> customer
-                                                reviews)</a>
+                                            <a href="#">(<span>{{ count($product->Reviews) }}</span> Avis des
+                                                clients)</a>
                                         </div>
                                     </div>
-                                    <ul class="product-meta">
-                                        <li><i class="fal fa-check"></i>In stock</li>
-                                        <li><i class="fal fa-check"></i>Free delivery available</li>
-                                        <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
-                                    </ul>
-                                    <p class="description">{{ $product->description }}</p>
-
                                     <div class="product-variations-wrapper">
-
-                                        <!-- Start Product Variation  -->
-                                        <div class="product-variation product-size-variation">
+                                        <div class=" product-variation product-size-variation">
                                             @if ($product->sizes)
                                                 @php $sizes = json_decode($product->sizes, true); @endphp
                                                 <div class="product-variation">
@@ -113,30 +100,19 @@
                                                         @endforeach
                                                     </ul>
                                                 </div>
-
                                             @endif
                                         </div>
-                                        <!-- End Product Variation  -->
-
                                     </div>
-
-                                    <!-- Start Product Action Wrapper  -->
                                     <div class="product-action-wrapper d-flex-center">
-                                        <!-- Start Quentity Action  -->
                                         <div class="pro-qty"><input type="text" value="1"></div>
-                                        <!-- End Quentity Action  -->
-
-                                        <!-- Start Product Action  -->
                                         <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a href="{{ route('personnaliser.produit',['id' =>  $product->id]) }}"
+                                            <li class="add-to-cart"><a
+                                                    href="{{ route('personnaliser.produit', ['id' => $product->id]) }}"
                                                     class="axil-btn btn-bg-primary">Personnaliser</a></li>
                                             <li class="wishlist"><a href="wishlist.html"
                                                     class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
-                                        <!-- End Product Action  -->
-
                                     </div>
-                                    <!-- End Product Action Wrapper  -->
                                 </div>
                             </div>
                         </div>
@@ -156,65 +132,15 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <a id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                                aria-controls="reviews" aria-selected="false">Reviews</a>
+                                aria-controls="reviews" aria-selected="false">Commentaires</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="description" role="tabpanel"
                             aria-labelledby="description-tab">
                             <div class="product-desc-wrapper">
-                                <div class="row">
-                                    <div class="col-lg-6 mb--30">
-                                        <div class="single-desc">
-                                            <h5 class="title">Specifications:</h5>
-                                            <p>We’ve created a full-stack structure for our working workflow processes,
-                                                were from the funny the century initial all the made, have spare to
-                                                negatives. But the structure was from the funny the century rather,
-                                                initial all the made, have spare to negatives.</p>
-                                        </div>
-                                    </div>
-                                    <!-- End .col-lg-6 -->
-                                    <div class="col-lg-6 mb--30">
-                                        <div class="single-desc">
-                                            <h5 class="title">Care & Maintenance:</h5>
-                                            <p>Use warm water to describe us as a product team that creates amazing
-                                                UI/UX experiences, by crafting top-notch user experience.</p>
-                                        </div>
-                                    </div>
-                                    <!-- End .col-lg-6 -->
-                                </div>
-                                <!-- End .row -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="pro-des-features">
-                                            <li class="single-features">
-                                                <div class="icon">
-                                                    <img src="assets/images/product/product-thumb/icon-3.png"
-                                                        alt="icon">
-                                                </div>
-                                                Easy Returns
-                                            </li>
-                                            <li class="single-features">
-                                                <div class="icon">
-                                                    <img src="assets/images/product/product-thumb/icon-2.png"
-                                                        alt="icon">
-                                                </div>
-                                                Quality Service
-                                            </li>
-                                            <li class="single-features">
-                                                <div class="icon">
-                                                    <img src="assets/images/product/product-thumb/icon-1.png"
-                                                        alt="icon">
-                                                </div>
-                                                Original Product
-                                            </li>
-                                        </ul>
-                                        <!-- End .pro-des-features -->
-                                    </div>
-                                </div>
-                                <!-- End .row -->
+                                <p class="description">{{ $product->description }}</p>
                             </div>
-                            <!-- End .product-desc-wrapper -->
                         </div>
 
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -222,7 +148,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 mb--40">
                                         <div class="axil-comment-area pro-desc-commnet-area">
-                                            <h5 class="title">{{ count($product->Reviews) }} Review for this product
+                                            <h5 class="title">{{ count($product->Reviews) }} Avis sur ce produit
                                             </h5>
                                             @foreach ($product->reviews as $review)
                                                 <ul class="comment-list">
@@ -243,10 +169,7 @@
                                                                             @endif
                                                                         </div>
                                                                     </div>
-
                                                                     <div class="col-9">
-
-
                                                                         <div class="comment-inner ">
                                                                             <h6 class="commenter">
                                                                                 <a class="hover-flip-item-wrapper"
@@ -337,8 +260,8 @@
         <div class="axil-product-area bg-color-white axil-section-gap pb--50 pb_sm--30">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Your
-                        Recently</span>
+                    <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Votre
+                        récemment</span>
                     <h2 class="title">Produits similaire</h2>
                 </div>
                 <div class="recent-product-activation slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
@@ -352,17 +275,26 @@
                                     <a href="single-product.html">
                                         <img src="{{ asset('uploads') }}/{{ $pr->photo }}" alt="Product Images">
                                     </a>
-                                    <div class="label-block label-right">
-                                        <div class="product-badget">20% OFF</div>
-                                    </div>
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
-                                            <li class="wishlist"><a href="wishlist.html"><i
-                                                        class="far fa-heart"></i></a></li>
-                                            <li class="select-option"><a href="cart.html">Add to Cart</a></li>
                                             <li class="quickview"><a
                                                     href="{{ route('products.details', ['id' => $pr->id]) }}"><i
                                                         class="far fa-eye"></i></a></li>
+                                            <li class="select-option">
+                                                <a href="{{ route('personnaliser.produit', ['id' => $pr->id]) }}">
+                                                    Personnalisé
+                                                </a>
+                                                </form>
+                                            </li>
+                                            <li class="wishlist">
+                                                <form method="post" action="{{ route('wishlist.add.product') }}">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id"
+                                                        value="{{ $pr->id }}">
+                                                    <a href="javascript:void(0)"><button type="submit"><i
+                                                                class="far fa-heart"></i></button></a>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -370,7 +302,6 @@
                                     <div class="inner">
                                         <h5 class="title">{{ $pr->name }}<a href="single-product.html"></a></h5>
                                         <div class="product-price-variant">
-                                            <span class="price old-price">$30</span>
                                             <span class="price current-price">{{ $pr->price }} TND</span>
                                         </div>
                                     </div>
@@ -387,295 +318,14 @@
                 </div>
             </div>
         </div>
-        <!-- End Recently Viewed Product Area  -->
-        <!-- Start Axil Newsletter Area  -->
-        <div class="axil-newsletter-area axil-section-gap pt--0">
-            <div class="container">
-                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                    <div class="newsletter-content">
-                        <span class="title-highlighter highlighter-primary2"><i
-                                class="fas fa-envelope-open"></i>Newsletter</span>
-                        <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-                        <div class="input-group newsletter-form">
-                            <div class="position-relative newsletter-inner mb--15">
-                                <input placeholder="example@gmail.com" type="text">
-                            </div>
-                            <button type="submit" class="axil-btn mb--15">Subscribe</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End .container -->
-        </div>
-        <!-- End Axil Newsletter Area  -->
+
     </main>
 
-
-    <div class="service-area">
-        <div class="container">
-            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service1.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
-                            <p>Tell about your service.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service2.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Money Back Guarantee</h6>
-                            <p>Within 10 days.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service3.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">24 Hour Return Policy</h6>
-                            <p>No question ask.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service4.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Pro Quality Support</h6>
-                            <p>24/7 Live support.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('inc.client.service')
     <!-- Start Footer Area  -->
-    <footer class="axil-footer-area footer-style-2">
-        <!-- Start Footer Top Area  -->
-        <div class="footer-top separator-top">
-            <div class="container">
-                <div class="row">
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Support</h5>
-                            <!-- <div class="logo mb--30">
-                            <a href="index.html">
-                                <img class="light-logo" src="assets/images/logo/logo.png" alt="Logo Images">
-                            </a>
-                        </div> -->
-                            <div class="inner">
-                                <p>685 Market Street, <br>
-                                    Las Vegas, LA 95820, <br>
-                                    United States.
-                                </p>
-                                <ul class="support-list-item">
-                                    <li><a href="mailto:example@domain.com"><i class="fal fa-envelope-open"></i>
-                                            example@domain.com</a></li>
-                                    <li><a href="tel:(+01)850-315-5862"><i class="fal fa-phone-alt"></i> (+01)
-                                            850-315-5862</a></li>
-                                    <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Account</h5>
-                            <div class="inner">
-                                <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="sign-up.html">Login / Register</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Quick Link</h5>
-                            <div class="inner">
-                                <ul>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Download App</h5>
-                            <div class="inner">
-                                <span>Save $3 With App & New User only</span>
-                                <div class="download-btn-group">
-                                    <div class="qr-code">
-                                        <img src="assets/images/others/qr.png" alt="Axilthemes">
-                                    </div>
-                                    <div class="app-link">
-                                        <a href="#">
-                                            <img src="assets/images/others/app-store.png" alt="App Store">
-                                        </a>
-                                        <a href="#">
-                                            <img src="assets/images/others/play-store.png" alt="Play Store">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Top Area  -->
-        <!-- Start Copyright Area  -->
-        <div class="copyright-area copyright-default separator-top">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-4">
-                        <div class="social-share">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-discord"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-12">
-                        <div class="copyright-left d-flex flex-wrap justify-content-center">
-                            <ul class="quick-link">
-                                <li>© 2022. All rights reserved by <a target="_blank"
-                                        href="https://axilthemes.com/">Axilthemes</a>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-12">
-                        <div
-                            class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
-                            <span class="card-text">Accept For</span>
-                            <ul class="payment-icons-bottom quick-link">
-                                <li><img src="assets/images/icons/cart/cart-1.png" alt="paypal cart"></li>
-                                <li><img src="assets/images/icons/cart/cart-2.png" alt="paypal cart"></li>
-                                <li><img src="assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright Area  -->
-    </footer>
+    @include('inc.client.footer')
     <!-- End Footer Area  -->
-
-
-
-    <!-- Header Search Modal End -->
-    <div class="header-search-modal" id="header-search-modal">
-        <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
-        <div class="header-search-wrap">
-            <div class="card-header">
-                <form action="#">
-                    <div class="input-group">
-                        <input type="search" class="form-control" name="prod-search" id="prod-search"
-                            placeholder="Write Something....">
-                        <button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
-                    </div>
-                </form>
-            </div>
-            <div class="card-body">
-                <div class="search-result-header">
-                    <h6 class="title">24 Result Found</h6>
-                    <a href="shop.html" class="view-all">View All</a>
-                </div>
-                <div class="psearch-results">
-                    <div class="axil-product-list">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <div class="product-rating">
-                                <span class="rating-icon">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fal fa-star"></i>
-                                </span>
-                                <span class="rating-number"><span>100+</span> Reviews</span>
-                            </div>
-                            <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
-                            <div class="product-price-variant">
-                                <span class="price current-price">$29.99</span>
-                                <span class="price old-price">$49.99</span>
-                            </div>
-                            <div class="product-cart">
-                                <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                                <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="axil-product-list">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
-                            </a>
-                        </div>
-                        <div class="product-content">
-                            <div class="product-rating">
-                                <span class="rating-icon">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fal fa-star"></i>
-                                </span>
-                                <span class="rating-number"><span>100+</span> Reviews</span>
-                            </div>
-                            <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
-                            <div class="product-price-variant">
-                                <span class="price current-price">$29.99</span>
-                                <span class="price old-price">$49.99</span>
-                            </div>
-                            <div class="product-cart">
-                                <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                                <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header Search Modal End -->
-
-
-
-    @include('inc.client.dropcart')
+     @include('inc.client.dropcart')
 
     <!-- JS
 ============================================ -->

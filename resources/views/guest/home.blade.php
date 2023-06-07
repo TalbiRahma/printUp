@@ -72,10 +72,12 @@
                 <div class="header-navbar">
                     <div class="header-brand">
                         <a href="{{ route('home') }}" class="logo logo-dark">
-                            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="print-logo" alt="Site Logo">
+                            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="print-logo"
+                                alt="Site Logo">
                         </a>
                         <a href="{{ route('home') }}" class="logo logo-light">
-                            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="print-logo" alt="Site Logo">
+                            <img src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" class="print-logo"
+                                alt="Site Logo">
                         </a>
                     </div>
                     <div class="header-main-nav">
@@ -90,11 +92,11 @@
                             <ul class="mainmenu">
                                 <li class="menu-item-has-children">
                                     <a href="#">Magasin</a>
-                                <ul class="axil-submenu">
-                                    <li><a href="{{ route('products.index') }}">Produits</a></li>
-                                    <li><a href="{{ route('designs.index') }}">Designs</a></li>
-                                    <li><a href="{{ route('Costumize.products.index') }}">Personnaliser</a></li>
-                                </ul>
+                                    <ul class="axil-submenu">
+                                        <li><a href="{{ route('products.index') }}">Produits</a></li>
+                                        <li><a href="{{ route('designs.index') }}">Designs</a></li>
+                                        <li><a href="{{ route('Costumize.products.index') }}">Personnaliser</a></li>
+                                    </ul>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">Categories</a>
@@ -119,7 +121,7 @@
                                 </li>
                                 <li><a href="{{ route('boutiques') }}">Boutiques</a></li>
                                 <li><a href="#">A propos</a></li>
-                                <li><a href="{{route('contact')}}">Contact</a></li>
+                                <li><a href="{{ route('contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->
@@ -147,7 +149,7 @@
                                         </li>
                                         <li>
                                             @if (auth()->user())
-                                                <a href="{{route('design.wishlist')}}">Mes produits designs</a>
+                                                <a href="{{ route('design.wishlist') }}">Mes produits designs</a>
                                             @else
                                                 <a href="{{ route('register') }}">Mes designs favoris</a>
                                             @endif
@@ -157,19 +159,19 @@
                             </li>
                             <li class="shopping-cart">
                                 @if (auth()->user())
-                                <a href="#" class="cart-dropdown-btn">
-                                    @if ($commande)
-                                    <span class="cart-count">{{ $commande->lignecommandes->count() }}</span>
-                                    @else 
-                                    <span class="cart-count">0</span>
-                                    @endif
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
+                                    <a href="#" class="cart-dropdown-btn">
+                                        @if ($commande)
+                                            <span class="cart-count">{{ $commande->lignecommandes->count() }}</span>
+                                        @else
+                                            <span class="cart-count">0</span>
+                                        @endif
+                                        <i class="flaticon-shopping-cart"></i>
+                                    </a>
                                 @else
-                                <a href="{{ route('login') }}" class="cart-dropdown-btn">
-                                    <span class="cart-count">3</span>
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
+                                    <a href="{{ route('login') }}" class="cart-dropdown-btn">
+                                        <span class="cart-count">3</span>
+                                        <i class="flaticon-shopping-cart"></i>
+                                    </a>
                                 @endif
                             </li>
                             <li class="my-account">
@@ -256,8 +258,7 @@
                             <div class="slider-content-activation-one">
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600"
                                     data-sal-duration="1500">
-                                    <img src="{{ asset('/dashassets/img/home.png') }}"
-                                        alt="Product">
+                                    <img src="{{ asset('/dashassets/img/home.png') }}" alt="Product">
                                 </div>
                             </div>
                         </div>
@@ -281,7 +282,8 @@
                     <h2 class="title">Parcourir Par Catégorie</h2>
                 </div>
                 <div class="row">
-                    <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
+                    <div
+                        class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
 
 
                         @foreach ($category_design as $cd)
@@ -336,13 +338,14 @@
                                             <div class="product-hover-action">
                                                 <ul class="cart-action">
                                                     <li class="quickview"><a
-                                                            href="{{ route('products.details', ['id' => $p->id ]) }}"><i
+                                                            href="{{ route('products.details', ['id' => $p->id]) }}"><i
                                                                 class="far fa-eye"></i></a></li>
                                                     <li class="select-option">
-                                                        <a href="{{route('personnaliser.produit', ['id' => $p->id ])}}" >
+                                                        <a
+                                                            href="{{ route('personnaliser.produit', ['id' => $p->id]) }}">
                                                             Personnalisé
                                                         </a>
-                                                    </form>
+                                                        </form>
                                                     </li>
                                                     <li class="wishlist">
                                                         <form method="post"
@@ -410,50 +413,52 @@
                         class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
                         <!-- End .slick-single-layout -->
                         @foreach ($designs as $d)
-                        <div class="slick-single-layout">
-                            <div class="axil-product product-style-two">
-                                <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
-                                            src="{{ asset('uploads') }}/{{ $d->photo }}"
-                                            alt="Product Images">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <h5 class="title"><a href="single-product.html">{{$d->name}}</a></h5>
-                                        <h6 class=""><a href="single-product.html">boutique</a></h6>
-                                        <div class="product-price-variant">
-                                            <span class="price current-price">{{$d->price}} TND</span>
-                                        </div>
+                            <div class="slick-single-layout">
+                                <div class="axil-product product-style-two">
+                                    <div class="thumbnail">
+                                        <a href="single-product.html">
+                                            <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
+                                                src="{{ asset('uploads') }}/{{ $d->photo }}"
+                                                alt="Product Images">
+                                        </a>
                                     </div>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="quickview"><a href="{{route('designs.details', ['id' => $d->id])}}"><i class="far fa-eye"></i></a>
-                                            </li>
-                                            <li class="select-option"><a href="single-product.html">Voir Boutique</a>
-                                            </li>
-                                            <li class="wishlist">
-                                                <form method="post"
-                                                    action="{{route('wishlist.add.design')}}">
-                                                    @csrf
-                                                    <input type="hidden" name="design_id"
-                                                        value="{{ $d->id }}">
-                                                    <a href="javascript:void(0)"><button type="submit"><i
-                                                                class="far fa-heart"></i></button></a>
-                                                </form>
-                                            </li>
-                                        </ul>
+                                    <div class="product-content">
+                                        <div class="inner">
+                                            <h5 class="title"><a href="single-product.html">{{ $d->name }}</a>
+                                            </h5>
+                                            <h6 class=""><a href="single-product.html">boutique</a></h6>
+                                            <div class="product-price-variant">
+                                                <span class="price current-price">{{ $d->price }} TND</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-hover-action">
+                                            <ul class="cart-action">
+                                                <li class="quickview"><a
+                                                        href="{{ route('designs.details', ['id' => $d->id]) }}"><i
+                                                            class="far fa-eye"></i></a>
+                                                </li>
+                                                <li class="select-option"><a href="single-product.html">Voir
+                                                        Boutique</a>
+                                                </li>
+                                                <li class="wishlist">
+                                                    <form method="post" action="{{ route('wishlist.add.design') }}">
+                                                        @csrf
+                                                        <input type="hidden" name="design_id"
+                                                            value="{{ $d->id }}">
+                                                        <a href="javascript:void(0)"><button type="submit"><i
+                                                                    class="far fa-heart"></i></button></a>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                            <a href="{{ Route('designs.index') }}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les
-                                Désigns</a>
+                            <a href="{{ Route('designs.index') }}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les Désigns</a>
                         </div>
                     </div>
                 </div>
@@ -466,237 +471,65 @@
             <div class="container">
                 <div class="product-area pb--50">
                     <div class="section-title-wrapper section-title-center">
-                        <span class="title-highlighter highlighter-primary"><i class="fas fa-star"></i>Produits
-                            Personnalisés</span>
-                        <h2 class="title">Découvrez Les Produits Personnalisés</h2>
+                        <span class="title-highlighter highlighter-primary"><i
+                                class="fas fa-star"></i>Boutiques</span>
+                        <h2 class="title">Découvrez Les Boutiques</h2>
                     </div>
-                    <div class="row row-cols-xl-2 row-cols-1 row--15">
-                        <div class="col">
-                            <div class="axil-product-list">
-                                <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500"
-                                            src="{{ asset('/mainassets/images/product/electric/product-09.png') }}"
-                                            alt="Yantiti Leather Bags">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-rating">
-                                        <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                        <span class="rating-number"><span>100+</span> Reviews</span>
-                                    </div>
-                                    <h6 class="product-title"><a href="single-product.html">name personalises</a></h6>
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$29.99</span>
-                                    </div>
-                                    <div class="product-cart">
-                                        <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                                        <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+                    <div class="row ">
+                        @foreach ($boutiques as $boutique)
+                            <div class="col-md-4">
+                                <div class="content-blog blog-grid">
+                                    <div class="inner">
+                                        <div class="thumbnail">
+                                            @if ($boutique->photo)
+                                                <a href="#">
+                                                    <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
+                                                        alt="Blog Images">
+                                                </a>
+                                            @else
+                                                <a href="#">
+                                                    <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}"
+                                                        alt="Blog Images">
+                                                </a>
+                                            @endif
+                                            <div class="blog-category">
+                                                <a href="#">Suivre</a>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <h5><a
+                                                    href="{{ route('boutique', ['id' => $boutique->id]) }}">{{ $boutique->name }}</a>
+                                            </h5>
+                                            <div class="product-rating">
+                                                <span class="rating-icon">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fal fa-star"></i>
+                                                </span>
+                                                <span class="rating-number"><span>100+</span> Reviews</span>
+                                            </div>
+                                            @if ($boutique->biographie)
+                                                <span class="text-sm">{{ $boutique->biographie }}</span>
+                                            @else
+                                                <span class="text-sm">Je vais vous montrer la meilleure
+                                                    création que vous verrez dans votre vie</span>
+                                            @endif
+                                            <div class="read-more-btn mt-4">
+                                                <a class="axil-btn right-icon" href="blog-details.html">Voir plus
+                                                    <i class="fal fa-long-arrow-right"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Most Sold Product Area  -->
-
-        <div class="axil-why-choose-area pb--50 pb_sm--30">
-            <div class="container">
-
-                <!-- Start Testimonila Area  -->
-                <div class="axil-testimoial-area axil-section-gap bg-vista-white">
-                    <div class="container">
-                        <div class="section-title-wrapper">
-                            <span class="title-highlighter highlighter-secondary"> <i
-                                    class="fal fa-quote-left"></i>Testimonials</span>
-                            <h2 class="title">Users Feedback</h2>
-                        </div>
-                        <!-- End .section-title -->
-                        <div
-                            class="testimonial-slick-activation testimonial-style-one-wrapper slick-layout-wrapper--20 axil-slick-arrow arrow-top-slide">
-                            <div class="slick-single-layout testimonial-style-one">
-                                <div class="review-speech">
-                                    <p>“ It’s amazing how much easier it has been to
-                                        meet new people and create instantly non
-                                        connections. I have the exact same personal
-                                        the only thing that has changed is my mind
-                                        set and a few behaviors. “</p>
-                                </div>
-                                <div class="media">
-                                    <div class="thumbnail">
-                                        <img src="{{ asset('/mainassets/images/testimonial/image-1.png') }}"
-                                            alt="testimonial image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="designation">Head Of Idea</span>
-                                        <h6 class="title">James C. Anderson</h6>
-                                    </div>
-                                </div>
-                                <!-- End .thumbnail -->
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout testimonial-style-one">
-                                <div class="review-speech">
-                                    <p>“ It’s amazing how much easier it has been to
-                                        meet new people and create instantly non
-                                        connections. I have the exact same personal
-                                        the only thing that has changed is my mind
-                                        set and a few behaviors. “</p>
-                                </div>
-                                <div class="media">
-                                    <div class="thumbnail">
-                                        <img src="{{ asset('/mainassets/images/testimonial/image-2.png') }}"
-                                            alt="testimonial image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="designation">Head Of Idea</span>
-                                        <h6 class="title">James C. Anderson</h6>
-                                    </div>
-                                </div>
-                                <!-- End .thumbnail -->
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout testimonial-style-one">
-                                <div class="review-speech">
-                                    <p>“ It’s amazing how much easier it has been to
-                                        meet new people and create instantly non
-                                        connections. I have the exact same personal
-                                        the only thing that has changed is my mind
-                                        set and a few behaviors. “</p>
-                                </div>
-                                <div class="media">
-                                    <div class="thumbnail">
-                                        <img src="{{ asset('/mainassets/images/testimonial/image-3.png') }}"
-                                            alt="testimonial image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="designation">Head Of Idea</span>
-                                        <h6 class="title">James C. Anderson</h6>
-                                    </div>
-                                </div>
-                                <!-- End .thumbnail -->
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout testimonial-style-one">
-                                <div class="review-speech">
-                                    <p>“ It’s amazing how much easier it has been to
-                                        meet new people and create instantly non
-                                        connections. I have the exact same personal
-                                        the only thing that has changed is my mind
-                                        set and a few behaviors. “</p>
-                                </div>
-                                <div class="media">
-                                    <div class="thumbnail">
-                                        <img src="{{ asset('/mainassets/images/testimonial/image-2.png') }}"
-                                            alt="testimonial image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="designation">Head Of Idea</span>
-                                        <h6 class="title">James C. Anderson</h6>
-                                    </div>
-                                </div>
-                                <!-- End .thumbnail -->
-                            </div>
-                            <!-- End .slick-single-layout -->
-
-                        </div>
-                    </div>
-                </div>
-                <!-- End Testimonila Area  -->
-
-            </div>
-        </div>
-
-
-
-        <!-- Start Why Choose Area  -->
-        <div class="axil-why-choose-area pb--50 pb_sm--30">
-            <div class="container">
-                <div class="section-title-wrapper section-title-center">
-                    <span class="title-highlighter highlighter-secondary"><i class="fal fa-thumbs-up"></i>Pourquoi
-                        Nous</span>
-                    <h2 class="title">Pourquoi Les Gens Nous Choisissent</h2>
-                </div>
-                <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 row--20">
-                    <div class="col">
-                        <div class="service-box">
-                            <div class="icon">
-                                <img src="{{ asset('/mainassets/images/icons/service6.png') }}" alt="Service">
-                            </div>
-                            <h6 class="title">Livraison Rapide &amp; Sécurisée</h6>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="service-box">
-                            <div class="icon">
-                                <img src="{{ asset('/mainassets/images/icons/service7.png') }}" alt="Service">
-                            </div>
-                            <h6 class="title">100% Garantie Sur Le Produit</h6>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="service-box">
-                            <div class="icon">
-                                <img src="{{ asset('/mainassets/images/icons/service8.png') }}" alt="Service">
-                            </div>
-                            <h6 class="title">Politique De Retour De 24H</h6>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="service-box">
-                            <div class="icon">
-                                <img src="{{ asset('/mainassets/images/icons/service9.png') }}" alt="Service">
-                            </div>
-                            <h6 class="title">Politique De Retour De 24H</h6>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="service-box">
-                            <div class="icon">
-                                <img src="{{ asset('/mainassets/images/icons/service10.png') }}" alt="Service">
-                            </div>
-                            <h6 class="title">Qualité Professionnelle</h6>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Why Choose Area  -->
-
-
-        <!-- Start Axil Product Poster Area  -->
-
-        <!-- End Axil Product Poster Area  -->
-
-        <!-- Start Axil Newsletter Area  -->
-        <div class="axil-newsletter-area axil-section-gap pt--0">
-            <div class="container">
-                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                    <div class="newsletter-content">
-                        <span class="title-highlighter highlighter-primary2"><i
-                                class="fas fa-envelope-open"></i>Newsletter</span>
-                        <h2 class="title mb--40 mb_sm--30">Obtenir les mises à jour</h2>
-                        <div class="input-group newsletter-form">
-                            <div class="position-relative newsletter-inner mb--15">
-                                <input placeholder="example@gmail.com" type="text">
-                            </div>
-                            <button type="submit" class="axil-btn mb--15">S'abonner</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End .container -->
-        </div>
-        <!-- End Axil Newsletter Area  -->
-
+        @include('inc.client.service')
     </main>
 
     <!-- Start Footer Area  -->
@@ -836,10 +669,10 @@
 
     <!--size selected-->
     <style>
-        .print-logo{
+        .print-logo {
             height: 45px;
             width: auto;
-            
+
         }
     </style>
 
