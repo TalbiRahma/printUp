@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('produit_personnalisers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->longtext('description');
             $table->float('price');
             $table->string('photo');
             $table->json('sizes')->nullable();

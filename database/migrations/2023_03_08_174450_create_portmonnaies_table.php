@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('portmonnaies', function (Blueprint $table) {
             $table->id();
             $table->float('solde')->default(0)->nullable();
-            $table->string('Num_cart')->nullable();
+            $table->string('Num_cart')->nullable()->unique();
             $table->string('Procedure')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

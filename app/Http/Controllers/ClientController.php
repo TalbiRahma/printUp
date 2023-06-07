@@ -81,7 +81,7 @@ class ClientController extends Controller
         }
 
         $user->update();
-        return view('client.account', compact('designs', 'initial_products', 'category_product', 'category_design'));
+        return view('client.compte.account', compact('designs', 'initial_products', 'category_product', 'category_design'));
     }
 
     public function update(){

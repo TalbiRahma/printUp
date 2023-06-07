@@ -64,7 +64,7 @@
                                 <a href="javascript:;">
                                     @if (auth()->user()->photo)
                                         <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                                            class="avatar avatar-sm me-3">
+                                        class="rounded-circle img-fluid border border-2 border-white">
                                     @else
                                         <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
                                             class="rounded-circle img-fluid border border-2 border-white">
@@ -557,7 +557,7 @@
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form action="{{ route('edit.boutique') }}" method="post">
+                <form action="{{ route('edit.boutique') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="boutique_id" value="{{ $boutique->id }}">
                     <div class="modal-header">
@@ -576,7 +576,7 @@
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Nom Boutique</label>
-                            <input name="name" class="form-control" type="text" value="Best Creation"
+                            <input name="name" class="form-control" type="text" 
                                 id="example-text-input">
                         </div>
                         <div class="form-group">

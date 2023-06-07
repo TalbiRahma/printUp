@@ -280,7 +280,7 @@
                             <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Vos demandes</h6>
                             <ul class="list-group">
                                 @foreach ($tarnsactions as $tr)
-                                    @if ($tr->type == 'demande')
+                                    @if ($tr->type == 'demande') 
                                         <li
                                             class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                             <div class="d-flex align-items-center">

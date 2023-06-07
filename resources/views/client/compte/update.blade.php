@@ -108,8 +108,8 @@
         <div class="mx-8 card-profile-bottom py-4">
             <div class="row">
                 <div class="card">
-                    <form action="{{ route('update.profil') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    <form action="{{ route('account.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf 
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
                                 <h6 class="mb-0">Modifier le profile:</h6>

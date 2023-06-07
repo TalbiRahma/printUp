@@ -30,5 +30,14 @@ class AdminSeeder extends Seeder
                 'email_verified_at' => '2023-04-06 15:10:00',
             ]
         );
+
+        DB::table('boutiques')->insert(
+            [
+                'name' => 'PrintUp',
+                'photo' => null,
+                'biographie' => 'redtfyguhiuj',
+                'user_id' => 1,
+            ]
+        );
     }
 }

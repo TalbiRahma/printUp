@@ -84,9 +84,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
 
         $total = 0;
-        //liste des lignes de commande
+        // liste des lignes de commande
         foreach ($this->transactions as $tr) {
-            $total += $tr->montant_transferts;
+            if ($tr->type === 'remboursé') {
+                $total += $tr->montant;
+            }
         }
         return $total;
     }
@@ -98,7 +100,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function boutique()
     {
-        return $this->hasOne(Boutique::class,'user_id', 'id');
+        return $this->hasOne(Boutique::class, 'user_id', 'id');
     }
 
     public function boutiques()
