@@ -363,13 +363,19 @@
                                             <div class="inner">
                                                 <div class="product-rating">
                                                     <span class="icon">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
+                                                        @if ($p->moyReviews() == 0)
+                                                            <i class="fal fa-star"></i>
+                                                            <i class="fal fa-star"></i>
+                                                            <i class="fal fa-star"></i>
+                                                            <i class="fal fa-star"></i>
+                                                            <i class="fal fa-star"></i>
+                                                        @else
+                                                            @for ($i = 0; $i < $p->moyReviews(); $i++)
+                                                                <i class="fas fa-star"></i>
+                                                            @endfor
+                                                        @endif
                                                     </span>
-                                                    <span class="rating-number">(64)</span>
+                                                    <span class="rating-number">({{ count($p->Reviews) }})</span>
                                                 </div>
                                                 <h5 class="title"><a
                                                         href="single-product.html">{{ $p->name }}</a></h5>
@@ -425,7 +431,8 @@
                                         <div class="inner">
                                             <h5 class="title"><a href="single-product.html">{{ $d->name }}</a>
                                             </h5>
-                                            <h6 class=""><a href="single-product.html">boutique</a></h6>
+                                            <h6 class=""><a
+                                                    href="single-product.html">{{ $d->boutique->name }}</a></h6>
                                             <div class="product-price-variant">
                                                 <span class="price current-price">{{ $d->price }} TND</span>
                                             </div>
