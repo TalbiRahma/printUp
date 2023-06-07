@@ -121,8 +121,6 @@
             </div>
             <!-- End .container -->
         </div>
-        <!-- End Blog Area  -->
-        <!-- End Axil Newsletter Area  -->
     </main>
 
 
