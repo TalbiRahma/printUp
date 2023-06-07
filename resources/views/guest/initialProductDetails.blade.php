@@ -96,6 +96,7 @@
                                         <li><i class="fal fa-check"></i>Livraison gratuite disponible</li>
                                     </ul>
                                     <div class="product-desc-wrapper">
+                                        <h6>Description:</h6>
                                         <p class="description">{{ $product->description }}</p>
                                     </div>
                                     <div class="product-variations-wrapper">
@@ -137,71 +138,75 @@
                     <ul class="nav tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="active" id="description-tab" data-bs-toggle="tab" href="#description"
-                                role="tab" aria-controls="description" aria-selected="true">Description</a>
+                                role="tab" aria-controls="description" aria-selected="true">Les avis</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                                aria-controls="reviews" aria-selected="false">Commentaires</a>
+                                aria-controls="reviews" aria-selected="false">Commentaire</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="description" role="tabpanel"
                             aria-labelledby="description-tab">
-                            <div class="axil-comment-area pro-desc-commnet-area">
-                                <h5 class="title">{{ count($product->Reviews) }} Avis sur ce produit
-                                </h5>
-                                @foreach ($product->reviews as $review)
-                                    <ul class="comment-list">
-                                        <!-- Start Single Comment  -->
-                                        <li class="comment">
-                                            <div class="comment-body">
-                                                <div class="single-comment">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <div class="comment-img">
-                                                                @if ($review->user->photo == null)
-                                                                    <img src="/uploads/userphoto.jpg"
-                                                                        alt="bienvenue client">
-                                                                @else
-                                                                    <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
-                                                                        alt="profile_image"
-                                                                        class="w-75 border-radius-lg shadow-sm">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <div class="comment-inner ">
-                                                                <h6 class="commenter">
-                                                                    <a class="hover-flip-item-wrapper" href="#">
-                                                                        <span class="hover-flip-item">
-                                                                            <span
-                                                                                data-text="Cameron Williamson">{{ $review->user->first_name }}
-                                                                                {{ $review->user->last_name }}</span>
-                                                                        </span>
-                                                                    </a>
-                                                                    <span class="commenter-rating ratiing-four-star">
-                                                                        @for ($i = 0; $i < $review->rate; $i++)
-                                                                            <a href="#"><i
-                                                                                    class="fas fa-star"></i></a>
-                                                                        @endfor
-                                                                    </span>
-                                                                    <br>
-                                                                    <p><small>-<i>{{ $review->created_at }}</i></small>
-                                                                    </p>
-
-                                                                </h6>
-                                                                <div class="comment-text">
-                                                                    <p>{{ $review->content }}</p>
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="axil-comment-area pro-desc-commnet-area">
+                                        <h5 class="title">{{ count($product->Reviews) }} Avis sur ce produit
+                                        </h5>
+                                        @foreach ($product->reviews as $review)
+                                            <ul class="comment-list">
+                                                <!-- Start Single Comment  -->
+                                                <li class="comment">
+                                                    <div class="comment-body">
+                                                        <div class="single-comment">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <div class="comment-img">
+                                                                        @if ($review->user->photo == null)
+                                                                            <img src="/uploads/userphoto.jpg"
+                                                                                alt="bienvenue client">
+                                                                        @else
+                                                                            <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
+                                                                                alt="profile_image"
+                                                                                class="w-75 border-radius-lg shadow-sm">
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-9">
+                                                                    <div class="comment-inner ">
+                                                                        <h6 class="commenter">
+                                                                            <a class="hover-flip-item-wrapper" href="#">
+                                                                                <span class="hover-flip-item">
+                                                                                    <span
+                                                                                        data-text="Cameron Williamson">{{ $review->user->first_name }}
+                                                                                        {{ $review->user->last_name }}</span>
+                                                                                </span>
+                                                                            </a>
+                                                                            <span class="commenter-rating ratiing-four-star">
+                                                                                @for ($i = 0; $i < $review->rate; $i++)
+                                                                                    <a href="#"><i
+                                                                                            class="fas fa-star"></i></a>
+                                                                                @endfor
+                                                                            </span>
+                                                                            <br>
+                                                                            <p><small>-<i>{{ $review->created_at }}</i></small>
+                                                                            </p>
+        
+                                                                        </h6>
+                                                                        <div class="comment-text">
+                                                                            <p>{{ $review->content }}</p>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- End Single Comment  -->
-                                    </ul>
-                                @endforeach
+                                                </li>
+                                                <!-- End Single Comment  -->
+                                            </ul>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

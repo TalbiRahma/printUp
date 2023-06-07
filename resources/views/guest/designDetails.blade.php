@@ -63,23 +63,24 @@
                                     <div class="single-product-content nft-single-product-content">
                                         <div class="inner">
                                             <h2 class="product-title">{{ $design->name }}</h2>
-                                            
-                                            <a href=""><span class="price current-price">{{$design->boutique->name}}</span></a>
-                                            
+
+                                            <a href=""><span
+                                                    class="price current-price">{{ $design->boutique->name }}</span></a>
+
                                             <div class="price-amount price-offer-amount">
                                                 <span class="price current-price">{{ $design->price }} TND</span>
                                             </div>
                                             <div class="product-rating">
                                                 <div class="star-rating">
-                                                    
-                                                        <i class="fal fa-star"></i>
-                                                        <i class="fal fa-star"></i>
-                                                        <i class="fal fa-star"></i>
-                                                        <i class="fal fa-star"></i>
-                                                        <i class="fal fa-star"></i>
-                                                    
-                                                            <i class="fas fa-star"></i>
-                                                       
+
+                                                    <i class="fal fa-star"></i>
+                                                    <i class="fal fa-star"></i>
+                                                    <i class="fal fa-star"></i>
+                                                    <i class="fal fa-star"></i>
+                                                    <i class="fal fa-star"></i>
+
+                                                    <i class="fas fa-star"></i>
+
                                                 </div>
                                                 <div class="review-link">
                                                     <a href="#">(<span></span> Avis des
@@ -92,6 +93,13 @@
                                                     <div class="category-list">
                                                         <span>{{ $category->name }}</span>
                                                     </div>
+                                                    
+                                                </div>
+                                                <div class="nft-category">
+                                                    <label>Description:</label>
+                                                    <div class="category-list">
+                                                        <p>{{ $design->description }}</p>
+                                                    </div>
                                                 </div>
                                                 <div style="margin-top: 30px" class="">
                                                     <button class="w-50 verify-btn axil-btn btn-bg-secondary">Voir
@@ -101,44 +109,124 @@
                                                     </a>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="woocommerce-tabs wc-tabs-wrapper bg-vista-white nft-info-tabs">
+                                <div class="container">
+                                    <ul class="nav tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="active" id="description-tab" data-bs-toggle="tab"
+                                                href="#description" role="tab" aria-controls="description"
+                                                aria-selected="true">Les avis</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
+                                                aria-controls="reviews" aria-selected="false">Commentaire</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="description" role="tabpanel"
+                                            aria-labelledby="description-tab">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <div class="axil-comment-area pro-desc-commnet-area">
+                                                        <h5 class="title">12 Avis sur ce
+                                                            produit
+                                                        </h5>
+                                                        <ul class="comment-list">
+                                                            <!-- Start Single Comment  -->
+                                                            <li class="comment">
+                                                                <div class="comment-body">
+                                                                    <div class="single-comment">
+                                                                        <div class="row">
+                                                                            <div class="col-3">
+                                                                                <div class="comment-img">
+                                                                                    <img src="/uploads/userphoto.jpg"
+                                                                                        alt="bienvenue client">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-9">
+                                                                                <div class="comment-inner ">
+                                                                                    <h6 class="commenter">
+                                                                                        <a class="hover-flip-item-wrapper"
+                                                                                            href="#">
+                                                                                            <span
+                                                                                                class="hover-flip-item">
+                                                                                                <span
+                                                                                                    data-text="Cameron Williamson">flan
+                                                                                                    foulani</span>
+                                                                                            </span>
+                                                                                        </a>
+                                                                                        <span
+                                                                                            class="commenter-rating ratiing-four-star">
 
-                                            <div class="woocommerce-tabs wc-tabs-wrapper bg-vista-white nft-info-tabs">
-                                                <div class="container">
-                                                    <ul class="nav tabs" id="myTab" role="tablist">
-                                                        <li class="nav-item" role="presentation">
-                                                            <a class="active" id="description-tab" data-bs-toggle="tab"
-                                                                href="#description" role="tab"
-                                                                aria-controls="description"
-                                                                aria-selected="true">Description</a>
-                                                        </li>
-                                                        <li class="nav-item" role="presentation">
-                                                            <a id="reviews-tab" data-bs-toggle="tab" href="#reviews"
-                                                                role="tab" aria-controls="reviews"
-                                                                aria-selected="false">Commentaires</a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content" id="myTabContent">
-                                                        <div class="tab-pane fade show active" id="description"
-                                                            role="tabpanel" aria-labelledby="description-tab">
-                                                            <div class="product-additional-info">
-                                                                <p class="mb--15"><strong>À propos de ce
-                                                                        produit</strong></p>
-                                                                <p>{{ $design->description }}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="reviews" role="tabpanel"
-                                                            aria-labelledby="reviews-tab">
-                                                            <div class="product-additional-info">
-                                                                
-                                                            </div>
-                                                        </div>
+                                                                                            <a href="#"><i
+                                                                                                    class="fas fa-star"></i></a>
+
+                                                                                        </span>
+                                                                                        <br>
+                                                                                        <p><small>-<i>12-45-2020</i></small>
+                                                                                        </p>
+
+                                                                                    </h6>
+                                                                                    <div class="comment-text">
+                                                                                        <p>dfghjk</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- End Single Comment  -->
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- woocommerce-tabs -->
+                                        </div>
+                                        <div class="tab-pane fade" id="reviews" role="tabpanel"
+                                            aria-labelledby="reviews-tab">
+                                            <div class="product-additional-info">
+                                                <div class="reviews-wrapper">
+                                                    <!-- Start Comment Respond  -->
+                                                    <div class="comment-respond pro-des-commend-respond mt--0">
+                                                        <h5 class="title mb--30">Ajouter un commentaire</h5>
+                                                        <form action="#" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" value="#"
+                                                                name="initial_product_id">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Notation <span
+                                                                                class="require">*</span></label>
+                                                                        <input type="number" max="5"
+                                                                            min="1" name="rate" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Commentaire (optionnel)</label>
+                                                                        <textarea name="content" placeholder="Votre Commentaire"></textarea>
+                                                                    </div>
+                                                                </div>
 
-
-                                            <!-- End Product Action Wrapper  -->
+                                                                <div class="form-submit">
+                                                                    <button type="submit" id="submit"
+                                                                        class="axil-btn btn-bg-primary w-auto">Envoyer
+                                                                        un
+                                                                        commentaire</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <!-- End .col -->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -174,8 +262,8 @@
                                         <div class="product-price-variant">
                                             <span class="price current-price">{{ $ds->price }} TND</span>
                                         </div>
-                                        <h5 class="title"><a href="single-product-7.html">{{$ds->boutique->name}} <span
-                                                    class="verified-icon"><i
+                                        <h5 class="title"><a href="single-product-7.html">{{ $ds->boutique->name }}
+                                                <span class="verified-icon"><i
                                                         class="fas fa-badge-check"></i></span></a></h5>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
