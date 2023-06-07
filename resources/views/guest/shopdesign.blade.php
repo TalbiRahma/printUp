@@ -64,10 +64,15 @@
                                 <h6 class="title">CATEGORIES</h6>
                                 <div class="shop-submenu">
                                     <ul>
-                                        <li class="current-cat"><a href="#">T-Shirt</a></li>
-                                        <li><a href="#">Capuche</a></li>
-                                        <li><a href="#">cups</a></li>
-                                        <li><a href="#">Chairs</a></li>
+                                        @foreach ($category_design as $cd)
+                                        <li>
+                                            <input type="radio" id="category_{{ $cd->id }}"
+                                                name="category" value="{{ $cd->id }}"
+                                                {{ request()->input('category') == $cd->id ? 'checked' : '' }}>
+                                            <label
+                                                for="category_{{ $cd->id }}">{{ $cd->name }}</label>
+                                        </li>
+                                    @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -124,7 +129,7 @@
                                             <div class="product-content">
                                                 <div class="inner">
                                                     <h5 class="title"><a href="single-product.html">{{$d->name}}</a></h5>
-                                                    <h6 class=""><a href="single-product.html">boutique</a></h6>
+                                                    <h6 class=""><a href="single-product.html">{{$d->boutique->name}}</a></h6>
                                                     <div class="product-price-variant">
                                                         <span class="price current-price">{{$d->price}} TND</span>
                                                     </div>

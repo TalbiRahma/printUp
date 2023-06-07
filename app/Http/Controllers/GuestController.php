@@ -110,7 +110,9 @@ class GuestController extends Controller
     {
 
         $initial_products = InitialProduct::all();
-        $designs = Design::all();
+        $designs = Design::where('etat', 'valide')
+            ->where('visibility', true)
+            ->get();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         if (auth()->check()) {
