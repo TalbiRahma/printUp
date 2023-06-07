@@ -63,6 +63,9 @@
                                     <div class="single-product-content nft-single-product-content">
                                         <div class="inner">
                                             <h2 class="product-title">{{ $design->name }}</h2>
+                                            
+                                            <a href=""><span class="price current-price">{{$design->boutique->name}}</span></a>
+                                            
                                             <div class="price-amount price-offer-amount">
                                                 <span class="price current-price">{{ $design->price }} TND</span>
                                             </div>
@@ -71,7 +74,7 @@
                                                 <div class="nft-category">
                                                     <label>Category :</label>
                                                     <div class="category-list">
-                                                        <a href="#">{{ $category->name }}</a>
+                                                        <span>{{ $category->name }}</span>
                                                     </div>
                                                 </div>
                                                 <div style="margin-top: 30px" class="">
@@ -155,7 +158,7 @@
                                         <div class="product-price-variant">
                                             <span class="price current-price">{{ $ds->price }} TND</span>
                                         </div>
-                                        <h5 class="title"><a href="single-product-7.html">Bored Ape Yacht Club <span
+                                        <h5 class="title"><a href="single-product-7.html">{{$ds->boutique->name}} <span
                                                     class="verified-icon"><i
                                                         class="fas fa-badge-check"></i></span></a></h5>
                                         <div class="product-hover-action">
