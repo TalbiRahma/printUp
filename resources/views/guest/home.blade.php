@@ -345,7 +345,6 @@
                                                             href="{{ route('personnaliser.produit', ['id' => $p->id]) }}">
                                                             Personnalisé
                                                         </a>
-                                                        </form>
                                                     </li>
                                                     <li class="wishlist">
                                                         <form method="post"
@@ -458,7 +457,8 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                            <a href="{{ Route('designs.index') }}" class="axil-btn btn-bg-lighter btn-load-more">Voir Tous Les Désigns</a>
+                            <a href="{{ Route('designs.index') }}" class="axil-btn btn-bg-lighter btn-load-more">Voir
+                                Tous Les Désigns</a>
                         </div>
                     </div>
                 </div>
@@ -500,22 +500,6 @@
                                             <h5><a
                                                     href="{{ route('boutique', ['id' => $boutique->id]) }}">{{ $boutique->name }}</a>
                                             </h5>
-                                            <div class="product-rating">
-                                                <span class="rating-icon">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fal fa-star"></i>
-                                                </span>
-                                                <span class="rating-number"><span>100+</span> Reviews</span>
-                                            </div>
-                                            @if ($boutique->biographie)
-                                                <span class="text-sm">{{ $boutique->biographie }}</span>
-                                            @else
-                                                <span class="text-sm">Je vais vous montrer la meilleure
-                                                    création que vous verrez dans votre vie</span>
-                                            @endif
                                             <div class="read-more-btn mt-4">
                                                 <a class="axil-btn right-icon" href="blog-details.html">Voir plus
                                                     <i class="fal fa-long-arrow-right"></i></a>
