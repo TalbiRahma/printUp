@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Boutique;
+use App\Models\ReviwDesign;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -35,8 +36,31 @@ class Design extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function nbrDesign()
+    public function reviews()
     {
-        
+        return $this->hasMany(ReviwDesign::class, 'design_id', 'id');
+    }
+    public function moyReviews()
+    {
+        $nbr = 0;
+        //liste des lignes de commande
+        foreach ($this->reviews as $rev) {
+            $nbr += 1;
+        }
+
+        $sum = 0;
+        //liste des lignes de commande
+        foreach ($this->reviews as $rev) {
+            $sum += $rev->rate;
+        }
+
+        if ( $nbr == 0){
+            $nbr = 1;
+            $moy = $sum / $nbr;
+        }else{
+            $moy = $sum / $nbr;
+        }
+
+        return $moy;
     }
 }
