@@ -142,7 +142,7 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <a id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab"
-                                aria-controls="reviews" aria-selected="false">Commentaire</a>
+                                aria-controls="reviews" aria-selected="false">Ajouter un commentaire</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -159,7 +159,7 @@
                                                 <li class="comment">
                                                     <div class="comment-body">
                                                         <div class="single-comment">
-                                                            <div class="row">
+                                                            <div class="row"> 
                                                                 <div class="col-3">
                                                                     <div class="comment-img">
                                                                         @if ($review->user->photo == null)
@@ -168,7 +168,7 @@
                                                                         @else
                                                                             <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
                                                                                 alt="profile_image"
-                                                                                class="w-75 border-radius-lg shadow-sm">
+                                                                                class="w-25 border-radius-lg shadow-sm">
                                                                         @endif
                                                                     </div>
                                                                 </div>

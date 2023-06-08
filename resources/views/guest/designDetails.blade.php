@@ -72,18 +72,21 @@
                                             </div>
                                             <div class="product-rating">
                                                 <div class="star-rating">
-
-                                                    <i class="fal fa-star"></i>
-                                                    <i class="fal fa-star"></i>
-                                                    <i class="fal fa-star"></i>
-                                                    <i class="fal fa-star"></i>
-                                                    <i class="fal fa-star"></i>
-
-                                                    <i class="fas fa-star"></i>
-
+                                                    @if ($design->moyReviews() == 0)
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                        <i class="fal fa-star"></i>
+                                                    @else
+                                                        @for ($i = 0; $i < $design->moyReviews(); $i++)
+                                                            <i class="fas fa-star"></i>
+                                                        @endfor
+                                                    @endif
                                                 </div>
                                                 <div class="review-link">
-                                                    <a href="#">(<span></span> Avis des
+                                                    <a href="#">(<span>{{ count($design->Reviews) }}</span> Avis
+                                                        des
                                                         clients)</a>
                                                 </div>
                                             </div>
@@ -93,7 +96,7 @@
                                                     <div class="category-list">
                                                         <span>{{ $category->name }}</span>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="nft-category">
                                                     <label>Description:</label>
@@ -134,55 +137,66 @@
                                             <div class="row">
                                                 <div class="col-8">
                                                     <div class="axil-comment-area pro-desc-commnet-area">
-                                                        <h5 class="title">12 Avis sur ce
+                                                        <h5 class="title">{{ count($design->Reviews) }} Avis sur ce
                                                             produit
                                                         </h5>
                                                         <ul class="comment-list">
-                                                            <!-- Start Single Comment  -->
-                                                            <li class="comment">
-                                                                <div class="comment-body">
-                                                                    <div class="single-comment">
-                                                                        <div class="row">
-                                                                            <div class="col-3">
-                                                                                <div class="comment-img">
-                                                                                    <img src="/uploads/userphoto.jpg"
-                                                                                        alt="bienvenue client">
+                                                            @foreach ($design->reviews as $review)
+                                                                <!-- Start Single Comment  -->
+                                                                <li class="comment">
+                                                                    <div class="comment-body">
+                                                                        <div class="single-comment">
+                                                                            <div class="row">
+                                                                                <div class="col-3">
+                                                                                    <div class="comment-img">
+                                                                                        @if ($review->user->photo == null)
+                                                                                            <img src="/uploads/userphoto.jpg"
+                                                                                                alt="bienvenue client">
+                                                                                        @else
+                                                                                            <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
+                                                                                                alt="profile_image"
+                                                                                                class="w-25 border-radius-lg shadow-sm">
+                                                                                        @endif
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="col-9">
-                                                                                <div class="comment-inner ">
-                                                                                    <h6 class="commenter">
-                                                                                        <a class="hover-flip-item-wrapper"
-                                                                                            href="#">
-                                                                                            <span
-                                                                                                class="hover-flip-item">
+                                                                                <div class="col-9">
+                                                                                    <div class="comment-inner ">
+                                                                                        <h6 class="commenter">
+                                                                                            <a class="hover-flip-item-wrapper"
+                                                                                                href="#">
                                                                                                 <span
-                                                                                                    data-text="Cameron Williamson">flan
-                                                                                                    foulani</span>
+                                                                                                    class="hover-flip-item">
+                                                                                                    <span
+                                                                                                        data-text="Cameron Williamson">{{ $review->user->first_name }}
+                                                                                                        {{ $review->user->last_name }}</span>
+                                                                                                </span>
+                                                                                            </a>
+                                                                                            <span
+                                                                                                class="commenter-rating ratiing-four-star">
+
+                                                                                                @for ($i = 0; $i < $review->rate; $i++)
+                                                                                                    <a href="#"><i
+                                                                                                            class="fas fa-star"></i></a>
+                                                                                                @endfor
+
                                                                                             </span>
-                                                                                        </a>
-                                                                                        <span
-                                                                                            class="commenter-rating ratiing-four-star">
+                                                                                            <br>
+                                                                                            <p><small>-<i>{{ $review->created_at }}</i></small>
+                                                                                            </p>
 
-                                                                                            <a href="#"><i
-                                                                                                    class="fas fa-star"></i></a>
-
-                                                                                        </span>
-                                                                                        <br>
-                                                                                        <p><small>-<i>12-45-2020</i></small>
-                                                                                        </p>
-
-                                                                                    </h6>
-                                                                                    <div class="comment-text">
-                                                                                        <p>dfghjk</p>
+                                                                                        </h6>
+                                                                                        <div class="comment-text">
+                                                                                            <p>{{ $review->content }}
+                                                                                            </p>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- End Single Comment  -->
+                                                                </li>
+                                                                <!-- End Single Comment  -->
+                                                            @endforeach
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -195,10 +209,11 @@
                                                     <!-- Start Comment Respond  -->
                                                     <div class="comment-respond pro-des-commend-respond mt--0">
                                                         <h5 class="title mb--30">Ajouter un commentaire</h5>
-                                                        <form action="#" method="POST">
+                                                        <form action="{{ route('add.review.design') }}"
+                                                            method="POST">
                                                             @csrf
-                                                            <input type="hidden" value="#"
-                                                                name="initial_product_id">
+                                                            <input type="hidden" value="{{ $design->id }}"
+                                                                name="design_id">
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="form-group">
