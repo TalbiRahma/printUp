@@ -34,10 +34,10 @@ class FavoriteProductController extends Controller
         return view('client.wishlist.product', compact('initial_products', 'category_product', 'category_design', 'commande'));
     }
 
-    public function addToWishlist(Request $request)
-    {
+    public function addToWishlist($id)
+    {   //dd($id);
         // Récupère l'ID du produit à ajouter à la liste des favoris
-        $product_id = $request->input('product_id');
+        $product_id = $id;
 
         // Vérifie si le produit est déjà dans la liste des favoris de l'utilisateur
         $wishlist = FavoriteProduct::where('user_id', Auth::id())->where('initial_product_id', $product_id)->first();
@@ -52,7 +52,7 @@ class FavoriteProductController extends Controller
         $wishlist->initial_product_id = $product_id;
         $wishlist->save();
 
-        return redirect()->back()->with('success', 'Le produit a été ajouté à votre liste de favoris.');
+        return redirect()->route('product.wishlist')->with('success', 'Le produit a été ajouté à votre liste de favoris.');
     }
 
 

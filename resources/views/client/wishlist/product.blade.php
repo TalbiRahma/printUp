@@ -62,7 +62,7 @@
                                 <td class="product-remove"><a href="{{ route('product.wishlist.delete', ['id' => $p->id]) }}" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
                                 <td class="product-thumbnail"><a href="{{ route('products.details', $p->id) }}"><img src="{{asset('uploads')}}/{{$p->photo}}" alt="{{$p->name}}"></a></td>
                                 <td class="product-title"><a href="{{ route('products.details', $p->id) }}">{{$p->name}}</a></td>
-                                <td class="product-price" data-title="Price">{{$p->price}}<span class="currency-symbol"> TND</span></td>
+                                <td class="product-price" data-title="Price">{{$p->price}}<span class="currency-symbol"> DT</span></td>
                                 
                                 <td class="product-add-cart"><a href="{{route('personnaliser.produit', ['id' => $p->id])}}" class="axil-btn btn-outline">Personnaliser</a></td>
                             </tr>

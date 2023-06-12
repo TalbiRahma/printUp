@@ -64,7 +64,7 @@
                                 <a href="javascript:;">
                                     @if (auth()->user()->photo)
                                         <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
-                                        class="rounded-circle img-fluid border border-2 border-white">
+                                            class="rounded-circle img-fluid border border-2 border-white">
                                     @else
                                         <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
                                             class="rounded-circle img-fluid border border-2 border-white">
@@ -83,32 +83,19 @@
                                             création que vous verrez dans votre vie</span>
                                     @endif
                                 </div>
-                                <div class="d-flex justify-content-start mt-n2">
-                                    <div class="rate">
-                                        <input type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
-                                    <span class="text-lg mt-2 opacity-8">(10)</span>
-                                </div>
                             </div>
                         </div>
                         <div class="col-4 col-lg-4 order-lg-1">
                             <div class="mt-3" style="margin-right: 25px;">
                                 <div class="d-flex justify-content-end ">
                                     <div class="d-grid text-center mx-2">
-                                        <span class="text-lg font-weight-bolder">{{auth()->user()->nbrDesign()}}</span>
+                                        <span
+                                            class="text-lg font-weight-bolder">{{ auth()->user()->nbrDesign() }}</span>
                                         <span class="text-sm opacity-8">Design(s)</span>
                                     </div>
                                     <div class="d-grid text-center mx-2">
-                                        <span class="text-lg font-weight-bolder">{{auth()->user()->nbrSuivis()}}</span>
+                                        <span
+                                            class="text-lg font-weight-bolder">{{ auth()->user()->nbrSuivis() }}</span>
                                         <span class="text-sm opacity-8">Follower(s)</span>
                                     </div>
                                 </div>
@@ -125,228 +112,135 @@
         <div class="container-fluid py-1">
             <div class="mx-4">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-8 ">
                         @foreach ($designs as $design)
-                            <div class="card card-frame">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <img src="{{ asset('uploads') }}/{{ $design->photo }}"
-                                                class="rounded w-100 bg-gray-100">
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-9">
-                                                    <h3>{{ $design->name }}</h3>
-                                                </div>
-                                                <div class="col-3">
-                                                    <div class="text-end">
-                                                        <button class="fav-btn ps-2" type="button">
-                                                            <i id="fav-icon" class="ni ni-favourite-28 end-0 mt-2"
-                                                                style="font-size: 25px; display: inline-block;"></i>
-                                                        </button>
+                            <div class="py-1">
+                                <div class="card card-frame">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <img src="{{ asset('uploads') }}/{{ $design->photo }}"
+                                                    class="rounded w-100 bg-gray-100">
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <h3>{{ $design->name }}</h3>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="text-end">
+                                                            <button class="fav-btn ps-2" type="button">
+                                                                <i id="fav-icon" class="ni ni-favourite-28 end-0 mt-2"
+                                                                    style="font-size: 25px; display: inline-block;"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <h4 class="mt-3">{{ $design->price }} DT</h4>
-                                            <div class="d-flex justify-content-start mt-n2"
-                                                style="margin-left: -10px;">
-                                                <div class="rate">
-                                                    <input type="radio" id="star5" name="rate"
-                                                        value="5" />
-                                                    <label for="star5" title="text">5 stars</label>
-                                                    <input type="radio" id="star4" name="rate"
-                                                        value="4" />
-                                                    <label for="star4" title="text">4 stars</label>
-                                                    <input type="radio" id="star3" name="rate"
-                                                        value="3" />
-                                                    <label for="star3" title="text">3 stars</label>
-                                                    <input type="radio" id="star2" name="rate"
-                                                        value="2" />
-                                                    <label for="star2" title="text">2 stars</label>
-                                                    <input type="radio" id="star1" name="rate"
-                                                        value="1" />
-                                                    <label for="star1" title="text">1 star</label>
+                                                <h4 class="mt-3">{{ $design->price }} DT</h4>
+                                                <div class="d-flex justify-content-start mt-n2"
+                                                    style="margin-left: -10px;">
+                                                    <div class="rate">
+                                                        @if ($design->moyReviews() == 0)
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" style="color:#ffc940"
+                                                                fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                                                            </svg>
+                                                        @else
+                                                            @for ($i = 0; $i < $design->moyReviews(); $i++)
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" style="color:#ffc940"
+                                                                    fill="currentColor" class="bi bi-star-fill"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                                </svg>
+                                                            @endfor
+                                                        @endif
+                                                    </div>
+                                                    <span
+                                                        class="text-lg mt-2 opacity-8">({{ count($design->Reviews) }})</span>
                                                 </div>
-                                                <span class="text-lg mt-2 opacity-8">(10)</span>
+                                                <hr class="horizontal dark mt-2">
+                                                <h6>Description:</h6>
+                                                <span class="text-sm">{{ $design->description }}</span>
                                             </div>
-                                            <hr class="horizontal dark mt-2">
-                                            <h6>Description:</h6>
-                                            <span class="text-sm">{{ $design->description }}</span>
-                                        </div>
-                                        <div class="accordion-item mt-4">
-                                            <h5 class="accordion-header" id="headingOne">
-                                                <button
-                                                    class="accordion-button ni ni-chat-round font-weight-bold collapsed"
-                                                    type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="false"
-                                                    aria-controls="collapseOne">
-                                                    <span class="ps-3" style="font-size: 20px;">13 Avis</span>
-                                                </button>
-                                            </h5>
-                                            <div id="collapseOne" class="accordion-collapse collapse mt-4 "
-                                                aria-labelledby="headingOne" data-bs-parent="#accordionRental"
-                                                style="">
-                                                <div class="axil-comment-area pro-desc-commnet-area">
-                                                    <h5 class="title">01 Avis pour ce design</h5>
-                                                    <ul class="comment-list" style="list-style-type: none;">
-
-                                                        <!-- Start Single Comment  -->
-                                                        <li class="comment">
-                                                            <div class="comment-body">
-                                                                <div class="single-comment">
-                                                                    <div class="comment-img">
-                                                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                                                            alt="Author Images">
-                                                                    </div>
-                                                                    <div class="comment-inner">
-                                                                        <h6 class="commenter">
-                                                                            <div class="row">
-                                                                                <div class="col-5">
-                                                                                    <a class="hover-flip-item-wrapper"
-                                                                                        href="#">
-                                                                                        <span class="hover-flip-item">
-                                                                                            <span
-                                                                                                data-text="Rahabi Khan">Courtney
-                                                                                                Henry</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div class="col-7">
-                                                                                    <span class="rate">
-                                                                                        <input type="radio"
-                                                                                            id="star5"
-                                                                                            name="rate"
-                                                                                            value="5" />
-                                                                                        <label for="star5"
-                                                                                            title="text">5
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star4"
-                                                                                            name="rate"
-                                                                                            value="4" />
-                                                                                        <label for="star4"
-                                                                                            title="text">4
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star3"
-                                                                                            name="rate"
-                                                                                            value="3" />
-                                                                                        <label for="star3"
-                                                                                            title="text">3
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star2"
-                                                                                            name="rate"
-                                                                                            value="2" />
-                                                                                        <label for="star2"
-                                                                                            title="text">2
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star1"
-                                                                                            name="rate"
-                                                                                            value="1" />
-                                                                                        <label for="star1"
-                                                                                            title="text">1
-                                                                                            star</label>
-                                                                                    </span>
+                                            <div class="accordion-item mt-4">
+                                                <h5 class="accordion-header" id="headingOne">
+                                                    <button
+                                                        class="accordion-button ni ni-chat-round font-weight-bold collapsed"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne{{ $design->id }}"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <span class="ps-3"
+                                                            style="font-size: 20px;">{{ count($design->Reviews) }}
+                                                            Avi(s)</span>
+                                                    </button>
+                                                </h5>
+                                                <div id="collapseOne{{ $design->id }}"
+                                                    class="accordion-collapse collapse mt-4 "
+                                                    aria-labelledby="headingOne" data-bs-parent="#accordionRental"
+                                                    style="">
+                                                    <div class="axil-comment-area pro-desc-commnet-area">
+                                                        <h5 class="title">{{ count($design->Reviews) }} Avi(s) pour
+                                                            ce
+                                                            design</h5>
+                                                        <ul class="comment-list" style="list-style-type: none;">
+                                                            @foreach ($design->reviews as $review)
+                                                                <!-- Start Single Comment  -->
+                                                                <li class="comment">
+                                                                    <div class="comment-body">
+                                                                        <div class="single-comment">
+                                                                            <div class="comment-img">
+                                                                                @if ($review->user->photo == null)
+                                                                                    <img src="/uploads/userphoto.jpg"
+                                                                                        alt="Author Images"
+                                                                                        class="w-25 border-radius-lg shadow-sm">
+                                                                                @else
+                                                                                    <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
+                                                                                        alt="profile_image"
+                                                                                        class="w-25 border-radius-lg shadow-sm">
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="comment-inner">
+                                                                                <h6 class="commenter">
+                                                                                    <div class="row">
+                                                                                        <div class="col-">
+                                                                                            <a class="hover-flip-item-wrapper"
+                                                                                                href="#">
+                                                                                                <span
+                                                                                                    class="hover-flip-item">
+                                                                                                    <span
+                                                                                                        data-text="Rahabi Khan">{{ $review->user->first_name }}
+                                                                                                        {{ $review->user->first_name }}</span>
+                                                                                                </span>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="col-7">
+                                                                                            <span class="rate">
+                                                                                                @for ($i = 0; $i < $review->rate; $i++)
+                                                                                                    <i
+                                                                                                        class="fas fa-star"></i>
+                                                                                                @endfor
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </h6>
+                                                                                <div class="comment-text">
+                                                                                    <p>“{{ $review->content }}”</p>
                                                                                 </div>
                                                                             </div>
-                                                                        </h6>
-                                                                        <div class="comment-text">
-                                                                            <p>“We’ve created a full-stack structure
-                                                                                for our
-                                                                                working workflow processes, were
-                                                                                from the
-                                                                                funny the century initial all the
-                                                                                made, have
-                                                                                spare to negatives. ”</p>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <!-- End Single Comment  -->
-
-                                                        <!-- Start Single Comment  -->
-                                                        <li class="comment">
-                                                            <div class="comment-body">
-                                                                <div class="single-comment">
-                                                                    <div class="comment-img">
-                                                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                                                            alt="Author Images">
-                                                                    </div>
-                                                                    <div class="comment-inner">
-                                                                        <h6 class="commenter">
-                                                                            <div class="row">
-                                                                                <div class="col-5">
-                                                                                    <a class="hover-flip-item-wrapper"
-                                                                                        href="#">
-                                                                                        <span class="hover-flip-item">
-                                                                                            <span
-                                                                                                data-text="Rahabi Khan">Courtney
-                                                                                                Henry</span>
-                                                                                        </span>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div class="col-7">
-                                                                                    <span class="rate">
-                                                                                        <input type="radio"
-                                                                                            id="star5"
-                                                                                            name="rate"
-                                                                                            value="5" />
-                                                                                        <label for="star5"
-                                                                                            title="text">5
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star4"
-                                                                                            name="rate"
-                                                                                            value="4" />
-                                                                                        <label for="star4"
-                                                                                            title="text">4
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star3"
-                                                                                            name="rate"
-                                                                                            value="3" />
-                                                                                        <label for="star3"
-                                                                                            title="text">3
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star2"
-                                                                                            name="rate"
-                                                                                            value="2" />
-                                                                                        <label for="star2"
-                                                                                            title="text">2
-                                                                                            stars</label>
-                                                                                        <input type="radio"
-                                                                                            id="star1"
-                                                                                            name="rate"
-                                                                                            value="1" />
-                                                                                        <label for="star1"
-                                                                                            title="text">1
-                                                                                            star</label>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </h6>
-                                                                        <div class="comment-text">
-                                                                            <p>“We’ve created a full-stack structure
-                                                                                for our
-                                                                                working workflow processes, were
-                                                                                from the
-                                                                                funny the century initial all the
-                                                                                made, have
-                                                                                spare to negatives. ”</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <!-- End Single Comment  -->
-                                                    </ul>
+                                                                </li>
+                                                                <!-- End Single Comment  -->
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    <!-- End .axil-commnet-area -->
                                                 </div>
-                                                <!-- End .axil-commnet-area -->
                                             </div>
                                         </div>
                                     </div>
@@ -576,8 +470,7 @@
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Nom Boutique</label>
-                            <input name="name" class="form-control" type="text" 
-                                id="example-text-input">
+                            <input name="name" class="form-control" type="text" id="example-text-input">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Biographie</label>

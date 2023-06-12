@@ -70,7 +70,7 @@
                                     <h4>Produits</h4>
                                     <ul>
                                         @foreach ($category_product as $cp)
-                                            <li><a href="shop-sidebar.html">{{ $cp->name }}</a></li>
+                                            <li><a href="{{ route('products.par.categorie', ['id' => $cp->id]) }}">{{ $cp->name }}</a></li>
                                         @endforeach
 
 
@@ -78,7 +78,7 @@
                                     <h4>Designs</h4>
                                     <ul>
                                         @foreach ($category_design as $cd)
-                                            <li><a href="single-product-2.html">{{ $cd->name }}</a></li>
+                                            <li><a href="{{ route('designs.par.categorie', ['id' => $cd->id]) }}">{{ $cd->name }}</a></li>
                                         @endforeach
 
 
@@ -143,11 +143,7 @@
                                 </a>
                             @else
                                 <a href="#" class="cart-dropdown-btn">
-<<<<<<< HEAD
                                     <span class="cart-count">3</span>
-=======
-                                    <span class="cart-count">0</span>
->>>>>>> 527336796aea80a24a6ff7f2531e4afaeb205b63
                                     <i class="flaticon-shopping-cart"></i>
                                 </a>
                             @endif

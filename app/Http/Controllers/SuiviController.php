@@ -11,11 +11,11 @@ class SuiviController extends Controller
 {
     //
 
-    public function suivire(Request $request)
+    public function suivire($id)
     {
         $list_suivi = new Suivi();
         $list_suivi->member_id = Auth::id();
-        $list_suivi->boutique_id = $request->input('boutique_id');
+        $list_suivi->boutique_id = $id;
         $list_suivi->save();
 
         return redirect()->back();

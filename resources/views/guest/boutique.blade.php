@@ -188,8 +188,13 @@
         <div class="container-fluid py-3">
             <div class="mx-4 card ">
                 <div class="card card-profile">
-                    <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
-                        class="card-img-top">
+                    @if (auth()->user()->boutique->photo)
+                        <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
+                            alt="Image placeholder" class="card-img-top">
+                    @else
+                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
+                            class="card-img-top">
+                    @endif
                     <div class="row ">
                         <div class="col-3 col-lg-3 order-lg-1">
                             <div class="mt-n6 mt-lg-n6 mb-4 mb-lg-0" style="margin-left: 30px;">
@@ -239,13 +244,9 @@
                     </div>
                     <div class="d-flex justify-content-end mt-n4" style="margin-right: 25px;">
                         @if (auth()->check())
-                            <form action="{{ route('add.suivi') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="boutique_id" value="{{ $boutique->id }}">
-                                <button class="btn btn-sm btn-pink" type="submit">Suivre</button>
-                            </form>
+                                <a href="{{ route('add.suivi', ['id' => $boutique->id]) }}" class="btn btn-sm btn-pink" >Suivre</a>
                         @else
-                            <button class="btn btn-sm btn-pink" type="submit">Suivre</button>
+                            <a class="btn btn-sm btn-pink" type="submit">Suivre</a>
                         @endif
                     </div>
                 </div>
@@ -271,16 +272,13 @@
                                                     </div>
                                                     <div class="col-3">
                                                         <div class="text-end">
-                                                            <form method="post"
-                                                                action="{{ route('wishlist.add.design') }}">
-                                                                @csrf
-                                                                <input type="hidden" name="design_id"
-                                                                    value="{{ $design->id }}">
-                                                                <button class="fav-btn ps-2" type="submit">
+                                                            
+                                                                
+                                                                <a href="{{ route('wishlist.add.design', ['id' => $design->id]) }}" class="fav-btn ps-2" >
                                                                     <i id="fav-icon"
                                                                         class="ni ni-favourite-28 end-0 mt-2"
                                                                         style="font-size: 25px; display: inline-block;"></i>
-                                                                </button>
+                                                                </a>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -326,7 +324,7 @@
                                                             <button
                                                                 class="accordion-button ni ni-chat-round font-weight-bold collapsed"
                                                                 type="button" data-bs-toggle="collapse"
-                                                                data-bs-target="#collapseOne" aria-expanded="false"
+                                                                data-bs-target="#collapseOne{{$design->id}}" aria-expanded="false"
                                                                 aria-controls="collapseOne">
                                                                 <span class="ps-3"
                                                                     style="font-size: 20px;">{{ count($design->Reviews) }}
@@ -348,11 +346,11 @@
 
                                                     </div>
                                                 </h5>
-                                                <div id="collapseOne" class="accordion-collapse collapse mt-4 "
+                                                <div id="collapseOne{{$design->id}}" class="accordion-collapse collapse mt-4 "
                                                     aria-labelledby="headingOne" data-bs-parent="#accordionRental"
                                                     style="">
                                                     <div class="axil-comment-area pro-desc-commnet-area">
-                                                        <h5 class="title">{{ count($design->Reviews) }} Avis pour ce
+                                                        <h5 class="title">{{ count($design->Reviews) }} Avi(s) pour ce
                                                             design</h5>
                                                         <ul class="comment-list" style="list-style-type: none;">
                                                             @foreach ($design->reviews as $review)
@@ -447,7 +445,7 @@
                                                                                     </div>
                                                                                 </h6>
                                                                                 <div class="comment-text">
-                                                                                    <p>{{ $review->content }}</p>
+                                                                                    <p>“{{ $review->content }}”</p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

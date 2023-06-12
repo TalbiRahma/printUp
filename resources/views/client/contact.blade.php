@@ -40,7 +40,8 @@
             <div class="container">
                 <div class="inner">
                     <ul class="axil-breadcrumb">
-                        <li class="axil-breadcrumb-item"><a href="index.html">Accueil</a></li>
+                        <li class="axil-breadcrumb-item"><a
+                            href="\">Accueil</a></li>
                         <li class="separator"></li>
                         <li class="axil-breadcrumb-item active" aria-current="page">Contact</li>
                     </ul>

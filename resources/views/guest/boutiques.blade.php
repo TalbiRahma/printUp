@@ -34,7 +34,7 @@
     <!-- Start Header -->
     @include('inc.client.header')
     <!-- End Header -->
-
+ 
     <main class="main-wrapper">
         <!-- Start Breadcrumb Area  -->
         <div class="axil-breadcrumb-area">
@@ -62,32 +62,22 @@
                                 <div class="inner">
                                     <div class="thumbnail">
                                         @if ($boutique->photo)
-                                            <a href="#">
+                                            <a href="{{route('boutique', ['id' => $boutique->id])}}">
                                                 <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
                                                     alt="Blog Images">
                                             </a>
                                         @else
-                                            <a href="#">
+                                            <a href="{{route('boutique', ['id' => $boutique->id])}}">
                                                 <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}"
                                                     alt="Blog Images">
                                             </a>
                                         @endif
                                         <div class="blog-category">
-                                            <a href="#">Suivre</a>
+                                            <a href="{{ route('add.suivi', ['id' => $boutique->id]) }}">Suivre</a>
                                         </div>
                                     </div>
                                     <div class="content">
                                         <h5><a href="{{route('boutique', ['id' => $boutique->id])}}">{{ $boutique->name }}</a></h5>
-                                        <div class="product-rating">
-                                            <span class="rating-icon">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fal fa-star"></i>
-                                            </span>
-                                            <span class="rating-number"><span>100+</span> Reviews</span>
-                                        </div>
                                         @if ($boutique->biographie)
                                             <span class="text-sm">{{ $boutique->biographie }}</span>
                                         @else
@@ -95,7 +85,7 @@
                                                 création que vous verrez dans votre vie</span>
                                         @endif
                                         <div class="read-more-btn mt-4">
-                                            <a class="axil-btn right-icon" href="blog-details.html">Voir plus <i
+                                            <a class="axil-btn right-icon" href="{{route('boutique', ['id' => $boutique->id])}}">Voir plus <i
                                                     class="fal fa-long-arrow-right"></i></a>
                                         </div>
                                     </div>

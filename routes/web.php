@@ -88,11 +88,13 @@ Route::prefix('geust/shop')->group(function () {
     Route::get('/products', [GuestController::class, 'indexProduits'])->name('products.index');
     Route::post('/products/filter', [GuestController::class, 'filter'])->name('products.filter');
     Route::get('/products/{id}/details', [GuestController::class, 'productDetails'])->name('products.details');
+    Route::get('/products/{id}/categorie', [GuestController::class, 'parCategorieProduit'])->name('products.par.categorie');
     Route::get('/designs', [GuestController::class, 'shopDesign'])->name('designs.index');
     Route::get('/designs/{id}/details', [GuestController::class, 'designDetails'])->name('designs.details');
-    Route::get('/Costumize_products', [GuestController::class, 'shopProduitPersonaliser'])->name('Costumize.products.index');
+    Route::get('/designs/{id}/categorie', [GuestController::class, 'parCategorieDesign'])->name('designs.par.categorie');
     Route::get('/boutiques', [GuestController::class, 'allBoutique'])->name('boutiques');
     Route::get('/boutique/{id}', [GuestController::class, 'oneBoutique'])->name('boutique');
+    
 });
 
 
@@ -124,13 +126,13 @@ Route::group(['middleware' => ['auth']], function () {
             /***********PRODUCT WISHLIST******** */
             Route::prefix('products')->group(function () {
                 Route::get('/all', [FavoriteProductController::class, 'productWishlist'])->name('product.wishlist');
-                Route::post('/add', [FavoriteProductController::class, 'addToWishlist'])->name('wishlist.add.product');
+                Route::get('{id}/add', [FavoriteProductController::class, 'addToWishlist'])->name('wishlist.add.product');
                 Route::get('/delete/{id}', [FavoriteProductController::class, 'deleteWishlist'])->name('product.wishlist.delete');
             });
             /***********DESIGN WISHLIST******** */
             Route::prefix('designs')->group(function () {
                 Route::get('', [FavoriteDesignController::class, 'designWishlist'])->name('design.wishlist');
-                Route::post('/add', [FavoriteDesignController::class, 'addToWishlist'])->name('wishlist.add.design');
+                Route::get('{id}/add', [FavoriteDesignController::class, 'addToWishlist'])->name('wishlist.add.design');
                 Route::get('/delete/{id}', [FavoriteDesignController::class, 'deleteWishlist'])->name('wishlist.delete.design');
             });
         });
@@ -178,7 +180,7 @@ Route::group(['middleware' => ['auth']], function () {
             /***********BOUTIQUE WISHLIST******** */
             Route::prefix('suivi')->group(function () {
                 Route::get('/all', [SuiviController::class, 'listSuivi'])->name('all.suivi');
-                Route::post('/add', [SuiviController::class, 'suivire'])->name('add.suivi');
+                Route::get('{id}/add', [SuiviController::class, 'suivire'])->name('add.suivi');
                 Route::get('/delete/{id}', [SuiviController::class, 'nePlusSuivire'])->name('delete.suivi');
                 Route::post('/search', [SuiviController::class, 'search'])->name('search.suivi');
             });
@@ -271,7 +273,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/validée/list/{id}/payer', function ($id) {
                 $commande = Commande::findOrFail($id);
 
-                if ($commande->paiement === 'payee') {
+                if ($commande->paiement === 'payee') { 
                     return redirect()->back()->with('warning1', 'Cette commande a déjà été payée.');
                 } else {
                     app(AdminController::class)->marquerCommandePayer($id);

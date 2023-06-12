@@ -41,7 +41,8 @@
             <div class="container">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Acceuil</a></li>
+                                <li class="axil-breadcrumb-item"><a
+                                    href="\">Accueil</a></li>
                                 <li class="separator"></li>
                                 <li class="axil-breadcrumb-item active" aria-current="page">Magasin</li>
                             </ul>
@@ -63,7 +64,7 @@
                             <div class="toggle-list product-categories active">
                                 <h6 class="title">CATEGORIES</h6>
                                 <div class="shop-submenu">
-                                    <ul>
+                                    <ul> 
                                         @foreach ($category_design as $cd)
                                         <li>
                                             <input type="radio" id="category_{{ $cd->id }}"
@@ -131,9 +132,10 @@
                                         class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
                                         <span class="filter-results">Affichage 1-12 de 84 résultats</span>
-                                        <select class="single-select">
-                                            <option>Produits</option>
-                                            <option>Designs</option>
+                                        <select class="single-select" id="mySelect">
+                                            <option value="">Selectionné</option>
+                                            <option value="products">Produits</option>
+                                            <option value="designs">Designs</option>
                                         </select>
                                         <!-- End Single Select  -->
                                     </div>
@@ -152,7 +154,7 @@
                                     <div class="slick-single-layout">
                                         <div class="axil-product product-style-two">
                                             <div class="thumbnail">
-                                                <a href="single-product.html">
+                                                <a href="{{route('designs.details', ['id' => $d->id])}}">
                                                     <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
                                                         src="{{ asset('uploads') }}/{{ $d->photo }}"
                                                         alt="Product Images">
@@ -160,8 +162,8 @@
                                             </div>
                                             <div class="product-content">
                                                 <div class="inner">
-                                                    <h5 class="title"><a href="single-product.html">{{$d->name}}</a></h5>
-                                                    <h6 class=""><a href="single-product.html">{{$d->boutique->name}}</a></h6>
+                                                    <h5 class="title"><a href="{{route('designs.details', ['id' => $d->id])}}">{{$d->name}}</a></h5>
+                                                    <h6 class=""><a href="{{route('boutique', ['id' => $d->boutique->id])}}">{{$d->boutique->name}}</a></h6>
                                                     <div class="product-price-variant">
                                                         <span class="price current-price">{{$d->price}} TND</span>
                                                     </div>
@@ -170,17 +172,13 @@
                                                     <ul class="cart-action">
                                                         <li class="quickview"><a href="{{route('designs.details', ['id' => $d->id])}}" ><i class="far fa-eye"></i></a>
                                                         </li>
-                                                        <li class="select-option"><a href="single-product.html">Personnalisé</a>
+                                                        <li class="select-option"><a href="{{route('boutique', ['id' => $d->boutique->id])}}">Voir boutique</a>
                                                         </li>
                                                         <li class="wishlist">
-                                                            <form method="post"
-                                                                action="{{route('wishlist.add.design')}}">
-                                                                @csrf
-                                                                <input type="hidden" name="design_id"
-                                                                    value="{{ $d->id }}">
-                                                                <a href="javascript:void(0)"><button type="submit"><i
-                                                                            class="far fa-heart"></i></button></a>
-                                                            </form>
+                                                            
+                                                                <a href="{{ route('wishlist.add.design', ['id' => $d->id]) }}"><i
+                                                                            class="far fa-heart"></i></a>
+                                                            
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -400,6 +398,25 @@
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
+
+    <script>
+        document.getElementById('mySelect').addEventListener('change', function() {
+            var optionValue = this.value;
+    
+            switch(optionValue) {
+                case 'products':
+                    window.location.href = "{{ route('products.index') }}";
+                    break;
+                case 'designs':
+                    window.location.href = "{{ route('designs.index') }}";
+                    break;
+                default:
+                    // Redirection par défaut si aucune option sélectionnée
+                    window.location.href = "{{ route('products.index') }}";
+                    break;
+            }
+        });
+    </script>
 
 </body>
 

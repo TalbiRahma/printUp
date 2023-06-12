@@ -60,14 +60,14 @@
                             @foreach ($designs as $d)
                             <tr>
                                 <td class="product-remove"><a href="{{ route('wishlist.delete.design', ['id' => $d->id]) }}" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
-                                <td class="product-thumbnail"><a href="single-product.html"><img src="{{asset('uploads')}}/{{$d->photo}}" alt="{{$d->name}}" alt="Digital Design"></a></td>
-                                <td class="product-title"><a href="single-product.html">{{$d->name}}</a></td>
-                                <td class="product-price" data-title="Price">{{$d->price}}<span class="currency-symbol"> TND</span></td>
+                                <td class="product-thumbnail"><a href="{{route('designs.details', ['id' => $d->id])}}"><img src="{{asset('uploads')}}/{{$d->photo}}" alt="{{$d->name}}" alt="Digital Design"></a></td>
+                                <td class="product-title"><a href="{{route('designs.details', ['id' => $d->id])}}">{{$d->name}}</a></td>
+                                <td class="product-price" data-title="Price">{{$d->price}}<span class="currency-symbol"> DT</span></td>
                                 
-                                <td class="product-add-cart"><a href="cart.html" class="axil-btn btn-outline">Ajouter au panier</a></td>
+                                <td class="product-add-cart"><a href="{{route('boutique', ['id' => $d->boutique->id])}}" class="axil-btn btn-outline">Voir boutique</a></td>
                             </tr>
                             @endforeach
-                            
+                             
                         </tbody>
                     </table>
                 </div>

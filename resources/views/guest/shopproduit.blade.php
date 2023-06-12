@@ -41,7 +41,8 @@
             <div class="container">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="/">Acceuil</a></li>
+                                <li class="axil-breadcrumb-item"><a
+                                    href="\">Accueil</a></li>
                                 <li class="separator"></li>
                                 <li class="axil-breadcrumb-item active" aria-current="page">Magasin</li>
                             </ul>
@@ -135,9 +136,10 @@
                                         class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
                                         <span class="filter-results">Affichage 1-12 de 84 résultats</span>
-                                        <select class="single-select">
-                                            <option>Produits</option>
-                                            <option>Designs</option>
+                                        <select class="single-select" id="mySelect">
+                                            <option value="">Selectionné</option>
+                                            <option value="products">Produits</option>
+                                            <option value="designs">Designs</option>
                                         </select>
                                         <!-- End Single Select  -->
                                     </div>
@@ -155,21 +157,17 @@
                                 <div class="col-xl-4 col-sm-6">
                                     <div class="axil-product product-style-one mb--30">
                                         <div class="thumbnail">
-                                            <a href="single-product.html">
+                                            <a href="{{ route('products.details', ['id' => $p->id]) }}">
                                                 <img src="{{ asset('uploads') }}/{{ $p->photo }}"
                                                     alt="Product Images">
                                             </a>
                                             <div class="product-hover-action">
                                                 <ul class="cart-action">
                                                     <li class="wishlist">
-                                                        <form method="post"
-                                                            action="{{ route('wishlist.add.product') }}">
-                                                            @csrf
-                                                            <input type="hidden" name="product_id"
-                                                                value="{{ $p->id }}">
-                                                            <a href="javascript:void(0)"><button type="submit"><i
-                                                                        class="far fa-heart"></i></button></a>
-                                                        </form>
+                                                       
+                                                            <a href="{{ route('wishlist.add.product', ['id' => $p->id]) }}"><i
+                                                                        class="far fa-heart"></i></a>
+                                                       
                                                     </li>
                                                     <li class="select-option"><a
                                                             href="{{ route('personnaliser.produit', ['id' => $p->id]) }}">Personnalisé</a>
@@ -183,7 +181,7 @@
                                         <div class="product-content">
                                             <div class="inner">
                                                 <h5 class="title"><a
-                                                        href="single-product.html">{{ $p->name }}</a></h5>
+                                                        href="{{ route('products.details', ['id' => $p->id]) }}">{{ $p->name }}</a></h5>
                                                 <div class="product-price-variant">
                                                     <span class="price current-price">{{ $p->price }} TND</span>
                                                 </div>
@@ -244,7 +242,25 @@
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
-
+    <script>
+        document.getElementById('mySelect').addEventListener('change', function() {
+            var optionValue = this.value;
+    
+            switch(optionValue) {
+                case 'products':
+                    window.location.href = "{{ route('products.index') }}";
+                    break;
+                case 'designs':
+                    window.location.href = "{{ route('designs.index') }}";
+                    break;
+                default:
+                    // Redirection par défaut si aucune option sélectionnée
+                    window.location.href = "{{ route('products.index') }}";
+                    break;
+            }
+        });
+    </script>
+    
 </body>
 
 </html>

@@ -92,10 +92,9 @@
                             <ul class="mainmenu">
                                 <li class="menu-item-has-children">
                                     <a href="#">Magasin</a>
-                                    <ul class="axil-submenu">
+                                    <ul class="axil-submenu"> 
                                         <li><a href="{{ route('products.index') }}">Produits</a></li>
                                         <li><a href="{{ route('designs.index') }}">Designs</a></li>
-                                        <li><a href="{{ route('Costumize.products.index') }}">Personnaliser</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
@@ -104,7 +103,7 @@
                                         <h4>Produits</h4>
                                         <ul>
                                             @foreach ($category_product as $cp)
-                                                <li><a href="shop-sidebar.html">{{ $cp->name }}</a></li>
+                                                <li><a href="{{ route('products.par.categorie', ['id' => $cp->id]) }}">{{ $cp->name }}</a></li>
                                             @endforeach
 
 
@@ -112,7 +111,7 @@
                                         <h4>Designs</h4>
                                         <ul>
                                             @foreach ($category_design as $cd)
-                                                <li><a href="single-product-2.html">{{ $cd->name }}</a></li>
+                                                <li><a href="{{ route('designs.par.categorie', ['id' => $cd->id]) }}">{{ $cd->name }}</a></li>
                                             @endforeach
 
 
@@ -291,7 +290,7 @@
                                 <div class="slick-single-layout">
                                     <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200"
                                         data-sal-duration="500">
-                                        <a href="#">
+                                        <a href="{{ route('designs.par.categorie', ['id' => $cd->id]) }}">
                                             <img class="img-fluid" src="{{ asset('uploads') }}/{{ $cd->photo }}"
                                                 alt="product categorie">
                                             <h6 class="cat-title">{{ $cd->name }}</h6>
@@ -322,70 +321,69 @@
                     <div class="slick-single-layout">
                         <div class="row row--15">
                             <!--Single Product  -->
+                            @php $count = 0 @endphp
                             @foreach ($initial_products as $p)
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="800"
-                                                    loading="lazy" class="main-img"
-                                                    src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                    alt="Product Images">
-                                                <img class="hover-img"
-                                                    src="{{ asset('uploads') }}/{{ $p->photo }}"
-                                                    alt="Product Images">
-                                            </a>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a
-                                                            href="{{ route('products.details', ['id' => $p->id]) }}"><i
-                                                                class="far fa-eye"></i></a></li>
-                                                    <li class="select-option">
-                                                        <a
-                                                            href="{{ route('personnaliser.produit', ['id' => $p->id]) }}">
-                                                            Personnalisé
-                                                        </a>
-                                                    </li>
-                                                    <li class="wishlist">
-                                                        <form method="post"
-                                                            action="{{ route('wishlist.add.product') }}">
-                                                            @csrf
-                                                            <input type="hidden" name="product_id"
-                                                                value="{{ $p->id }}">
-                                                            <a href="javascript:void(0)"><button type="submit"><i
-                                                                        class="far fa-heart"></i></button></a>
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <div class="product-rating">
-                                                    <span class="icon">
-                                                        @if ($p->moyReviews() == 0)
-                                                            <i class="fal fa-star"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <i class="fal fa-star"></i>
-                                                            <i class="fal fa-star"></i>
-                                                        @else
-                                                            @for ($i = 0; $i < $p->moyReviews(); $i++)
-                                                                <i class="fas fa-star"></i>
-                                                            @endfor
-                                                        @endif
-                                                    </span>
-                                                    <span class="rating-number">({{ count($p->Reviews) }})</span>
+                                @if ($count < 4)
+                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
+                                        <div class="axil-product product-style-one">
+                                            <div class="thumbnail">
+                                                <a href="{{ route('products.details', ['id' => $p->id]) }}">
+                                                    <img data-sal="zoom-out" data-sal-delay="200"
+                                                        data-sal-duration="800" loading="lazy" class="main-img"
+                                                        src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                        alt="Product Images">
+                                                    <img class="hover-img"
+                                                        src="{{ asset('uploads') }}/{{ $p->photo }}"
+                                                        alt="Product Images">
+                                                </a>
+                                                <div class="product-hover-action">
+                                                    <ul class="cart-action">
+                                                        <li class="quickview"><a
+                                                                href="{{ route('products.details', ['id' => $p->id]) }}"><i
+                                                                    class="far fa-eye"></i></a></li>
+                                                        <li class="select-option">
+                                                            <a
+                                                                href="{{ route('personnaliser.produit', ['id' => $p->id]) }}">
+                                                                Personnalisé
+                                                            </a>
+                                                        </li>
+                                                        <li class="wishlist">
+                                                                <a  href="{{ route('wishlist.add.product', ['id' => $p->id]) }}"><i
+                                                                            class="far fa-heart"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                                <h5 class="title"><a
-                                                        href="single-product.html">{{ $p->name }}</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">{{ $p->price }} TND</span>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="inner">
+                                                    <div class="product-rating">
+                                                        <span class="icon">
+                                                            @if ($p->moyReviews() == 0)
+                                                                <i class="fal fa-star"></i>
+                                                                <i class="fal fa-star"></i>
+                                                                <i class="fal fa-star"></i>
+                                                                <i class="fal fa-star"></i>
+                                                                <i class="fal fa-star"></i>
+                                                            @else
+                                                                @for ($i = 0; $i < $p->moyReviews(); $i++)
+                                                                    <i class="fas fa-star"></i>
+                                                                @endfor
+                                                            @endif
+                                                        </span>
+                                                        <span class="rating-number">({{ count($p->Reviews) }})</span>
+                                                    </div>
+                                                    <h5 class="title"><a
+                                                            href="{{ route('products.details', ['id' => $p->id]) }}">{{ $p->name }}</a></h5>
+                                                    <div class="product-price-variant">
+                                                        <span class="price current-price">{{ $p->price }}
+                                                            TND</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    @php $count++ @endphp
+                                @endif
                             @endforeach
                             <!-- End Single Product  -->
                         </div>
@@ -421,7 +419,7 @@
                             <div class="slick-single-layout">
                                 <div class="axil-product product-style-two">
                                     <div class="thumbnail">
-                                        <a href="single-product.html">
+                                        <a href="{{ route('designs.details', ['id' => $d->id]) }}">
                                             <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
                                                 src="{{ asset('uploads') }}/{{ $d->photo }}"
                                                 alt="Product Images">
@@ -429,10 +427,10 @@
                                     </div>
                                     <div class="product-content">
                                         <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">{{ $d->name }}</a>
+                                            <h5 class="title"><a href="{{ route('designs.details', ['id' => $d->id]) }}">{{ $d->name }}</a>
                                             </h5>
                                             <h6 class=""><a
-                                                    href="single-product.html">{{ $d->boutique->name }}</a></h6>
+                                                    href="{{route('boutique', ['id' => $d->boutique->id])}}">{{ $d->boutique->name }}</a></h6>
                                             <div class="product-price-variant">
                                                 <span class="price current-price">{{ $d->price }} TND</span>
                                             </div>
@@ -443,17 +441,14 @@
                                                         href="{{ route('designs.details', ['id' => $d->id]) }}"><i
                                                             class="far fa-eye"></i></a>
                                                 </li>
-                                                <li class="select-option"><a href="single-product.html">Voir
+                                                <li class="select-option"><a href="{{route('boutique', ['id' => $d->boutique->id])}}">Voir
                                                         Boutique</a>
                                                 </li>
                                                 <li class="wishlist">
-                                                    <form method="post" action="{{ route('wishlist.add.design') }}">
-                                                        @csrf
-                                                        <input type="hidden" name="design_id"
-                                                            value="{{ $d->id }}">
-                                                        <a href="javascript:void(0)"><button type="submit"><i
-                                                                    class="far fa-heart"></i></button></a>
-                                                    </form>
+                                                    
+                                                        <a href="{{ route('wishlist.add.design', ['id' => $d->id]) }}"><i
+                                                                    class="far fa-heart"></i></a>
+                                                    
                                                 </li>
                                             </ul>
                                         </div>
@@ -483,38 +478,42 @@
                         <h2 class="title">Découvrez Les Boutiques</h2>
                     </div>
                     <div class="row ">
+                        @php $count = 0 @endphp
                         @foreach ($boutiques as $boutique)
-                            <div class="col-md-4">
-                                <div class="content-blog blog-grid">
-                                    <div class="inner">
-                                        <div class="thumbnail">
-                                            @if ($boutique->photo)
-                                                <a href="#">
-                                                    <img src="{{ asset('uploads') }}/{{ $boutique->photo }}"
-                                                        alt="Blog Images">
-                                                </a>
-                                            @else
-                                                <a href="#">
-                                                    <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}"
-                                                        alt="Blog Images">
-                                                </a>
-                                            @endif
-                                            <div class="blog-category">
-                                                <a href="#">Suivre</a>
+                            @if ($count < 3)
+                                <div class="col-md-4">
+                                    <div class="content-blog blog-grid">
+                                        <div class="inner">
+                                            <div class="thumbnail">
+                                                @if ($boutique->photo)
+                                                    <a href="{{route('boutique', ['id' => $boutique->id])}}">
+                                                        <img src="{{ asset('uploads') }}/{{ $boutique->photo }}"
+                                                            alt="Blog Images">
+                                                    </a>
+                                                @else
+                                                    <a href="{{route('boutique', ['id' => $boutique->id])}}">
+                                                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}"
+                                                            alt="Blog Images">
+                                                    </a>
+                                                @endif
+                                                <div class="blog-category">
+                                                    <a href="{{ route('add.suivi', ['id' => $boutique->id]) }}">Suivre</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="content">
-                                            <h5><a
-                                                    href="{{ route('boutique', ['id' => $boutique->id]) }}">{{ $boutique->name }}</a>
-                                            </h5>
-                                            <div class="read-more-btn mt-4">
-                                                <a class="axil-btn right-icon" href="blog-details.html">Voir plus
-                                                    <i class="fal fa-long-arrow-right"></i></a>
+                                            <div class="content">
+                                                <h5><a
+                                                        href="{{ route('boutique', ['id' => $boutique->id]) }}">{{ $boutique->name }}</a>
+                                                </h5>
+                                                <div class="read-more-btn mt-4">
+                                                    <a class="axil-btn right-icon" href="{{route('boutique', ['id' => $boutique->id])}}">Voir plus
+                                                        <i class="fal fa-long-arrow-right"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                @php $count++ @endphp
+                            @endif
                         @endforeach
                     </div>
                     <div class="row">
@@ -663,7 +662,9 @@
 
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
-
+    
+    
+    
     <!--size selected-->
     <style>
         .print-logo {

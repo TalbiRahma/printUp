@@ -146,21 +146,6 @@ class GuestController extends Controller
 
 
 
-    public function shoppersonaliser()
-    {
-
-        $initial_products = InitialProduct::all();
-        $designs = Design::all();
-        $category_product = CategoryProduct::all();
-        $category_design = CategoryDesign::all();
-        if (auth()->check()) {
-            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
-            return view('guest.designDetails', compact('initial_products', 'design', 'category_product', 'category_design', 'designs', 'category', 'commande'));
-        }
-        return view('guest.shoppersonaliser', compact('designs', 'initial_products', 'category_product', 'category_design'));
-    }
-
-
     public function allBoutique()
     {
 
@@ -228,5 +213,37 @@ class GuestController extends Controller
                 return redirect()->back()->with('danger', 'Une erreur s\'est produite !');
             }
         }
+    }
+
+    public function parCategorieProduit($id)
+    {   //dd($id);
+        $initial_products = InitialProduct::where('category_product_id', $id)->get();
+
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        $sizes = ['S', 'M', 'L', 'XL'];
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design', 'commande'));
+        }
+
+        return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design'));
+    }
+
+    public function parCategorieDesign($id)
+    {   //dd($id);
+        $initial_products = InitialProduct::all();
+        $designs = Design::where('etat', 'valide')
+            ->where('visibility', true)
+            ->where('category_design_id', $id)
+            ->get();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
+        }
+        return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design'));
     }
 }

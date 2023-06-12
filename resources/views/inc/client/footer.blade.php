@@ -46,7 +46,7 @@
                                     @endif
                                 </li>
                                 <li><a href="{{ route('cart') }}">Panier</a></li>
-                                <li><a href="{{ route('product.wishlist') }}">Wishlist</a></li>
+                                <li><a href="{{ route('product.wishlist') }}">Favoris</a></li>
                                 <li><a href="/">Acceuil</a></li>
                             </ul>
                         </div>

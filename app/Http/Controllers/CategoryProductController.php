@@ -20,7 +20,7 @@ class CategoryProductController extends Controller
         $request->validate([
             'name' => 'required|unique:category_products',
             'description' => 'required',
-            'photo' => 'required|image|mimes:jpeg,jpg,gif,svg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,jpg,gif,svg,png|max:2048',
         ]);
 
         $category_product = new CategoryProduct();

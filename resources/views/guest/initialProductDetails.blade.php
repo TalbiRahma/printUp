@@ -93,7 +93,6 @@
                                     </div>
                                     <ul class="product-meta">
                                         <li><i class="fal fa-check"></i>En stock</li>
-                                        <li><i class="fal fa-check"></i>Livraison gratuite disponible</li>
                                     </ul>
                                     <div class="product-desc-wrapper">
                                         <h6>Description:</h6>
@@ -118,12 +117,11 @@
                                         </div> 
                                     </div>
                                     <div class="product-action-wrapper d-flex-center">
-                                        <div class="pro-qty"><input type="text" value="1"></div>
                                         <ul class="product-action d-flex-center mb--0">
                                             <li class="add-to-cart"><a
                                                     href="{{ route('personnaliser.produit', ['id' => $product->id]) }}"
                                                     class="axil-btn btn-bg-primary">Personnaliser</a></li>
-                                            <li class="wishlist"><a href="wishlist.html"
+                                            <li class="wishlist"><a href="{{ route('wishlist.add.product', ['id' => $product->id]) }}" 
                                                     class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
                                     </div>
@@ -151,7 +149,7 @@
                             <div class="row">
                                 <div class="col-8">
                                     <div class="axil-comment-area pro-desc-commnet-area">
-                                        <h5 class="title">{{ count($product->Reviews) }} Avis sur ce produit
+                                        <h5 class="title">{{ count($product->Reviews) }} Avi(s) sur ce produit
                                         </h5>
                                         @foreach ($product->reviews as $review)
                                             <ul class="comment-list">
@@ -160,19 +158,19 @@
                                                     <div class="comment-body">
                                                         <div class="single-comment">
                                                             <div class="row"> 
-                                                                <div class="col-3">
+                                                                <div class="col-2">
                                                                     <div class="comment-img">
                                                                         @if ($review->user->photo == null)
                                                                             <img src="/uploads/userphoto.jpg"
-                                                                                alt="bienvenue client">
+                                                                                alt="bienvenue client"  class="w-75 border-radius-lg shadow-sm">
                                                                         @else
                                                                             <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
                                                                                 alt="profile_image"
-                                                                                class="w-25 border-radius-lg shadow-sm">
+                                                                                class="w-75 border-radius-lg shadow-sm">
                                                                         @endif
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-9">
+                                                                <div class="col-10">
                                                                     <div class="comment-inner ">
                                                                         <h6 class="commenter">
                                                                             <a class="hover-flip-item-wrapper" href="#">
@@ -280,13 +278,10 @@
                                                 </form>
                                             </li>
                                             <li class="wishlist">
-                                                <form method="post" action="{{ route('wishlist.add.product') }}">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id"
-                                                        value="{{ $pr->id }}">
-                                                    <a href="javascript:void(0)"><button type="submit"><i
-                                                                class="far fa-heart"></i></button></a>
-                                                </form>
+                                                
+                                                    <a href="{{ route('wishlist.add.product', ['id' => $pr->id]) }}"><i
+                                                                class="far fa-heart"></i></a>
+                                               
                                             </li>
                                         </ul>
                                     </div>

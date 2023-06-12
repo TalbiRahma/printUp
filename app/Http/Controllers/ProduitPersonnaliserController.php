@@ -149,7 +149,7 @@ class ProduitPersonnaliserController extends Controller
     }
 
 
-    public function sauvegarder(Request $request)
+   /* public function sauvegarder(Request $request)
     {   //dd($request);
         $mergedImage = $request->file('merged_image_data');
 
@@ -225,13 +225,13 @@ class ProduitPersonnaliserController extends Controller
 
         //dd($custom_product);
 
-    }
+    }*/
 
 
 
 
-    /*public function sauvegarder(Request $request)
-    {   dd($request);
+    public function sauvegarder(Request $request)
+    {   //dd($request);
         $initial_product_id = $request->input('idproduit');
         $design_id = $request->input('iddesign');
         //dd($design_id);
@@ -304,7 +304,7 @@ class ProduitPersonnaliserController extends Controller
 
         //dd($custom_product);
 
-    }*/
+    }
 
     public function index()
     {

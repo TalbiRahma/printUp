@@ -64,11 +64,11 @@
                                         <div class="inner">
                                             <h2 class="product-title">{{ $design->name }}</h2>
 
-                                            <a href=""><span
+                                            <a href="{{route('boutique', ['id' => $design->boutique->id])}}"><span
                                                     class="price current-price">{{ $design->boutique->name }}</span></a>
 
                                             <div class="price-amount price-offer-amount">
-                                                <span class="price current-price">{{ $design->price }} TND</span>
+                                                <span class="price current-price">{{ $design->price }} DT</span>
                                             </div>
                                             <div class="product-rating">
                                                 <div class="star-rating">
@@ -105,9 +105,9 @@
                                                     </div>
                                                 </div>
                                                 <div style="margin-top: 30px" class="">
-                                                    <button class="w-50 verify-btn axil-btn btn-bg-secondary">Voir
-                                                        Boutique</button>
-                                                    <a href="wishlist.html" class="axil-btn wishlist-btn"
+                                                    <a href="{{route('boutique', ['id' => $design->boutique->id])}}" ><button class="w-50 verify-btn axil-btn btn-bg-secondary">Voir
+                                                        Boutique </button></a>
+                                                    <a href="{{ route('wishlist.add.design', ['id' => $design->id]) }}" class="axil-btn wishlist-btn"
                                                         style="margin-left: 12px"><i class="far fa-heart"></i>
                                                     </a>
                                                 </div>
@@ -147,19 +147,20 @@
                                                                     <div class="comment-body">
                                                                         <div class="single-comment">
                                                                             <div class="row">
-                                                                                <div class="col-3">
+                                                                                <div class="col-2">
                                                                                     <div class="comment-img">
                                                                                         @if ($review->user->photo == null)
                                                                                             <img src="/uploads/userphoto.jpg"
-                                                                                                alt="bienvenue client">
+                                                                                            alt="profile_image"
+                                                                                            class="w-75 border-radius-lg shadow-sm">
                                                                                         @else
                                                                                             <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
                                                                                                 alt="profile_image"
-                                                                                                class="w-25 border-radius-lg shadow-sm">
+                                                                                                class="w-75 border-radius-lg shadow-sm">
                                                                                         @endif
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-9">
+                                                                                <div class="col-10">
                                                                                     <div class="comment-inner ">
                                                                                         <h6 class="commenter">
                                                                                             <a class="hover-flip-item-wrapper"
@@ -277,12 +278,12 @@
                                         <div class="product-price-variant">
                                             <span class="price current-price">{{ $ds->price }} TND</span>
                                         </div>
-                                        <h5 class="title"><a href="single-product-7.html">{{ $ds->boutique->name }}
+                                        <h5 class="title"><a href="{{route('boutique', ['id' => $ds->boutique->id])}}">{{ $ds->boutique->name }}
                                                 <span class="verified-icon"><i
                                                         class="fas fa-badge-check"></i></span></a></h5>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="select-option"><a href="single-product-7.html">ajouter aux
+                                                <li class="select-option"><a href="{{ route('wishlist.add.design', ['id' => $ds->id]) }}">ajouter aux
                                                         Favoris</a></li>
                                             </ul>
                                         </div>
