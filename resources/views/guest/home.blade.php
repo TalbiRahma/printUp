@@ -264,7 +264,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="shape-group">
+            <ul class="shape-group"> 
                 <li class="shape-1"><img src="{{ asset('/mainassets/images/others/shape-1.png') }}" alt="Shape">
                 </li>
                 <li class="shape-2"><img src="{{ asset('/mainassets/images/others/shape-2.png') }}" alt="Shape">

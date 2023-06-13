@@ -39,7 +39,6 @@ class GuestController extends Controller
 
         $this->clearSessionData($request);
         return view('guest.home', compact('designs', 'initial_products', 'category_product', 'category_design', 'boutiques'));
-
     }
 
 
@@ -50,7 +49,7 @@ class GuestController extends Controller
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
-        $sizes = ['S', 'M', 'L', 'XL'];
+        $sizes = ['STANDARD', 'S', 'M', 'L', 'XL'];
         if (auth()->check()) {
             $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
             return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design', 'commande'));
@@ -59,29 +58,52 @@ class GuestController extends Controller
         return view('guest.shopproduit', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design'));
     }
 
-    public function filter(Request $request)
-    {
-        $products = InitialProduct::all();
+    public function filterProducts(Request $request)
+    {   
+        // Récupérer les paramètres de filtrage
+        $category = $request->input('category');
+        $size = $request->input('size');
+        // Ajoutez d'autres paramètres de filtrage au besoin, comme le prix
 
-        if (request()->has('category')) {
-            $products = $products->where('category_product_id', request()->input('category'));
+        // Filtrer les produits en fonction des paramètres
+        //$products = InitialProduct::query();
+        $products = DB::table('initial_products');
+        
+        if ($category) {
+            $products->where('category_product_id', $category);
+            
+        }
+
+        if ($size) {
+
+            $products->whereRaw("JSON_CONTAINS(sizes, '\"{$size}\"')");
             //dd($products);
         }
 
-        if (request()->has('size')) {
-            $products = $products->where('sizes', request()->input('size'));
-            dd($products);
+        if ($size && $category) {
+            $products->whereRaw("JSON_CONTAINS(sizes, '\"{$size}\"')")
+                     ->where('category_product_id', $category);
+                     
         }
 
-        if (request()->has('min_price') && request()->has('max_price')) {
-            $products = $products->whereBetween('price', [request()->input('min_price'), request()->input('max_price')]);
-        }
+        // Ajoutez d'autres conditions de filtrage au besoin
 
-        return redirect()->back()->with('');
+        // Exécutez la requête pour récupérer les produits filtrés
+        $initial_products = $products->get();
+        //dd($initial_products);
+        // Passer les produits filtrés à la vue ou effectuer d'autres traitements
+        $designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.shopproduit', compact('initial_products', 'category_product', 'designs', 'category_design', 'commande'));
+        }
+        // Retourner la vue des produits filtrés
+        //return redirect()->back()->with( ['products' => $filteredProducts]);
+        return view('guest.shopproduit', compact('initial_products', 'category_product', 'designs', 'category_design'));
     }
-
-
-
 
     public function productDetails($id)
     {
@@ -122,6 +144,40 @@ class GuestController extends Controller
         return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design'));
     }
 
+    public function filterDesigns(Request $request)
+    {    
+        // Récupérer les paramètres de filtrage
+        $category = $request->input('category');
+
+        $designs = DB::table('designs');
+        
+        if ($category) {
+            $designs->where('category_design_id', $category)
+                    ->where('etat', 'valide')
+                    ->where('visibility', true)
+                    ->get();
+            dd($request);
+            
+        }
+
+        /*if ($size && $category) {
+            $designs->whereRaw("JSON_CONTAINS(sizes, '\"{$size}\"')")
+                     ->where('category_product_id', $category);
+                     
+        }*/
+
+        $designs = $designs->get();
+
+        $initial_products = InitialProduct::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        if (auth()->check()) {
+            $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
+            return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
+        }
+        return view('guest.shopdesign', compact('designs', 'initial_products', 'category_product', 'category_design'));
+    }
+
     public function designDetails($id)
     {
         $design = Design::find($id);
@@ -143,8 +199,6 @@ class GuestController extends Controller
 
         return view('guest.designDetails', compact('initial_products', 'design', 'category_product', 'category_design', 'designs', 'category'));
     }
-
-
 
     public function allBoutique()
     {

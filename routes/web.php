@@ -86,10 +86,11 @@ Route::get('/', [GuestController::class, 'home'])->name('home');
 
 Route::prefix('geust/shop')->group(function () {
     Route::get('/products', [GuestController::class, 'indexProduits'])->name('products.index');
-    Route::post('/products/filter', [GuestController::class, 'filter'])->name('products.filter');
+    Route::post('/products/filter', [GuestController::class, 'filterProducts'])->name('products.filter');
     Route::get('/products/{id}/details', [GuestController::class, 'productDetails'])->name('products.details');
     Route::get('/products/{id}/categorie', [GuestController::class, 'parCategorieProduit'])->name('products.par.categorie');
     Route::get('/designs', [GuestController::class, 'shopDesign'])->name('designs.index');
+    Route::post('/designs/filter', [GuestController::class, 'filterDesigns'])->name('designs.filter');
     Route::get('/designs/{id}/details', [GuestController::class, 'designDetails'])->name('designs.details');
     Route::get('/designs/{id}/categorie', [GuestController::class, 'parCategorieDesign'])->name('designs.par.categorie');
     Route::get('/boutiques', [GuestController::class, 'allBoutique'])->name('boutiques');

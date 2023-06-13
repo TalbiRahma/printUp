@@ -39,15 +39,15 @@
         <!-- Start Breadcrumb Area  -->
         <div class="axil-breadcrumb-area">
             <div class="container">
-                        <div class="inner">
-                            <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a
-                                    href="\">Accueil</a></li>
+                <div class="inner">
+                    <ul class="axil-breadcrumb">
+                        <li class="axil-breadcrumb-item"><a
+                                href="\">Accueil</a></li>
                                 <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">Magasin</li>
-                            </ul>
-                            <h1 class="title">Explorer tous les produits</h1>
-                        </div>
+                        <li class="axil-breadcrumb-item active" aria-current="page">Magasin</li>
+                    </ul>
+                    <h1 class="title">Explorer tous les produits</h1>
+                </div>
             </div>
         </div>
         <!-- End Breadcrumb Area  -->
@@ -57,71 +57,55 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="axil-shop-sidebar">
-                            <div class="d-lg-none">
-                                <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
-                            </div>
-                            <div class="toggle-list product-categories active">
-                                <h6 class="title">CATEGORIES</h6>
-                                <div class="shop-submenu">
-                                    <ul> 
-                                        @foreach ($category_design as $cd)
-                                        <li>
-                                            <input type="radio" id="category_{{ $cd->id }}"
-                                                name="category" value="{{ $cd->id }}"
-                                                {{ request()->input('category') == $cd->id ? 'checked' : '' }}>
-                                            <label
-                                                for="category_{{ $cd->id }}">{{ $cd->name }}</label>
-                                        </li>
-                                    @endforeach
-                                    </ul>
+                        <form action="{{ route('designs.filter') }}" method="POST">
+                            @csrf
+                            <div class="axil-shop-sidebar">
+                                <div class="d-lg-none">
+                                    <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
                                 </div>
-                            </div>
-                            <div class="toggle-list product-size active">
-                                <h6 class="title">SIZE</h6>
-                                <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#">XS</a></li>
-                                        <li><a href="#">S</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">XL</a></li>
-                                        <li><a href="#">XXL</a></li>
-                                        <li><a href="#">3XL</a></li>
-                                        <li><a href="#">4XL</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="toggle-list product-price-range active">
-                                <h6 class="title">PRICE</h6>
-                                <div class="shop-submenu">
-                                    <ul>
-                                        <li class="chosen"><a href="#">30</a></li>
-                                        <li><a href="#">5000</a></li>
-                                    </ul>
-                                    <form action="#" class="mt--25">
-                                        <div class="mt-5">
-                                        <div id="slider-range"></div>
-                                        <div class="flex-center mt--20">
-                                            <span class="input-range">Price: </span>
-                                            <input type="text" id="amount" class="amount-range" readonly>
-                                        </div>
+                                <div class="toggle-list product-categories active">
+                                    <h6 class="title">CATÉGORIES</h6>
+                                    <div class="shop-submenu">
+                                        <ul>
+                                            @foreach ($category_design as $cd)
+                                                <li>
+                                                    <input type="radio" id="category_{{ $cd->id }}"
+                                                        name="category" value="{{ $cd->id }}"
+                                                        {{ request()->input('category') == $cd->id ? 'checked' : '' }}>
+                                                    <label
+                                                        for="category_{{ $cd->id }}">{{ $cd->name }}</label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                    </form>
+                                </div>
+                                <div class="toggle-list product-price-range active">
+                                    <h6 class="title">PRIX</h6>
+                                    <div class="shop-submenu">
+                                        
+                                            <div class="mt-5">
+                                                <div id="slider-range"></div>
+                                                <div class="flex-center mt--20">
+                                                    <span class="input-range">Prix: </span>
+                                                    <input type="number"  class="amount-range">
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                                <button type="submit" class="axil-btn">filtrer
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+                                    </svg>
+                                </button>
+                                <div class="mt-4 ">
+                                    <a href="{{ route('products.index') }}"
+                                        class="axil-btn btn-bg-primary w-100 text-center">Réinitialiser</a>
                                 </div>
                             </div>
-                            <button type="submit" class="axil-btn">filtrer
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
-                                    <path
-                                        d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
-                                </svg>
-                            </button>
-                            <div class="mt-4 ">
-                                <a href="{{ route('products.index') }}"
-                                    class="axil-btn btn-bg-primary w-100 text-center">Réinitialiser</a>
-                            </div>
-                        </div>
+                        </form>
                         <!-- End .axil-shop-sidebar -->
                     </div>
                     <div class="col-lg-9">
@@ -147,46 +131,57 @@
                             </div>
                         </div>
                         <!-- End .row -->
-                        <div class="row row--15"> 
+                        <div class="row row--15">
                             @foreach ($designs as $d)
-                            <div class="col-xl-4 col-sm-6">
-                                <div class="axil-product product-style-one mb--30">
-                                    <div class="slick-single-layout">
-                                        <div class="axil-product product-style-two">
-                                            <div class="thumbnail">
-                                                <a href="{{route('designs.details', ['id' => $d->id])}}">
-                                                    <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500"
-                                                        src="{{ asset('uploads') }}/{{ $d->photo }}"
-                                                        alt="Product Images">
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <div class="inner">
-                                                    <h5 class="title"><a href="{{route('designs.details', ['id' => $d->id])}}">{{$d->name}}</a></h5>
-                                                    <h6 class=""><a href="{{route('boutique', ['id' => $d->boutique->id])}}">{{$d->boutique->name}}</a></h6>
-                                                    <div class="product-price-variant">
-                                                        <span class="price current-price">{{$d->price}} TND</span>
-                                                    </div>
+                                <div class="col-xl-4 col-sm-6">
+                                    <div class="axil-product product-style-one mb--30">
+                                        <div class="slick-single-layout">
+                                            <div class="axil-product product-style-two">
+                                                <div class="thumbnail">
+                                                    <a href="{{ route('designs.details', ['id' => $d->id]) }}">
+                                                        <img data-sal="zoom-out" data-sal-delay="300"
+                                                            data-sal-duration="500"
+                                                            src="{{ asset('uploads') }}/{{ $d->photo }}"
+                                                            alt="Product Images">
+                                                    </a>
                                                 </div>
-                                                <div class="product-hover-action">
-                                                    <ul class="cart-action">
-                                                        <li class="quickview"><a href="{{route('designs.details', ['id' => $d->id])}}" ><i class="far fa-eye"></i></a>
-                                                        </li>
-                                                        <li class="select-option"><a href="{{route('boutique', ['id' => $d->boutique->id])}}">Voir boutique</a>
-                                                        </li>
-                                                        <li class="wishlist">
-                                                            
-                                                                <a href="{{ route('wishlist.add.design', ['id' => $d->id]) }}"><i
-                                                                            class="far fa-heart"></i></a>
-                                                            
-                                                        </li>
-                                                    </ul>
+                                                <div class="product-content">
+                                                    <div class="inner">
+                                                        <h5 class="title"><a
+                                                                href="{{ route('designs.details', ['id' => $d->id]) }}">{{ $d->name }}</a>
+                                                        </h5>
+                                                        <h6 class=""><a
+                                                                href="{{ route('boutique', ['id' => $d->boutique->id]) }}">{{ $d->boutique->name }}</a>
+                                                        </h6>
+                                                        <div class="product-price-variant">
+                                                            <span class="price current-price">{{ $d->price }}
+                                                                TND</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-hover-action">
+                                                        <ul class="cart-action">
+                                                            <li class="quickview"><a
+                                                                    href="{{ route('designs.details', ['id' => $d->id]) }}"><i
+                                                                        class="far fa-eye"></i></a>
+                                                            </li>
+                                                            <li class="select-option"><a
+                                                                    href="{{ route('boutique', ['id' => $d->boutique->id]) }}">Voir
+                                                                    boutique</a>
+                                                            </li>
+                                                            <li class="wishlist">
+
+                                                                <a
+                                                                    href="{{ route('wishlist.add.design', ['id' => $d->id]) }}"><i
+                                                                        class="far fa-heart"></i></a>
+
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                             <!-- End Single Product  -->
                             <div class="text-center pt--20">
@@ -370,11 +365,11 @@
     </div>
     <!-- Product Quick View Modal End -->
 
-   
 
 
 
-    
+
+
 
     <!-- JS
 ============================================ -->
@@ -402,8 +397,8 @@
     <script>
         document.getElementById('mySelect').addEventListener('change', function() {
             var optionValue = this.value;
-    
-            switch(optionValue) {
+
+            switch (optionValue) {
                 case 'products':
                     window.location.href = "{{ route('products.index') }}";
                     break;
