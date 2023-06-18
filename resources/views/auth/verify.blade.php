@@ -45,7 +45,7 @@
                 <div class="col-lg-5 offset-xl-1">
                     <div class="comming-soon-content">
                         <div class="brand-logo">
-                            <img src="assets/images/logo/logo-large.png" alt="Logo">
+                            <img class="w-50" src="{{ asset('/dashassets/img/PrintUp-logo.png') }}" alt="Logo">
                         </div>
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
