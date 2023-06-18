@@ -242,9 +242,9 @@ class AdminController extends Controller
         }
 
         if ($user->update()) {
-            return view('admin.compte.editprofil')->with('success1', 'hi sirine !');
+            return view('admin.compte.editprofil')->with('success1', 'success !');
         }else{
-            return view('admin.compte.editprofil')->with('danger', 'by sirine !');
+            return view('admin.compte.editprofil')->with('danger', 'error !');
         }
     }
 

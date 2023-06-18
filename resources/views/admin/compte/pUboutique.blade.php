@@ -479,6 +479,7 @@
             </div>
         </div>
         <!--footer-->
+        
         @include('inc.admin.footer')
 
     </main>
