@@ -157,6 +157,7 @@ class AdminController extends Controller
         $design->user_id = $request->user_id;
         $design->boutique_id = $request->boutique_id;
         $design->visibility = true;
+        $design->etat = 'valide';
 
         //upload image
         $newname = uniqid();
