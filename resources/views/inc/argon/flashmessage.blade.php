@@ -138,9 +138,9 @@
 
 
  <script>
-  $(".close").click(function() {
+ $(".close").click(function() {
   $(this)
-    .parent(".alert")
+    .parent(".alert1")
     .fadeOut();
 });
 

@@ -115,15 +115,15 @@
                                 <div class="toggle-list product-price-range active">
                                     <h6 class="title">PRIX</h6>
                                     <div class="shop-submenu">
-                                        
-                                            <div class="mt-5">
-                                                <div id="slider-range"></div>
-                                                <div class="flex-center mt--20">
-                                                    <span class="input-range">Prix: </span>
-                                                    <input type="number"  class="amount-range">
-                                                </div>
+
+                                        <div class="mt-5">
+                                            <div id="slider-range"></div>
+                                            <div class="flex-center mt--20">
+                                                <span class="input-range">Prix: </span>
+                                                <input type="number" class="amount-range">
                                             </div>
-                                        
+                                        </div>
+
                                     </div>
                                 </div>
                                 <button type="submit" class="axil-btn">filtrer
@@ -148,7 +148,7 @@
                                     <div
                                         class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
-                                        <span class="filter-results">Affichage 1-12 de 84 résultats</span>
+                                        
                                         <select class="single-select" id="mySelect">
                                             <option value="">Selectionné</option>
                                             <option value="products">Produits</option>
@@ -241,7 +241,7 @@
                                                     </h5>
                                                     <div class="product-price-variant">
                                                         <span class="price current-price">{{ $p->price }}
-                                                            TND</span>
+                                                           DT</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -250,8 +250,10 @@
                                 @endforeach
                             @endif
                             <!-- End Single Product  -->
-                            <div class="text-center pt--20">
-                                <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Voire plus</a>
+                            <div class=" pt--20">
+                                
+                                    {{ $initial_products->links('vendor.pagination.guest') }}
+                                
                             </div>
                         </div>
                     </div>
@@ -320,6 +322,7 @@
         });
     </script>
 
+    
 </body>
 
 </html>

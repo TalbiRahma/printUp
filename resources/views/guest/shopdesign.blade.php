@@ -115,7 +115,7 @@
                                     <div
                                         class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
-                                        <span class="filter-results">Affichage 1-12 de 84 résultats</span>
+                                    
                                         <select class="single-select" id="mySelect">
                                             <option value="">Selectionné</option>
                                             <option value="products">Produits</option>
@@ -181,11 +181,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             @endforeach
                             <!-- End Single Product  -->
                             <div class="text-center pt--20">
-                                <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Voire plus</a>
+                                {{ $designs->links('vendor.pagination.guest') }}
                             </div>
                         </div>
                     </div>

@@ -118,7 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/porte-monnaie/modif', [PortmonnaieController::class, 'modifierCarte'])->name('porte-monnaie.modif');
         Route::post('/porte-monnaie/demande', [PortmonnaieController::class, 'demanderArgent'])->name('porte-monnaie.demande');
 
-
+        Route::post('/test', [ProduitPersonnaliserController::class, '__invoke'])->name('__invoke');
 
 
 

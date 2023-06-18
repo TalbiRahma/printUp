@@ -63,10 +63,10 @@
                                     <div class="thumbnail">
                                         @if ($boutique->photo)
                                             <a href="{{route('boutique', ['id' => $boutique->id])}}">
-                                                <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
+                                                <img src="{{ asset('uploads') }}/{{$boutique->photo }}"
                                                     alt="Blog Images">
                                             </a>
-                                        @else
+                                        @else 
                                             <a href="{{route('boutique', ['id' => $boutique->id])}}">
                                                 <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}"
                                                     alt="Blog Images">
@@ -95,17 +95,7 @@
                     @endforeach
                 </div>
                 <div class="post-pagination">
-                    <nav class="navigation pagination" aria-label="Products">
-                        <ul class="page-numbers">
-                            <li><span aria-current="page" class="page-numbers current">1</span></li>
-                            <li><a class="page-numbers" href="#">2</a></li>
-                            <li><a class="page-numbers" href="#">3</a></li>
-                            <li><a class="page-numbers" href="#">4</a></li>
-                            <li><a class="page-numbers" href="#">5</a></li>
-                            <li><a class="next page-numbers" href="#"><i class="fal fa-arrow-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
+                    {{ $boutiques->links('vendor.pagination.guest') }}
                 </div>
                 <!-- End post-pagination -->
             </div>

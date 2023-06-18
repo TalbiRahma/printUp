@@ -45,7 +45,7 @@ class GuestController extends Controller
 
     public function indexProduits()
     {
-        $initial_products = InitialProduct::all();
+        $initial_products = InitialProduct::latest()->paginate(9);
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
@@ -134,7 +134,7 @@ class GuestController extends Controller
         $initial_products = InitialProduct::all();
         $designs = Design::where('etat', 'valide')
             ->where('visibility', true)
-            ->get();
+            ->latest()->paginate(9);
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         if (auth()->check()) {
@@ -149,14 +149,14 @@ class GuestController extends Controller
         // Récupérer les paramètres de filtrage
         $category = $request->input('category');
 
-        $designs = DB::table('designs');
+        $designs = Design::query();
         
         if ($category) {
             $designs->where('category_design_id', $category)
                     ->where('etat', 'valide')
                     ->where('visibility', true)
                     ->get();
-            dd($request);
+            //dd($request);
             
         }
 
@@ -166,7 +166,7 @@ class GuestController extends Controller
                      
         }*/
 
-        $designs = $designs->get();
+        $designs = $designs->with('boutique')->get();
 
         $initial_products = InitialProduct::all();
         $category_product = CategoryProduct::all();
@@ -202,13 +202,12 @@ class GuestController extends Controller
 
     public function allBoutique()
     {
-
         $initial_products = InitialProduct::all();
         $designs = Design::all();
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         $sizes = ['S', 'M', 'L', 'XL'];
-        $boutiques = Boutique::all();
+        $boutiques = Boutique::latest()->paginate(8);
         if (auth()->check()) {
             $commande = Commande::where('member_id', auth()->user()->id)->where('etat', 'en cours')->first();
             return view('guest.boutiques', compact('initial_products', 'category_product', 'sizes', 'designs', 'category_design', 'commande', 'boutiques'));
@@ -271,7 +270,7 @@ class GuestController extends Controller
 
     public function parCategorieProduit($id)
     {   //dd($id);
-        $initial_products = InitialProduct::where('category_product_id', $id)->get();
+        $initial_products = InitialProduct::where('category_product_id', $id)->latest()->paginate(9);
 
         $designs = Design::all();
         $category_product = CategoryProduct::all();
@@ -291,7 +290,7 @@ class GuestController extends Controller
         $designs = Design::where('etat', 'valide')
             ->where('visibility', true)
             ->where('category_design_id', $id)
-            ->get();
+            ->latest()->paginate(9);
         $category_product = CategoryProduct::all();
         $category_design = CategoryDesign::all();
         if (auth()->check()) {

@@ -211,6 +211,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="pagination justify-content-center" >
+                    {{ $produits_personnaliser->links()}}
+                </div>
             </div>
         </div>
 
