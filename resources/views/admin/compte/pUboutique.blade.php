@@ -19,10 +19,14 @@
     <link href="{{ asset('/dashassets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('/dashassets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
+
+
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
     <div class=" bg-primary position-absolute w-100" style="height: 75px;"></div>
+
+    <!-- Side bar -->
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -56,8 +60,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                        aria-expanded="false" aria-controls="collapseOne">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-collection text-danger text-sm opacity-10"></i>
@@ -87,8 +91,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link " data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -105,8 +109,8 @@
 
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
-                        <a class="nav-link" href="{{ route('mes.designs') }}">
-                            
+                        <a class="nav-link  " href="{{ route('mes.designs') }}">
+
                             <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
                         </a>
                     </div>
@@ -137,7 +141,8 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"
+                                style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -161,7 +166,7 @@
                     <h6 class="ps-3 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
                 </li>
                 <li class="nav-item ps--3">
-                    <a class="nav-link" href="{{ route('donnes.profil') }}">
+                    <a class="nav-link " href="{{ route('donnes.profil') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
@@ -179,26 +184,28 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
                 </li>
             </ul>
         </div>
     </aside>
+    <!-- End Side bar -->
+
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
@@ -207,10 +214,11 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="/">Accueil</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">PrintUp Boutique</li>
+                                href="javascript:;">Pages</a></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page"> PrintUp Boutique
+                        </li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">PrintUp Boutique</h6>
+                    <h6 class="font-weight-bolder text-white mb-0"> PrintUp Boutique</h6>
                 </nav>
 
                 @include('inc.client.navbar')
@@ -221,38 +229,38 @@
         <div class="container-fluid py-3">
             <div class="mx-4 card ">
                 <div class="card card-profile">
-                    <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
-                        class="card-img-top">
+                    @if (auth()->user()->boutique->photo)
+                        <img src="{{ asset('uploads') }}/{{ auth()->user()->boutique->photo }}"
+                            alt="Image placeholder" class="card-img-top">
+                    @else
+                        <img src="{{ asset('/dashassets/img/bg-profile.jpg') }}" alt="Image placeholder"
+                            class="card-img-top">
+                    @endif
+                    <img src="">
                     <div class="row ">
                         <div class="col-3 col-lg-3 order-lg-1">
                             <div class="mt-n6 mt-lg-n6 mb-4 mb-lg-0" style="margin-left: 30px;">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('/dashassets/img/team-2.jpg') }}"
-                                        class="rounded-circle img-fluid border border-2 border-white">
+                                    @if (auth()->user()->photo)
+                                        <img src="{{ asset('uploads') }}/{{ auth()->user()->photo }}"
+                                            class="rounded-circle img-fluid border border-2 border-white">
+                                    @else
+                                        <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"
+                                            class="rounded-circle img-fluid border border-2 border-white">
+                                    @endif
                                 </a>
                             </div>
                         </div>
                         <div class="col-5 col-lg-5 order-lg-1">
                             <div class="mt-3">
                                 <div class="ps-3">
-                                    <h4>PrintUp</h4>
-                                    <span class="text-sm">Je vais vous montrer la meilleure
-                                        création que vous verrez dans votre vie</span>
-                                </div>
-                                <div class="d-flex justify-content-start mt-n2">
-                                    <div class="rate">
-                                        <input type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
-                                    <span class="text-lg mt-2 opacity-8">(10)</span>
+                                    <h4>{{ auth()->user()->boutique->name }}</h4>
+                                    @if (auth()->user()->boutique->biographie)
+                                        <span class="text-sm">{{ auth()->user()->boutique->biographie }}</span>
+                                    @else
+                                        <span class="text-sm">Je vais vous montrer la meilleure
+                                            création que vous verrez dans votre vie</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -260,12 +268,14 @@
                             <div class="mt-3" style="margin-right: 25px;">
                                 <div class="d-flex justify-content-end ">
                                     <div class="d-grid text-center mx-2">
-                                        <span class="text-lg font-weight-bolder">50</span>
-                                        <span class="text-sm opacity-8">Designs</span>
+                                        <span
+                                            class="text-lg font-weight-bolder">{{ auth()->user()->nbrDesign() }}</span>
+                                        <span class="text-sm opacity-8">Design(s)</span>
                                     </div>
                                     <div class="d-grid text-center mx-2">
-                                        <span class="text-lg font-weight-bolder">50</span>
-                                        <span class="text-sm opacity-8">Followers</span>
+                                        <span
+                                            class="text-lg font-weight-bolder">{{ auth()->user()->nbrSuivis() }}</span>
+                                        <span class="text-sm opacity-8">Follower(s)</span>
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +283,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-n4" style="margin-right: 25px;">
                         <button class="btn btn-sm btn-dark " type="button" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Modifier</button>
+                            data-bs-target="#exampleModal{{ $boutique->id }}">Modifier</button>
                     </div>
                 </div>
             </div>
@@ -281,222 +291,168 @@
         <div class="container-fluid py-1">
             <div class="mx-4">
                 <div class="row">
-                    <div class="col-8">
-                        <div class="card card-frame">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                            class="rounded w-100 bg-gray-100">
-                                    </div>
-                                    <div class="col-6">
+                    <div class="col-8 ">
+                        @foreach ($designs as $design)
+                            <div class="py-1">
+                                <div class="card card-frame">
+                                    <div class="card-body">
                                         <div class="row">
-                                            <div class="col-9">
-                                                <h3>Nom Designs</h3>
+                                            <div class="col-6">
+                                                <img src="{{ asset('uploads') }}/{{ $design->photo }}"
+                                                    class="rounded w-100 bg-gray-100">
                                             </div>
-                                            <div class="col-3">
-                                                <div class="text-end">
-                                                    <button class="fav-btn ps-2" type="button">
-                                                        <i id="fav-icon" class="ni ni-favourite-28 end-0 mt-2"
-                                                            style="font-size: 25px; display: inline-block;"></i>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <h3>{{ $design->name }}</h3>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="text-end">
+                                                            <!--invisible-->
+
+                                                            <form action="{{ route('removefrom.boutique') }}"
+                                                                method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="design_id"
+                                                                    value="{{ $design->id }}">
+                                                                <button type="submit"
+                                                                    class="btn bg-gradient-default btn-sm">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="16" height="16"
+                                                                        fill="currentColor"
+                                                                        class="bi bi-eye-slash-fill"
+                                                                        viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                                                                        <path
+                                                                            d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
+                                                            <!--visible-->
+                                                            <!--<button type="submit" class="btn bg-gradient-default btn-sm">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-eye-fill"
+                                                                v   iewBox="0 0 16 16">
+                                                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                                    <path
+                                                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                                </svg>
+                                                            </button>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h4 class="mt-3">{{ $design->price }} DT</h4>
+                                                <div class="d-flex justify-content-start mt-n2"
+                                                    style="margin-left: -10px;">
+                                                    <div class="rate">
+                                                        @if ($design->moyReviews() == 0)
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" style="color:#ffc940"
+                                                                fill="currentColor" class="bi bi-star"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                                                            </svg>
+                                                        @else
+                                                            @for ($i = 0; $i < $design->moyReviews(); $i++)
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" style="color:#ffc940"
+                                                                    fill="currentColor" class="bi bi-star-fill"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                                </svg>
+                                                            @endfor
+                                                        @endif
+                                                    </div>
+                                                    <span
+                                                        class="text-lg mt-2 opacity-8">({{ count($design->Reviews) }})</span>
+                                                </div>
+                                                <hr class="horizontal dark mt-2">
+                                                <h6>Description:</h6>
+                                                <span class="text-sm">{{ $design->description }}</span>
+                                            </div>
+                                            <div class="accordion-item mt-4">
+                                                <h5 class="accordion-header" id="headingOne">
+                                                    <button
+                                                        class="accordion-button ni ni-chat-round font-weight-bold collapsed"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne{{ $design->id }}"
+                                                        aria-expanded="false" aria-controls="collapseOne">
+                                                        <span class="ps-3"
+                                                            style="font-size: 20px;">{{ count($design->Reviews) }}
+                                                            Avi(s)</span>
                                                     </button>
+                                                </h5>
+                                                <div id="collapseOne{{ $design->id }}"
+                                                    class="accordion-collapse collapse mt-4 "
+                                                    aria-labelledby="headingOne" data-bs-parent="#accordionRental"
+                                                    style="">
+                                                    <div class="axil-comment-area pro-desc-commnet-area">
+                                                        <h5 class="title">{{ count($design->Reviews) }} Avi(s) pour
+                                                            ce
+                                                            design</h5>
+                                                        <ul class="comment-list" style="list-style-type: none;">
+                                                            @foreach ($design->reviews as $review)
+                                                                <!-- Start Single Comment  -->
+                                                                <li class="comment">
+                                                                    <div class="comment-body">
+                                                                        <div class="single-comment">
+                                                                            <div class="comment-img">
+                                                                                @if ($review->user->photo == null)
+                                                                                    <img src="/uploads/userphoto.jpg"
+                                                                                        alt="Author Images"
+                                                                                        class="w-25 border-radius-lg shadow-sm">
+                                                                                @else
+                                                                                    <img src="{{ asset('uploads') }}/{{ $review->user->photo }}"
+                                                                                        alt="profile_image"
+                                                                                        class="w-25 border-radius-lg shadow-sm">
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="comment-inner">
+                                                                                <h6 class="commenter">
+                                                                                    <div class="row">
+                                                                                        <div class="col-">
+                                                                                            <a class="hover-flip-item-wrapper"
+                                                                                                href="#">
+                                                                                                <span
+                                                                                                    class="hover-flip-item">
+                                                                                                    <span
+                                                                                                        data-text="Rahabi Khan">{{ $review->user->first_name }}
+                                                                                                        {{ $review->user->first_name }}</span>
+                                                                                                </span>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="col-7">
+                                                                                            <span class="rate">
+                                                                                                @for ($i = 0; $i < $review->rate; $i++)
+                                                                                                    <i
+                                                                                                        class="fas fa-star"></i>
+                                                                                                @endfor
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </h6>
+                                                                                <div class="comment-text">
+                                                                                    <p>“{{ $review->content }}”</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <!-- End Single Comment  -->
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    <!-- End .axil-commnet-area -->
                                                 </div>
                                             </div>
-                                        </div>
-                                        <h4 class="mt-3">15 TND</h4>
-                                        <div class="d-flex justify-content-start mt-n2" style="margin-left: -10px;">
-                                            <div class="rate">
-                                                <input type="radio" id="star5" name="rate"
-                                                    value="5" />
-                                                <label for="star5" title="text">5 stars</label>
-                                                <input type="radio" id="star4" name="rate"
-                                                    value="4" />
-                                                <label for="star4" title="text">4 stars</label>
-                                                <input type="radio" id="star3" name="rate"
-                                                    value="3" />
-                                                <label for="star3" title="text">3 stars</label>
-                                                <input type="radio" id="star2" name="rate"
-                                                    value="2" />
-                                                <label for="star2" title="text">2 stars</label>
-                                                <input type="radio" id="star1" name="rate"
-                                                    value="1" />
-                                                <label for="star1" title="text">1 star</label>
-                                            </div>
-                                            <span class="text-lg mt-2 opacity-8">(10)</span>
-                                        </div>
-                                        <hr class="horizontal dark mt-2">
-                                        <h6>Description:</h6>
-                                        <span class="text-sm">Je vais vous montrer la meilleure création que vous
-                                            verrez dans votre vie</span>
-                                    </div>
-                                    <div class="accordion-item mt-4">
-                                        <h5 class="accordion-header" id="headingOne">
-                                            <button
-                                                class="accordion-button ni ni-chat-round font-weight-bold collapsed"
-                                                type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseOne" aria-expanded="false"
-                                                aria-controls="collapseOne">
-                                                <span class="ps-3" style="font-size: 20px;">13 Avis</span>
-                                            </button>
-                                        </h5>
-                                        <div id="collapseOne" class="accordion-collapse collapse mt-4 "
-                                            aria-labelledby="headingOne" data-bs-parent="#accordionRental"
-                                            style="">
-                                            <div class="axil-comment-area pro-desc-commnet-area">
-                                                <h5 class="title">01 Avis pour ce design</h5>
-                                                <ul class="comment-list" style="list-style-type: none;">
-
-                                                    <!-- Start Single Comment  -->
-                                                    <li class="comment">
-                                                        <div class="comment-body">
-                                                            <div class="single-comment">
-                                                                <div class="comment-img">
-                                                                    <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                                                        alt="Author Images">
-                                                                </div>
-                                                                <div class="comment-inner">
-                                                                    <h6 class="commenter">
-                                                                        <div class="row">
-                                                                            <div class="col-5">
-                                                                                <a class="hover-flip-item-wrapper"
-                                                                                    href="#">
-                                                                                    <span class="hover-flip-item">
-                                                                                        <span
-                                                                                            data-text="Rahabi Khan">Courtney
-                                                                                            Henry</span>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-7">
-                                                                                <span class="rate">
-                                                                                    <input type="radio"
-                                                                                        id="star5" name="rate"
-                                                                                        value="5" />
-                                                                                    <label for="star5"
-                                                                                        title="text">5
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star4" name="rate"
-                                                                                        value="4" />
-                                                                                    <label for="star4"
-                                                                                        title="text">4
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star3" name="rate"
-                                                                                        value="3" />
-                                                                                    <label for="star3"
-                                                                                        title="text">3
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star2" name="rate"
-                                                                                        value="2" />
-                                                                                    <label for="star2"
-                                                                                        title="text">2
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star1" name="rate"
-                                                                                        value="1" />
-                                                                                    <label for="star1"
-                                                                                        title="text">1
-                                                                                        star</label>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </h6>
-                                                                    <div class="comment-text">
-                                                                        <p>“We’ve created a full-stack structure
-                                                                            for our
-                                                                            working workflow processes, were
-                                                                            from the
-                                                                            funny the century initial all the
-                                                                            made, have
-                                                                            spare to negatives. ”</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <!-- End Single Comment  -->
-
-                                                    <!-- Start Single Comment  -->
-                                                    <li class="comment">
-                                                        <div class="comment-body">
-                                                            <div class="single-comment">
-                                                                <div class="comment-img">
-                                                                    <img src="{{ asset('/dashassets/img/Mickey.png') }}"
-                                                                        alt="Author Images">
-                                                                </div>
-                                                                <div class="comment-inner">
-                                                                    <h6 class="commenter">
-                                                                        <div class="row">
-                                                                            <div class="col-5">
-                                                                                <a class="hover-flip-item-wrapper"
-                                                                                    href="#">
-                                                                                    <span class="hover-flip-item">
-                                                                                        <span
-                                                                                            data-text="Rahabi Khan">Courtney
-                                                                                            Henry</span>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-7">
-                                                                                <span class="rate">
-                                                                                    <input type="radio"
-                                                                                        id="star5" name="rate"
-                                                                                        value="5" />
-                                                                                    <label for="star5"
-                                                                                        title="text">5
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star4" name="rate"
-                                                                                        value="4" />
-                                                                                    <label for="star4"
-                                                                                        title="text">4
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star3" name="rate"
-                                                                                        value="3" />
-                                                                                    <label for="star3"
-                                                                                        title="text">3
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star2" name="rate"
-                                                                                        value="2" />
-                                                                                    <label for="star2"
-                                                                                        title="text">2
-                                                                                        stars</label>
-                                                                                    <input type="radio"
-                                                                                        id="star1" name="rate"
-                                                                                        value="1" />
-                                                                                    <label for="star1"
-                                                                                        title="text">1
-                                                                                        star</label>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </h6>
-                                                                    <div class="comment-text">
-                                                                        <p>“We’ve created a full-stack structure
-                                                                            for our
-                                                                            working workflow processes, were
-                                                                            from the
-                                                                            funny the century initial all the
-                                                                            made, have
-                                                                            spare to negatives. ”</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <!-- End Single Comment  -->
-                                                </ul>
-                                            </div>
-                                            <!-- End .axil-commnet-area -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-4">
                         <div class="card card-frame">
@@ -542,71 +498,40 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
+                        @php $count = 0 @endphp
+                        @foreach ($initial_products as $ip)
+                            @if ($count < 3)
+                                <div class="col-4">
+                                    <div class="card">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{{ route('products.details', ['id' => $ip->id]) }}"
+                                                class="d-block">
+                                                <img style="width: 100%; height: auto;"
+                                                    src="{{ asset('uploads') }}/{{ $ip->photo }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="card-body ">
+                                            <a href="{{ route('products.details', ['id' => $ip->id]) }}"
+                                                class="card-title h6 d-block text-darker">
+                                                {{ $ip->name }}
+                                            </a>
+                                            <h6>Prix: {{ $ip->price }} DT</h6>
+                                            <a href="{{ route('personnaliser.produit', ['id' => $ip->id]) }}"
+                                                class="btn bg-gradient-primary w-100 mt-2">Personnaliser</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                    <h6>Taille: S,L</h6>
-                                    <button type="button"
-                                        class="btn bg-gradient-primary w-100 mt-2">Personnaliser</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                    <h6>Taille: S,L</h6>
-                                    <button type="button"
-                                        class="btn bg-gradient-primary w-100 mt-2">Personnaliser</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                    <h6>Taille: S,L</h6>
-                                    <button type="button"
-                                        class="btn bg-gradient-primary w-100 mt-2">Personnaliser</button>
-                                </div>
-                            </div>
-                        </div>
+                                @php $count++ @endphp
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn bg-gradient-primary">
+                    <a href="{{ route('product.wishlist') }}" class="btn bg-gradient-primary">
                         <span class="btn-inner--text">Voir plus</span>
                         <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -626,58 +551,38 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
+                        @php $count = 0 @endphp
+                        @foreach ($faivorite_designs as $d)
+                            @if ($count < 8)
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{{ route('designs.details', ['id' => $d->id]) }}"
+                                                class="d-block">
+                                                <img style="width: 100%; height: auto;"
+                                                    src="{{ asset('uploads') }}/{{ $d->photo }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="card-body ">
+                                            <a href="{{ route('designs.details', ['id' => $d->id]) }}"
+                                                class="card-title h6 d-block text-darker">
+                                                {{ $d->name }}
+                                            </a>
+                                            <h6>Prix: {{ $d->price }} DT</h6>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 30 DT</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                    <a href="#" class="d-block">
-                                        <img style="width: 100%; height: auto;"
-                                            src="{{ asset('/dashassets/img/Mickey.png') }}" alt="">
-                                    </a>
-                                </div>
-                                <div class="card-body ">
-                                    <a href="#" class="card-title h6 d-block text-darker">
-                                        name
-                                    </a>
-                                    <h6>Prix: 5 DT</h6>
-                                </div>
-                            </div>
-                        </div>
+                                @php $count++ @endphp
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="{{ route('design.wishlist') }}" class="btn bg-gradient-primary">
+                        <span class="btn-inner--text">Voir plus</span>
+                        <span class="btn-inner--icon"><i class="ni ni-bold-right"></i></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -711,30 +616,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0">
-                                                <i class="ni ni-fat-remove"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex px-2 py-1">
-                                                <div>
-                                                    <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
-                                                        class="avatar avatar-sm me-3">
+                                    @foreach ($suivis as $suivi)
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="{{ route('delete.suivi', ['id' => $suivi->id]) }}"
+                                                    class="btn btn-link text-secondary mb-0">
+                                                    <i class="ni ni-fat-remove"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img src="https://demos.creative-tim.com/soft-ui-design-system-pro/assets/img/team-2.jpg"
+                                                            class="avatar avatar-sm me-3">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-xs">{{ $suivi->name }}</h6>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-xs">Best Creation</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip" data-original-title="Edit user">
-                                                Voir
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="{{ route('boutique', ['id' => $suivi->id]) }}"
+                                                    class="text-secondary font-weight-bold text-xs"
+                                                    data-toggle="tooltip" data-original-title="Edit user">
+                                                    Voir
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -748,130 +657,128 @@
     </div>
 
     <!-- Modal modif profil -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal{{ $boutique->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
+                <form action="{{ route('edit.boutique') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="boutique_id" value="{{ $boutique->id }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
                             <img id="photoPreview" src="#" alt="Aperçu de la photo"
                                 style="display: none; max-width: 100%; height: auto;">
                             <label for="example-text-input" class="form-control-label mt-3">Ajouter votre couverture
                                 de boutique</label>
-                            <input class="form-control" type="file" id="photoInput">
+                            <input name="photo" class="form-control" type="file" id="photoInput">
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="form-control-label">Nom Boutique</label>
-                            <input class="form-control" type="text" value="Best Creation"
-                                id="example-text-input">
+                            <input name="name" class="form-control" type="text" id="example-text-input">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Biographie</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="bio" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn bg-gradient-primary">Enregistrer les modifications</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn bg-gradient-primary">Enregistrer les modifications</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="designAjout" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                                <form action="{{ route('ajouter.design') }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                    <input type="hidden" name="boutique_id" value="{{ auth()->user()->boutique->id }}">
-                                    <input type="hidden" name="id" value="{{ mt_rand(100000, 999999) }}">
-                                    <div class="modal-body p-0">
-                                        <div class="card card-plain">
-                                            <div class="card-header pb-0 text-left">
-                                                <h3 class="font-weight-bolder text-primary text-gradient">
-                                                    Ajouter Design</h3>
-                                                <p class="mb-0">Ajouter un nouveau design</p>
-                                            </div>
-                                            <div class="card-body pb-3">
-                                                <label>Nom design</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="name" type="text" class="form-control"
-                                                        placeholder="Nom de Design" aria-label="Name"
-                                                        aria-describedby="name-addon">
-                                                    @error('name')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Description</label>
-                                                <div class="input-group mb-3">
-                                                    <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
-                                                    @error('description')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Prix</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="price" type="text" class="form-control"
-                                                        placeholder="Prix de design" aria-label="Name"
-                                                        aria-describedby="name-addon">
-                                                    @error('price')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <label>Categorie</label>
-                                                <div class="input-group mb-3">
-                                                    <select class="form-control" name="category_design"
-                                                        id="choices-button" placeholder="categorie design">
-                                                        @foreach ($category_design as $cd)
-                                                            <option value="{{ $cd->id }}">{{ $cd->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <label>Photo</label>
-                                                <div class="input-group mb-3">
-                                                    <input name="photo" type="file" class="form-control"
-                                                        accept="image/*">
-                                                    @error('photo')
-                                                        <div class="class alert alert-danger">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                                <div class="text-center" style="display:flex; flex-direction: row;">
-                                                    <button type="submit"
-                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
-                                                        Ajouter</button>
-                                                    <button type="button"
-                                                        class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                        data-bs-dismiss="modal">Annuler</button>
-                                                </div>
-                                            </div>
+    <div class="modal fade" id="designAjout" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <form action="{{ route('printup.designs') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="boutique_id" value="{{ auth()->user()->boutique->id }}">
+                    <input type="hidden" name="id" value="{{ mt_rand(100000, 999999) }}">
+                    <div class="modal-body p-0">
+                        <div class="card card-plain">
+                            <div class="card-header pb-0 text-left">
+                                <h3 class="font-weight-bolder text-primary text-gradient">
+                                    Ajouter Design</h3>
+                                <p class="mb-0">Ajouter un nouveau design</p>
+                            </div>
+                            <div class="card-body pb-3">
+                                <label>Nom design</label>
+                                <div class="input-group mb-3">
+                                    <input name="name" type="text" class="form-control"
+                                        placeholder="Nom de Design" aria-label="Name" aria-describedby="name-addon">
+                                    @error('name')
+                                        <div class="class alert alert-danger">
+                                            {{ $message }}
                                         </div>
-                                    </div>
-                                </form>
+                                    @enderror
+                                </div>
+                                <label>Description</label>
+                                <div class="input-group mb-3">
+                                    <textarea name="description" class="form-control" type="text" placeholder="Description"></textarea>
+                                    @error('description')
+                                        <div class="class alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <label>Prix</label>
+                                <div class="input-group mb-3">
+                                    <input name="price" type="text" class="form-control"
+                                        placeholder="Prix de design" aria-label="Name" aria-describedby="name-addon">
+                                    @error('price')
+                                        <div class="class alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <label>Categorie</label>
+                                <div class="input-group mb-3">
+                                    <select class="form-control" name="category_design" id="choices-button"
+                                        placeholder="categorie design">
+                                        @foreach ($category_design as $cd)
+                                            <option value="{{ $cd->id }}">{{ $cd->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <label>Photo</label>
+                                <div class="input-group mb-3">
+                                    <input name="photo" type="file" class="form-control" accept="image/*">
+                                    @error('photo')
+                                        <div class="class alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="text-center" style="display:flex; flex-direction: row;">
+                                    <button type="submit"
+                                        class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4 mb-0">
+                                        Ajouter</button>
+                                    <button type="button"
+                                        class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
+                                        data-bs-dismiss="modal">Annuler</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-
+    @include('inc.argon.flashmessage')
 
     <script>
         document.getElementById('photoInput').addEventListener('change', function(e) {
@@ -1121,6 +1028,7 @@
     </script>
 
     <!--   Core JS Files   -->
+    <script src="{{ asset('/dashassets/js/sidebar.js?v=2.0.4') }}"></script>
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/plugins/perfect-scrollbar.min.js') }}"></script>
@@ -1223,6 +1131,5 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('/dashassets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
 </body>
-
 
 </html>

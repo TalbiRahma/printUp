@@ -76,7 +76,7 @@ class BoutiqueController extends Controller
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
-    }
+    } 
 
     public function removeFromBoutique(Request $request)
     {

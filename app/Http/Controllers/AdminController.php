@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Suivi;
 use App\Models\Design;
+use App\Models\Boutique;
 use App\Models\Commande;
 use App\Models\Portmonnaie;
 use App\Events\DeleteDesign;
@@ -13,13 +15,16 @@ use App\Mail\DesignSupprimer;
 use App\Models\LigneCommande;
 use App\Mail\PaiementEffectue;
 use App\Models\CategoryDesign;
+use App\Models\FavoriteDesign;
+use App\Models\InitialProduct;
+use App\Models\FavoriteProduct;
 use Illuminate\Support\Facades\DB;
+
 use App\Models\ProduitPersonnaliser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class AdminController extends Controller
@@ -88,7 +93,101 @@ class AdminController extends Controller
 
     public function maBoutique()
     {
-        return view('admin.compte.pUboutique');
+        $category_design = CategoryDesign::all();
+        $boutique_id = Auth::user()->boutique->id;
+        $boutique = Boutique::where('id', $boutique_id)->first();
+        $designs = Design::where('boutique_id', $boutique_id)
+            ->where('visibility', true)
+            ->get();
+
+        $list_suivis = Suivi::where('member_id', auth()->user()->id)->get();
+        $suivis = [];
+
+        // Récupère les détails des suivis
+        foreach ($list_suivis as $item) {
+            $suivi = Boutique::find($item->boutique_id);
+            if ($suivi) {
+                $suivis[] = $suivi;
+            }
+        }
+
+        // Récupère la liste des produits favoris de l'utilisateur
+        $product_wishlist = FavoriteProduct::where('user_id', auth()->user()->id)->get();
+        $initial_products = [];
+
+        // Récupère les détails des produits favoris
+        foreach ($product_wishlist as $item) {
+            $product = InitialProduct::find($item->initial_product_id);
+            if ($product) {
+                $initial_products[] = $product;
+            }
+        }
+
+        // Récupère la liste des designs favoris de l'utilisateur
+        $design_wishlist = FavoriteDesign::where('user_id', auth()->user()->id)->get();
+        $faivorite_designs = [];
+
+        // Récupère les détails des designs favoris
+        foreach ($design_wishlist as $item) {
+            $fdesign = Design::find($item->design_id);
+            if ($fdesign) {
+                $faivorite_designs[] = $fdesign;
+            }
+        }
+        return view('admin.compte.pUboutique', compact('category_design', 'designs', 'boutique', 'suivis', 'initial_products', 'faivorite_designs'));
+    }
+
+    public function ajouterDesignPrintUp(Request  $request)
+    {
+        //dd($request);
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'photo' => 'required',
+        ]);
+
+        $id = mt_rand(100000, 999999);
+        $design = new Design();
+        $design->id = $id;
+        $design->name = $request->name;
+        $design->category_design_id = $request->category_design;
+        $design->description = $request->description;
+        $design->price = $request->price;
+        $design->user_id = $request->user_id;
+        $design->boutique_id = $request->boutique_id;
+        $design->visibility = true;
+
+        //upload image
+        $newname = uniqid();
+        $image = $request->file('photo');
+        $newname .= "." . $image->getClientOriginalExtension();
+        $destinationPath = 'uploads';
+        $image->move($destinationPath, $newname);
+
+        $design->photo = $newname;
+
+
+        // Ajouter les données du design dans le tableau JSON dans la session
+        /*$design_data = $request->session()->get('design_data', []); 
+        $design_data = [
+            'id' => $design->id,
+            'name' => $design->name,
+            'description' => $design->description,
+            'photo' => $design->photo,
+            'price' => $design->price,
+            'user_id' => $design->user_id,
+            'category_design_id' => $design->category_design_id,
+        ];
+
+        $design_data_json = json_encode($design_data);
+        $request->session()->put('design_data', $design_data_json);*/
+
+        if ($design->save()) {
+            return redirect()->back()->with('design', $design)->with('success1', 'Votre design a été ajouté avec succès !');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
     public function mesDesigns()

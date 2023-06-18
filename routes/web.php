@@ -206,6 +206,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('/profil/donnes',  [AdminController::class, 'donnesProfil'])->name('donnes.profil');
         Route::get('/profil/boutique',  [AdminController::class, 'maBoutique'])->name('ma.boutique');
         Route::get('/profil/designs',  [AdminController::class, 'mesDesigns'])->name('mes.designs');
+        Route::post('/profil/designs/add',  [AdminController::class, 'ajouterDesignPrintUp'])->name('printup.designs');
 
 
         /************admin CLIENT****** */
