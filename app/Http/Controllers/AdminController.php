@@ -73,8 +73,8 @@ class AdminController extends Controller
             $clients = User::where('role', 'user')->latest()->paginate(10);
         } else {
             $clients = User::where('is_active', $memberStatus)
-            ->where('role', 'user')->latest()
-            ->paginate(10);
+                ->where('role', 'user')->latest()
+                ->paginate(10);
         }
 
         // Faire quelque chose avec les commandes filtrées (par exemple, les afficher dans une vue)
@@ -141,9 +141,13 @@ class AdminController extends Controller
             }
         }
 
-        $user->update();
-        return view('admin.compte.editprofil');
+        if ($user->update()) {
+            return view('admin.compte.editprofil')->with('success1', 'hi sirine !');
+        }else{
+            return view('admin.compte.editprofil')->with('danger', 'by sirine !');
+        }
     }
+
 
     public function donnesProfil()
     {
@@ -276,7 +280,7 @@ class AdminController extends Controller
     {
         $commande = Commande::findOrFail($id);
         $commande->paiement = 'payee';
-       
+
         // Récupérer l'utilisateur qui a créé le design de chaque CustomProduct de la commande
         foreach ($commande->lignecommandes as $ligne_commande) {
 
@@ -289,13 +293,12 @@ class AdminController extends Controller
             $transaction->member_id = $user_id;
             $transaction->montant = $montant_total;
             $transaction->type = 'revenu';
-            
+
 
             if ($portemonnaie) {
                 // Mettre à jour la colonne "montant_existe"
                 $portemonnaie->solde += $montant_total;
                 $portemonnaie->save();
-                
             } else {
                 // Le portefeuille n'existe pas encore pour cet utilisateur, créer un nouveau portefeuille avec le montant initial
                 $portemonnaie = new Portmonnaie;
@@ -382,7 +385,7 @@ class AdminController extends Controller
     {
         $transaction_id = $request->input('transaction_id');
         $transaction = Transactions::find($transaction_id);
-        
+
         if (!$transaction) {
             return redirect()->back()->with('danger1', 'Transaction non trouvée !');
         }
@@ -390,7 +393,7 @@ class AdminController extends Controller
         $membre = $transaction->membre;
         $montant_demander = $transaction->montant;
         $solde = $membre->portmonnaie->solde;
-        
+
         if ($solde < $montant_demander) {
             return  redirect()->back()->with('danger1', 'Solde insuffisant !');
         }
@@ -400,7 +403,7 @@ class AdminController extends Controller
         $portmonnaie->solde = $solde - $montant_demander;
         $portmonnaie->save();
 
-        
+
         if (!$portmonnaie->save()) {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
@@ -417,11 +420,11 @@ class AdminController extends Controller
         //$transaction->solde = $nouveau_solde;
         //dd($transaction);
 
-        if($new_transaction->save()){
+        if ($new_transaction->save()) {
             // Envoyer un e-mail de confirmation de paiement
-        Mail::to($membre->email)->send(new PaiementEffectue($transaction));
+            Mail::to($membre->email)->send(new PaiementEffectue($transaction));
             return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
-        }else{
+        } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }

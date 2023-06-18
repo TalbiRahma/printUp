@@ -238,7 +238,7 @@
                             </a>
                         </li>
                         <!--parametre-->
-
+                       
                         <!--notificaton-->
                         @include('inc.admin.notification')
                         <!--end notificaton-->
@@ -349,7 +349,7 @@
     </div>
 
     </div>
-
+    @include('inc.argon.flashmessage')
     <!--   Core JS Files   -->
     <script src="{{ asset('/dashassets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/core/bootstrap.min.js') }}"></script>

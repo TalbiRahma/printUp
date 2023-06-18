@@ -306,6 +306,7 @@
                 </div>
             </div>
         </div>
+        @include('inc.argon.message1')
         @include('inc.admin.footer')
     </div>
     </div>

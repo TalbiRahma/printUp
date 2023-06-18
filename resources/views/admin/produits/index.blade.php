@@ -492,7 +492,7 @@
                                                                     <label>Nom Produit</label>
                                                                     <div class="input-group mb-3">
                                                                         <input name="name" type="text"
-                                                                        class="form-control1 @error('name') is-invalid @enderror"
+                                                                        class="form-control"
                                                                             placeholder="Nom de Produit"
                                                                             aria-label="Name"
                                                                             aria-describedby="name-addon"
@@ -500,12 +500,12 @@
                                                                     </div>
                                                                     <label>Description</label>
                                                                     <div class="input-group mb-3">
-                                                                        <textarea name="description" class="form-control1" type="text" placeholder="Description">{{ $p->description }}</textarea>
+                                                                        <textarea name="description" class="form-control" type="text" placeholder="Description">{{ $p->description }}</textarea>
                                                                     </div>
                                                                     <label>Prix</label>
                                                                     <div class="input-group mb-3">
                                                                         <input name="price" type="text"
-                                                                            class="form-control1"
+                                                                            class="form-control"
                                                                             placeholder="Prix de produit"
                                                                             aria-label="Name"
                                                                             aria-describedby="name-addon"value="{{ $p->price }}">

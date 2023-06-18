@@ -2,7 +2,9 @@
 @if ($message = Session::get('success1'))
     <div class="alert1 success1-alert">
         <p class="mb-0 flex-1">{{ $message }}</p>
-        <a class="close">&times;</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
 
@@ -58,20 +60,7 @@
       box-shadow: 0 0 15px 5px #ccc;
   }
 
-  .close {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      opacity: 0.5;
-      border-width: 1px;
-      border-style: solid;
-      border-radius: 50%;
-      right: 15px;
-      top: 25px;
-      text-align: center;
-      font-size: 1.6em;
-      cursor: pointer;
-  }
+  
 
   .simple1-alert {
       background-color: #ebebeb;
@@ -137,13 +126,4 @@
 
 
 
- <script>
- $(".close").click(function() {
-  $(this)
-    .parent(".alert1")
-    .fadeOut();
-});
 
-
-
- </script>
