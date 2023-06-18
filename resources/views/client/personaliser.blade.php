@@ -56,9 +56,7 @@
                     </div>
                     <div class="col-lg-6 col-md-4">
                         <div class="inner">
-                            <div class="bradcrumb-thumb">
-                                <img src="{{ asset('/mainassets/images/product/product-45.png') }}" alt="Image">
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -602,6 +600,7 @@
 
 
     <!-- Start Footer Area  -->
+    @include('inc.argon.flashmessage')
     @include('inc.client.footer')
     <!-- End Footer Area  -->
 

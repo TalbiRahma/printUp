@@ -43,16 +43,21 @@ class FavoriteDesignController extends Controller
         $wishlist = FavoriteDesign::where('user_id', Auth::id())->where('design_id', $design_id)->first();
 
         if ($wishlist) {
-            return redirect()->back()->with('error', 'Le design que vous avez essayé d\'ajouter à votre liste de favoris est déjà présent.');
+            return redirect()->back()->with('danger1', 'Le design que vous avez essayé d\'ajouter à votre liste de favoris est déjà présent.');
         } 
 
         // Ajoute le produit à la liste des favoris de l'utilisateur
         $wishlist = new FavoriteDesign();
         $wishlist->user_id = Auth::id();
         $wishlist->design_id = $design_id;
-        $wishlist->save();
+        
 
-        return redirect()->route('design.wishlist')->with('success', 'Le Design a été ajouté à votre liste de favoris.');
+        if ($wishlist->save()){
+            return redirect()->route('design.wishlist')->with('success1', 'Le Design a été ajouté à votre liste de favoris.');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+        
     }
 
 
@@ -64,7 +69,7 @@ class FavoriteDesignController extends Controller
         $wishlist = FavoriteDesign::where('user_id', $user->id)->where('design_id', $id)->first();
         
         if ($wishlist->delete()){
-            return redirect()->back();
+            return redirect()->back()->with('success1', 'Le Design a été supprimé.');
         }else{
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }

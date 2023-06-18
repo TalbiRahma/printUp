@@ -529,6 +529,7 @@
     </main>
 
     <!-- Start Footer Area  -->
+    @include('inc.argon.flashmessage')
     @include('inc.client.footer')
     <!-- End Footer Area  -->
 

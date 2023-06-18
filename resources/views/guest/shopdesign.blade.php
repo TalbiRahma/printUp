@@ -365,7 +365,7 @@
     </div>
     <!-- Product Quick View Modal End -->
 
-
+    @include('inc.argon.flashmessage')
 
 
 

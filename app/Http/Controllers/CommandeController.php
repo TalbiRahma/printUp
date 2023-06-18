@@ -91,7 +91,7 @@ public function addCommande(Request $request)
                 if ($request->qte) {
                     $lignec->qte = $request->qte;
                 } else {
-                    return redirect()->back()->with('danger', 'La quantité est nulle.');
+                    return redirect()->back()->with('danger1', 'La quantité est nulle.');
                 }
                 $lignec->update();
             }
@@ -103,13 +103,13 @@ public function addCommande(Request $request)
             if ($request->qte) {
                 $lc->qte = $request->qte;
             } else {
-                return redirect()->back()->with('danger', 'La quantité est nulle.');
+                return redirect()->back()->with('danger1', 'La quantité est nulle.');
             }
 
             // Vérification de la sélection de la taille si le produit personnalisé a des tailles
             $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
             if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
-                return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
+                return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
             }
 
             $lc->custom_product_id = $request->custom_product_id;
@@ -117,7 +117,7 @@ public function addCommande(Request $request)
             $lc->commande_id = $commande->id;
             $lc->save();
         } 
-        return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
+        return redirect()->back()->with('success1', 'LE PRODUIT EST COMMANDÉ');
     } else {
         $commande = new Commande();
         $commande->member_id = Auth::user()->id;
@@ -127,133 +127,36 @@ public function addCommande(Request $request)
             if ($request->qte) {
                 $lc->qte = $request->qte;
             } else {
-                return redirect()->back()->with('danger', 'La quantité est nulle.');
+                return redirect()->back()->with('danger1', 'La quantité est nulle.');
             }
 
             // Vérification de la sélection de la taille si le produit personnalisé a des tailles
             $customProduct = ProduitPersonnaliser::find($request->custom_product_id);
             if ($customProduct->sizes !== "[]" && $request->selected_size === null) {
-                return redirect()->back()->with('danger', 'Veuillez sélectionner une taille.');
+                return redirect()->back()->with('danger1', 'Veuillez sélectionner une taille.');
             }
 
             $lc->custom_product_id = $request->custom_product_id;
             $lc->selected_size = $request->input('selected_size');
             $lc->commande_id = $commande->id;
             $lc->save();
-            return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
+            return redirect()->back()->with('success1', 'LE PRODUIT EST COMMANDÉ');
         } else {
-            return redirect()->back()->with('danger', 'Impossible de commander le produit');
+            return redirect()->back()->with('danger1', 'Impossible de commander le produit');
         }
     }
 }
 
 
-    /*public function addCommande(Request $request)
-{
-    $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
-
-    // Vérification de l'existence de la commande
-    if ($commande) {
-        $existe = false;
-        foreach ($commande->lignecommandes as $lignec) {
-            if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
-                $existe = true;
-                $lignec->qte += $request->qte;
-                $lignec->update();
-            }
-        }
-
-        if (!$existe) {
-            // Création de la ligne de commande
-            $lc = new LigneCommande();
-            if ($request->qte) {
-                $lc->qte = $request->qte;
-            } else {
-                return redirect()->back()->with('danger', 'La quantité est nulle.');
-            }
-            $lc->custom_product_id = $request->custom_product_id;
-            $lc->selected_size = $request->input('selected_size');
-            $lc->commande_id = $commande->id;
-            $lc->save();
-        }
-        return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
-    } else {
-        $commande = new Commande();
-        $commande->member_id = Auth::user()->id;
-        if ($commande->save()) {
-            // Création de la ligne de commande
-            $lc = new LigneCommande();
-            if ($request->qte) {
-                $lc->qte = $request->qte;
-            } else {
-                return redirect()->back()->with('danger', 'La quantité est nulle.');
-            }
-            $lc->custom_product_id = $request->custom_product_id;
-            $lc->selected_size = $request->input('selected_size');
-            $lc->commande_id = $commande->id;
-            $lc->save();
-            return redirect()->back()->with('success', 'LE PRODUIT EST COMMANDÉ');
-        } else {
-            return redirect()->back()->with('danger', 'Impossible de commander le produit');
-        }
-    }
-}*/
-
-   /* public function addCommande(Request $request)
-    {
-
-        $commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
-        //dd($commande);
-
-        // creation commande 
-        if ($commande) {
-            //CHECK IF PRODUIT EXISTE
-            $existe = false;
-            foreach ($commande->lignecommandes as $lignec) {
-
-                if ($lignec->custom_product_id == $request->custom_product_id && $lignec->selected_size == $request->selected_size) {
-                    $existe = true;
-                    $lignec->qte += $request->qte;
-                    $lignec->update();
-                }
-            }
-
-            if (!$existe) {
-                // creation ligne de commande 
-                $lc = new LigneCommande();
-                $lc->qte = $request->qte;
-                $lc->custom_product_id = $request->custom_product_id;
-                $lc->selected_size = $request->input('selected_size');
-                $lc->commande_id = $commande->id;
-                $lc->save();
-            }
-
-
-            return redirect()->back()->with('SUCCESS', 'LE PRODUIT EST COMMANDER');
-        } else {
-            $commande = new Commande();
-            $commande->member_id = Auth::user()->id;
-            if ($commande->save()) {
-                // creation ligne de commande 
-                $lc = new LigneCommande();
-                $lc->qte = $request->qte;
-                $lc->custom_product_id = $request->custom_product_id;
-                $lc->selected_size = $request->input('selected_size');
-                $lc->commande_id = $commande->id;
-                $lc->save();
-
-                return redirect()->back()->with('SUCCESS', 'LE PRODUIT EST COMMANDER');
-            } else {
-                return redirect()->back()->with('error', 'impossible de commander le produit');
-            }
-        }
-    }*/
-
     public function ligneCommandeDestroy($idlc)
     {
         $lc = LigneCommande::find($idlc);
-        $lc->delete();
-        return redirect()->back()->with('success', 'ligne de commande supprimer');
+        if($lc->delete()){
+            return redirect()->back()->with('success1', 'ligne de commande supprimer');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+        
     }
 
     public function updateLigne(Request $request)
@@ -267,8 +170,11 @@ public function addCommande(Request $request)
                 $lc->save();
             }
         }
-
-        return redirect()->back();
+        if( $lc->save() && $qte !== null ){
+            return redirect()->back()->with('success1', 'ligne de commande a été mise à jour avec successé');
+        }else{
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
     }
 
     public function validerCommandes(Request $request)
@@ -312,7 +218,8 @@ public function addCommande(Request $request)
             //dd($commandes);
             return redirect('client/commande/historique')->with('success1', 'Votre commande a été envoyée avec succès');
         }else{
-            return redirect('client/commande/historique')->with('danger', 'Une erreur s\'est produite !');
+            //return redirect('client/commande/historique')->with('danger1', 'Une erreur s\'est produite !');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
         
     }
