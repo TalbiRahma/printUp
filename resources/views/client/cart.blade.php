@@ -48,7 +48,7 @@
                             @include('inc.flashmessage')
                             <div class="product-table-heading">
                                 <h4 class="title">Votre panier</h4>
-                                <a href="#" class="cart-clear">Effacer le panier</a>
+                                <a href="#" class="cart-clear"></a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table axil-product-table axil-cart-table mb--40">
@@ -105,10 +105,7 @@
                             </div>
                             <div class="cart-update-btn-area">
                                 <div class="input-group product-cupon">
-                                    <input placeholder="Entrer le code de réduction" type="text">
-                                    <div class="product-cupon-btn">
-                                        <button type="submit" class="axil-btn btn-outline">Appliquer</button>
-                                    </div>
+                                    
                                 </div>
                                 <div class="update-btn">
                                     <button type="submit" class="axil-btn btn-outline">Mise à jour du
@@ -156,10 +153,11 @@
     </main>
 
 
-
+    
     @include('inc.client.service')
     <!-- Start Footer Area  -->
     @include('inc.client.footer')
+    @include('inc.argon.flashmessage')
     <!-- End Footer Area  -->
 
 

@@ -224,9 +224,9 @@ class ProduitPersonnaliserController extends Controller
             // stocker les données JSON dans un cookie ou dans la session
             $custom_product_data_json = json_encode($custom_product_data);
             $request->session()->put('custom_product_data', $custom_product_data_json);
-            return redirect()->back()->with('success', 'Votre produit a été sauvegardé avec succès');
+            return redirect()->back()->with('success1', 'Votre produit a été sauvegardé avec succès');
         } else {
-            return redirect()->back()->with('danger', 'dfrsvsdfvs');
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
 
         //dd($custom_product);

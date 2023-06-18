@@ -266,7 +266,7 @@
     </main>
 
 
-
+    @include('inc.argon.flashmessage')
     @include('inc.client.service')
     <!-- Start Footer Area  -->
     @include('inc.client.footer')

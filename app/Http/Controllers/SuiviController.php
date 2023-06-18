@@ -16,9 +16,14 @@ class SuiviController extends Controller
         $list_suivi = new Suivi();
         $list_suivi->member_id = Auth::id();
         $list_suivi->boutique_id = $id;
-        $list_suivi->save();
+        
 
-        return redirect()->back();
+        if ($list_suivi->save()) {
+            return redirect()->back()->with('success1', 'le boutique a été suivi avec succès !');
+        } else {
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
+        }
+       
     }
 
     public function nePlusSuivire($id)
@@ -28,7 +33,7 @@ class SuiviController extends Controller
         $suivi = Suivi::where('member_id', $user->id)->where('boutique_id', $id)->first();
 
         if ($suivi->delete()) {
-            return redirect()->back();
+            return redirect()->back()->with('success1', 'le boutique a été retiré !');
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }

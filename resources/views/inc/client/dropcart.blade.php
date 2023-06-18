@@ -27,16 +27,16 @@
                                                 {{ $lc->selected_size }}</span></div>
                                         <div class="item-price">{{ $lc->customproduct->price }}<span
                                                 class="currency-symbol">
-                                                TND</span></div>
+                                                DT</span></div>
                                                 @if ($lc->customproduct->etat == "en attente")
                                                 <span class="badge badge-warning">en attente</span>
                                                @else
                                                <span class="badge badge-success">Valide</span>
                                                @endif
-                                        <div class="pro-qty item-quantity">
-                                            
-                                            <input type="number" class="quantity-input" value="{{ $lc->qte }}">
-                                        </div>
+                                               <div class="item-price">Quantité: <span
+                                                class="currency-symbol">
+                                                {{ $lc->qte }}</span></div>
+                                       
                                     </div>
                                 </li>
                                 @php $count++ @endphp

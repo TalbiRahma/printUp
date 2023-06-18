@@ -127,7 +127,7 @@ class ClientController extends Controller
         if ($tous_valides) {
             return view('client.checkout', compact('designs', 'initial_products', 'category_product', 'category_design', 'commande'));
         } else {
-            return back()->with('warning', 'Certains designs doivent être validés par l\'administration avant de pouvoir passer à la vérification du commande. ');
+            return back()->with('warning1', 'Certains designs doivent être validés par l\'administration avant de pouvoir passer à la vérification du commande. ');
         }
         
     }

@@ -523,7 +523,7 @@ class AdminController extends Controller
         if ($new_transaction->save()) {
             // Envoyer un e-mail de confirmation de paiement
             Mail::to($membre->email)->send(new PaiementEffectue($transaction));
-            return redirect()->back()->with(['success' => 'Paiement effectué avec succès']);
+            return redirect()->back()->with(['success1' => 'Paiement effectué avec succès']);
         } else {
             return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }

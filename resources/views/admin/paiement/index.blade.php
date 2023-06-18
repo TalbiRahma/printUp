@@ -282,7 +282,7 @@
                                         <div class="d-flex px-2 py-1">
                                             <div>
                                                 @if ($tr->membre->photo)
-                                                    <img src="{{ assets('uploads') }}/{{ $tr->membre->photo }}"
+                                                    <img src="{{ asset('uploads') }}/{{ $tr->membre->photo }}"
                                                         class="avatar avatar-sm me-3">
                                                 @else
                                                     <img src="{{ asset('uploads/userphoto/userphoto.jpg') }}"

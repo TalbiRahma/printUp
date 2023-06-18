@@ -43,7 +43,7 @@ class FavoriteProductController extends Controller
         $wishlist = FavoriteProduct::where('user_id', Auth::id())->where('initial_product_id', $product_id)->first();
 
         if ($wishlist) {
-            return redirect()->back()->with('error', 'Le produit que vous avez essayé d\'ajouter à votre liste de favoris est déjà présent.');
+            return redirect()->back()->with('danger1', 'Le produit que vous avez essayé d\'ajouter à votre liste de favoris est déjà présent.');
         }
 
         // Ajoute le produit à la liste des favoris de l'utilisateur
@@ -52,7 +52,7 @@ class FavoriteProductController extends Controller
         $wishlist->initial_product_id = $product_id;
         $wishlist->save();
 
-        return redirect()->route('product.wishlist')->with('success', 'Le produit a été ajouté à votre liste de favoris.');
+        return redirect()->route('product.wishlist')->with('success1', 'Le produit a été ajouté à votre liste de favoris.');
     }
 
 
@@ -64,9 +64,9 @@ class FavoriteProductController extends Controller
         $wishlist = FavoriteProduct::where('user_id', $user->id)->where('initial_product_id', $id)->first();
         
         if ($wishlist->delete()){
-            return redirect()->back();
+            return redirect()->back()->with('success1', 'Le produit a été supprimé.');
         }else{
-            echo "error";
+            return redirect()->back()->with('danger1', 'Une erreur s\'est produite !');
         }
     }
 }
