@@ -650,7 +650,7 @@
         var stage = new Konva.Stage({
             container: 'div1',
             width: 135,
-            height: 160,
+            height: 210,
         });
         const layer = new Konva.Layer();
         stage.add(layer);
@@ -1598,7 +1598,7 @@
     <style>
         #div1 {
             width: 135px;
-            height: 160px;
+            height: 210px;
             border: 1px solid #aaaaaa;
         }
     </style>
