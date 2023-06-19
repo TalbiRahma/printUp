@@ -495,6 +495,14 @@
     <script src="{{ asset('/dashassets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-close').click(function() {
+                $(this).closest('.alert-container').remove();
+            });
+        });
+    </script>
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 

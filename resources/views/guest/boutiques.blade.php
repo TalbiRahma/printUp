@@ -157,6 +157,14 @@
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
 
     <!--size selected-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-close').click(function() {
+                $(this).closest('.alert-container').remove();
+            });
+        });
+    </script>
 
 </body>
 
