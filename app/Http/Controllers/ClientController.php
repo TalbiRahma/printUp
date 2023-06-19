@@ -196,4 +196,13 @@ class ClientController extends Controller
 
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès!');
     }
+
+    public function afficherMessageBloquee(){
+        //$commande = Commande::where('member_id', Auth::user()->id)->where('etat', 'en cours')->first();
+        //$initial_product = InitialProduct::all();
+        //$designs = Design::all();
+        $category_product = CategoryProduct::all();
+        $category_design = CategoryDesign::all();
+        return view('client.bloquee', compact( 'category_product', 'category_design'));
+    }
 }

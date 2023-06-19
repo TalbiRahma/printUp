@@ -103,6 +103,7 @@ Route::prefix('geust/shop')->group(function () {
 /*************CLIENT******** */
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('client')->group(function () {
+        Route::get('/bloquer', [ClientController::class, 'afficherMessageBloquee'])->name('cart');
         Route::get('/cart', [ClientController::class, 'cart'])->name('cart');
         Route::get('/checkout', [ClientController::class, 'checkout'])->name('checkout');
         Route::get('/account', [ClientController::class, 'account'])->name('account');

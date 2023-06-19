@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-lg-6 col-md-4">
                         <div class="inner">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -515,7 +515,7 @@
 
                                     <h5 class="text-secondary" style="margin-top: -20px;">Prix
                                         {{ $product_data['name'] }}:
-                                        {{ $product_data['price'] }} TND</h5>
+                                        {{ $product_data['price'] }} DT</h5>
                                     <div class="product-variations-wrapper">
 
                                         <!-- Start Product Variation  -->
@@ -530,14 +530,14 @@
                                                     @endif
                                                     <ul class="range-variant"
                                                         style="display: flex; margin-left: 20px;">
-                                                        @if($sizes)
-                                                        @foreach ($sizes as $size)
-                                                            <li class="size-btn"
-                                                                onclick="selectSize('{{ $size }}')">
-                                                                {{ $size }}</li>
-                                                        @endforeach
-                                                        <input type="hidden" name="selected_size"
-                                                            id="selected_size">
+                                                        @if ($sizes)
+                                                            @foreach ($sizes as $size)
+                                                                <li class="size-btn"
+                                                                    onclick="selectSize('{{ $size }}')">
+                                                                    {{ $size }}</li>
+                                                            @endforeach
+                                                            <input type="hidden" name="selected_size"
+                                                                id="selected_size">
                                                         @endif
                                                     </ul>
                                                 </div>
@@ -550,12 +550,12 @@
                                     </div>
                                     @if ($design_data)
                                         @if (Auth::user()->id == $design_data['user_id'])
-                                            <h5>Total: {{ 0 + $product_data['price'] }} TND</h5>
+                                            <h5>Total: {{ $design_data['price'] + $product_data['price'] }} DT</h5>
                                         @else
-                                            <h5>Total: {{ $design_data['price'] + $product_data['price'] }} TND</h5>
+                                            <h5>Total: {{ 0 + $product_data['price'] }} DT</h5>
                                         @endif
                                     @else
-                                        <h5>Total: {{ $product_data['price'] }} TND</h5>
+                                        <h5>Total: {{ $product_data['price'] }} DT</h5>
                                     @endif
 
                                     <div class="group-btn" style="margin-top: 15px;">
@@ -758,7 +758,7 @@
 
 
 
-        
+
 
 
 
@@ -861,547 +861,547 @@
 
     <script>
         /* var width = window.innerWidth;
-                                            var height = window.innerHeight;
+                                                var height = window.innerHeight;
 
-                                            var stage = new Konva.Stage({
-                                                container: 'div1',
-                                                width: 135,
-                                                height: 160,
+                                                var stage = new Konva.Stage({
+                                                    container: 'div1',
+                                                    width: 135,
+                                                    height: 160,
+                                                });
+                                                const layer = new Konva.Layer();
+                                                stage.add(layer);
+
+
+
+                                                // Récupérez l'élément image à partir de son ID
+                                                var imageElement = document.getElementById('design-image');
+
+                                                // Créez une instance de Konva.Image en utilisant l'élément image
+                                                const image = new Konva.Image({
+                                                    x: 90,
+                                                    y: 90,
+                                                    image: imageElement,
+                                                    width: imageElement.width,
+                                                    height: imageElement.height,
+                                                    draggable: true,
+                                                });
+                                                layer.add(image);
+
+                                                const tr = new Konva.Transformer({
+                                                    nodes: [image],
+                                                    anchorDragBoundFunc: function(oldPos, newPos, event) {
+                                                        // oldPos - is old absolute position of the anchor
+                                                        // newPos - is a new (possible) absolute position of the anchor based on pointer position
+                                                        // it is possible that anchor will have a different absolute position after this function
+                                                        // because every anchor has its own limits on position, based on resizing logic
+
+                                                        // do not snap rotating point
+                                                        if (tr.getActiveAnchor() === 'rotater') {
+                                                            return newPos;
+                                                        }
+
+                                                        const dist = Math.sqrt(
+                                                            Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
+                                                        );
+
+                                                        // do not do any snapping with new absolute position (pointer position)
+                                                        // is too far away from old position
+                                                        if (dist > 10) {
+                                                            return newPos;
+                                                        }
+
+                                                        const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
+                                                        const diffX = Math.abs(newPos.x - closestX);
+
+                                                        const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
+                                                        const diffY = Math.abs(newPos.y - closestY);
+
+                                                        const snappedX = diffX < 10;
+                                                        const snappedY = diffY < 10;
+
+                                                        // a bit different snap strategies based on snap direction
+                                                        // we need to reuse old position for better UX
+                                                        if (snappedX && !snappedY) {
+                                                            return {
+                                                                x: closestX,
+                                                                y: oldPos.y,
+                                                            };
+                                                        } else if (snappedY && !snappedX) {
+                                                            return {
+                                                                x: oldPos.x,
+                                                                y: closestY,
+                                                            };
+                                                        } else if (snappedX && snappedY) {
+                                                            return {
+                                                                x: closestX,
+                                                                y: closestY,
+                                                            };
+                                                        }
+                                                        return newPos;
+                                                    },
+                                                });
+                                                layer.add(tr);
+
+                                                image.on('dragmove', updateImageClonePosition);
+                                                image.on('transform', updateImageClonePosition);
+
+                                                // Ajoutez cette fonction de fusion d'images
+                                                function mergeImages() {
+                                                    // Obtenez les références des deux images à fusionner
+                                                    var productImage = document.getElementById('product-image');
+                                                    var designImage = document.getElementById('design-image');
+
+                                                    // Récupérez les coordonnées de positionnement de l'image de design par rapport à la scène Konva
+                                                    var position = image.position();
+
+                                                    // Créez un nouveau canevas pour fusionner les images
+                                                    var canvas = document.createElement('canvas');
+                                                    var context = canvas.getContext('2d');
+
+                                                    // Définissez la taille du canevas en fonction de la taille de l'image du produit
+                                                    canvas.width = productImage.width;
+                                                    canvas.height = productImage.height;
+
+                                                    // Dessinez l'image du produit sur le canevas
+                                                    context.drawImage(productImage, 0, 0);
+
+                                                    // Dessinez l'image du design sur le canevas aux coordonnées spécifiées
+                                                    context.drawImage(designImage, position.x, position.y);
+
+                                                    // Convertissez le canevas en une URL de données
+                                                    var mergedImageURL = canvas.toDataURL('image/jpeg');
+
+                                                    // Récupérez les coordonnées de positionnement de l'image de design
+                                                    var designPosition = {
+                                                        x: position.x,
+                                                        y: position.y
+                                                    };
+
+                                                    // Mettez à jour l'élément d'entrée caché avec les coordonnées de positionnement
+                                                    var imageClonePositionInput = document.getElementById('image-clone-position');
+                                                    imageClonePositionInput.value = JSON.stringify(designPosition);
+
+                                                    // Utilisez l'URL de l'image fusionnée comme source pour l'élément d'image
+                                                    var mergedImage = document.getElementById('merged-image');
+                                                    mergedImage.src = mergedImageURL;
+                                                }
+
+
+
+                                                function updateImageClonePosition() {
+                                                    var imageClone = stage.findOne('Image');
+                                                    var position = imageClone.position();
+
+                                                    // Obtenez les coordonnées du conteneur de l'image
+                                                    var container = document.getElementById('div1');
+                                                    var containerRect = container.getBoundingClientRect();
+                                                    var containerX = containerRect.left;
+                                                    var containerY = containerRect.top;
+
+                                                    // Ajoutez les coordonnées du conteneur à la position de l'image
+                                                    var offsetX = containerX + position.x;
+                                                    var offsetY = containerY + position.y;
+
+                                                    var imageClonePositionInput = document.getElementById('image-clone-position');
+                                                    imageClonePositionInput.value = JSON.stringify({
+                                                        x: offsetX,
+                                                        y: offsetY
+                                                    });
+                                                }
+
+
+                                                // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
+                                                document.getElementById('save-button').addEventListener('click', function(e) {
+                                                    e.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
+                                                    updateImageClonePosition
+                                                        (); // Met à jour les coordonnées de positionnement avant de soumettre le formulaire
+                                                    document.getElementById('your-form-id').submit(); // Soumettez le formulaire
+                                                });*/
+    </script>
+
+
+
+
+    <script>
+        /*var width = window.innerWidth;
+                                                        var height = window.innerHeight;
+
+                                                        var stage = new Konva.Stage({
+                                                            container: 'div1',
+                                                            width: 135,
+                                                            height: 160,
+                                                        });
+                                                        const layer = new Konva.Layer();
+                                                        stage.add(layer);
+
+                                                        // Récupérez l'élément image à partir de son ID
+                                                        var imageElement = document.getElementById('design-image');
+
+                                                        // Créez une instance de Konva.Image en utilisant l'élément image
+                                                        const image = new Konva.Image({
+                                                            x: 90,
+                                                            y: 90,
+                                                            image: imageElement,
+                                                            width: imageElement.width,
+                                                            height: imageElement.height,
+                                                            draggable: true,
+                                                        });
+                                                        layer.add(image);
+
+                                                        const tr = new Konva.Transformer({
+                                                            nodes: [image],
+                                                            anchorDragBoundFunc: function(oldPos, newPos, event) {
+                                                                // oldPos - is old absolute position of the anchor
+                                                                // newPos - is a new (possible) absolute position of the anchor based on pointer position
+                                                                // it is possible that anchor will have a different absolute position after this function
+                                                                // because every anchor has its own limits on position, based on resizing logic
+
+                                                                // do not snap rotating point
+                                                                if (tr.getActiveAnchor() === 'rotater') {
+                                                                    return newPos;
+                                                                }
+
+                                                                const dist = Math.sqrt(
+                                                                    Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
+                                                                );
+
+                                                                // do not do any snapping with new absolute position (pointer position)
+                                                                // is too far away from old position
+                                                                if (dist > 10) {
+                                                                    return newPos;
+                                                                }
+
+                                                                const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
+                                                                const diffX = Math.abs(newPos.x - closestX);
+
+                                                                const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
+                                                                const diffY = Math.abs(newPos.y - closestY);
+
+                                                                const snappedX = diffX < 10;
+                                                                const snappedY = diffY < 10;
+
+                                                                // a bit different snap strategies based on snap direction
+                                                                // we need to reuse old position for better UX
+                                                                if (snappedX && !snappedY) {
+                                                                    return {
+                                                                        x: closestX,
+                                                                        y: oldPos.y,
+                                                                    };
+                                                                } else if (snappedY && !snappedX) {
+                                                                    return {
+                                                                        x: oldPos.x,
+                                                                        y: closestY,
+                                                                    };
+                                                                } else if (snappedX && snappedY) {
+                                                                    return {
+                                                                        x: closestX,
+                                                                        y: closestY,
+                                                                    };
+                                                                }
+                                                                return newPos;
+                                                            },
+                                                        });
+                                                        layer.add(tr);
+
+                                                        // Après avoir manipulé l'image du design avec Konva
+
+                                                        var productImage = document.getElementById('merged-image');
+
+                                                        // Récupérer la position de l'image du produit par rapport à la fenêtre du navigateur
+                                                        var productImageRect = productImage.getBoundingClientRect();
+                                                        var productImageX = productImageRect.left;
+                                                        var productImageY = productImageRect.top;
+
+                                                        // Récupérer la position de l'image du design par rapport à l'image du produit
+                                                        var designImageKonva = layer.findOne('#design-image');
+                                                        var x = designImageKonva.x() + productImageX;
+                                                        var y = designImageKonva.y() + productImageY;
+                                                        // Mettre à jour les valeurs dans les champs de formulaire cachés
+                                                        document.getElementById('image-clone-x').value = x;
+                                                        document.getElementById('image-clone-y').value = y;
+                                                        // Soumettre le formulaire lorsque le bouton Sauvegarder est cliqué
+                                                        document.getElementById('save-button').addEventListener('click', function() {
+                                                            document.getElementById('your-form-id').submit();
+                                                        });*/
+    </script>
+
+
+
+
+    <script>
+        /*var width = window.innerWidth;
+                                        var height = window.innerHeight;
+
+                                        var stage = new Konva.Stage({
+                                            container: 'div1',
+                                            width: 135,
+                                            height: 160,
+                                        });
+
+                                        const layer = new Konva.Layer();
+                                        stage.add(layer);
+
+                                        // Récupérez l'élément image à partir de son ID
+                                        var imageElement = document.getElementById('design-image');
+
+
+
+
+
+
+
+
+                                        // var product = document.getElementById('merged-image');
+
+
+                                        // // Create an instance of Konva.Image for initialImage
+                                        // const backgroundImage = new Konva.Image({
+                                        //     image: product,
+                                        //     draggable: true,
+                                        // });
+
+
+                                        // const image = new Konva.Image({
+                                        //     image: imageElement,
+                                        //     draggable: true,
+                                        // });
+                                        // const group = new Konva.Group();
+
+                                        // // Add the images to the group in the desired order
+                                        // group.add(backgroundImage);
+                                        // group.add(image);
+
+                                        // // Add the group to the layer
+                                        // layer.add(group);
+
+                                        // // Redraw the layer to display the images
+                                        // layer.draw();
+
+
+                                        function sendImage(image) {
+                                            // Create a new FormData object
+                                            const formData = new FormData();
+                                            
+                                            // Add the image to the FormData object
+                                            formData.append('image', image);
+                                            
+                                            // Make a POST request to the Laravel backend
+                                            fetch('/client/test', {
+                                                method: 'POST',
+                                                body: formData,
                                             });
-                                            const layer = new Konva.Layer();
-                                            stage.add(layer);
+                                        }
+                                        
+                                        // const image = document.getElementById('design-image');
+
+
+                                        sendImage(imageElement);
 
 
 
-                                            // Récupérez l'élément image à partir de son ID
-                                            var imageElement = document.getElementById('design-image');
 
-                                            // Créez une instance de Konva.Image en utilisant l'élément image
-                                            const image = new Konva.Image({
-                                                x: 90,
-                                                y: 90,
-                                                image: imageElement,
-                                                width: imageElement.width,
-                                                height: imageElement.height,
-                                                draggable: true,
+
+
+
+                                        // // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
+                                        // document.getElementById('save-button').addEventListener('click', function(e) {
+                                        //     // Récupérez l'élément de l'image
+                                        //     var imageElement = document.getElementById('design-image');
+
+                                        //     // Récupérez le fichier de l'image
+                                        //     var imageFile = imageElement.files[0];
+
+                                        //     // Créez un objet FormData pour envoyer l'image au backend
+                                        //     var formData = new FormData();
+                                        //     formData.append('design-image', imageFile);
+                                        //     document.getElementById('your-form-id').submit(); // Soumettez le formulaire
+                                        // });
+
+
+
+
+
+
+                                        // // Create a new paragraph element
+                                        // var paragraph = document.createElement("p");
+                                        // paragraph.textContent = "Hello, world!";
+
+                                        // // Get a reference to the parent element
+                                        // var parentElement = document.getElementById("test");
+
+                                        // // Append the new paragraph element as the last child of the parent element
+                                        // parentElement.appendChild(paragraph);
+
+
+
+
+
+
+
+
+                                        // Créez une instance de Konva.Image en utilisant l'élément image
+                                        const image = new Konva.Image({
+                                            image: imageElement,
+                                            draggable: true,
+                                        });
+
+                                        // Chargement de l'image avant de l'ajouter à la scène
+                                        imageElement.onload = function() {
+                                            // Calcul des coordonnées pour centrer l'image
+                                            var imageX = (stage.width() - 110) / 2;
+                                            var imageY = (stage.height() - 110) / 2;
+
+                                            // Positionnement de l'image centrée
+                                            image.position({
+                                                x: imageX,
+                                                y: imageY
                                             });
+
+
+
+                                            // Redimensionnement de l'image selon ses dimensions
+                                            image.size({
+                                                width: 110,
+                                                height: 110,
+                                            });
+
+                                            // Ajout de l'image à la couche
                                             layer.add(image);
 
-                                            const tr = new Konva.Transformer({
-                                                nodes: [image],
-                                                anchorDragBoundFunc: function(oldPos, newPos, event) {
-                                                    // oldPos - is old absolute position of the anchor
-                                                    // newPos - is a new (possible) absolute position of the anchor based on pointer position
-                                                    // it is possible that anchor will have a different absolute position after this function
-                                                    // because every anchor has its own limits on position, based on resizing logic
-
-                                                    // do not snap rotating point
-                                                    if (tr.getActiveAnchor() === 'rotater') {
-                                                        return newPos;
-                                                    }
-
-                                                    const dist = Math.sqrt(
-                                                        Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
-                                                    );
-
-                                                    // do not do any snapping with new absolute position (pointer position)
-                                                    // is too far away from old position
-                                                    if (dist > 10) {
-                                                        return newPos;
-                                                    }
-
-                                                    const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
-                                                    const diffX = Math.abs(newPos.x - closestX);
-
-                                                    const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
-                                                    const diffY = Math.abs(newPos.y - closestY);
-
-                                                    const snappedX = diffX < 10;
-                                                    const snappedY = diffY < 10;
-
-                                                    // a bit different snap strategies based on snap direction
-                                                    // we need to reuse old position for better UX
-                                                    if (snappedX && !snappedY) {
-                                                        return {
-                                                            x: closestX,
-                                                            y: oldPos.y,
-                                                        };
-                                                    } else if (snappedY && !snappedX) {
-                                                        return {
-                                                            x: oldPos.x,
-                                                            y: closestY,
-                                                        };
-                                                    } else if (snappedX && snappedY) {
-                                                        return {
-                                                            x: closestX,
-                                                            y: closestY,
-                                                        };
-                                                    }
-                                                    return newPos;
-                                                },
-                                            });
-                                            layer.add(tr);
-
-                                            image.on('dragmove', updateImageClonePosition);
-                                            image.on('transform', updateImageClonePosition);
-
-                                            // Ajoutez cette fonction de fusion d'images
-                                            function mergeImages() {
-                                                // Obtenez les références des deux images à fusionner
-                                                var productImage = document.getElementById('product-image');
-                                                var designImage = document.getElementById('design-image');
-
-                                                // Récupérez les coordonnées de positionnement de l'image de design par rapport à la scène Konva
-                                                var position = image.position();
-
-                                                // Créez un nouveau canevas pour fusionner les images
-                                                var canvas = document.createElement('canvas');
-                                                var context = canvas.getContext('2d');
-
-                                                // Définissez la taille du canevas en fonction de la taille de l'image du produit
-                                                canvas.width = productImage.width;
-                                                canvas.height = productImage.height;
-
-                                                // Dessinez l'image du produit sur le canevas
-                                                context.drawImage(productImage, 0, 0);
-
-                                                // Dessinez l'image du design sur le canevas aux coordonnées spécifiées
-                                                context.drawImage(designImage, position.x, position.y);
-
-                                                // Convertissez le canevas en une URL de données
-                                                var mergedImageURL = canvas.toDataURL('image/jpeg');
-
-                                                // Récupérez les coordonnées de positionnement de l'image de design
-                                                var designPosition = {
-                                                    x: position.x,
-                                                    y: position.y
-                                                };
-
-                                                // Mettez à jour l'élément d'entrée caché avec les coordonnées de positionnement
-                                                var imageClonePositionInput = document.getElementById('image-clone-position');
-                                                imageClonePositionInput.value = JSON.stringify(designPosition);
-
-                                                // Utilisez l'URL de l'image fusionnée comme source pour l'élément d'image
-                                                var mergedImage = document.getElementById('merged-image');
-                                                mergedImage.src = mergedImageURL;
-                                            }
-
-
-
-                                            function updateImageClonePosition() {
-                                                var imageClone = stage.findOne('Image');
-                                                var position = imageClone.position();
-
-                                                // Obtenez les coordonnées du conteneur de l'image
-                                                var container = document.getElementById('div1');
-                                                var containerRect = container.getBoundingClientRect();
-                                                var containerX = containerRect.left;
-                                                var containerY = containerRect.top;
-
-                                                // Ajoutez les coordonnées du conteneur à la position de l'image
-                                                var offsetX = containerX + position.x;
-                                                var offsetY = containerY + position.y;
-
-                                                var imageClonePositionInput = document.getElementById('image-clone-position');
-                                                imageClonePositionInput.value = JSON.stringify({
-                                                    x: offsetX,
-                                                    y: offsetY
-                                                });
-                                            }
-
-
-                                            // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
-                                            document.getElementById('save-button').addEventListener('click', function(e) {
-                                                e.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
-                                                updateImageClonePosition
-                                                    (); // Met à jour les coordonnées de positionnement avant de soumettre le formulaire
-                                                document.getElementById('your-form-id').submit(); // Soumettez le formulaire
-                                            });*/
-    </script>
-
-
-
-
-    <script>
-        /*var width = window.innerWidth;
-                                                    var height = window.innerHeight;
-
-                                                    var stage = new Konva.Stage({
-                                                        container: 'div1',
-                                                        width: 135,
-                                                        height: 160,
-                                                    });
-                                                    const layer = new Konva.Layer();
-                                                    stage.add(layer);
-
-                                                    // Récupérez l'élément image à partir de son ID
-                                                    var imageElement = document.getElementById('design-image');
-
-                                                    // Créez une instance de Konva.Image en utilisant l'élément image
-                                                    const image = new Konva.Image({
-                                                        x: 90,
-                                                        y: 90,
-                                                        image: imageElement,
-                                                        width: imageElement.width,
-                                                        height: imageElement.height,
-                                                        draggable: true,
-                                                    });
-                                                    layer.add(image);
-
-                                                    const tr = new Konva.Transformer({
-                                                        nodes: [image],
-                                                        anchorDragBoundFunc: function(oldPos, newPos, event) {
-                                                            // oldPos - is old absolute position of the anchor
-                                                            // newPos - is a new (possible) absolute position of the anchor based on pointer position
-                                                            // it is possible that anchor will have a different absolute position after this function
-                                                            // because every anchor has its own limits on position, based on resizing logic
-
-                                                            // do not snap rotating point
-                                                            if (tr.getActiveAnchor() === 'rotater') {
-                                                                return newPos;
-                                                            }
-
-                                                            const dist = Math.sqrt(
-                                                                Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
-                                                            );
-
-                                                            // do not do any snapping with new absolute position (pointer position)
-                                                            // is too far away from old position
-                                                            if (dist > 10) {
-                                                                return newPos;
-                                                            }
-
-                                                            const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
-                                                            const diffX = Math.abs(newPos.x - closestX);
-
-                                                            const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
-                                                            const diffY = Math.abs(newPos.y - closestY);
-
-                                                            const snappedX = diffX < 10;
-                                                            const snappedY = diffY < 10;
-
-                                                            // a bit different snap strategies based on snap direction
-                                                            // we need to reuse old position for better UX
-                                                            if (snappedX && !snappedY) {
-                                                                return {
-                                                                    x: closestX,
-                                                                    y: oldPos.y,
-                                                                };
-                                                            } else if (snappedY && !snappedX) {
-                                                                return {
-                                                                    x: oldPos.x,
-                                                                    y: closestY,
-                                                                };
-                                                            } else if (snappedX && snappedY) {
-                                                                return {
-                                                                    x: closestX,
-                                                                    y: closestY,
-                                                                };
-                                                            }
-                                                            return newPos;
-                                                        },
-                                                    });
-                                                    layer.add(tr);
-
-                                                    // Après avoir manipulé l'image du design avec Konva
-
-                                                    var productImage = document.getElementById('merged-image');
-
-                                                    // Récupérer la position de l'image du produit par rapport à la fenêtre du navigateur
-                                                    var productImageRect = productImage.getBoundingClientRect();
-                                                    var productImageX = productImageRect.left;
-                                                    var productImageY = productImageRect.top;
-
-                                                    // Récupérer la position de l'image du design par rapport à l'image du produit
-                                                    var designImageKonva = layer.findOne('#design-image');
-                                                    var x = designImageKonva.x() + productImageX;
-                                                    var y = designImageKonva.y() + productImageY;
-                                                    // Mettre à jour les valeurs dans les champs de formulaire cachés
-                                                    document.getElementById('image-clone-x').value = x;
-                                                    document.getElementById('image-clone-y').value = y;
-                                                    // Soumettre le formulaire lorsque le bouton Sauvegarder est cliqué
-                                                    document.getElementById('save-button').addEventListener('click', function() {
-                                                        document.getElementById('your-form-id').submit();
-                                                    });*/
-    </script>
-
-
-
-
-    <script>
-        /*var width = window.innerWidth;
-                                    var height = window.innerHeight;
-
-                                    var stage = new Konva.Stage({
-                                        container: 'div1',
-                                        width: 135,
-                                        height: 160,
-                                    });
-
-                                    const layer = new Konva.Layer();
-                                    stage.add(layer);
-
-                                    // Récupérez l'élément image à partir de son ID
-                                    var imageElement = document.getElementById('design-image');
-
-
-
-
-
-
-
-
-                                    // var product = document.getElementById('merged-image');
-
-
-                                    // // Create an instance of Konva.Image for initialImage
-                                    // const backgroundImage = new Konva.Image({
-                                    //     image: product,
-                                    //     draggable: true,
-                                    // });
-
-
-                                    // const image = new Konva.Image({
-                                    //     image: imageElement,
-                                    //     draggable: true,
-                                    // });
-                                    // const group = new Konva.Group();
-
-                                    // // Add the images to the group in the desired order
-                                    // group.add(backgroundImage);
-                                    // group.add(image);
-
-                                    // // Add the group to the layer
-                                    // layer.add(group);
-
-                                    // // Redraw the layer to display the images
-                                    // layer.draw();
-
-
-                                    function sendImage(image) {
-                                        // Create a new FormData object
-                                        const formData = new FormData();
-                                        
-                                        // Add the image to the FormData object
-                                        formData.append('image', image);
-                                        
-                                        // Make a POST request to the Laravel backend
-                                        fetch('/client/test', {
-                                            method: 'POST',
-                                            body: formData,
-                                        });
-                                    }
-                                    
-                                    // const image = document.getElementById('design-image');
-
-
-                                    sendImage(imageElement);
-
-
-
-
-
-
-
-                                    // // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
-                                    // document.getElementById('save-button').addEventListener('click', function(e) {
-                                    //     // Récupérez l'élément de l'image
-                                    //     var imageElement = document.getElementById('design-image');
-
-                                    //     // Récupérez le fichier de l'image
-                                    //     var imageFile = imageElement.files[0];
-
-                                    //     // Créez un objet FormData pour envoyer l'image au backend
-                                    //     var formData = new FormData();
-                                    //     formData.append('design-image', imageFile);
-                                    //     document.getElementById('your-form-id').submit(); // Soumettez le formulaire
-                                    // });
-
-
-
-
-
-
-                                    // // Create a new paragraph element
-                                    // var paragraph = document.createElement("p");
-                                    // paragraph.textContent = "Hello, world!";
-
-                                    // // Get a reference to the parent element
-                                    // var parentElement = document.getElementById("test");
-
-                                    // // Append the new paragraph element as the last child of the parent element
-                                    // parentElement.appendChild(paragraph);
-
-
-
-
-
-
-
-
-                                    // Créez une instance de Konva.Image en utilisant l'élément image
-                                    const image = new Konva.Image({
-                                        image: imageElement,
-                                        draggable: true,
-                                    });
-
-                                    // Chargement de l'image avant de l'ajouter à la scène
-                                    imageElement.onload = function() {
-                                        // Calcul des coordonnées pour centrer l'image
-                                        var imageX = (stage.width() - 110) / 2;
-                                        var imageY = (stage.height() - 110) / 2;
-
-                                        // Positionnement de l'image centrée
-                                        image.position({
-                                            x: imageX,
-                                            y: imageY
-                                        });
-
-
-
-                                        // Redimensionnement de l'image selon ses dimensions
-                                        image.size({
-                                            width: 110,
-                                            height: 110,
-                                        });
-
-                                        // Ajout de l'image à la couche
-                                        layer.add(image);
-
-                                        // Redraw de la couche pour afficher l'image
-                                        layer.draw();
-                                    };
-
-                                    const tr = new Konva.Transformer({
-                                        nodes: [image],
-                                        anchorDragBoundFunc: function(oldPos, newPos, event) {
-                                            // oldPos - is old absolute position of the anchor
-                                            // newPos - is a new (possible) absolute position of the anchor based on pointer position
-                                            // it is possible that anchor will have a different absolute position after this function
-                                            // because every anchor has its own limits on position, based on resizing logic
-
-                                            // do not snap rotating point
-                                            if (tr.getActiveAnchor() === 'rotater') {
-                                                return newPos;
-                                            }
-
-                                            const dist = Math.sqrt(
-                                                Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
-                                            );
-
-                                            // do not do any snapping with new absolute position (pointer position)
-                                            // is too far away from old position
-                                            if (dist > 10) {
-                                                return newPos;
-                                            }
-
-                                            const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
-                                            const diffX = Math.abs(newPos.x - closestX);
-
-                                            const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
-                                            const diffY = Math.abs(newPos.y - closestY);
-
-                                            const snappedX = diffX < 10;
-                                            const snappedY = diffY < 10;
-
-                                            // a bit different snap strategies based on snap direction
-                                            // we need to reuse old position for better UX
-                                            if (snappedX && !snappedY) {
-                                                return {
-                                                    x: closestX,
-                                                    y: oldPos.y,
-                                                };
-                                            } else if (snappedY && !snappedX) {
-                                                return {
-                                                    x: oldPos.x,
-                                                    y: closestY,
-                                                };
-                                            } else if (snappedX && snappedY) {
-                                                return {
-                                                    x: closestX,
-                                                    y: closestY,
-                                                };
-                                            }
-                                            return newPos;
-                                        },
-                                    });
-                                    layer.add(tr);
-
-                                    image.on('dragmove', updateImageClonePosition);
-                                    image.on('transform', updateImageClonePosition);
-
-                                    // Ajoutez cette fonction de fusion d'images
-                                    function mergeImages() {
-                                        // Obtenez les références des deux images à fusionner
-                                        var productImage = document.getElementById('product-image');
-                                        var designImage = document.getElementById('design-image');
-
-                                        // Récupérez les coordonnées de positionnement de l'image de design par rapport à la scène Konva
-                                        var position = image.position();
-
-                                        // Créez un nouveau canevas pour fusionner les images
-                                        var canvas = document.createElement('canvas');
-                                        var context = canvas.getContext('2d');
-
-                                        // Définissez la taille du canevas en fonction de la taille de l'image du produit
-                                        canvas.width = productImage.width;
-                                        canvas.height = productImage.height;
-
-                                        // Dessinez l'image du produit sur le canevas
-                                        context.drawImage(productImage, 0, 0);
-
-                                        // Dessinez l'image du design sur le canevas aux coordonnées spécifiées
-                                        context.drawImage(designImage, position.x, position.y);
-
-                                        // Convertissez le canevas en une URL de données
-                                        var mergedImageURL = canvas.toDataURL('image/jpeg');
-
-                                        // Récupérez les coordonnées de positionnement de l'image de design
-                                        var designPosition = {
-                                            x: position.x,
-                                            y: position.y
+                                            // Redraw de la couche pour afficher l'image
+                                            layer.draw();
                                         };
 
-                                        // Mettez à jour l'élément d'entrée caché avec les coordonnées de positionnement
-                                        var imageClonePositionInput = document.getElementById('image-clone-position');
-                                        imageClonePositionInput.value = JSON.stringify(designPosition);
+                                        const tr = new Konva.Transformer({
+                                            nodes: [image],
+                                            anchorDragBoundFunc: function(oldPos, newPos, event) {
+                                                // oldPos - is old absolute position of the anchor
+                                                // newPos - is a new (possible) absolute position of the anchor based on pointer position
+                                                // it is possible that anchor will have a different absolute position after this function
+                                                // because every anchor has its own limits on position, based on resizing logic
 
-                                        // Utilisez l'URL de l'image fusionnée comme source pour l'élément d'image
-                                        var mergedImage = document.getElementById('merged-image');
-                                        mergedImage.src = mergedImageURL;
-                                    }
+                                                // do not snap rotating point
+                                                if (tr.getActiveAnchor() === 'rotater') {
+                                                    return newPos;
+                                                }
 
+                                                const dist = Math.sqrt(
+                                                    Math.pow(newPos.x - oldPos.x, 2) + Math.pow(newPos.y - oldPos.y, 2)
+                                                );
 
+                                                // do not do any snapping with new absolute position (pointer position)
+                                                // is too far away from old position
+                                                if (dist > 10) {
+                                                    return newPos;
+                                                }
 
-                                    function updateImageClonePosition() {
-                                        var imageClone = stage.findOne('Image');
-                                        var position = imageClone.position();
+                                                const closestX = Math.round(newPos.x / cellWidth) * cellWidth;
+                                                const diffX = Math.abs(newPos.x - closestX);
 
-                                        // Obtenez les coordonnées du conteneur de l'image
-                                        var container = document.getElementById('div1');
-                                        var containerRect = container.getBoundingClientRect();
-                                        var containerX = containerRect.left;
-                                        var containerY = containerRect.top;
+                                                const closestY = Math.round(newPos.y / cellHeight) * cellHeight;
+                                                const diffY = Math.abs(newPos.y - closestY);
 
-                                        // Ajoutez les coordonnées du conteneur à la position de l'image
-                                        var offsetX = containerX + position.x;
-                                        var offsetY = containerY + position.y;
+                                                const snappedX = diffX < 10;
+                                                const snappedY = diffY < 10;
 
-                                        var imageClonePositionInput = document.getElementById('image-clone-position');
-                                        imageClonePositionInput.value = JSON.stringify({
-                                            x: offsetX,
-                                            y: offsetY
+                                                // a bit different snap strategies based on snap direction
+                                                // we need to reuse old position for better UX
+                                                if (snappedX && !snappedY) {
+                                                    return {
+                                                        x: closestX,
+                                                        y: oldPos.y,
+                                                    };
+                                                } else if (snappedY && !snappedX) {
+                                                    return {
+                                                        x: oldPos.x,
+                                                        y: closestY,
+                                                    };
+                                                } else if (snappedX && snappedY) {
+                                                    return {
+                                                        x: closestX,
+                                                        y: closestY,
+                                                    };
+                                                }
+                                                return newPos;
+                                            },
                                         });
-                                    }
+                                        layer.add(tr);
+
+                                        image.on('dragmove', updateImageClonePosition);
+                                        image.on('transform', updateImageClonePosition);
+
+                                        // Ajoutez cette fonction de fusion d'images
+                                        function mergeImages() {
+                                            // Obtenez les références des deux images à fusionner
+                                            var productImage = document.getElementById('product-image');
+                                            var designImage = document.getElementById('design-image');
+
+                                            // Récupérez les coordonnées de positionnement de l'image de design par rapport à la scène Konva
+                                            var position = image.position();
+
+                                            // Créez un nouveau canevas pour fusionner les images
+                                            var canvas = document.createElement('canvas');
+                                            var context = canvas.getContext('2d');
+
+                                            // Définissez la taille du canevas en fonction de la taille de l'image du produit
+                                            canvas.width = productImage.width;
+                                            canvas.height = productImage.height;
+
+                                            // Dessinez l'image du produit sur le canevas
+                                            context.drawImage(productImage, 0, 0);
+
+                                            // Dessinez l'image du design sur le canevas aux coordonnées spécifiées
+                                            context.drawImage(designImage, position.x, position.y);
+
+                                            // Convertissez le canevas en une URL de données
+                                            var mergedImageURL = canvas.toDataURL('image/jpeg');
+
+                                            // Récupérez les coordonnées de positionnement de l'image de design
+                                            var designPosition = {
+                                                x: position.x,
+                                                y: position.y
+                                            };
+
+                                            // Mettez à jour l'élément d'entrée caché avec les coordonnées de positionnement
+                                            var imageClonePositionInput = document.getElementById('image-clone-position');
+                                            imageClonePositionInput.value = JSON.stringify(designPosition);
+
+                                            // Utilisez l'URL de l'image fusionnée comme source pour l'élément d'image
+                                            var mergedImage = document.getElementById('merged-image');
+                                            mergedImage.src = mergedImageURL;
+                                        }
 
 
-                                    // // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
-                                    // document.getElementById('save-button').addEventListener('click', function(e) {
-                                    //     //e.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
-                                    //     updateImageClonePosition
-                                    //         (); // Met à jour les coordonnées de positionnement avant de soumettre le formulaire
-                                    //     document.getElementById('your-form-id').submit(); // Soumettez le formulaire
-                                    // });*/
+
+                                        function updateImageClonePosition() {
+                                            var imageClone = stage.findOne('Image');
+                                            var position = imageClone.position();
+
+                                            // Obtenez les coordonnées du conteneur de l'image
+                                            var container = document.getElementById('div1');
+                                            var containerRect = container.getBoundingClientRect();
+                                            var containerX = containerRect.left;
+                                            var containerY = containerRect.top;
+
+                                            // Ajoutez les coordonnées du conteneur à la position de l'image
+                                            var offsetX = containerX + position.x;
+                                            var offsetY = containerY + position.y;
+
+                                            var imageClonePositionInput = document.getElementById('image-clone-position');
+                                            imageClonePositionInput.value = JSON.stringify({
+                                                x: offsetX,
+                                                y: offsetY
+                                            });
+                                        }
+
+
+                                        // // Appelez la fonction de fusion d'images lorsque le formulaire est soumis
+                                        // document.getElementById('save-button').addEventListener('click', function(e) {
+                                        //     //e.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
+                                        //     updateImageClonePosition
+                                        //         (); // Met à jour les coordonnées de positionnement avant de soumettre le formulaire
+                                        //     document.getElementById('your-form-id').submit(); // Soumettez le formulaire
+                                        // });*/
     </script>
 
     <script>

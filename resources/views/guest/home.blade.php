@@ -217,6 +217,7 @@
                                             class="d-none">
                                             @csrf
                                         </form>
+                                        
                                     @else
                                         <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Connexion</a>
                                         <div class="reg-footer text-center">Pas encore de compte? <a
