@@ -634,8 +634,15 @@
     <!-- Main JS -->
     <script src="{{ asset('/mainassets/js/main.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script src="https://unpkg.com/merge-images"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-close').click(function() {
+                $(this).closest('.alert-container').remove();
+            });
+        });
+    </script>
 
     <script>
         var width = window.innerWidth;

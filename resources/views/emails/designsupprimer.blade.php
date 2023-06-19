@@ -1,13 +1,8 @@
 <x-mail::message>
-# Introduction
+# Bonjour
 
-The body of your message.
+Nous sommes désolés, mais nous avons dû retirer votre design, car il pourrait contenir du matériel qui viole les droits de quelqu'un.
 
-
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
+Merci,<br>
+PrintUP
 </x-mail::message>

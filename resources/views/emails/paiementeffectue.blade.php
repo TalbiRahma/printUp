@@ -1,12 +1,8 @@
 <x-mail::message>
-# Introduction
+# Bonjour
 
-The body of your message.
+Votre solde a été transféré par l'administration de Printup.
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
+Merci,<br>
+PrintUP
 </x-mail::message>

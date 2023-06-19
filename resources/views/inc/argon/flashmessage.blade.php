@@ -1,38 +1,66 @@
 
 @if ($message = Session::get('success1'))
-    <div class="alert1 success1-alert">
-        <p class="mb-0 flex-1">{{ $message }}</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="alert1 success1-alert alert-container">
+        <div class="row">
+            <div class="col-10">
+                <p class="mb-0 flex-1">{{ $message }}</p>
+            </div>
+            <div class="col-2">
+                    <button class="btn-close" aria-hidden="true">&times;</button>
+            </div>
+        </div>
     </div>
 @endif
 
 @if ($message = Session::get('danger1'))
-    <div class="alert1 danger1-alert">
-        <p class="mb-0 flex-1">{{ $message }}</p>
-        <a class="close">&times;</a>
+    <div class="alert1 danger1-alert alert-container">
+        <div class="row">
+            <div class="col-10">
+                <p class="mb-0 flex-1">{{ $message }}</p>
+            </div>
+            <div class="col-2">
+                    <button class="btn-close" aria-hidden="true">&times;</button>
+            </div>
+        </div>
     </div>
 @endif
 
 @if ($message = Session::get('info1'))
-    <div class="alert1 info1-alert">
-        <p class="mb-0 flex-1">{{ $message }}</p>
-        <a class="close">&times;</a>
+    <div class="alert1 info1-aler alert-container">
+        <div class="row">
+            <div class="col-10">
+                <p class="mb-0 flex-1">{{ $message }}</p>
+            </div>
+            <div class="col-2">
+                    <button class="btn-close" aria-hidden="true">&times;</button>
+            </div>
+        </div>
     </div>
 @endif
 
 @if ($message = Session::get('warning1'))
-    <div class="alert1 warning1-alert">
-        <p class="mb-0 flex-1">{{ $message }}</p>
-        <a class="close">&times;</a>
+    <div class="alert1 warning1-alert alert-container">
+        <div class="row">
+            <div class="col-10">
+                <p class="mb-0 flex-1">{{ $message }}</p>
+            </div>
+            <div class="col-2">
+                    <button class="btn-close" aria-hidden="true">&times;</button>
+            </div>
+        </div>
     </div>
 @endif
 
 @if ($message = Session::get('primary1'))
-    <div class="alert1 primary1-alert">
-        <p class="mb-0 flex-1">{{ $message }}</p>
-        <a class="close">&times;</a>
+    <div class="alert1 primary1-alert alert-container">
+        <div class="row">
+            <div class="col-10">
+                <p class="mb-0 flex-1">{{ $message }}</p>
+            </div>
+            <div class="col-2">
+                    <button class="btn-close" aria-hidden="true">&times;</button>
+            </div>
+        </div>
     </div>
 @endif
 

@@ -88,8 +88,8 @@
                     </a>
                 </li>
                 <li class="nav-item" id="accordionRental">
-                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                        aria-expanded="false" aria-controls="collapseFour">
+                    <a class=" nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                        aria-controls="collapseFour">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-image text-sm opacity-10" style="color: #f137b9 !important;"></i>
@@ -107,7 +107,7 @@
                             <span class="nav-link-text ms-4 text-dark">Non Validée</span>
                         </a>
                         <a class="nav-link" href="{{ route('mes.designs') }}">
-                            
+
                             <span class="nav-link-text ms-4 text-dark">PrintUp Designs</span>
                         </a>
                     </div>
@@ -138,7 +138,8 @@
                         aria-expanded="false" aria-controls="collapseTow">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-money-coins text-warning text-sm opacity-10" style="color: #f1c037 !important;"></i>
+                            <i class="ni ni-money-coins text-warning text-sm opacity-10"
+                                style="color: #f1c037 !important;"></i>
                         </div>
                         <span class="nav-link-text ms-1">Paiement</span>
                     </a>
@@ -180,22 +181,22 @@
                     </a>
                 </li>
                 <li class="nav-item ps--3">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
+                <li class="nav-item ps-2">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right text-warning" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                             <path fill-rule="evenodd"
                                 d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                            <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
+                        <span class="nav-link-text ms-1 ps-3">Se déconnecter</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
                 </li>
             </ul>
         </div>
@@ -209,7 +210,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Pages</a></li>
+                                href="javascript:;">Accueil</a></li>
                         <li class="breadcrumb-item text-sm text-white active" aria-current="page">categories</li>
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Categories Produits</h6>
@@ -255,25 +256,27 @@
             <div class="card">
                 <div class="container-fluid py-4">
                     <div class="row">
-                    <div class="col-9">
-                    <h6>Table de Categories Produits Initiale:</h6>
-                    <button class="btn btn-icon btn-3 bg-gradient-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#categorieAjout">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text">Ajouter</span>
-                    </button>
-                    </div>
-                    <div class="col-3">
-                        <form action="{{route('search.category.product')}}" method="POST">
-                            @csrf
-                            <div class="input-group">
-                            
-                            <button type="submit" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
-                            <input name="category_name" type="text" class="form-control" placeholder="Tapez ici...">
-                            
-                            </div>
-                        </form>
-                    </div>
+                        <div class="col-9">
+                            <h6>Table de Categories Produits Initiale:</h6>
+                            <button class="btn btn-icon btn-3 bg-gradient-success" type="button"
+                                data-bs-toggle="modal" data-bs-target="#categorieAjout">
+                                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                <span class="btn-inner--text">Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="col-3">
+                            <form action="{{ route('search.category.product') }}" method="POST">
+                                @csrf
+                                <div class="input-group">
+
+                                    <button type="submit" class="input-group-text text-body"><i
+                                            class="fas fa-search" aria-hidden="true"></i></button>
+                                    <input name="category_name" type="text" class="form-control"
+                                        placeholder="Tapez ici...">
+
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <!--Modal Ajout produit-->
                     <div class="modal fade" id="categorieAjout" tabindex="-1" role="dialog"
@@ -393,72 +396,69 @@
                                     <a class="btn bg-gradient-primary btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#categorieModif{{ $cp->id }}">Modifier</a>
                                     <!--Modal Modifier produit-->
-                                    
-                                        <div class="modal fade" id="categorieModif{{ $cp->id }}"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body p-0">
-                                                        <div class="card card-plain">
-                                                            <div class="card-header pb-0 text-left">
-                                                                <h3
-                                                                    class="font-weight-bolder text-primary text-gradient">
-                                                                    Modifier Categorie <span>{{ $cp->name }}</span>
-                                                                </h3>
-                                                                <p class="mb-0">Modifier cette catégorie de
-                                                                    produits:
-                                                                </p>
-                                                            </div>
-                                                            <form action="{{ route('edit.category_product') }}"
-                                                                method="POST" enctype="multipart/form-data">
-                                                                @csrf
-                                                                <div class="card-body pb-3">
-                                                                    <input type="hidden" name="id_category_product"
-                                                                        value="{{ $cp->id }}">
-                                                                    <div>
-                                                                        <img src="{{ asset('uploads') }}/{{ $cp->photo }}"
-                                                                            class="avatar avatar-sm rounded-circle me-2">
-                                                                    </div>
 
-                                                                    <label>Categorie</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Nom de Categorie"
-                                                                            aria-label="Name"
-                                                                            aria-describedby="name-addon"
-                                                                            name="name"
-                                                                            value="{{ $cp->name }}">
-                                                                    </div>
-                                                                    <label>Description</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <textarea class="form-control" type="text" name="description" placeholder="Description">{{ $cp->description }}</textarea>
-                                                                    </div>
-                                                                    <label>Photo</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input name="photo" type="file"
-                                                                            class="form-control" accept="image/*">
-                                                                    </div>
-                                                                    <div class="text-center"
-                                                                        style="display:flex; flex-direction: row;">
-                                                                        <button type="submit"
-                                                                            class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4  mb-0">
-                                                                            Modifier</button>
-                                                                        <button type="button"
-                                                                            class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
-                                                                            data-bs-dismiss="modal">Annuler</button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
+                                    <div class="modal fade" id="categorieModif{{ $cp->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="card card-plain">
+                                                        <div class="card-header pb-0 text-left">
+                                                            <h3 class="font-weight-bolder text-primary text-gradient">
+                                                                Modifier Categorie <span>{{ $cp->name }}</span>
+                                                            </h3>
+                                                            <p class="mb-0">Modifier cette catégorie de
+                                                                produits:
+                                                            </p>
                                                         </div>
+                                                        <form action="{{ route('edit.category_product') }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="card-body pb-3">
+                                                                <input type="hidden" name="id_category_product"
+                                                                    value="{{ $cp->id }}">
+                                                                <div>
+                                                                    <img src="{{ asset('uploads') }}/{{ $cp->photo }}"
+                                                                        class="avatar avatar-sm rounded-circle me-2">
+                                                                </div>
+
+                                                                <label>Categorie</label>
+                                                                <div class="input-group mb-3">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Nom de Categorie"
+                                                                        aria-label="Name"
+                                                                        aria-describedby="name-addon" name="name"
+                                                                        value="{{ $cp->name }}">
+                                                                </div>
+                                                                <label>Description</label>
+                                                                <div class="input-group mb-3">
+                                                                    <textarea class="form-control" type="text" name="description" placeholder="Description">{{ $cp->description }}</textarea>
+                                                                </div>
+                                                                <label>Photo</label>
+                                                                <div class="input-group mb-3">
+                                                                    <input name="photo" type="file"
+                                                                        class="form-control" accept="image/*">
+                                                                </div>
+                                                                <div class="text-center"
+                                                                    style="display:flex; flex-direction: row;">
+                                                                    <button type="submit"
+                                                                        class="btn bg-gradient-primary btn-lg btn-rounded w-50 mt-4  mb-0">
+                                                                        Modifier</button>
+                                                                    <button type="button"
+                                                                        class="btn bg-gradient-secondary btn-lg btn-rounded w-50 mt-4  mb-0"
+                                                                        data-bs-dismiss="modal">Annuler</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    
+                                    </div>
+
                                     <!--End modal modifier produit-->
                                     <a onclick="return confirm('Voulez-vous vraiment supprimer cette categorie de produits?')"
-                                        href="{{ route('delete.category_product', ['id' => $cp->id ]) }}"
+                                        href="{{ route('delete.category_product', ['id' => $cp->id]) }}"
                                         class="btn bg-gradient-danger btn-sm">Supprimer</a>
 
 
@@ -467,8 +467,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="pagination justify-content-center" >
-                    {{ $category_product->links()}}
+                <div class="pagination justify-content-center">
+                    {{ $category_product->links() }}
                 </div>
             </div>
 
@@ -486,6 +486,14 @@
     <script src="{{ asset('/dashassets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('/dashassets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-close').click(function() {
+                $(this).closest('.alert-container').remove();
+            });
+        });
+    </script>
     <script>
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 
