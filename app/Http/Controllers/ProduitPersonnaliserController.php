@@ -178,7 +178,7 @@ class ProduitPersonnaliserController extends Controller
         $custom_product->etat = $design->etat;
        
 
-        $x = 50;
+        $x =0;
         $y = 50;
         //dd($x);
         /*if ($x === null || $y === null) {
@@ -198,7 +198,7 @@ class ProduitPersonnaliserController extends Controller
         //$design_img = Image::make(public_path('uploads/' . $design->photo));
 
         // resize image to fixed size
-        $design_img->resize(50, 50);
+        $design_img->resize(225, 225);
         
         $img->insert($design_img, 'center', $x, $y);
         //dd($img);
